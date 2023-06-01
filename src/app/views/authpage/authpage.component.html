@@ -1,0 +1,273 @@
+<header>
+    <nav class="navbar navbar-light navbar-expand-lg bg-white fixed-top" id="transmenu">
+        <div class="container"><a class="navbar-brand text-success" href="#header">
+                <img class="logo-app" src="../../../assets/sra-sa/images/logo/logo.png"></a><button
+                data-toggle="collapse" class="navbar-toggler collapsed"
+                data-target="#navcol-1"><span></span><span></span><span></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav ml-auto d-none">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+</header>
+
+
+
+<div class="hero-bg d-flex align-items-center">
+
+
+    <div class="  w-100 text-white login-dark pt-100">
+
+        <div class="row d-flex justify-content-center  ">
+
+
+
+            <div class="tabset login-dark  ">
+                <!-- Tab 1 -->
+
+
+                <input type="radio" name="tabset" id="tab1" aria-controls="Login-area" checked>
+                <label for="tab1">CLIENT LOGIN</label>
+                <!-- Tab 2 -->
+                <input type="radio" name="tabset" id="tab2" aria-controls="register-area">
+                <label for="tab2">INSCRIPTION</label>
+
+
+                <div class="tab-panels pos-r">
+
+                    <section id="Login-area" class="tab-panel">
+
+
+                        <div class="row">
+
+                            <div class="dots" onclick="this.classList.toggle('active');">
+
+                                <span class="caret"></span>
+
+                                <div class="list">
+                                    <ul>
+                                        <li (click)="changeLanguage('fr')">
+                                            <a> <img src="../../../assets/sra-sa/lang/usa.svg"
+                                                    style="height: 20px;">&nbsp;Francais</a>
+                                        </li>
+                                        <li (click)="changeLanguage('en')">
+                                            <a> <img src="../../../assets/sra-sa/lang/fr.svg"
+                                                    style="height: 20px;">&nbsp;English</a>
+                                        </li>
+                                        <li (click)="changeLanguage('ar')">
+                                            <a> <img src="../../../assets/sra-sa/lang/ar1.svg" style="height: 20px; width: 20px;">
+                                                &nbsp; العربية</a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                                <div class="dot">
+
+                                    <a class="lang-text">
+                                        <svg viewBox="0 0 24 24" role="img" xmlns="http://www.w3.org/2000/svg"
+                                            aria-labelledby="languageIconTitle" stroke="#ffffff" stroke-width="1"
+                                            stroke-linecap="square" stroke-linejoin="miter" fill="none" color="#000000"
+                                            style="  height: 21px; ">
+                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                            <g id="SVGRepo_iconCarrier">
+                                                <title id="languageIconTitle">Language</title>
+                                                <circle cx="12" cy="12" r="10"></circle>
+                                                <path stroke-linecap="round"
+                                                    d="M12,22 C14.6666667,19.5757576 16,16.2424242 16,12 C16,7.75757576 14.6666667,4.42424242 12,2 C9.33333333,4.42424242 8,7.75757576 8,12 C8,16.2424242 9.33333333,19.5757576 12,22 Z">
+                                                </path>
+                                                <path stroke-linecap="round" d="M2.5 9L21.5 9M2.5 15L21.5 15"></path>
+                                            </g>
+                                        </svg> {{"Language :" |translate}} </a>
+                                </div>
+                            </div>
+                            <div class="cursor" onclick="document.querySelector('.dots').classList.toggle('active');">
+                            </div>
+
+
+                            <div class="col-md-6 hidden-xs">
+
+                                <p class="text-about p-left">
+
+
+                                    <b> SRA </b> is a travel technology company that understands both fields: travel and
+                                    technology. Our engine has all travel services on one single platform - flights,
+                                    hotels, car rentals, transfers, packages, cruises, train, buses, events and more -
+                                    offered by major global suppliers all over the world. We are constantly looking for
+                                    new opportunities to extend our inventory by adding new travel services and new
+                                    suppliers. You can make a search in over 100 countries, compare the offers and find
+                                    the best one without opening many tabs. We have different travel technology
+                                    solutions for you that serve different business purposes. All travel agents, tour
+                                    operators and travel management companies can benefit from SRA.
+                                </p>
+                            </div>
+                            <div class="col-md-6">
+                                <app-login-form (backward)=' openForgetPw($event)' *ngIf="showLogin">
+                                </app-login-form>
+                                <app-forgot-password (backward)='openLogin($event)' *ngIf="showPassword">
+                                </app-forgot-password>
+                            </div>
+
+
+                        </div>
+
+                    </section>
+                    <section id="register-area" class="tab-panel">
+
+                        <div class="row">
+                            <app-sign-up-form> </app-sign-up-form>
+                        </div>
+                    </section>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+<div class="container  d-none " id="partners">
+    <carousel class="container">
+        <div class="carousel-cell">
+            <img src="/assets/sra-sa/images/auth-images/homebg.png">
+        </div>
+        <div class="carousel-cell">
+            <img src="/assets/sra-sa/images/auth-images/homebg.png">
+        </div>
+        <div class="carousel-cell">
+            <img src="/assets/sra-sa/images/auth-images/homebg.png">
+        </div>
+    </carousel>
+</div>
+<div class="container">
+
+    <div class="row">
+
+
+
+        <div *ngIf="newsData1.length">
+            <div *ngFor="let item of newsData1 ;let index = index">
+                <hr>
+                <div class="row container-image">
+                    <div class="col-md-5 col-img text-center" >
+                        <img class="pubImage" [src]="item.pubPhoto">
+                    </div>
+                    <div class="col-md-7 ng-binding ">
+                        <span class="text-title"  [innerHTML]="trustHtml(item.lPub)"> </span>
+
+                    </div>
+                </div>
+                <!-- <div class="card-col clickable  p-3 mt-2">
+                        <div>
+                          <p class="text-title text-center pt-3"> <img [src]="item.pubPhoto"></p>
+                          <p class="text-title" [innerHTML]="trustHtml(item.lPub)"> </p>
+                        </div>
+                      </div> -->
+            </div>
+        </div>
+        <!-- </div> -->
+        <!-- RequestDemo -->
+        <!-- <div id="tab-three-panel" class="panel">
+                     <app-request-demo-form> </app-request-demo-form>
+
+                 </div> -->
+        <!-- </div> -->
+        <!-- </div> -->
+        <!-- </div> -->
+        <!-- </div> -->
+
+    </div>
+</div>
+
+<section class="py-5">
+
+    <div class="container">
+
+
+        <div class="row">
+            <div class="col-md-2">
+                <img src="../../../assets/sra-sa/images/logo/logo.png" class="logo" alt="" style="  height:70px; ">
+            </div>
+            <div class="col-md-3">
+                <div class="about-title">
+                    About SraSa
+                </div>
+                <p>
+                    Sra-Sa is the world’s fastest growing provider of accommodation distribution services to
+                    the travel industry.
+                </p>
+
+            </div>
+            <div class="col-md-2">
+                <div class="about-title">
+                    Customer Service
+                </div>
+                <p>
+                    Our global Customer Service team is here to help .
+                </p>
+
+            </div>
+            <div class="col-md-2">
+                <div class="about-title">
+                    Contact Sra-Sa
+                </div>
+                <p>
+
+                    Get in touch, we would love to hear from you.
+                </p>
+
+
+            </div>
+            <div class="col-md-3">
+                <div class="about-title">
+                    News & Updates
+                </div>
+                <p>
+
+                    There’s always lots going on across the world of Sra-Sa. For the latest news stories...
+                </p>
+
+
+            </div>
+        </div>
+
+        <div class="row hidden-xs">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-3">
+
+
+                <button class="btn btn-primary  btn-about">
+                    more</button>
+            </div>
+            <div class="col-md-2">
+
+
+                <button class="btn btn-primary  btn-about">
+                    Customer Service</button>
+            </div>
+            <div class="col-md-2">
+
+                <button class="btn btn-primary  btn-about">
+                    more</button>
+            </div>
+            <div class="col-md-2">
+
+                <button class="btn btn-primary  btn-about">
+                    more</button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<app-auth-footer> </app-auth-footer>

@@ -1,0 +1,102 @@
+<!-- <div class="container-fluid">
+  <nav class="ml-3 mt-4 mr-3">
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <a
+        class="nav-item nav-link"
+        [ngClass]="{ active: currentOnglet('/pages/files/flight-history') }"
+        id="nav-flight-tab"
+        data-toggle="tab"
+        role="tab"
+        aria-controls="nav-flight"
+        aria-selected="true"
+        [routerLink]="['/pages/files/flight-history']"
+        ><i class="fas fa-plane-departure"></i>
+        {{ "Flight
+                Queue" | translate }}</a
+      >
+
+      <a
+        class="nav-item nav-link"
+        [ngClass]="{ active: currentOnglet('/pages/files/hotel-history') }"
+        id="nav-flight-tab"
+        data-toggle="tab"
+        role="tab"
+        aria-controls="nav-flight"
+        aria-selected="true"
+        [routerLink]="['/pages/files/hotel-history']"
+        ><i class="fas fa-bed"></i> {{ "Hotel Queue" | translate }}</a
+      >
+      <a
+        class="nav-item nav-link"
+        [ngClass]="{ active: currentOnglet('/pages/files/visa-history') }"
+        id="nav-flight-tab"
+        data-toggle="tab"
+        role="tab"
+        aria-controls="nav-flight"
+        aria-selected="true"
+        [routerLink]="['/pages/files/visa-history']"
+        ><i class="fas fa-address-card"></i> {{ "Visa Queue" | translate }}</a
+      >
+
+      <a
+        class="nav-item nav-link"
+        [ngClass]="{ active: currentOnglet('/pages/files/transfer-history') }"
+        id="nav-flight-tab"
+        data-toggle="tab"
+        role="tab"
+        aria-controls="nav-flight"
+        aria-selected="true"
+        [routerLink]="['/pages/files/transfer-history']"
+        ><i class="fas fa-exchange-alt"></i>
+        {{ "Transfer Queue" | translate }}</a
+      >
+
+      <a
+        class="nav-item nav-link"
+        [ngClass]="{ active: currentOnglet('/pages/files/insurance-history') }"
+        id="nav-flight-tab"
+        data-toggle="tab"
+        role="tab"
+        aria-controls="nav-flight"
+        aria-selected="true"
+        [routerLink]="['/pages/files/insurance-history']"
+        > <i class="far fa-check-circle"></i> {{ "Insurance Queue" | translate }}</a
+      >
+      <a
+        class="nav-item nav-link"
+        [ngClass]="{ active: currentOnglet('/pages/files/car-hire-history') }"
+        id="nav-flight-tab"
+        data-toggle="tab"
+        role="tab"
+        aria-controls="nav-flight"
+        aria-selected="true"
+        [routerLink]="['/pages/files/car-hire-history']"
+        ><i class="fas fa-car"></i>  {{ "Car Hire Queue" | translate }}</a
+      >
+    </div>
+  </nav>
+  <router-outlet class="mt-0"></router-outlet>
+  <br /><br />
+</div> -->
+
+<div class="container-fluid">
+  <nav class="ml-3 mt-4 mr-3">
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <a
+        class="nav-item nav-link active"
+        [ngClass]="{ active: currentOnglet('/pages/files/hotel-history') }"
+        [routerLink]="['/pages/files/hotel-history']"
+        ><i class="fas fa-bed"></i> {{ "Hotel Queue" | translate }}</a>
+&nbsp;
+        <a
+        class="nav-item nav-link"
+        [ngClass]="{ active: currentOnglet('/pages/files/hotel-inprocess-history') }"
+        [routerLink]="['/pages/files/hotel-inprocess-history']"
+        ><i class="fas fa-bed"></i> {{ "In Process Booking" | translate }}</a>
+    </div>
+  </nav>
+
+  <router-outlet class="mt-0"></router-outlet>
+  <br /><br />
+</div>
+

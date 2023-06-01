@@ -1,0 +1,133 @@
+<div class="container-fluid" *ngIf="!showVoucher">
+    <div class="mt-4 mb-4">
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <h3 class="title"> <button ngbTooltip="{{'back'|translate}}" placement="bottom"
+                        class="btn btn-primary btn-sm ml-2" (click)="back()"><i class="fas fa-arrow-left"></i></button>
+                    {{'Car Hire Details'| translate}}</h3>
+            </div>
+            <div class="col-md-6 col-sm-12 text-right">
+                <div class="btn-group" *ngIf="model && model.etatfilechr !=='A'" role="group"
+                    aria-label="actionReq">
+                    <button type="button" (click)="cancel()" [disabled]="loading"
+                        class="btn btn-sm btn-primary">{{'Cancel'|translate}}</button>
+                        <button
+                        type="button"
+                        class="btn btn-primary btn-sm"
+                        (click)="voucher()"
+                      >
+                        {{ "See Voucher" | translate }}
+                      </button>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col">
+                <div class="row">
+                    <div class="col-8">
+                        <div class="row">
+                            <div class="col text-muted"><b>{{'Pick-Up' | translate}}</b></div>
+                        </div>
+                        <div class="row">
+                            <div class="col"> <b>{{model.pickupName}}
+                                     </b> </div>
+                        </div>
+                        <div class="row">
+                            <div class="col"> <span>{{model.pickupTime | date :'dd/MM/yyyy hh:mm'}} </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-4 text-muted">
+                        <div class="row">
+                            <div class="col">
+                                <b [ngClass]="{'text-success': model.etatfilechr === 'C',
+                                    'text-primary': model.etatfilechr === 'B',
+                                    'text-danger': model.etatfilechr === 'A'}">
+                                    {{statuts[model.etatfilechr] | translate}}
+                                </b>
+                                <span class="ml-2">
+                                    {{'On' | translate}}: <b>{{model.dtfilechr | date :'dd/MM/yyyy
+                                        hh:mm'}}</b>
+                                </span>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <span *ngIf="model.suppRefChrfile ">
+                                    {{'Ref.' | translate}}: <b>{{model.suppRefChrfile}}</b>
+                                </span>
+                            </div>
+                        </div>
+                       
+                        <div class="row" *ngIf="model.dtReturn ">
+                            <div class="col">
+                                {{ 'Return Date' | translate }}: <b>{{model.dtReturn | date :'dd/MM/yyyy
+                                    hh:mm'}} </b>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br> <br>
+        <h4 class="title">{{"Driver's Informations"|translate}}</h4>
+        <div class="row">
+            <div class="col-md-4 col-sm-6">
+                {{'Name' | translate}} : <b>{{model.driver}}</b>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                {{'Nationality' | translate}} : <b>{{model.chrNationalite}}</b>
+            </div>
+           
+            <div class="col-md-4 col-sm-6">
+                {{'Luggage' | translate}} : <b>{{model.luggage}} {{'Bag (s)'| translate}}</b>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                {{'Email' | translate}} : <b>{{model.email}}</b>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                {{'Note' | translate}} : <b>{{model.chrComment}}</b>
+            </div>
+        </div>
+        <br> <br>
+        <h4 class="title">{{'Payment'|translate}}</h4>
+        <div class="row">
+            <div class="col-md-4 col-sm-6">
+                {{'Basic fare' | translate}} : <b>
+                    <div class="d-flex">
+                        <div class="mr-2">{{transform(model.mntAchatChr)}} </div>
+                        <div> {{model.codeDevise}} </div>
+                    </div>
+                </b>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                {{'Tax' | translate}} : <b>
+                    <div class="d-flex"> 
+                        <div class="mr-2">{{transform(model.mntServChr)}} </div>
+                        <div> {{model.codeDevise}} </div>
+                    </div>
+                </b>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                {{'Total fare' | translate}} : <b>
+
+                    <div class="d-flex">
+                        <div class="mr-2">{{transform(model.mntServChr + model.mntAchatChr )}}
+                        </div>
+                        <div> {{model.codeDevise}} </div>
+                    </div>
+                </b>
+            </div>
+
+        </div>
+    </div>
+</div>
+<app-car-hire-history-voucher *ngIf="showVoucher" [data]="model" (backward)='cancelSeeVoucher($event)'></app-car-hire-history-voucher>
+<app-custom-loading *ngIf="loading"  ></app-custom-loading>

@@ -1,0 +1,246 @@
+<form #passengerForm="ngForm">
+    <div class="row">
+        <div class="col-md-2 col-sm-4" *ngIf="type !== 'C' && type !== 'I'">
+            <label> {{'Title'|translate}} <span class="text-danger"> * </span> </label>
+            <select class="form-control form-control-sm" name="title" [(ngModel)]="passenger.passengerTitle"
+                #title="ngModel" (change)="genderChange($event.target.value)" required
+                [class.is-invalid]="submitted && title.invalid">
+                <option value="MS"> {{'MS'|translate}}
+                </option>
+                <option value="MRS"> {{'MRS'|translate}}
+                </option>
+                <option value="MR"> {{'MR'|translate}}
+                </option>
+            </select>
+        </div>
+        <div class="col-md-3 col-sm-8">
+            <label> {{'First name'|translate}}<span class="text-danger"> * </span></label>
+            <input type="text" class="form-control form-control-sm" name="fname" [(ngModel)]="passenger.firstName"
+                required [class.is-invalid]="submitted && fname.invalid" #fname="ngModel" pattern="[a-zA-Z]+[a-zA-Z ]+"
+                (input)="getFirstName($event.target.value)" aria-label="State" [matAutocomplete]="autofname">
+            <mat-autocomplete #autofname="matAutocomplete">
+                <mat-option *ngFor="let  option of filteredByFirstNamePsg | async" [value]="option.firstName"
+                    (onSelectionChange)="selectPassenger(option)">
+                    {{option.firstName}} {{option.lastName}}
+                </mat-option>
+            </mat-autocomplete>
+        </div>
+        <div class="col-md-3 col-sm-12">
+            <label>{{'Last name'|translate}} <span class="text-danger"> * </span></label>
+            <input type="text" class="form-control form-control-sm" name="lname" [(ngModel)]="passenger.lastName"
+                required [class.is-invalid]="submitted && lname.invalid" #lname="ngModel" pattern="[a-zA-Z]+[a-zA-Z ]+"
+                (input)="geLastName($event.target.value)" aria-label="State" [matAutocomplete]="autolname">
+            <mat-autocomplete #autolname="matAutocomplete">
+                <mat-option *ngFor="let  option of filteredByLastNamePsg | async" [value]="option.lastName"
+                    (onSelectionChange)="selectPassenger(option)">
+                    {{option.firstName}} {{option.lastName}}
+                </mat-option>
+            </mat-autocomplete>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <label> {{'Birth date'|translate}}</label>
+            <div class="row">
+
+                <div class="col-4">
+                    <select class="form-control form-control-sm" name="ddBirthday" [(ngModel)]="passenger.ddBirthDay">
+                        <option value=""> {{'Day'|translate}}
+                        </option>
+                        <option *ngFor="let item of BirthDatedays" [value]="item"> {{item}}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-4">
+                    <select class="form-control form-control-sm" name="mmBirthday" (change)="fillDaysBirthDate()"
+                        [(ngModel)]="passenger.mmBirthDay">
+                        <option value=""> {{'Month'|translate}}
+                        </option>
+                        <option *ngFor="let item of months | async" [value]="item.value"> {{item.name}}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-4">
+                    <input type="number" class="form-control form-control-sm" name="yyBirthday"
+                        placeholder="{{'Year'|translate}}" [(ngModel)]="passenger.yyBirthDay"
+                        (change)="applyIntervalYears($event.target.value)">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-md-3 col-sm-6">
+            <label> {{'Doc. type'|translate}}<span class="text-danger"> * </span></label>
+            <select class="form-control form-control-sm" name="typeDoc" [(ngModel)]="passenger.typeDoc"
+                [class.is-invalid]="submitted && typeDoc.invalid" required #typeDoc="ngModel">
+                <option value="P"> {{'Passport'|translate}}
+                </option>
+                <option value="N"> {{'National Identity'|translate}}
+                </option>
+                <option value="R"> {{'Resident Identity'|translate}}
+                </option>
+            </select>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <label for="">{{'Doc. no'|translate}}</label>
+            <input type="text" class="form-control form-control-sm" name="docno" style="text-transform:uppercase"
+                [(ngModel)]="passenger.passportNumber" [class.is-invalid]="submitted && docno.invalid" #docno="ngModel"
+                pattern="^[A-Z0-9]+$" (input)="getDocNum($event.target.value)" aria-label="State"
+                [matAutocomplete]="autodocno">
+            <mat-autocomplete #autodocno="matAutocomplete">
+                <mat-option *ngFor="let  option of filteredByDocNumPsg | async" [value]="option.passportNumber"
+                    (onSelectionChange)="selectPassenger(option)">
+                    {{option.firstName}} {{option.lastName}}
+                </mat-option>
+            </mat-autocomplete>
+        </div>
+        <div class=" col-md-4 col-sm-12">
+            <label> {{'Doc. expire'|translate}}</label>
+            <div class="row">
+                <div class="col-4">
+                    <select class="form-control form-control-sm" name="ddExpire" [(ngModel)]="passenger.ddExpiryDate">
+                        <option value=""> {{'Day'|translate}}
+                        </option>
+                        <option *ngFor="let item of expiredays" [value]="item"> {{item}}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-4">
+                    <select class="form-control form-control-sm" name="mmExpire" (change)="fillDaysExpireDate()"
+                        [(ngModel)]="passenger.mmExpiryDate">
+                        <option value=""> {{'Month'|translate}}
+                        </option>
+                        <option *ngFor="let item of months | async;" [value]="item.value"> {{item.name}}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-4">
+                    <select class="form-control form-control-sm" name="yyExpire" (change)="fillDaysExpireDate()"
+                        [(ngModel)]="passenger.yyExpiryDate">
+                        <option> {{'Year'|translate}}
+                        </option>
+                        <option *ngFor="let item of years" [value]="item"> {{item}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-12">
+            <label> {{'Issuing country'|translate}} <span class="text-danger"> * </span></label>
+            <select class="form-control form-control-sm" name="issCountry" [(ngModel)]="passenger.country" required
+                [class.is-invalid]="submitted && issCountry.invalid" #issCountry="ngModel">
+                <option value=""></option>
+                <option *ngFor="let item of pays" [ngValue]="item.alpha_3_code+'-'+item.alpha_2_code">
+                    {{item.en_short_name}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row mt-3 ">
+        <div class="col-md-3 col-sm-6">
+            <label> {{'Gender'|translate}}</label>
+            <div class="row">
+                <div class="col">
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="f" value="F" [(ngModel)]="passenger.sexe"
+                            [disabled]="type === 'A'">
+                        <label class="form-check-label" for="f">{{'Female'|translate}} </label>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" name="m" value="M" [(ngModel)]="passenger.sexe"
+                            [disabled]="type === 'A'">
+                        <label class="form-check-label" for="m">{{'Male'|translate}}</label>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <label> {{'Nationality'|translate}}<span class="text-danger"> * </span></label>
+            <select class="form-control form-control-sm" name="nationality" [(ngModel)]="passenger.nationality" required
+                [class.is-invalid]="submitted && nationality.invalid" #nationality="ngModel">
+                <option *ngFor="let item of pays" [ngValue]="item.nationality"> {{item.nationality}}</option>
+            </select>
+        </div>
+
+        <div class="col-md-5 col-sm-12" *ngIf="type !== 'C' && type !== 'I'">
+            <label>{{'Add miles'|translate}}
+                <div *ngIf="!airlines.length" class=" ml-2 spinner-border spinner-border-sm text-light" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </label>
+            <div class="row">
+                <div class="col-5 ">
+
+                    <select class="form-control form-control-sm" [(ngModel)]="comp" name="air">
+                        <option disabled selected>{{'Airline name'|translate}}</option>
+                        <option *ngFor="let item of airlines" [ngValue]="item">{{item.name}}</option>
+                    </select>
+                </div>
+                <div class="col-5 ">
+                    <input type="text" class="form-control form-control-sm" placeholder="{{'Mile card code'|translate}}"
+                        [(ngModel)]="mileCardcode" name="code">
+                </div>
+                <div class="col-2 text-right">
+                    <button class="btn btn-sm btn-primary" (click)="addMileCard()">{{'Add'|translate}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col">
+            <label>{{'Mile Cards :'|translate}}</label>
+        </div>
+    </div>
+    <div class="row" *ngIf="type !== 'C' && type !== 'I'">
+        <div class="col">
+            <div class="table-responsive">
+                <table class="tabBorder">
+                
+                    <tr>
+                      <th scope="col">
+                         {{'Airline'|translate}} 
+                      </th>
+                      <td scope="col" *ngFor="let item of passenger?.milesCardCodeList;let index = index;"  class="text-muted  px-2">
+                        {{item?.lcomp}}
+                        <i class="fas fa-minus-circle primary clickable mr-2" (click)="removeMileCard(index)"></i>
+                      </td>
+                      
+                    </tr>
+                    <tr>
+                      <th scope="col">
+                        {{'Mile card code'|translate}} 
+                      </th>
+                      <td scope="col" class="text-muted px-2" *ngFor="let item of passenger?.milesCardCodeList;let index = index;">
+                         {{item?.mileCardcode}}
+                      </td>
+                    </tr>
+                  
+                </table>
+              </div>
+        </div>
+        <!--<div class="col-md-2 col-sm-4">
+            <div class="row">
+                <div class="col">{{'Airline'|translate}}</div>
+            </div>
+            <div class="row">
+                <div class="col"> {{'Mile card code'|translate}}</div>
+            </div>
+        </div>
+
+        <div class="col-md-2 col-sm-4" *ngFor="let item of passenger?.milesCardCodeList;let index = index;">
+            
+            <div class="row ">
+                <div class="col text-muted"> {{item?.lcomp}}</div>
+                <div class="col">
+                    <i class="fas fa-minus-circle primary clickable mr-2" (click)="removeMileCard(index)"></i>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col  text-muted">{{item?.mileCardcode}}</div>
+            </div>
+
+        </div>-->
+
+    </div>
+</form>

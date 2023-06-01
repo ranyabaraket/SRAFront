@@ -1,0 +1,222 @@
+ 
+.separator,
+.close,
+.fa-filter {
+    color: #dad8d8bb;
+}
+
+.rowdisplay1 {
+    margin-left: 0;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+    background-color: white;
+    border-radius: 5px;
+    -webkit-box-shadow: 9px 9px 13px -7px rgba(0, 0, 0, 0.33);
+    -moz-box-shadow: 9px 9px 13px -7px rgba(0, 0, 0, 0.33);
+    box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.33);
+}
+.mrgBtm {
+    margin-bottom: -20px;
+}
+
+
+.rowdisplay {
+    // padding-right: 15px;
+    // padding-left: 15px;
+    margin-bottom: 15px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 15px;
+    -webkit-box-shadow: 9px 9px 13px -7px rgba(0, 0, 0, 0.33);
+    -moz-box-shadow: 9px 9px 13px -7px rgba(0, 0, 0, 0.33);
+    box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.33);
+}
+.info-bloc {
+    display: block;
+    width: 100%;
+    padding: 8px;
+   // background-color: #fafafa;
+}
+.textmuted {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+ 
+.card-cube {
+    border-radius: 0px;
+    height: 170px;
+    margin-bottom: 15px;
+    box-shadow: 1px 1px 8px rgb(223, 222, 222);
+}
+
+.card-header {
+    background-color: white!important;
+    height: 170px;
+    // margin-bottom: 35px;
+}
+
+.rowdisplay2 {
+    margin-left: 0px;
+    // margin-right: 0px;
+    margin-top: 25px;
+ //   background-color: rgb(229, 233, 241);
+    margin-top: 1%;
+    padding: 1%;
+    border-radius: 5px;
+    -webkit-box-shadow: 9px 9px 13px -7px rgba(0, 0, 0, 0.33);
+    -moz-box-shadow: 9px 9px 13px -7px rgba(0, 0, 0, 0.33);
+    box-shadow: 9px 9px 13px -7px rgba(0, 0, 0, 0.33);
+    position: sticky;
+    top: 4rem;
+    width: 100%;
+}
+
+.typeIns {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-right: 3px;
+    padding-left: 3px;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.priceIns {
+    padding-bottom: 15px;
+    font-size: 1.5rem;
+    color: green;
+    // text-align: center;
+}
+
+.priceIns1 {
+    padding-bottom: 15px;
+    font-size: 1.2rem;
+    color: green;
+    // text-align: center;
+}
+
+.btnLarge {
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-bottom: 20px;
+    border-radius: 0!important;
+}
+
+ 
+// filter model in small devices
+@media only screen and (max-width: 767px) {
+    /* The Modal (background) */
+    .filter {
+        padding: 8px 8px 8px 8px;
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        /* static */
+        z-index: 1;
+        /* Sit on top */
+        overflow: auto;
+        /* Enable scroll if needed */
+        background-color: white;
+        /* Fallback color */
+        background-color: white;
+        /* Black w/ opacity */
+        height: 350px;
+        /* Full height */
+        // -webkit-animation-name: slideIn;
+        // -webkit-animation-duration: 0.4s;
+        // animation-name: slideIn;
+        // animation-duration: 0.4s            
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    /* The Modal (background) */
+    .filter {
+        left: 5%;
+        padding: 10%;
+        //top: 8%;
+        width: 30%;
+     //   height: 350px;
+        /* Full width */
+        //top: 30%
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    /* The Modal (background) */
+    .filter {
+        left: 6%;
+        width: 35%;
+      //  height: 350px;
+        padding-top: 10%;
+        /* Full width */
+    //    top: 30%
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    /* The Modal (background) */
+    .filter {
+        left: 7%;
+        width: 40%;
+     //   height: 350px;
+        padding-top: 10%;
+        /* Full width */
+     //   top: 30%
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    /* The Modal (background) */
+    .filter {
+        left: 0%;
+        width: 50%;
+    //    height: 350px;
+         padding-top: 10%;
+        /* Full width */
+   //     top: 30%
+    }
+}
+
+@media only screen and (max-width: 415px) {
+    /* The Modal (background) */
+    .filter {
+        left: 0%;
+        width: 60%;
+        /* Full width */
+   //     top: 45%;
+        height: 350px;
+        padding-top: 10%;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    /* The Modal (background) */
+    .filter {
+        left: 0%;
+        width: 70%;
+        /* Full width */
+        //top: 30%;
+      //  height: 350px;
+        padding-top: 10%;
+    }
+}
+
+// filter model in small devices
+@media only screen and (min-width: 766px) {
+    .filter {
+        display: block!important;
+    }
+    .d-lg {
+        display: none!important;
+        z-index: 52;
+    }
+}
+
+.clearFiltr {
+    padding-bottom: 21px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 10px;
+}

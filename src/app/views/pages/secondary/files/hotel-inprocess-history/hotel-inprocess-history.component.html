@@ -1,0 +1,235 @@
+<div class="container-fluid  pt-2">
+    <div *ngIf="!showDetails">
+        <div class="">
+            <form #searchForm="ngForm" class="py-2">
+
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="form-floating mb-3">
+                            <!-- <label><small> {{'Ref.'|translate}}</small></label> -->
+                            <input type="text" class="form-control form-control-sm" placeholder="{{'Ref.'|translate}}"
+                                [(ngModel)]="searchModel.ref" name="ref">
+                            <label for="floatingSelect">{{'Ref.'|translate}} </label>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="form-floating mb-3">
+                            <!-- <label><small> {{'Unique ID'|translate}}</small></label> -->
+                            <input type="text" class="form-control form-control-sm"
+                                placeholder="{{'Unique ID'|translate}}" [(ngModel)]="searchModel.uniqueId"
+                                name="uniqueId">
+                            <label for="floatingSelect">{{'Unique ID'|translate}} </label>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="form-floating mb-3">
+                            <!-- <label><small>{{'Passenger'|translate}}</small></label> -->
+                            <input type="text" class="form-control form-control-sm"
+                                placeholder="{{'Passenger'|translate}}" [(ngModel)]="searchModel.passenger"
+                                name="passenger">
+                            <label for="floatingSelect">{{'Passenger'|translate}} </label>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="form-floating mb-3">
+                            <!-- <label><small>{{'Hotel'|translate}}</small></label> -->
+                            <input type="text" class="form-control form-control-sm" placeholder="{{'Hotel'|translate}}"
+                                [(ngModel)]="searchModel.hotel" name="hotel">
+                            <label for="floatingSelect">{{'Hotel'|translate}} </label>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row  mt-2">
+                    <div class="col-md-2 col-sm-3  ">
+                        <div class="form-floating mb-3">
+                            <!-- <label><small> {{'CheckInPeriod from'|translate}}</small></label> -->
+                            <input type="date" class="form-control form-control-sm" name="checkInPeriodFrom"
+                                [(ngModel)]="searchModel.checkInPeriodFrom">
+                            <label for="floatingSelect">{{'CheckInPeriod from'|translate}} </label>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-3  ">
+                        <div class="form-floating mb-3">
+                            <!-- <label><small>{{'CheckInPeriod to'|translate}}</small></label> -->
+                            <input type="date" class="form-control form-control-sm" name="checkInPeriodTo"
+                                [(ngModel)]="searchModel.checkInPeriodTo" [min]="searchModel.checkInPeriodTo">
+                            <label for="floatingSelect">{{'CheckInPeriod to'|translate}} </label>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-3  ">
+                        <div class="form-floating mb-3">
+                            <!-- <label><small> {{'CheckOutPeriod from'|translate}}</small></label> -->
+                            <input type="date" class="form-control form-control-sm" name="checkOutPeriodFrom"
+                                [(ngModel)]="searchModel.checkOutPeriodFrom">
+                            <label for="floatingSelect">{{'CheckOutPeriod from'|translate}} </label>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-3  ">
+                        <div class="form-floating mb-3">
+                            <!-- <label><small>{{'CheckOutPeriod to'|translate}}</small></label> -->
+                            <input type="date" class="form-control form-control-sm" name="checkOutPeriodTo"
+                                [(ngModel)]="searchModel.checkOutPeriodTo" [min]="searchModel.checkOutPeriodTo">
+                            <label for="floatingSelect">{{'CheckOutPeriod to'|translate}} </label>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="form-floating mb-3">
+                            <!-- <label><small>{{'Booking date from'|translate}}</small></label> -->
+                            <input type="date" class="form-control form-control-sm" name="bookingDateFrom"
+                                [(ngModel)]="searchModel.bookingDateFrom">
+                            <label for="floatingSelect">{{'Booking date from'|translate}} </label>
+                        </div>
+                    </div>
+                    <div class="col-md-2 col-sm-6 ">
+                        <div class="form-floating mb-3">
+                            <!-- <label><small>{{'Booking date to'|translate}}</small></label> -->
+                            <input type="date" class="form-control form-control-sm" name="bookingDateTo"
+                                [(ngModel)]="searchModel.bookingDateTo" [min]="searchModel.bookingDateFrom">
+                            <label for="floatingSelect">{{'Booking date to'|translate}} </label>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="row  mt-2">
+                    <div class="col-12 text-right">
+                        <button type="button" class="btn btn-sm btn-primary col-12 col-md-2 mr-2"
+                            (click)="reset(searchForm)" [disabled]="loading">{{'Refresh'|translate}}
+                            <div class="icon d-flex align-items-center justify-content-center">
+                                <i class="fas fa-sync-alt"></i>
+                            </div>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-success col-12 col-md-2 mr-2" ngbTooltip="{{'Synchronize' | translate}}" (click)="find()"
+                            [disabled]="loading">
+                            <div *ngIf="loading" class="spinner-border spinner-border-sm text-light" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div> <span class="txt">{{'FindGds'|translate}}</span>
+                            <div class="icon2 d-flex align-items-center justify-content-center">
+                                <i class="fas fa-search"></i>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <div>
+            <div class="row px-1">
+                <div class="col-md-6 d-flex justify-content-start">
+                    <label > {{'Booking'|translate}}({{total}}) </label>
+
+                </div>
+                <div class="col-md-6 d-flex justify-content-end">
+                        <button style="border:none ; background: none" (click)="exportexcel()">
+                            <i class="far fa-file-excel fa-lg" style="color:rgb(4, 173, 46); width:25px;height:20px;"></i>
+                        </button>
+        
+                        <button style="border:none ; background: none" (click)="convetToPDF()">
+                            <i class="far fa-file-pdf fa-lg" style="color:red ; width:25px; height:20px;"></i>
+                        </button>
+                        </div>
+            </div>
+ 
+ 
+            <table mat-table [dataSource]="source" class="my-table" id="myTableElementId">
+                 <!-- bookingId Column -->
+                <ng-container matColumnDef="bookingId">
+                    <th mat-header-cell *matHeaderCellDef class=" p-0 text-center"> {{'bookingId'| translate }}
+                    </th>
+                    <td mat-cell *matCellDef="let element"> <a (click)="showDetail(element)" class="showDetailTxt">
+                            {{element.bookingId}} </a></td>
+                </ng-container>
+                <!-- Name Column -->
+                <ng-container matColumnDef="uniqueId">
+                    <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'uniqueId'| translate }}</th>
+                    <td mat-cell *matCellDef="let element" class="text-center"> {{element.uniqueId}} </td>
+                </ng-container>
+                <!-- voucherRef Column -->
+                <ng-container matColumnDef="voucherRef">
+                    <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'voucherRef'| translate }}</th>
+                    <td mat-cell *matCellDef="let element" class="text-center"> {{element.voucherRef}} </td>
+                </ng-container>
+                <!-- dtResa Column -->
+                <ng-container matColumnDef="dtResa">
+                    <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'dtResa'| translate }}</th>
+                    <td mat-cell *matCellDef="let element" class="text-center"> {{element.dtResa | date :"dd/MM/yyyy"}} </td>
+                </ng-container>
+                <!-- cityName Column -->
+                <!-- <ng-container matColumnDef="cityName">
+                    <th mat-header-cell *matHeaderCellDef class=" text-center">  {{'cityName'| translate }}</th>
+                    <td mat-cell *matCellDef="let element" class="text-center hotel-name"> {{element.cityName}} </td>
+                </ng-container> -->
+                <!-- hotelName Column -->
+                <ng-container matColumnDef="hotelName">
+                    <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'hotelName'| translate }}</th>
+                    <td mat-cell *matCellDef="let element" class="text-center hotel-name"> {{element.hotelName}} </td>
+                </ng-container>
+                <!-- resaNomprenom Column -->
+                <ng-container matColumnDef="resaNomprenom">
+                    <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'resaNomprenom'| translate }}
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="text-center"> {{element.resaNomprenom}} </td>
+                </ng-container>
+
+                <!-- dtCheckIn Column -->
+                <ng-container matColumnDef="dtCheckIn">
+                    <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'dtCheckIn'| translate }}</th>
+                    <td mat-cell *matCellDef="let element" class="text-center"> {{element.dtCheckIn | date :"dd/MM/yyyy"
+                        }} </td>
+                </ng-container>
+                <!-- dtCheckOut Column -->
+                <ng-container matColumnDef="dtCheckOut">
+                    <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'dtCheckOut'| translate }}
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="text-center"> {{element.dtCheckOut | date
+                        :"dd/MM/yyyy" }} </td>
+                </ng-container>
+                <!-- nbnights Column -->
+                <ng-container matColumnDef="nbnights">
+                    <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'nbnights'| translate }}</th>
+                    <td mat-cell *matCellDef="let element" class="text-center gray-td">
+                        {{calculDiffDate(element.dtCheckIn, element.dtCheckOut)}} </td>
+                </ng-container>
+                <!-- mntFacture Column -->
+                <ng-container matColumnDef="mntFacture">
+                    <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'price'| translate }}</th>
+                    <td mat-cell *matCellDef="let element" class="text-center"> {{formater(element.mntFacture)}} </td>
+                </ng-container>
+
+                <!-- Agency Fees Column -->
+                <ng-container matColumnDef="mntFraisAgent">
+                    <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'agencyFees'| translate }}</th>
+                    <td mat-cell *matCellDef="let element" class="text-center"> {{formater(element.mntFraisAgent)}}
+                    </td>
+                </ng-container>
+
+                <!-- codeDevise Column -->
+                <ng-container matColumnDef="codeDevise">
+                    <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'codeDevise'| translate }}</th>
+                    <td mat-cell *matCellDef="let element" class="text-center"> {{element.codeDevise}} </td>
+                </ng-container>
+                <!-- editedBy Column -->
+                <ng-container matColumnDef="editedBy">
+                    <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'editedBy'| translate }}</th>
+                    <td mat-cell *matCellDef="let element" class="text-center"> {{element.editedBy}} </td>
+                </ng-container>
+
+                <!-- « Create Date Column -->
+                <ng-container matColumnDef="createdDate">
+                    <th mat-header-cell *matHeaderCellDef class=" p-0 text-center"> {{'CreatedDate'| translate }}
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="p-0 text-center"> {{element.dtCreate | date
+                        :"dd/MM/yyyy HH:mm"}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[100, 200, 300, 400]" showFirstLastButtons>
+            </mat-paginator>
+        </div>
+    </div>
+    <!-- <app-hotel-history-details *ngIf="showDetails" [inputData]="data"
+        (backward)='cancel($event)'></app-hotel-history-details> -->
+</div>

@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col">
+    <h2 mat-dialog-title> {{'Fare Rules'|translate}} </h2>
+  </div>
+  <div class="col-1 m-0">
+    <div>
+      <i class="fas fa-times icon clickable" mat-button mat-dialog-close></i>
+    </div>
+  </div>
+</div>
+<mat-dialog-content>
+  
+  <!--<div class="row" *ngIf="!loadingFareRules && fareRulesDetails">
+        <div class="col-md-3 col-sm-4">
+            <table>
+                <tr *ngFor="let fareRule of fareRulesDetails.fareRules[0].ruleDetails;let index=index;">
+                    <td class="cell-title clickable" (click)="getRuleDetail(fareRule,index)" [ngClass]="{'active' : index === selectedRow}">{{fareRule.category}}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col">
+            <p>
+                {{descRule}}
+            </p>
+        </div>
+    </div>-->
+    <div  *ngIf="data" >
+  <div class="m-0 card-rule"
+    *ngFor="let fareRule of data.fareRules[0].ruleDetails;let index=index;">
+    <div class="d-flex title-box " [ngClass]="fareRule.open ? 'bg-light-blue' : 'c'">
+      <div class="pl-2 pt-2 flex-grow-1   clickable text-title" >
+        <b>{{fareRule.category}}</b>
+      </div>
+      <div class="p-2">
+        <i class="fas fa-plus text-title clickable" *ngIf="!fareRule.open; else closed" (click)="showHideRule(index)"></i>
+        <ng-template  #closed>
+          <i class="fas fa-minus text-title clickable"(click)="showHideRule(index)"></i>
+        </ng-template>
+        
+      </div>
+    </div>
+    <div class="px-2" [hidden]="!fareRule.open" >
+      <p  [innerHTML]="format(fareRule.rules)"> </p>
+    </div>
+  </div>
+</div>
+
+  <div *ngIf="!data " class="text-center text-muted">
+    {{'No result found'|translate}}
+  </div>
+</mat-dialog-content>

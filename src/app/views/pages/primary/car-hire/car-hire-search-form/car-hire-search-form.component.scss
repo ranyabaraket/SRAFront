@@ -1,0 +1,221 @@
+.input-icons i {
+    position: absolute;
+    margin-top: 6px;
+    margin-left: 6px;
+}
+
+.input-icons {
+    width: 100%;
+    // margin-bottom: 5px;
+}
+
+.input-icons-text {
+    width: 100%;
+}
+
+.input-icons-date {
+    width: 36em;
+}
+
+.icon {
+    padding: 6px;
+    min-width: 40px;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    text-align: left;
+    padding-left: 30px;
+}
+
+.details {
+    align-items: center;
+    border: 1px solid #dadce0;
+    border-radius: 18px;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-flex;
+    flex: 0 0 auto;
+    height: 36px;
+    overflow: hidden;
+    padding-left: 12px;
+    position: relative;
+}
+
+i {
+    color: grey;
+}
+
+#page-container {
+    position: relative;
+    min-height: 58vh;
+}
+
+#content-wrap {
+    padding-bottom: 2.5rem;
+    /* Footer height */
+    margin-top: 1rem;
+}
+
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;
+    /* Footer height */
+}
+
+.btn-circle {
+    border-radius: 50%;
+    background-color: #f8f9fa;
+    text-align: center!important;
+}
+
+//@exten
+.px-2 {
+    padding-left: .5rem;
+    padding-right: .5rem;
+}
+
+.py-1 {
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.rounded {
+    border-radius: 2px;
+}
+
+.bg-primary-extra-light {
+    background-color: #dee0ec;
+}
+
+.box {
+    width: 160px;
+}
+
+.box1 {
+    width: 215px;
+}
+
+input[type=text]:focus {
+    border-color: #777;
+    color: #000;
+    background: #fff;
+    outline: 0
+}
+
+mat-form-field {
+    width: 0px !important;
+    height: 0px !important;
+}
+
+.not-display {
+    display: none!important;
+}
+
+.col-period {
+    margin: 0 0 0 0!important;
+    padding: 0 0 0 0!important;
+}
+
+@media only screen and (min-width: 768px) {
+    .inputs-field {
+        height: 45px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .inputs-field {
+        height: 185px;
+    }
+    form {
+        margin-top: 40px;
+    }
+}
+
+.passenger-dropdown {
+    width: 250px!important;
+}
+
+.card {
+    min-height: 70px!important;
+}
+
+.form-field {
+    min-height: 200px!important;
+}
+
+.card-header {
+    background-color: white!important;
+    border: 0 none;
+}
+
+.alert-icon {
+    color: #856404;
+}
+
+ul.timeline {
+    list-style-type: none;
+    position: relative;
+}
+
+ul.timeline:before {
+    content: ' ';
+    background: #d4d9df;
+    display: inline-block;
+    position: absolute;
+    left: 29px;
+    width: 1px;
+    height: 90%;
+    z-index: 400;
+}
+
+ul.timeline>li {
+    margin: 20px 0;
+    padding-left: 20px;
+}
+
+ul.timeline>li:before {
+    content: ' ';
+    background: white;
+    display: inline-block;
+    position: absolute;
+    border-radius: 50%;
+    border: 5px solid #d4d9df;
+    left: 25px;
+    width: 10px;
+    height: 10px;
+    z-index: 400;
+}
+
+.card-cube {
+    border-radius: 0px;
+}
+
+.vl {
+    border-right: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+    opacity: 0.6;
+}
+
+.timer-control {
+    padding: 0 0 0 0!important;
+}
+
+.text-right {
+    padding-bottom: 10px;
+}
+.input-date{
+    border-radius: 0.25rem 0 0 0.25rem !important;
+}
+.input-time{
+    border-radius: 0 0.25rem 0.25rem 0 !important;
+}

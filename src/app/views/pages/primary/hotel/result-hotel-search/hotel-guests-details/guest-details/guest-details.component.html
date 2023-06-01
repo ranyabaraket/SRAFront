@@ -1,0 +1,55 @@
+<form #clientForm="ngForm">
+
+    <div class="row ">
+        <div class="col-md-6 col-sm-12">
+            <label> {{'Email'|translate}} <span class="text-danger"> * </span> </label>
+            <input type="text" class="form-control form-control-sm" name="email" [(ngModel)]="guestModel.email" #email="ngModel" required [class.is-invalid]="submitted && email.invalid" [email]="true" (input)="getEmail($event.target.value)" aria-label="State">
+            <!-- <mat-autocomplete #autoemail="matAutocomplete">
+                <mat-option *ngFor="let  option of filteredByEmailPsg | async" [value]="option.mail" (onSelectionChange)="selectPassenger(option)">
+                    {{option.firstName}}
+                </mat-option>
+            </mat-autocomplete> -->
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <label> {{'Confirm Email'|translate}} <span class="text-danger"> * </span> </label>
+            <input type="text" class="form-control form-control-sm" name="email2" #email2="ngModel" required [(ngModel)]="confirmEmail" id="confirmEmailInput" [class.is-invalid]="submitted && (email2.invalid || confirmEmail!== guestModel.email)" [email]="true" autocomplete="off">
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-md-3 col-sm-6">
+            <label> {{'Type tel'|translate}} <span class="text-danger"> * </span> </label>
+            <select class="form-control form-control-sm" name="typeTel" [(ngModel)]="guestModel.typeTel" #typeTel="ngModel" required [class.is-invalid]="submitted && typeTel.invalid">
+                <option value="M">{{'Mobile'|translate}}</option>
+                <option value="F">{{'Fixed'|translate}}</option>
+            </select>
+        </div>
+
+        <div class="col-md-3 col-sm-6">
+            <label> {{'Country'|translate}} <span class="text-danger"> * </span></label>
+            <select class="form-control form-control-sm" name="countryTel" [(ngModel)]="guestModel.countryTel" required [class.is-invalid]="submitted && countryTel.invalid" #countryTel="ngModel" (change)="getIdfPays($event)">
+                <option value=""> </option>
+                <option *ngFor="let item of pays" [ngValue]="item.alpha_2_code"> {{item.en_short_name}}</option>
+            </select>
+
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <label> {{'Phone number'|translate}} <span class="text-danger"> * </span></label>
+            <div class="row">
+                <div class="col-3">
+                    <input type="text" class="form-control form-control-sm" name="indPaysTel" [(ngModel)]="guestModel.indPaysTel" #indPaysTel="ngModel" required [class.is-invalid]="submitted && indPaysTel.invalid" disabled>
+                </div>
+                <div class="col">
+                    <input type="tel" class="form-control form-control-sm" name="phoneNumber" [(ngModel)]="guestModel.phoneNumber" #phoneNumber="ngModel" required [class.is-invalid]="submitted && phoneNumber.invalid" (input)="getNumTel($event.target.value)" aria-label="State"
+                        [matAutocomplete]="autotel">
+                    <mat-autocomplete #autotel="matAutocomplete">
+                        <mat-option *ngFor="let  option of filteredByNumTelPsg | async" [value]="option.tel">
+                            {{option.firstName}} {{option.lastName}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+</form>

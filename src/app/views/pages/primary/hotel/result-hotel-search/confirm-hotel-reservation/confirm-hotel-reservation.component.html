@@ -1,0 +1,162 @@
+<div class="row">
+    <div class="col-md-3 col-sm-12">
+        <div class="row rowdisplayX mt-4">
+            <div class="col-12 ">
+                <button *ngIf="!seeVoucherBtn" type="button" class="btn mt-2 btn-sm btn-primary col-12" (click)="seeVoucher()">
+                    <span>{{'See voucher'|translate}} </span></button>
+                <button *ngIf="!disableVoucher" type="button" class="btn mt-2 btn-sm btn-primary col-12" (click)="issueVoucher()">
+                    <span>{{'ISSUE VOUCHER'|translate}} </span></button>
+
+                <button *ngIf="!disableCancel" type="button" class="btn mt-2 mb-2 btn-sm btn-primary col-12" (click)="cancelBooking()">
+                    <span>{{'CANCEL BOOKING'|translate}} </span></button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-9 col-sm-12">
+        <div class="row rowdisplay1">
+            <div class="col-12">
+
+                <div class="row">
+                    <div class="col-12 dataRef">
+                        <span> {{'Booking Ref.'|translate}} : {{dataToConfirmReservation.bookingId}} </span>
+                    </div>
+                </div>
+                <!-- <div class="alert alert-info" role="alert"> -->
+                <div class="row">
+                    <div class="col-3 dataBooking">
+                        <span> {{'Hotel'|translate}} </span>
+                    </div>
+                    <div class="col- dataBooking">
+                        <span> : {{dataToConfirmReservation.hotelName | uppercase}} </span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-3 dataBooking">
+                        <span> {{'Adresse'|translate}} </span>
+                    </div>
+                    <div class="col- dataBooking">
+                        <span> : {{passengerHotelBooking.hotelAddress}} </span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-3 dataBooking">
+                        <span> {{'Status'|translate}} </span>
+                    </div>
+                    <div class="col- dataBooking">
+                        <span> : {{ResaStatus}} </span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-3 dataBooking">
+                        <span> {{'Amount'|translate}} </span>
+                    </div>
+                    <div class="col- dataBooking">
+                        <span> :
+                            {{dataToConfirmReservation.amountFinal}}
+                            {{dataToConfirmReservation.currency}} </span>
+                    </div>
+                </div>
+
+                <div class="row" *ngFor="let item of passengerHotelBooking.persons; let i=index">
+                    <div class="col-3 dataBooking">
+                        <span> {{'First & Last name'|translate}} {{i+1}} </span>
+                    </div>
+                    <div class="col- dataBooking">
+                        <span> : {{item.civilite}} {{item.firstName}} {{item.lastName}}</span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-3 dataBooking">
+                        <span> {{'Room'|translate}} 1 </span>
+                    </div>
+                    <div class="col- dataBooking">
+                        <span> : {{rooms.roomName}} - {{rooms.inclusion}}</span>
+                    </div>
+                </div>
+                <div *ngIf="rooms.roomsCombinationsfinal.length > 0 ">
+                    <div class="row" *ngFor="let item1 of rooms.roomsCombinationsfinal; let k=index">
+                        <div class="col-3 dataBooking">
+                            <span> {{'Room'|translate}} {{k+2}} </span>
+                        </div>
+                        <div class="col dataBooking" style="margin-left: -15px">
+                            <span> : {{item1.roomName}} - {{item1.inclusion}}</span>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                
+
+                <div class="row">
+                    <div class="col-3 dataBooking">
+                        <span> {{'Check in'|translate}} </span>
+                    </div>
+                    <div class="col- dataBooking">
+                        <span> : {{dataToConfirmReservation.checkIn | date:'dd/MM/yyyy hh:mm' }}
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3 dataBooking">
+                        <span> {{'Check out'|translate}} </span>
+                    </div>
+                    <div class="col- dataBooking">
+                        <span> : {{dataToConfirmReservation.checkOut | date:'dd/MM/yyyy hh:mm'}}
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3 dataBooking">
+                        <span> {{'contact number'|translate}} </span>
+                    </div>
+                    <div class="col- dataBooking">
+                        <span> : {{passengerHotelBooking.phoneNumber}} </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3 dataEmail">
+                        <span> {{'CONTACT E-MAIL'|translate}} </span>
+                    </div>
+                    <div class="col- dataEmail">
+                        <span> : {{dataToConfirmReservation.email}}</span>
+                    </div>
+                </div>
+                <!-- </div> -->
+                <br>
+                <div class="alert alert-info mt-10" role="alert">
+                    <span>
+                        <b>{{'Note'|translate}} </b> : {{dataToConfirmReservation.descriptionBook}}
+                    </span>
+                </div>
+                <!--<div class="row">
+                    <div class="col-12 col-sm-12">
+                        <div class="alert alert-info mt-10" role="alert">
+                            <span>
+                                <b>{{'Note'|translate}}  </b> : {{dataToConfirmReservation.policy}}
+                            </span>
+                            <br><br>
+                            <div *ngIf="dataToConfirmReservation.checkAvailabilityRoom.hotelNorms[0].hotelNorm != undefined" [innerHtml]="dataToConfirmReservation.checkAvailabilityRoom.hotelNorms[0].hotelNorm">
+                            </div>
+                            <br>
+                            <b>{{'cancelation policy'|translate}}  :</b>
+                            <div *ngFor="let item of dataToConfirmReservation.checkAvailabilityRoom.cancellationRoom; let index = index">
+                                <b>{{'Note'|translate}} {{index + 1}} </b> : From {{item.fromDate | date:'dd/MM/yyyy' }} to {{item.toDateCnl | date:'dd/MM/yyyy' }} , Charge {{item.chargeType}} : {{item.cancelCharge}} {{item.codeDevise}}
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+    </div>
+
+
+</div> 
+ 
+<app-custom-loading *ngIf="loadingSearch"></app-custom-loading>
+
+<br><br>

@@ -1,0 +1,125 @@
+<div class="container roundedmt-4 mb-4">
+    <hr>
+    <div class="row mb-3">
+        <div class="col-6">
+            <h3 class="title ">{{'Void Request'|translate}}</h3>
+        </div>
+        <div class="col-6 text-right">
+            <button class="btn btn-primary btn-sm ml-2" ngbTooltip="{{'close' | translate}}" placement="bottom" (click)="cancel()"><i
+                    class="fas fa-times"></i></button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <h4>{{'Choose void passenger'|translate}} </h4>
+        </div>
+    </div>
+    <app-request-informations [requestModel]="requestModel" [data]="data"></app-request-informations>
+
+
+    <hr>
+    <div class="row">
+        <div class="col-12">
+            <h4>{{'Choose void reason'|translate}}</h4>
+        </div>
+    </div>
+    <div class="row ml-3">
+        <div class="col-md-4 col-sm-12 ">
+            <input class="form-check-input" type="radio" name="exampleRadios" [(ngModel)]="requestModel.motifReq" id="V"
+                value="V">
+            <label class="form-check-label" for="V">
+                {{'Voluntary void according to void policy'|translate}}
+            </label>
+        </div>
+        <div class="col-md-4 col-sm-12  ">
+            <input class="form-check-input" type="radio" name="exampleRadios" [(ngModel)]="requestModel.motifReq"
+                id="val1" value="val1">
+            <label class="form-check-label" for="val1">
+                {{'Flight rescheduled/cancelled by airline'|translate}}
+            </label>
+        </div>
+        <div class="col-md-4 col-sm-12 ">
+            <input class="form-check-input" type="radio" name="exampleRadios" [(ngModel)]="requestModel.motifReq"
+                id="val2" value="val2">
+            <label class="form-check-label" for="val2">
+                {{'Unable to fly due to illness'|translate}}
+            </label>
+        </div>
+        <div class="col-md-4 col-sm-12 ">
+            <input class="form-check-input" type="radio" name="exampleRadios" [(ngModel)]="requestModel.motifReq"
+                id="val3" value="val3">
+            <label class="form-check-label" for="val3">
+                {{'Other special reason'|translate}}
+            </label>
+        </div>
+    </div>
+    <hr>
+    <div class="row ">
+        <div class="col-12">
+            <h4>{{'Void method'|translate}}</h4>
+        </div>
+    </div>
+    <div class="row  ml-3">
+        <div class="col-md-4 col-sm-12  ">
+            <input class="form-check-input" type="radio" name="exampleRadios" [(ngModel)]="requestModel.reqMethode"
+                id="B" value="B">
+            <label class="form-check-label" for="B">
+                {{'To your balance account'|translate}}
+            </label>
+        </div>
+        <div class="col-md-4 col-sm-12 ">
+            <input class="form-check-input" type="radio" name="exampleRadios" [(ngModel)]="requestModel.reqMethode"
+                id="O" value="O">
+            <label class="form-check-label" for="O">
+                {{'To original payment method'|translate}}
+            </label>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-12">
+            <h4>{{'Operator contact information'|translate}}</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-sm-12">
+            <label class="form-check-label">
+                {{'Name of operator'|translate}}
+            </label>
+            <input type="text" class="form-control form-control-sm" name="oprName" [(ngModel)]="requestModel.oprName"
+                disabled>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <label class="form-check-label">
+                {{'Operator phone No'|translate}}
+            </label>
+            <input type="text" class="form-control form-control-sm" name="oprName" [(ngModel)]="requestModel.oprTel">
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <label class="form-check-label">
+                {{'E-MALI/QQ/SKYPE/WECHA:'|translate}}
+            </label>
+            <input type="text" class="form-control form-control-sm" name="oprName" [(ngModel)]="requestModel.oprEmail">
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-12">
+            <h4>{{'Note'|translate}}</h4>
+        </div>
+    </div>
+    <div class="col-12">
+        <textarea class="form-control" id="exampleFormControlTextarea1" [(ngModel)]="requestModel.reqNote"
+            rows="2"></textarea>
+    </div>
+    <div class="row mt-2">
+        <div class="col-12 text-right">
+            <button class="btn btn-primary btn-sm  mr-2" (click)="void()" [disabled]="loading">
+                <div *ngIf="loading" class="spinner-border spinner-border-sm text-light" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div> {{'Void'|translate}}
+            </button>
+            <button class="btn btn-secondary btn-sm  mr-2" (click)="cancel()"  [disabled]="loading"> {{'Cancel'|translate}} </button>
+        </div>
+    </div>
+</div>

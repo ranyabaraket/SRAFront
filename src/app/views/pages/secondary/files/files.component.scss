@@ -1,0 +1,12 @@
+.nav-item.active{
+    background: #8bbc2d;
+    color: white;
+}
+@media screen and (max-width: 500px) {
+
+    .nav-tabs{
+  
+      padding-top: 50px !important;
+      display: block !important;
+    }
+  }

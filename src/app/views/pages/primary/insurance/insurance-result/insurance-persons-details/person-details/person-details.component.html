@@ -1,0 +1,121 @@
+<div class="accordion" id="accordionExample">
+    <form #inputGuestForm="ngForm">
+
+        <div class="row">
+            <!-- <div class="col-md-2 col-sm-4">
+                <label> {{'Title'|translate}} <span class="text-danger"> * </span> </label>
+                <select class="form-control form-control-sm" name="title" [(ngModel)]="guestModel.civilite"
+                    #title="ngModel" required [class.is-invalid]="submitted && title.invalid">
+                    <option value="MR"> {{'MR'|translate}}
+                    </option>
+                    <option value="MRS"> {{'MRS'|translate}}
+                    </option>
+                    <option value="MS"> {{'MS'|translate}}
+                    </option>
+
+                </select>
+            </div> -->
+
+            <!-- <div class="col-md-2 col-sm-4">
+                <label> {{'Type'|translate}} <span class="text-danger"> * </span> </label>
+                <div *ngIf="guestModel.isChild === false">
+                    <input class="form-control form-control-sm" name="type" disabled placeholder="ADULT">
+                </div>
+                <div *ngIf="guestModel.isChild === true">
+                    <input class="form-control form-control-sm" name="type" disabled placeholder="CHILD">
+                </div>
+            </div> -->
+            <div class="col-md-2 col-sm-6">
+                <label> {{'Gender'|translate}} <span class="text-danger"> * </span> </label>
+                <select class="form-control form-control-sm" name="title" [(ngModel)]="guestModel.gender" #title="ngModel" required [class.is-invalid]="submitted && title.invalid">            
+                    <option value="M"> {{'Male'|translate}}
+                    </option>
+                    <option value="F"> {{'Female'|translate}}
+                    </option>
+
+                </select>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <label> {{'First name'|translate}}<span class="text-danger"> * </span></label>
+                <input type="text" class="form-control form-control-sm" name="fname" [(ngModel)]="guestModel.firstName" required [class.is-invalid]="submitted && fname.invalid" #fname="ngModel" pattern="[a-zA-Z]+[a-zA-Z ]+" (input)="getFirstName($event.target.value)"
+                    aria-label="State" [matAutocomplete]="autofname">
+                <mat-autocomplete #autofname="matAutocomplete">
+                    <mat-option *ngFor="let  option of filteredByFirstNamePsg | async" [value]="option.firstName" (onSelectionChange)="selectPassenger(option)">
+                        {{option.firstName}} {{option.lastName}}
+                    </mat-option>
+                </mat-autocomplete>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <label>{{'Last name'|translate}} <span class="text-danger"> * </span></label>
+                <input type="text" class="form-control form-control-sm" name="lname" [(ngModel)]="guestModel.lastName" required [class.is-invalid]="submitted && lname.invalid" #lname="ngModel" pattern="[a-zA-Z]+[a-zA-Z ]+" (input)="geLastName($event.target.value)" aria-label="State"
+                    [matAutocomplete]="autolname">
+                <mat-autocomplete #autolname="matAutocomplete">
+                    <mat-option *ngFor="let  option of filteredByLastNamePsg | async" [value]="option.lastName" (onSelectionChange)="selectPassenger(option)">
+                        {{option.firstName}} {{option.lastName}}
+                    </mat-option>
+                </mat-autocomplete>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <label> {{'Nationality'|translate}} <span class="text-danger"> * </span> </label>
+
+                <select class="form-control form-control-sm" name="nationalitePax" [(ngModel)]="guestModel.nationality" #nationalitePax="ngModel" required [class.is-invalid]="submitted && nationalitePax.invalid">
+                    <option value=""> {{'Nationality'|translate}}
+                    </option>
+                    <option *ngFor="let item of pays" [value]="item.codePays"> {{item.nationalite}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-4 col-sm-6">
+                <label for="">{{'Passport'|translate}}</label>
+                <input type="text" class="form-control form-control-sm" name="docno" style="text-transform:uppercase" [(ngModel)]="guestModel.identityNo" [class.is-invalid]="submitted && docno.invalid" #docno="ngModel" pattern="^[A-Z0-9]+$" (input)="getDocNum($event.target.value)"
+                    aria-label="State" [matAutocomplete]="autodocno">
+                <mat-autocomplete #autodocno="matAutocomplete">
+                    <mat-option *ngFor="let  option of filteredByDocNumPsg | async" [value]="option.passportNumber" (onSelectionChange)="selectPassenger(option)">
+                        {{option.firstName}} {{option.lastName}}
+                    </mat-option>
+                </mat-autocomplete>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <label>{{'Birth date'|translate}} </label>
+                <div class="row">
+
+                    <div class="col-4">
+                        <select class="form-control form-control-sm" name="ddBirthday1" [(ngModel)]="ddBirthDay" (change)="fillDaysBirthDate()" #ddBirthday1="ngModel" required [class.is-invalid]="submitted && ddBirthday1.invalid">
+                            <option value=""> {{'Day'|translate}}
+                            </option>
+                            <option *ngFor="let item of BirthDatedays" [value]="item"> {{item}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-4">
+                        <select class="form-control form-control-sm" name="mmBirthday1" (change)="fillDaysBirthDate()" [(ngModel)]="mmBirthDay" #mmBirthDay1="ngModel" required [class.is-invalid]="submitted && mmBirthDay1.invalid">
+                            <option value=""> {{'Month'|translate}}
+                            </option>
+                            <option *ngFor="let item of months | async" [value]="item.value"> {{item.name}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-4">
+                        <input type="number" class="form-control form-control-sm" name="yyBirthday1" placeholder="Year" [(ngModel)]="yyBirthDay" (change)="applyIntervalYears($event.target.value)" #yyBirthDay1="ngModel" required [class.is-invalid]="submitted && yyBirthDay1.invalid">
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <label> {{'Residence country'|translate}} <span class="text-danger"> * </span> </label>
+
+                <select class="form-control form-control-sm" name="countryOfResidence" [(ngModel)]="guestModel.countryOfResidence" #countryOfResidence="ngModel" required [class.is-invalid]="submitted && countryOfResidence.invalid">
+                    <option value=""> {{'Residence country'|translate}}
+                    </option>
+                    <option *ngFor="let item of pays" [value]="item.codePays"> {{item.lpays}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <br>
+
+    </form>
+</div>

@@ -1,0 +1,419 @@
+{
+    "error": null,
+    "success": true,
+    "status": "Success",
+    "inventory": "PCLN_RC",
+    "pricing": {
+        "breakdown_data": [
+            {
+                "type": "Daily",
+                "factor": "1",
+                "price": "45.37",
+                "total": "45.37",
+                "display_price": "199.91",
+                "source_price": "45.37",
+                "baseline_price": "53.30",
+                "display_total": "199.91",
+                "source_total": "45.37",
+                "baseline_total": "45.37",
+                "title": null
+            }
+        ],
+        "display_price_strikeout": 0,
+        "source_price_strikeout": 0,
+        "baseline_price_strikeout": 0,
+        "subtotal": "45.37",
+        "display_subtotal": "199.91",
+        "source_subtotal": "45.37",
+        "baseline_subtotal": "53.30",
+        "taxes_and_fees": {
+            "total": "25.21",
+            "display_total": "111.08",
+            "source_total": "25.21",
+            "baseline_total": "29.62",
+            "breakdown_data": [
+                {
+                    "type": null,
+                    "factor": null,
+                    "price": "11.76",
+                    "total": null,
+                    "display_price": "51.76",
+                    "source_price": "11.76",
+                    "baseline_price": "13.82",
+                    "display_total": null,
+                    "source_total": null,
+                    "baseline_total": null,
+                    "title": "VAT"
+                },
+                {
+                    "type": null,
+                    "factor": null,
+                    "price": "0.50",
+                    "total": null,
+                    "display_price": "2.20",
+                    "source_price": "0.50",
+                    "baseline_price": "0.59",
+                    "display_total": null,
+                    "source_total": null,
+                    "baseline_total": null,
+                    "title": "Environmental Fee"
+                },
+                {
+                    "type": null,
+                    "factor": null,
+                    "price": "2.95",
+                    "total": null,
+                    "display_price": "12.98",
+                    "source_price": "2.95",
+                    "baseline_price": "3.47",
+                    "display_total": null,
+                    "source_total": null,
+                    "baseline_total": null,
+                    "title": "Registration Fee / Road Tax"
+                },
+                {
+                    "type": null,
+                    "factor": null,
+                    "price": "10.00",
+                    "total": null,
+                    "display_price": "44.01",
+                    "source_price": "10.00",
+                    "baseline_price": "11.75",
+                    "display_total": null,
+                    "source_total": null,
+                    "baseline_total": null,
+                    "title": "Premium Location Fee"
+                },
+                {
+                    "type": null,
+                    "factor": null,
+                    "price": "0.00",
+                    "total": null,
+                    "display_price": "0.00",
+                    "source_price": "0.00",
+                    "baseline_price": "0.00",
+                    "display_total": null,
+                    "source_total": null,
+                    "baseline_total": null,
+                    "title": "Third party insurance"
+                },
+                {
+                    "type": null,
+                    "factor": null,
+                    "price": "25.21",
+                    "total": null,
+                    "display_price": "110.95",
+                    "source_price": "25.21",
+                    "baseline_price": "29.62",
+                    "display_total": null,
+                    "source_total": null,
+                    "baseline_total": null,
+                    "title": "Total Taxes, Fees and Surcharges"
+                }
+            ]
+        },
+        "total": 70.58,
+        "display_total": "310.99",
+        "source_total": "70.58",
+        "baseline_total": "82.92",
+        "total_strikeout": "0.00",
+        "display_total_strikeout": "0.00",
+        "source_total_strikeout": "0.00",
+        "baseline_total_strikeout": "0.00",
+        "baseline_savings_data": null,
+        "source_savings_data": null,
+        "display_savings_data": null,
+        "member_rate": "0",
+        "prepaid_rate": 0,
+        "prepaid_at_booking": "0.00",
+        "prepaid_at_counter": "70.58",
+        "prepaid_at_booking_display": "0.00",
+        "prepaid_at_counter_display": "310.99",
+        "total_label": "Amount Due at Pick-Up",
+        "currency": "EUR",
+        "display_currency": "SAR",
+        "source_currency": "EUR",
+        "baseline_currency": "USD",
+        "display_symbol": "&#65020;",
+        "source_symbol": "&#8364;",
+        "baseline_symbol": "$",
+        "final_price": 18.8452129,
+        "currency_tiers": "USD"
+    },
+    "cdw": {
+        "activated": "true",
+        "insurance_allowed": 1,
+        "pricePerDay": null,
+        "total": {
+            "all": "22.00",
+            "ny": "22.00",
+            "displayAll": null,
+            "sourceAll": null,
+            "baselineAll": null,
+            "displayNy": null,
+            "sourceNy": null,
+            "baselineNy": null
+        },
+        "text": "",
+        "detailsData": null,
+        "html": "<div id=\"agaInsuranceOffer\" class=\"agaInsuranceOffer\" style=\"border:1px solid #1B549B;margin:0;padding:0;font-family:Helvetica, arial, sans-serif;\">  \n\t<div id=\"agaInsuranceHeader\" class=\"agaInsuranceHeader\" style=\"color:white;background:#1B549B;font-size:21px;line-height:38px;padding-left: 15px;font-size: 1.4285em;\">\n\t\t<b>Add Collision Damage Protection</b>\n\t</div>\n\t<div style=\"padding:10px;font-size:14px;\">\n\t\t<div id=\"agaInsuranceIntro\" class=\"agaInsuranceIntro\" style=\"margin: 10px 0;padding-left: 5px;\">\n\t\t\t\n\t\t</div>\n\t\t<div id=\"agaInsuranceBody\" class=\"agaInsuranceBody\">\n\t\t\t<ul style=\"margin: 20px 0;\"><li style=\"list-style-image: url('https://gateway.americas.allianz-assistance.com/images/a-bluecheckmark_22x18.png'); list-style-position: outside; text-indent: 0px; line-height: 18px; margin-bottom: 10px;margin-left: 39px;\"><b>Pays up to $75,000</b> with $0 deductible</li><li style=\"list-style-image: url('https://gateway.americas.allianz-assistance.com/images/a-bluecheckmark_22x18.png'); list-style-position: outside; text-indent: 0px; line-height: 24px; margin-bottom: 10px;margin-left: 39px;\"><b>Receive primary coverage</b> without having to go through your insurance</li><li style=\"list-style-image: url('https://gateway.americas.allianz-assistance.com/images/a-bluecheckmark_22x18.png'); list-style-position: outside; text-indent: 0px; line-height: 24px; margin-bottom: 10px;margin-left: 39px;\">\n<b>Covers damage to rental</b> due to collision, theft, vandalism, fire or hail</li><li style=\"list-style-image: url('https://gateway.americas.allianz-assistance.com/images/a-bluecheckmark_22x18.png'); list-style-position: outside; text-indent: 0px; line-height: 24px; margin-bottom: 10px;margin-left: 39px;\"><b>Cancel for free</b> up until your requested pick-up time</li></ul>\n\t\t</div>\n\t\t<div id=\"agaInsuranceOptions\" class=\"agaInsuranceOptions\">\n\t\t\t<div>\n                        <label>\n\t\t\t    <input type='radio' value='1' id='js_cdi--yes' name='cdw_selected' />\n\t\t\t    <div style=\"display:inline-block;margin-left:6px;margin-bottom:10px;width:90%;\">\n\t\t\t        <b>Yes, protect my rental for only &#36;11/calendar day. (Recommended)</b>\n\t\t\t    </div>\n                        </label>\n\t\t\t</div>\n\t\t\t<div>\n                        <label>\n\t\t\t    <input type='radio' value='0' id='js_cdi--no' name='cdw_selected'  />\n\t\t\t    <div style=\"display:inline-block;margin-left:6px;margin-bottom:10px;width:90%;\">\n\t\t\t        No, I decline protection and accept responsibility for damages incurred.\n\t\t\t    </div>\n                        </label>\n\t\t\t</div>\n\t\t</div>\n\t\t<div id=\"agaInsuranceFooter\" class=\"agaInsuranceFooter\" style=\"margin-left: 41px; margin-top: 5px;\">\n\t\t\t\n\t\t</div>\n\t\t<div id=\"agaInsuranceDisclaimer\" class=\"agaInsuranceDisclaimer\" style=\"margin-left: 18px; margin-top: 5px;margin-bottom:10px;font-size: 12px;\">\n\t\t\t<div class=\"margin_b_15 margin_t_10\">\n    <svg xmlns=\"http://www.w3.org/2000/svg\" enable-background=\"new 0 0 24 24\" height=\"28px\" viewBox=\"0 0 24 24\" width=\"28px\" fill=\"#000000\">\n        <rect fill=\"none\" height=\"24\" width=\"24\"></rect>\n        <g>\n            <path d=\"M4,13c1.1,0,2-0.9,2-2c0-1.1-0.9-2-2-2s-2,0.9-2,2C2,12.1,2.9,13,4,13z M5.13,14.1C4.76,14.04,4.39,14,4,14 c-0.99,0-1.93,0.21-2.78,0.58C0.48,14.9,0,15.62,0,16.43V18l4.5,0v-1.61C4.5,15.56,4.73,14.78,5.13,14.1z M20,13c1.1,0,2-0.9,2-2 c0-1.1-0.9-2-2-2s-2,0.9-2,2C18,12.1,18.9,13,20,13z M24,16.43c0-0.81-0.48-1.53-1.22-1.85C21.93,14.21,20.99,14,20,14 c-0.39,0-0.76,0.04-1.13,0.1c0.4,0.68,0.63,1.46,0.63,2.29V18l4.5,0V16.43z M16.24,13.65c-1.17-0.52-2.61-0.9-4.24-0.9 c-1.63,0-3.07,0.39-4.24,0.9C6.68,14.13,6,15.21,6,16.39V18h12v-1.61C18,15.21,17.32,14.13,16.24,13.65z M8.07,16 c0.09-0.23,0.13-0.39,0.91-0.69c0.97-0.38,1.99-0.56,3.02-0.56s2.05,0.18,3.02,0.56c0.77,0.3,0.81,0.46,0.91,0.69H8.07z M12,8 c0.55,0,1,0.45,1,1s-0.45,1-1,1s-1-0.45-1-1S11.45,8,12,8 M12,6c-1.66,0-3,1.34-3,3c0,1.66,1.34,3,3,3s3-1.34,3-3 C15,7.34,13.66,6,12,6L12,6z\"></path>\n        </g>\n    </svg>\n    <p style=\"font-family:'Montserrat'!important;font-size:13px;font-weight:bold;margin:10px 0 10px 4px;display: inline-block;vertical-align: baseline;width:90%;\">Over a million rental car drivers trust Allianz Global Assistance with their peace of mind each year</p>\n</div>\n<p><span style='display:block;margin-bottom:5px;'><img src='https://gateway.americas.allianz-assistance.com/images/advisory-icon.png' alt='Alert Icon' width='18' height='18' style='vertical-align:baseline;margin-right:5px;position:relative;top:3px;'/><a href='https://azcontent.us/alert/2019-novel-coronavirus?utm_source=PPN&utm_medium=referral-link&utm_campaign=coverage-alert&utm_content=booking-path&utm_term=3188399940006007149' target='_blank'>COVID-19<span class='agaHidden-accessible'> Learn more about the coverage alert information for Novel Coronavirus. Link opens in a new window</span></a>: COVERAGE LIMITATIONS AND SPECIAL ACCOMMODATIONS</span>\nRecommended/offered/sold by Allianz Global Assistance. Underwriter: Jefferson Insurance Company or BCS Insurance Company. Plan incl. insurance & assistance services. Terms & exclusions (incl. for pre-existing conditions) apply. <a href='https://www.allianzworldwidepartners.com/usa/terms-and-conditions/001004613' target='_blank' onClick='window.open('https://www.allianzworldwidepartners.com/usa/terms-and-conditions/001004613','OPTION','width=600,height=600,resizable=yes,menubar=no,status=no,scrollbars=yes,toolbar=no,directories=no,location=no'); return false;'>Plan & Pricing details, disclosures<span class='agaHidden-accessible'> Learn more about terms and conditions. Link opens in a new window.</span></a> <style>.agaHidden-accessible {border: 0 none;clip: rect(0px,0px,0px,0px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}</style></p>\n\t\t</div>\n\t</div>\n</div>\n\n<style>\n  #agaInsuranceOptions input {\n  \tvertical-align:top !important;\n  }\n</style>\n<div style=\"display:none;\">\n    <input type=\"hidden\" value=14044 id=\"agaTreatmentID\" />\n    <input type=\"hidden\" value=Baseline id=\"agaOfferType\" />\n    <input type=\"hidden\" value=SGMT_22871 id=\"agaSegmentCode\" />\n</div>",
+        "textBlock": null,
+        "displayCurrency": null,
+        "sourceCurrency": null,
+        "baselineCurrency": null,
+        "displaySymbol": null,
+        "sourceSymbol": null,
+        "baselineSymbol": null
+    },
+    "inclusions": [
+        "Third party insurance"
+    ],
+    "time": "2.9727",
+    "gds": "PL",
+    "status_code": 100,
+    "contract_status": "SUCCESS",
+    "partner_logo": "https://s1.pclncdn.com/rc-static/logos/106x27/SX.png?v=2.0",
+    "partner_code": "SX",
+    "partner_name": "Sixt Rent a Car",
+    "PickUpCode": "ORY",
+    "pickup_code": "ORY",
+    "pickup_cityid": "800029376",
+    "pickup_name": "Orly Airport (ORY)",
+    "pickup_airport_name": "Orly Airport (ORY)",
+    "pickup_airport_code": "ORY",
+    "pickup_address": "Aeroport Orly-2",
+    "pickup_city": "Paris",
+    "pickup_state": null,
+    "pickup_country": "FR",
+    "pickup_zip": "94390",
+    "pickup_latitude": "48.7323417646",
+    "pickup_longitude": "2.3661999679",
+    "pickup_location_information": "Car on Airport",
+    "DropOffCode": "ORY",
+    "dropoff_code": "ORY",
+    "dropoff_cityid": "800029376",
+    "dropoff_airport_name": "Orly Airport (ORY)",
+    "dropoff_airport_code": "ORY",
+    "dropoff_address": "Aeroport Orly-2",
+    "dropoff_city": "Paris",
+    "dropoff_state": null,
+    "dropoff_country": "FR",
+    "dropoff_zip": "94390",
+    "dropoff_latitude": "48.7323417646",
+    "dropoff_longitude": null,
+    "dropoff_name": "Orly Airport (ORY)",
+    "dropoff_location_information": "Car on Airport",
+    "pickup_time_text": "Sun, Oct 17, 2021 at 10:00 am",
+    "dropoff_time_text": "Mon, Oct 18, 2021 at 10:00 am",
+    "pickup_date": "10/17/2021",
+    "pickup_time": "10:00",
+    "dropoff_date": "10/18/2021",
+    "dropoff_time": "10:00",
+    "pickup_hours_data": [
+        {
+            "open": "07:00AM",
+            "close": "11:00PM"
+        }
+    ],
+    "dropoff_hours_data": [
+        {
+            "open": "07:00AM",
+            "close": "11:00PM"
+        }
+    ],
+    "car_info": {
+        "carType": null,
+        "description": "Economy Car",
+        "example": "Fiat 500 or similar",
+        "image": "https://s1.pclncdn.com/rc-static/vehicles/partner/sx/size335x180/sx_fr_ecmr.jpg",
+        "passengers": "4",
+        "doors": "3",
+        "bags": "1",
+        "mileage": "limited",
+        "automaticTransmission": null,
+        "airConditioning": null,
+        "images": {
+            "SIZE67X36": "https://s1.pclncdn.com/rc-static/vehicles/partner/sx/size67x36/sx_fr_ecmr.jpg",
+            "SIZE134X72": "https://s1.pclncdn.com/rc-static/vehicles/partner/sx/size134x72/sx_fr_ecmr.jpg",
+            "SIZE335X180": "https://s1.pclncdn.com/rc-static/vehicles/partner/sx/size335x180/sx_fr_ecmr.jpg",
+            "SIZE536X288": null,
+            "SIZE268X144": "https://s1.pclncdn.com/rc-static/vehicles/partner/sx/size268x144/sx_fr_ecmr.jpg"
+        }
+    },
+    "driver_age_required": false,
+    "disclosure_data": [
+        {
+            "id": "AGE_GROUP",
+            "name": "Driver's age at pick-up",
+            "options": []
+        }
+    ],
+    "special_request_data": [
+        {
+            "name": "Toddler Child Seat",
+            "code": "CST",
+            "count": 3,
+            "description": "Forward facing for children weighing 20-40 pounds up to 40 inches in height"
+        },
+        {
+            "name": "Booster Seat",
+            "code": "BST",
+            "count": 3,
+            "description": "For children weighing 40 to 80 lbs"
+        },
+        {
+            "name": "Infant Child Seat",
+            "code": "CSI",
+            "count": 3,
+            "description": "For infants less than one year and under 20 lbs"
+        },
+        {
+            "name": "Ski Rack",
+            "code": "SKI",
+            "count": 1,
+            "description": null
+        }
+    ],
+    "discount_codes": {
+        "corpDiscount": null,
+        "promoCode": null,
+        "rateCode": null
+    },
+    "customer_discounts": [],
+    "vendor_program_data": [
+        {
+            "name": "Corporate Discount",
+            "code": "CD",
+            "value": "",
+            "disable": "false"
+        }
+    ],
+    "discounts_accepted": "true",
+    "partner_program_data": [],
+    "guarantee_necessary": "",
+    "payment_method_data": [
+        {
+            "name": "MasterCard",
+            "code": "MasterCard"
+        },
+        {
+            "name": "VISA",
+            "code": "VISA"
+        },
+        {
+            "name": "American Express",
+            "code": "American Express"
+        },
+        {
+            "name": "Discover",
+            "code": "Discover"
+        }
+    ],
+    "customer_locations": {
+        "userInput": null,
+        "countryData": null
+    },
+    "cancellation_penalty": [],
+    "booking_conditions": [
+        {
+            "text": "The driver must present a valid driver's license and credit or debit card at the counter in his/her name. The use of a debit card may be subject to certain restrictions, or not permitted at some locations. Review the location's policy for details."
+        },
+        {
+            "text": "Review the location's policy for possible age or local renter restrictions."
+        }
+    ],
+    "important_information": [
+        {
+            "title": "Collision Damage Insurance Pricing",
+            "text": " Collision Damage Insurance is $11.00 per calendar day, and is provided by Allianz Global Assistance.",
+            "display": null
+        },
+        {
+            "title": "",
+            "text": "Within at least 10 days, depending on your state of residence, you can receive a full refund on your premium if you're not satisfied and you haven't filed a claim or departed for your trip/event.",
+            "display": null
+        },
+        {
+            "title": "Collision Damage Insurance",
+            "text": "Your credit card will be charged now for the collision damage coverage.",
+            "display": "WHEN CDW SELECTED"
+        },
+        {
+            "title": "Payment",
+            "text": "Payment for this reservation is due when the car is returned and will be charged by Sixt Rent a Car.",
+            "display": "MANDATORY"
+        },
+        {
+            "title": "",
+            "text": "Additional charges may apply at the counter if you pick up or drop off the car at a different date, time, or location than you requested for your reservation.",
+            "display": "MANDATORY"
+        },
+        {
+            "title": "Driver",
+            "text": "Only the driver will be able to pick up this rental car at the counter. An additional driver may be added at the counter for a fee payable directly to the rental car company.",
+            "display": "MANDATORY"
+        },
+        {
+            "title": "",
+            "text": "Additional charges may apply for drivers under the age of 25.",
+            "display": "MANDATORY"
+        },
+        {
+            "title": "",
+            "text": "Sixt Rent a Car will charge the driver at the rental counter for optional items added to the reservation, including any child seats or special requests.",
+            "display": "MANDATORY"
+        },
+        {
+            "title": "Identification",
+            "text": "The driver will be required to present a valid driver's license and a valid credit card in his/her name at the counter for the refundable security deposit. For international reservations, the driver may be asked to present an international license or passport. Rental car companies may have different requirements for customers who will only have a debit card at the time of pick-up. For more specific information or to determine whether a debit card deposit is allowed, please review acceptable payment options in the partner's policy information.  Pre-paid cards or cash will not be accepted for the security deposit.",
+            "display": "MANDATORY"
+        },
+        {
+            "title": "",
+            "text": "If you are renting locally, please review the location specific rental policy for potential additional restrictions. Qualifying a local renter varies by rental company, but they will typically use the address on your license, or the issuing state of your license, to determine locality.",
+            "display": "MANDATORY"
+        },
+        {
+            "title": "Mileage",
+            "text": "Your car will be reserved for limited mileage. Some car companies have additional restrictions regarding mileage. Please refer to Sixt Rent a Car's specific policy.",
+            "display": "MANDATORY"
+        },
+        {
+            "title": "",
+            "text": "Some states collect fees, or tolls, for access to certain roadways. Some tolls may be cashless and fees are paid via an electronic toll collection program. Sixt Rent a Car may have a specific policy regarding cashless tolls, or offer the option to participate in their electronic toll collection program. We recommend you speak to the counter agent upon arrival about whether this may affect you.",
+            "display": "MANDATORY"
+        },
+        {
+            "title": "Payment options",
+            "text": "Some locations also accept debit cards; however rental partners have different requirements for customers who will only have a debit card at the time of pickup. For more specific information please review #START_ANCHOR_PARTNERPAYMENTOPTIONS#partner payment options#END_ANCHOR_PARTNERPAYMENTOPTIONS#.",
+            "display": "MANDATORY"
+        },
+        {
+            "title": "",
+            "text": "International rentals may require additional insurance.",
+            "display": "MANDATORY"
+        },
+        {
+            "title": "",
+            "text": "Please see location specific #START_ANCHOR_RENTALPOLICYANDRULES#rental policy and rules information#END_ANCHOR_RENTALPOLICYANDRULES#.",
+            "display": "MANDATORY"
+        },
+        {
+            "title": "",
+            "text": "You hereby agree to abide by our #START_ANCHOR_TERMSANDCONDITIONS#terms and conditions#END_ANCHOR_TERMSANDCONDITIONS# and #START_ANCHOR_PRIVACYPOLICY#privacy policy#END_ANCHOR_PRIVACYPOLICY#.",
+            "display": "MANDATORY"
+        }
+    ],
+    "car_policy_data": [
+        {
+            "title": "Miscellaneous",
+            "description": "A premium location fee per month started occurs for rentals at airport and train stations.<br><br>:::minimum amount EUR<br><br>:Premium Location Fee:12,00 %:12.00<br><br>Out of opening hours<br><br>Out of opening hours service is available at selected stations. In this case, an additional charge applies for the provision of the service.<br><br>Flexi Return Guarantee<br><br>Plans can change. As a flexible mobility partner, we are happy to adapt to your plans. Thanks to our Flexi Return guarantee, you have the freedom to return the vehicle at any time to an authorised Sixt station, regardless of the rental agreement.<br><br> If your plans change during your hire period, let us know by telephone on +33 (0) 144 38 55 55 or in person at any of our numerous stations, and our employees will amend your rental contract. By doing this, we can adapt to your changed plans.<br><br>Flexi Return Guarantee in the tariff Pay later<br><br>If you return your vehicle earlier than agreed in the rental contract, we will charge the rental price according to the rental contract. You will receive a partial discount for the unused rental days.<br><br>Flexi Return Guarantee in the tariff Pay now<br><br>When booking at a prepaid rate, a refund shall not be issued for returned early. For further information please refer to the section Prepaid Tariff - Pay now.<br><br>Flexi Late Return in both tariffs (Pay later & Pay now)<br><br>If you return the vehicle later, without notifying us, we will bill you EUR 12.00 service fee for the Flexi Return Service. This fee applies in addition to any extra days which might incur due to the rental extension.<br><br>Flexi Return Location in both tariffs (Pay later & Pay now)<br><br>If you return the vehicle to a station other than that agreed in the rental contract, the Flexi Return location will incur a service fee of EUR 19,99 if we have not been informed of the changes to the rental contract in advance.<br><br>A road tax of EUR 3.54 per day, max. EUR 28.32 per month occurs.<br><br>Environmental Fee<br><br>There will be an Environmental Fee, which is included in the rent.<br><br>:<br><br>::EURO/ Tag:EURO/ Monat<br><br>:Mini, Economy:0,60:12,00<br><br>:Compact:1,80:36,00<br><br>:Intermediate, Standard:2,40:48,00<br><br>:Full Size, ET**, CT**, IT**:3,60:72,00<br><br>:Premium, Luxury:4,80:96,00<br><br>:Xtraordinary, FT**, PT**, LT**, SF**, FF**:7,20:144,00<br><br>:SV**, FV**, Offroader >= PF**, Luxury Cars:8,40:168,00<br><br>:Electric & Hybrid Cars:0,00:0,00<br><br>Administrative Fees<br><br>Administrative handling costs for breaches of the Highway Code will be applied: EUR 29.00 per breach.<br><br>Administrative handling costs for damages will be applied: EUR 60.00 per damage.<br><br>* * * * * * * * * * * * * * * * * * * * <br><br>General<br><br>One month corresponds to a period of 30 days; a minimum period of 30 days applies. After expiration of the minimum term, the contract is always automatically extended by a further 30 days. You are entitled to terminate the contract at any time by returning his vehicle to a Sixt station. The return of the vehicle at a Sixt station is considered an ordinary termination of the existing contract with effect from the end of the 30-day billing period on the respective return date. Termination of the contract by Sixt is possible at the earliest 3 months after the start of the contract.<br><br>Age restrictions<br><br>The minimum age in France is 18 and the driver must have a valid driving license for at least 2 years.<br><br> The following rules apply regarding the possession of the driving license:<br><br>:5 years for vehicles in groups<br><br>:CC**, CL**, CP**, CT**, IL**, IT**, SD**, SW**, ST**, SF**, SS**, FD**, FW**, FT**, FF**, P***, LD**, LW**, LT**, XVAN<br><br>:10 years for vehicles in groups<br><br>:CCAN, PNAR, LCAR, LFAX, LFAE, LPAN, LZAR, SSMX, XCAN, XDAR, XFAN, XFAR, XFAX, XFMX, XJAN, XLAN, XPAL, XPAN, XSAE, XSMX, XTAJ, XSAR, XTAJ, XTAN, XTAR, XTAX, XTMX, XXAR, XXAX, XZAN, XNAE, XXAH, XFAH, FCAR, XNAX, XZAH<br><br>A young driver surcharge is charged for young drivers under 25. Its amount is EUR 99 per month.<br><br>Sign-up fee<br><br>A one time only sign-up fee is charged per contract. The amount of the sign-up fee is shown during the reservation process.<br><br>Vehicle change<br><br>Sixt vehicles have a limited holding period and mileage. Therefore, Sixt has a right to exchange the vehicle delivered to you during the contract period when a certain holding period or mileage is reached. If a vehicle exchange is necessary, you will be contacted in time by the station and are obliged to return the vehicle to the specified Sixt station on the agreed date. You will receive an equivalent replacement vehicle for the exchange.<br><br>Si le vehicule n'est pas retourne a la date d'echange specifiee, des frais de service dZun montant de 500,00 EUR s'appliqueront.<br><br>Request for a category change at the initiative of the customer<br><br>An exchange of the vehicle for another vehicle model is possible on request, subject to availability. The fee is 49,00 EUR per customer-initiated exchange process and applies regardless of whether it is a vehicle model from the same or a higher / lower vehicle category. Only one change per month is allowed.<br><br> If you change to a vehicle model from a different category than the one booked, the following applies to adjust the regular fees:<br><br> 1. A change to a higher category results in the higher category being charged for the entire started 30-day billing period.<br><br> 2. A change to a lower category only leads to a price adjustment in the following 30-day billing period. This change can only be done after the renewal of your subscription.<br><br>Replacement car guarantee<br><br>Free replacement car in the event of accidental damage caused by yourself. For a monthly fee of EUR 15.00, with a SIXT+ subscription contract you can be sure that even in the unlikely event of a self-inflicted accident you will remain mobile with a replacement vehicle. You don't have to wait for your subscription vehicle to be repaired and are immediately mobile.<br><br>One-Time Replacement Car Fee<br><br>YouZve had a self-inflicted accident and have missed to book the Replacement car guarantee beforehand? In this case you can still remain mobile with your Sixt+ subscription. For a one-time fee of EUR 199.00 (per replacement car request), we immediately provide you with a replacement car. Hence, you can continue your subscription right away without having to wait until the damaged vehicle has been repaired.<br><br>Country roaming<br><br>You are entitled to drive the vehicle provided in Germany. Use of the rental vehicle abroad in countries in zone 1 (see the section \"International travel and entry restrictions\" in this general rental information) is possible against payment of an additional fee of 19.99 EUR in the form of a monthly surcharge on the contractually agreed rental price. Use abroad, beyond the countries falling within zone 1, is prohibited. For each violation a contractual penalty of 150.00 EUR will be charged.<br><br>Mileage not reported fee<br><br>At the end of a month you will be asked to enter the current mileage of the vehicle. This information can be entered directly via the app.<br><br> If you should not comply with the entry once, we will charge you a handling fee of 10 EUR. For each additional report of the current mileage not received in time, we will charge you 19.99 EUR.<br><br>Vehicle Return<br><br>Notwithstanding the possibility to terminate the contract at any time by returning the vehicle at any Sixt station, the customer will announce the return of the vehicle via the Sixt app at least 7 days before the end of the current billing period and a binding return date at a Sixt station will be agreed.<br><br> There is an additional service fee of 40 EUR if<br><br> - you do not arrange a return date and return the car unannounced to a Sixt station or<br><br> - you agree on a date for return, but do not take this date or<br><br> - you agree on a return date, but then return the vehicle at a different Sixt station than the one specified in the return date.<br><br> Please note that you will not receive a refund for unused rental days.<br><br>Cancellation fees (before the vehicle handover):<br><br>A booking can be cancelled before the start of the rental. In the event of cancellation, the payment already made towards the rental will be paid back subject to a cancellation charge. The cancellation charge shall be the amount of 2 rentals days based of the total of the first monthly payment and registration fees (on a 30 day basis).<br><br>* * * * * * * * * * * * * * * * * * * * <br><br>All prices include 20.0% VAT<br><br>* * * * * * * * * * * * * * * * * * * * <br><br>Interior Protection<br><br>Thanks to the interior protection, liability can be reduced to a predetermined deductible or eliminated if the vehicle interior is soiled or damaged.<br><br>::EURO/ day<br><br>:all groups:3,99<br><br>* * * * * * * * * * * * * * * * * * * * <br><br>Important documents<br><br>The lessee and the driver must present a valid driver's license and an identity card or passport while receiving delivery of the vehicle.<br><br>Driver's licences from non-EU countries (except Switzerland) are accepted if:<br><br> a) no visa has been entered in the passport.<br><br> b) the customer has a visa in his passport and at the time of hire has not been in Europe for longer than 6 months. If he has been in Europe for longer than 6 months, he must present a driver's licence from an EU country.<br><br>Driver's license printed with non Roman Alphabet (Arabic, Chinese, Japanese, Cyrillic etc) must be complemented by an international driver's licence. For driver's licenses from countries not part of the international driver's license treaty, an official translation of the license must be presented with the original license.<br><br>Age restrictions<br><br>Minimum age in France is 18 and the driver has to be in possession of a valid driving licence for at least 2 years.<br><br>Apart from this, the following restrictions for the possession of a valid driving licence are valid:<br><br>:5 years for vehicles in groups<br><br>:CC**, CL**, CP**, CT**, IL**, IT**, SD**, SW**, ST**, SF**, SS**, FD**, FW**, FT**, FF**, P***, LD**, LW**, LT**, XV**<br><br>:10 years for vehicles in groups<br><br>:CCAN, PNAR, LCAR, LFAX, LFAE, LPAN, LZAR, SSMX, XCAN, XDAR, XFAN, XFAR, XFAX, XFMX, XJAN, XLAN, XPAL, XPAN, XSAE, XSMX, XTAJ, XSAR, XTAJ, XTAN, XTAR, XTAX, XTMX, XXAR, XXAX, XZAN, XNAE, XXAH, XFAH, FCAR, XNAX, XZAH, XJAH, LFAH, XSAH, LTAN, LFAJ, PTMX<br><br>A young driver surcharge applies for drivers under 25 years.<br><br>::EUR per Day:EUR maximum<br><br>:Young Driver Surcharge:32,50:324,90<br><br>* * * * * * * * * * * * * * * * * * * * <br><br>One-way rentals<br><br>For One-Way-Rentals within Sixt locations in France a charge of EUR 82.00 applies. No One-Way-fee will be charged for rentals within the same city (except for several stations). We reserve the right to charge a fee for unannounced One-Way-Rentals.<br><br>No One-Way Rentals from/to Corsica and Oversea Departments (DOM TOM) allowed.<br><br>In the case of unannounced and unauthorised one-way rentals, we reserve the right to charge an additional fee.<br><br>International one-way-rentals are only allowed within Sixt locations in selected countries, depending on the current tarif.<br><br>::EUR<br><br>:Luxembourg:349.00<br><br>:Belgium:369.00<br><br>:Germany:449.00<br><br>:- Mulhouse AP --> Freiburg, Lorrach:82,00<br><br>:Austria:699.00<br><br>:Netherlands:519.00<br><br>:Spain:849.00<br><br>:- Catalonia:669,00<br><br>:Italy:1000.00<br><br>:- North Italy:650,00<br><br>:Switzerland:550.00<br><br>:Monaco:82,00<br><br>:- From Nice:55,00<br><br>:Czech Republic, Croatia, Hungary, Portugal, Slovakia, Slovenia:1250.00<br><br>:Estonia, Finland, Latvia, Lithuania, Norway, Sweden, Poland, Denmark, Great Britain:1,800.00<br><br>Additional driver<br><br>A surcharge of EUR 13 per day, max. EUR 74,99 per month applies for each additional driver.<br><br>* * * * * * * * * * * * * * * * * * * * <br><br>Navigation system<br><br>Navigation systems are guaranteed to be available if a booking is made.<br><br>:::EUR day:EUR Month<br><br>::Navigation System (guaranteed):15,99:194,00<br><br>Baby and booster seats<br><br>Baby seats, child seats and booster seats for children from 0 to 36 kg are guaranteed to be available if a booking is made (groups 0+, 0, 1, 2 and 3).<br><br>:::EUR Day:EUR Week:EUR Month<br><br>::Baby Seat (guaranteed) (0-13 kg, Group 0+):12,50::59,99<br><br>::Child Seat (guaranteed) (0-10 kg, 9-18 kg/Group 0/1):12,50::59,99<br><br>::Booster Seat (guaranteed) (15-36 kg/Group 2/3):8.50::39,99<br><br>Winter equipment<br><br>Winter tires are available at a suitable fee. In addition, snow chains and ski racks are optionally available.<br><br>:::EUR Day:EUR Week:EUR Month<br><br>::Ski Racks:17,50::52,50<br><br>::Snow Chains:19,00:60,00:60,00<br><br>::Tires suitable for winter:30,00:210,00:250,00<br><br>Winter tires can only be booked in certain stations and for certain car categories. There is no possibility to book winter tires for a one way rental.<br><br>:::EUR Day:EUR Week:EUR Month<br><br>::Diesel guaranteed:7,29:51,03:129,99<br><br>Sixt Connect / Sixt Connect Plus<br><br>A mobile device will be provided that can be used to access the internet and make phone calls worldwide (provided a booking is made). Subject to availability, at selected stations only.<br><br>::EUR Day:EUR Month<br><br>:Sixt Connect:10,99:169,99<br><br>:Sixt Connect Plus:19,00:280,00<br><br>Refuelling Charge<br><br>All vehilces are supplied with a full tank of fuel and should be refilled prior to return to Sixt, otherwise our current refuelling charges will apply.<br><br>Alternatively, you may purchase a tankful of fuel at the time of rental at a price that is competitive with local fuel stations and return the tank empty. No refunds will be given for unused fuel.<br><br>Delivery and collection<br><br>Deliveries and collections are available at the local rental station subject to a fee.<br><br>This service is available on request for an additional commitment fee outside opening times at selected locations.<br><br>:EURO/ 0-1.9 km:EURO/ 2-4.9 km:EURO/ 5-9.9 km:EURO/ 10-14.9 km:EURO/ 15-999 km<br><br>:25.00:40.00:60.00:75.00:75.00 + 2.50/km<br><br>* * * * * * * * * * * * * * * * * * * * <br><br>:Loss damage waiver (incl. theft protection)<br><br>::EUR deductible<br><br>:Mini, Economy:1.200,-<br><br>:Compact, ET**:1.600,-<br><br>:Intermediate, Standard, CT**:2.000,-<br><br>:Full Size, SV**:2.400,-<br><br>:Premium, Deluxe, FV**, FCCC:2.700,-<br><br>:Xtraordinary, LFAE, CCAN, FCAR, SSMX, SSMR:4.200,-<br><br>:XVAN, XVAE:5.000,-<br><br>:LCAR, LFAX, LPAN, LZAR, XCAN, XTAR, PNAR, XLAN, XZAH, LFAH, XSAH, LTAN, LFAJ, XFMX:8.000,-<br><br>:XFAN, XFAX, XJAN, XSMX, XTAJ, XTMX, XZAN, XJAH:10.000,-<br><br>:XPAL, XPAN, XSAE, XTAX, XXAX, XTAN, XNAE, XXAH, XNAX:15.000,-<br><br>:BE<br><br>::EURO/ day:EURO/ week:EURO/ month<br><br>:Mini, Economy:18,69:86,31:215,32<br><br>:Compact, ET**:22,29:93,66:246,12<br><br>:Intermediate, Standard, CT**:24,99:107,21:282,32<br><br>:Full Size, SV**:29,49:126,77:318,92<br><br>:Premium, Deluxe, FV**:41,89:179,97:458,92<br><br>:Xtraordinary, Luxury Cars, LFAE:63,53:292,46:769,62<br><br>:XNAX, XTAN, XTAR, XXAH, XZAH, XSAH:70,20:321,72:846,72<br><br>:BE<br><br>::EUR deductible<br><br>:Mini, Economy:400,-<br><br>:Compact, ET**:550,-<br><br>:Intermediate, Standard, CT**:700,-<br><br>:Full Size, SS**, SV**:750,-<br><br>:Premium, FV**, LD**, LT**, CCAN, SSMX, FCCC, FCAR:1.100,-<br><br>:Deluxe, XDAR, XFAH, XFAR:1.600,-<br><br>:XVAN, XVAE:2.500,-<br><br>:LCAR, LFAX, LPAN, LZAR, XCAN, XTAR, PNAR, XLAN, XZAH, LFAH, XSAH, LFAJ, XFMX:4.000,-<br><br>:XFAN, XFAX, XJAN, XSMX, XTAJ, XTMX, XZAN, XJAH, LTAN:5.000,-<br><br>:XPAL, XPAN, XSAE, XTAX, XXAX, XTAN, XNAE, XXAH, XNAX:7.500,-<br><br>(reduced excess LDW = BE)<br><br>:BF (bookable in certain stations for certain car groups)<br><br>::EURO/ day:EURO/ week:EURO/ month<br><br>:Mini, Economy:24,99:110,02:286,44<br><br>:Compact, ET**:29,69:124,99:329,00<br><br>:Intermediate, Standard, CT**:33,29:142,99:380,52<br><br>:Full Size, SV**:39,29:168,98:425,60<br><br>:Premium, Deluxe, FV**:55,89:239,96:614,04<br><br>:Xtraordinary, LFAE:92,79:389,99:1025,64<br><br>* * * * * * * * * * * * * * * * * * * * <br><br>Third party insurance<br><br>Insurance coverage for the vehicle rented includes Third Party Liability with unlimited cover for personal injuries, a maximum cover of EUR 100 Mill for material damages and a maximum cover of EUR 1.6 Mill for damages of the environment.<br><br>Excluded from the insurance is the use of the vehicle for the transport of dangerous goods. All protection as part of the rental contract will become void, in particular, if an unauthorized driver has used the vehicle or if the driver of the vehicle does not possess the required driver's licence at the time of the event giving rise to claim.<br><br>Loss damage waiver (incl. theft protection)<br><br>Loss damage waiver (incl. theft protection) removes the drivers responsibility to a part of the vehicle in case of damage or theft.<br><br>If loss damage waiver (incl. theft protection) is accepted, the customer is entitled, depending on the vehicle, to a deductible of EUR 1100.00 to EUR 15,000.00. In addition, a reduction of the deductible is possible.<br><br>In the event of willful or grossly negligent damage caused, a claim on the agreed fully comprehensive cover (incl. theft cover) can be reduced or lapsed.<br><br>If no fully comprehensive cover (incl. theft cover) has been arranged, the leaser is responsible for all damage to the car not proven to be caused by a third party, and shall be liable for up to the full value of the vehicle.<br><br>If LDW is already included in the rates, the renter can choose Loss damage waiver (including Theft Protection) with minimum excess to reduce/eliminate the Non-Waiverable Responsibility.<br><br>The cost of Loss damage waiver (including Theft Protection) with minimum excess is as follows: see table (*)<br><br>:Loss damage waiver (incl. theft protection)<br><br>::EURO/ day:EURO/ week:EURO/ month<br><br>:Mini, Economy:25,99:123,41:358,40<br><br>:Compact, ET**:29,09:132,59:402,92<br><br>:Intermediate, Standard, CT**:32,59:150,99:439,04<br><br>:Full Size, SV**:38,49:179,62:514,92<br><br>:Premium, Deluxe, FV**:54,99:255,78:750,12<br><br>:Xtraordinary, Luxury Cars, LFAE:99,19:450,79:1431,36<br><br>:XNAX, XTAN, XTAR, XXAH, XZAH, XSAH:104,19:473,29:1478,12<br><br>* * * * * * * * * * * * * * * * * * * * <br><br>Tyre and windscreen coverage<br><br>The Tyre- and Windscreen Protection gives protection for damages on tyres, windscreen, side windows, backwindow and mirror glass with a deductible of EUR 0.00.<br><br>If no glass and tyre cover has been arranged, the leaser shall be liable for up to the full amount of the damage.<br><br>:Tyre- and Windscreen Protection<br><br>::EURO/ day:EURO/ month<br><br>:Mini, Economy:6,99:139,69<br><br>:Compact, ET**:7,99:159,59<br><br>:Intermediate, Standard, CT**:8,50:169,89<br><br>:Full Size, SV**:8,99:179,69<br><br>:Premium, Deluxe, FV**:9,99:199,79<br><br>:Xtraordinary, LFAE:10,99:219,69<br><br>* * * * * * * * * * * * * * * * * * * * <br><br>General<br><br>All credit and debit cards from internationally recognized credit card companies (Visa, MasterCard, American Express, Diners Club, Discover, JCB) and Airplus are acceptable as payment methods, whereas all prepaid cards as well as Visa Electron, Nickel, Maestro- and VPAY-Cards are not accepted. The payment method must have been issued in the name of the driver. This must be presented at the time of vehicle pick-up and be valid at this time. The amount that will be debited includes the rental price as well as all additional extras and charges. Cash Payment is not accepted.<br><br>Sixt CarExpress Servicecard (Advantage Circle) is only accepted in combination with a valid means of payment.<br><br>As security, the means of payment is debited with a deposit amount. The amount of the deposit depends on the vehicle group of the rented vehicle and according to the following table:<br><br>:PKW<br><br>:Vehicle group:Deposit amount<br><br>:M***, E***, C***, I***, S***:Rental amount + 300,00 EUR<br><br>:F***, P****, L***:Rental amount + 500,00 EUR<br><br>:XPAL, XSAE, XSAH, XTAR,XXAH, CCAN, LCAR, LFAH, LFAJ, LTAN,PNAR, PTMX, XCAN, XFAN, XFMX, XJAH, XVAE, XVAN, XZAH, XZAN:Rental amount + 3000 EUR<br><br>Two bank cards with an authorization equal to the amount of the rental + 3.000 EUR per credit card for the vehicles of the groups:<br><br>:XPAL, XSAE, XSAH, XTAR, XXAH<br><br>You will find our current fleet list under the following <a href=\"https://www.sixt.co.uk/#/fleet/selectcar/FR\">link </a><br><br>Please note, that payments with credit card may require the PIN of the credit card. The credit card must be valid at least 30 days after the end of the rental agreement<br><br>Prepaid tariff - Pay now<br><br>When booking at a prepaid rate, the payment will be charged along with the total rental price (incl. booked extras and charges) prior to the rental. The driver and mode of payment shall be finalised at the time of reservation and cannot be changed. A refund shall not be issued for non-collection, vehicle being collected late or returned early.<br><br>The booking may be changed up to one hour before the scheduled beginning of the rental period. There will be a booking change fee of EUR 29.99 plus any difference between the original rate and the rate applicable to the adjusted rental period.<br><br> A change from a prepaid rate to a non-prepaid rate is not possible.<br><br>A booking can be cancelled before the start of the rental. In the case of cancellation, the already paid pre-payment will be charged, along with a cancellation fee. For reservations with a rental period of up to 2 days, the cancellation fee is 100% of the rental price (including booked extras and charges). For reservations with a rental period of more than 2 days, the size of the cancellation fee depends on the rental price booked (including booked extras and fees), and will be the proportion of this that corresponds to the rate for 2 rental days.<br><br>If the Client does not cancel and does not arrive to take delivery of the vehicle rented at the prepaid rate on the agreed date and no later than sixty (60) minutes after the time stated at the time of reservation, the rental price already paid will accrue to the Rental Company in full, subject to a limit of seven (7) days rental.<br><br>Booking changes and cancellations can be made online or in writing: Sixt rent a car, Customer Relations, Aeroport de Bale Mulhouse, F 68300 Saintlouis, Fax: +33 (0)3 90 22 80 63, Email: <a href=\"/cdn-cgi/l/email-protection\" class=\"__cf_email__\" data-cfemail=\"8cffe9fefae5efe9a2efe0e5e9e2f8e9e0e9ccffe5f4f8a2efe3e1\">[email protected]</a><br><br>* * * * * * * * * * * * * * * * * * * * <br><br>Roadside protection<br><br>The roadside protection is an extended breakdown protection during the rental and protects you at home and abroad against high service and repair costs for the following incidents caused by you: key locked in vehicle, breaking caused by lack of fuel, assistance with starting necessitated by flat battery, loss of key and vehicle stuck.<br><br>All services may only be ordered by a direct claim with Sixt 24-hour Roadside Assistance. They shall also determine the type and extent of service required to ensure the renter stays mobile. If any damage to the rental vehicle occurs which is not covered by Sixt within the scope of the Roadside Protection, the renter is liable for such damage.<br><br>::EUR Day:EUR Week:EUR Month<br><br>:Roadside protection:6,29:44,00:79,99<br><br>* * * * * * * * * * * * * * * * * * * * <br><br>Territorial restrictions<br><br>The vehicle selection can restrict travel to certain countries. For a description of these restrictions on admission, the countries are divided into three zones.<br><br>Zone 1: Andorra, Austria, Belgium, Denmark, Finland, France, Germany, Gibraltar, Great Britain, Ireland, Italy, Liechtenstein, Luxembourg, Monaco, Netherlands, Norway, Portugal, San Marino, Sweden, Switzerland, Spain and Vatican<br><br>Zone 2: Croatia, Czech Republic, Estonia, Hungary, Latvia, Lithuania, Poland, Slovakia and Slovenia<br><br>Zone 3: All countries which are not in zone 1 or 2.<br><br>Audi, BMW, Mercedes Benz, Volkswagen cars are only allowed to<br><br> enter Zone I and up to and including group L*** to Poland and Czech Republic. All Luxury Cars can only enter Zone I. <br><br>Entry into any country in zone 3 is not permitted.<br><br>The local transport of the vehicle by ferry is permitted in compliance with the above-mentioned entry restrictions. Damage occurred to third-party vehicle or property during the crossing will be covered by our third party insurance. Damage occurred to the rental vehicle during the crossing will be covered by the third party insurance of the liable third party, if any. Any other extra protection included in the rental agreement are not valid on the ferry.<br><br>In case of offence against cross border and territorial restrictions all protections lose their validity.<br><br>Charges when traveling abroad<br><br>A fee is charged for permission to travel abroad in accordance with the above-mentioned territorial restrictions. This fee is in addition to the one-way fee in case of a one-way rental.<br><br>::EUR Day:EUR Week:EUR Month<br><br>:Country Roaming:4,99:19,99:19,99<br><br>(Foreign Use = UF)"
+        }
+    ],
+    "shuttle_text": "Please contact the pickup location directly for details on their shuttle service.",
+    "car_book_bundle": "LV2--_WVY2W43dMFiru0zsMjRTGFfo3DNeFsI89QYO7Nr9YHFr9owdcCj8hgBkfs6R3wU1xMv8BreTriHGwkdSf4ZnpqONzXFal6BMeMypbp4ykl2TYzejkwzAxN93hY10yzka1twmvAahqeTScWzcRHFwFqkRRJDOGWYa2lPAjyIInjrm7nMxS_JtUVuKgZIb34AQlAruQdB80LKeqJ0g8N4YIYfpBo2dRDfBReF8iatNSC6OL8oa_lA_FPODeadIZ-rUpIcL8pOXjuE9bkdafQVRiq7HFQJivXkiApAD-xJXQ9Dw2UGadmwLAsTx6sByBgdqvtnWR41OxHUSEsUT7RssplLZ7Be8D79SBI-fim2x-Z6nmAAsprskT65MK1srhs2RAqBdHl2m2I4wtTLI8SUe3fBxJANaGKkyBYmRlCWwy1IKThSSjpppbeojHkZAd7xvE1hhw9lIpsTs9eR3QOfXFqj58Ew25HUp5lEXOZn64fw2o6bBIXgVKOFpi9oOH4aNwtQNxFAKLDB2d3UXAf4KP0dG6roEA92LhRz_7Rq1CFYOYpM5muBy42eHyBWgTbZHa0csTZuktJvz3OKKj0hN0cp_uDTFBVT3NVt-5NUmdYHOe6IhmVIM-g36FnoCPgNt6v7uvvqjeZvdsM2KxoBO5lnU5ZUvM9V-ZlaCG15vmNz8RvwSW4o_nAPOYQSV-ACZZI8htqw452SrcMZhqmUIVja3j5R93Q3CSCvbqAbx2qkfmjqSf652P86J2riD4sRJBQfPNtJKdj-lfAOUONHjwXnptdorS-VGn9EWb3eR9IZ_c5UWPUiU2OHV7DuQvlI7vY5oMuuCJ5FjpT0DtGde097VtGcOHbVV5bS0aeRK3n74zv-YV6tDWO20tB4ZbCbzASyJOHFDyWtMLOkVYQrp-u2oQUjJV8Rouw_E-70WK7ITiP475G97vzM4_8t__t-qnNYrfRy2lrJE6_q0dMFKCl_kDRnaRE5XxDdGRpgN9KTk84vNDROChFDlHQSLpMOb1ttjFN69zEuVTqQanqe15LH0fAANqiRiR1_Shdaa7ImCzOp4EBAkH6G7XVXpDroYDrvw2h323AIxNs7i5yTHnLSITGY343czjTg37v4uipk547jMoR_0vG3O-avEwdepnQgk9e0n6pDljnDrYfVd2VB6ZVCAQSxtTk3RJpH56a6fvQRuCQ4gs05zE_S7D8dAWjRXKWbmYDoAVaOEBEkhmr6k499pFaSpUsyn4WYU71Cnw5c94-qcrTmdgpyX4OYzwY-Fjf5mgydBzY4oLWA9_c69lDYP9wYX9LgIGIUhAfFz_XIZShxRBFcJ4jxnShSqOU_-RQ7ZNDykDhJD0M8_xhbypOfcFvyLwHIMN8dGtzlDzT8v3bvqdAESb01HkMsHZxVjIC_XiFnVFWsQymdsZ8V5elvAOnAGuE0MxXAb0oATGn_sQdWjSGA7Sf05zXgBDiRe_DARpuWDixk-3VgJYiF_Cgik2r3jraHERdvd0CiU0Cb3AxDD9sz2Edhn1ZQ7RCGx0yCp0tBNZiztveYOSv61leK4mYKK-kSCR3teBNMr79GOXhsa-7OZXodLI4Q2InX-CACCQ1nwV1BAWJjHKCLtFWO1gw0GAWiYXWhn_Bn9aqFDX-cRCAm3PNNAM_E1PUUpFmHRxsOcHulm8HSYSM6-oiBaZJqkNEMZjPaxQ2FGX4xQwtv5L03jfZez8BqIavbY92_nb18toDz0ELokUbO0-dUjX6L5AOYr_GJ8bPoIy04xKzAfQR2d4ImPJ83gaV9ZrZdfNyk1ys-R6X8mT5rXj055nLNYqSWIr45dlanhn10_f4-7UL_K_K3lsjGAI9YEuqhscuWdMimPR19e-QR4b34ptZRrJOb9rJw4wjrFkzbmx4P5NmEQA84Dy2Di67AaLrvSvBfyDTt00TRerwf0yokIEuWHMR_xKqLVBnaUXd7DzsId8XH6DSBpSl2WBes4mBsCdkv9-7TfHIAOrB3sJFtpmBrQ158YW-8HxDYDhDZquhQU2r0jVAX4NNcWEJ9MFnuOMLihm4cO-qzTqpJftXM_dTIMYMhxiXP7zTUXol669tr1KNQMmaUHggEp5apE9EBD0gZDh9I6_ox_obG7NMeH94FezpV9zLByRAZatip25sd5E1YnCB_W6f7P6S93-El-qrZb0WiSEephFImAFV1euhKZWAcfj1YgXZwWaabqbdpmilWyDCZLA--Vwkk3t_NQiFxUn_fZxKC22VzC4xi9tY49GPMlz-KOJHWnuEBYd53Xd9LHqJNjF_Vy8Paoe_0vf7ZHBxI6XRDsO0_GKAx-w8Y3E5mmYZsDQ0MqEsplBL6AxyLS0GM-MUWDDARR3FbyC_MZV9ozftqoQLb_eoifuh8g1zmX4pGHPYSr_kp1lm9zNDhq5Km1Vco88INEXX9_5zPsuH9Mqi5iPQqpBZeqcqomiqL_KlOKFyT-aoIR6XeebxdsZ5bNYw1XtYhz6MLE-So2oz-q__EvGMU69cv1-ObER5H29e9Z1cdXJBqs5QIToHpavFMHL8PLx0GCrXv5jbvuIbOR_x3yRkp6ARE_7UjNk0CjPlv4b5nJqDrk4nwaX3AMTAaEiEUE38ppFDeQNYpg5omD-MsV7Hc9c23J_lHjHarPGhyb70eXMZv7dij8N_GsCcbPpaAlwjePDXB9GBzfO2feWHtegcIBUKrBw_lut5dpX7uD7DZlbOTdpR0qQMo4RPNVx94F",
+    "book_form_details": {
+        "newsletter": 1
+    },
+    "output_version": "2"
+}

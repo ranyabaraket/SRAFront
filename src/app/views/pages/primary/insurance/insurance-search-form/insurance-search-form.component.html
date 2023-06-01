@@ -1,0 +1,154 @@
+<form #searchForm="ngForm">
+    <div class="row">
+        <!--Flight Type Bloc One Way / Round Trip / Multi destination-->
+        <div class="col-5 mt-2 mb-2">
+            <div class="box inline-flex text-sm bg-white rounded border border-gray-lighter md:border-transparent  p-1">
+                <span *ngFor="let TypeSearch of TypeSearchList">
+                    <small class="rounded cursor-pointer px-2 text-center py-1"
+                        (click)="changeValueTypeSearch(TypeSearch.value)"
+                        [ngClass]="{'bg-primary-extra-light' : typeSearch1 === TypeSearch.value}">{{TypeSearch.name|
+                        translate}}
+                    </small>
+                </span>
+            </div>
+        </div>
+        <div class="col-7 mt-2 mb-2 pr-2 text-right">
+            <!--Passengers Bloc nb Adult/ nb Children / nb Infant-->
+            <div class="btn-group mr-2">
+                <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{searchModel.totalAdults + searchModel.totalChild + searchModel.totalInfants}}
+                    {{'Passenger'|translate}}
+                </button>
+                <div class="dropdown-menu dropdown-menu-right passenger-dropdown p-2">
+                    <div id="DropdownPassenger">
+                        <div class="row">
+                            <div class="col-7"> <i class="fas fa-female icon"> <i class="fas fa-male"></i></i>
+                                {{'Adults'|translate}}
+                                <br>
+                                <label class="pl-2 text-muted"><small> ({{'>12 years'|translate}})
+                                    </small></label>
+                            </div>
+                            <div class="col-5">
+                                <button type="submit" class="btn btn-sm btn-default" [disabled]="searchModel.totalAdults === 1" (click)="searchModel.totalAdults = searchModel.totalAdults-1"><i
+                                        class="fas fa-minus"></i></button> {{searchModel.totalAdults}}
+                                <button type="submit" class="btn btn-sm btn-default" (click)="searchModel.totalAdults =searchModel.totalAdults+1"><i
+                                        class="fas fa-plus"></i></button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-7"><i class="fas fa-child icon"></i> {{'Children' |translate}} <br>
+                                <label class="pl-2 text-muted"><small> ({{'2-11 years' |translate}})</small></label>
+                            </div>
+                            <div class="col-5">
+                                <button type="submit" class="btn btn-sm btn-default" [disabled]="searchModel.totalChild === 0" (click)="searchModel.totalChild =searchModel.totalChild-1"><i
+                                        class="fas fa-minus"></i></button> {{searchModel.totalChild}}
+                                <button type="submit" class="btn btn-sm btn-default" (click)="searchModel.totalChild =searchModel.totalChild+1"><i
+                                        class="fas fa-plus"></i></button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-7"> <i class="fas fa-baby icon"></i> {{'Infant'|translate}} <br>
+                                <label class="pl-2 text-muted"> <small> ({{'<2 years'|translate}}) </small></label>
+                            </div>
+                            <div class="col-5">
+                                <button type="submit" class="btn btn-sm btn-default" [disabled]="searchModel.totalInfants === 0" (click)="searchModel.totalInfants =searchModel.totalInfants-1"><i
+                                        class="fas fa-minus"></i></button> {{searchModel.totalInfants}}
+                                <button type="submit" class="btn btn-sm btn-default" (click)="searchModel.totalInfants =searchModel.totalInfants+1"><i
+                                        class="fas fa-plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-right">
+                            <button type="submit" class="btn btn-sm btn-default mr-2">{{'Cancel'|translate}}</button>
+                            <button type="submit" class="btn btn-sm btn-default"><span
+                                    class="primary">{{'Ok'|translate}}</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--inputs Search Fields-->
+    <div class="row">
+        <div class="col-sm-12 col-md-8">
+            <div class="row ">
+                <!--inputs FROM Fields-->
+                <div class="col-md-6 col-sm-12">
+                    <div class="input-icons">
+                        <i class="fas fa-plane-departure icon"></i>
+                        <input class="input-field form-control" type="text" placeholder="{{'Where are you going from?' | translate}}" aria-label="State" [matAutocomplete]="autoFrom" (keyup)="getAirportsFrom($event)" name="departVol1" [(ngModel)]="inputdepartVol1">
+                    </div>
+                    <mat-autocomplete #autoFrom="matAutocomplete">
+                        <mat-option *ngIf="!inputdepartVol1" class="text-right">
+                        </mat-option>
+                        <mat-option (onSelectionChange)="filteredOptionsFromClear($event)" *ngFor=" let option of
+                    filteredOptionsFrom | async" [value]="option.id.csPays+ '-' +option.id.aireport+'-'+option.id.ciata">
+                            <small>{{option.id.ville}} {{option.id.csPays}} {{option.id.aireport}} <a
+                                    class="text-muted">{{option.id.ciata}}</a>
+                            </small>
+                        </mat-option>
+                    </mat-autocomplete>
+                </div>
+
+                <div class="col-md-6 col-sm-12">
+                    <!--inputs TO Fields-->
+                    <div class="input-icons">
+                        <i class="fas fa-plane-arrival icon"></i>
+                        <input class="input-field form-control" type="text" placeholder="{{'Where are you going?'| translate}}" aria-label="State" [matAutocomplete]="autoTo" (keyup)="getAirportsTo($event)" [(ngModel)]="inputdestinationtVol1" name="destinationVol1">
+                    </div>
+                    <mat-autocomplete #autoTo="matAutocomplete">
+                        <mat-option *ngIf="!inputdestinationtVol1" class="text-right">
+                        </mat-option>
+                        <mat-option (onSelectionChange)="filteredOptionsToClear($event)" *ngFor="let option of
+                            filteredOptionsTo | async" [value]="option.id.csPays+ '-' +option.id.aireport+'-'+option.id.ciata">
+                            <small>{{option.id.ville}} {{option.id.csPays}} {{option.id.aireport}} <a
+                                    class="text-muted">{{option.id.ciata}}</a>
+                            </small>
+                        </mat-option>
+                    </mat-autocomplete>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <div *ngIf="typeSearch1 === 2;else oneDatepiker">
+                <!--In case of period-->
+                <div class="row">
+                    <div class="input-icons col-md-9 col-sm-12" style="height: 40px;">
+                        <i class="far fa-calendar-alt clickable icon" (click)="picker.open()"></i>
+                        <input class="input-field form-control" type="text" (click)="picker.open()" placeholder="{{'Period'|translate}}" name="Period" value="{{searchModel.departDateTime | date:'dd/MM/yyyy'}} to {{searchModel.returnDateTime | date:'dd/MM/yyyy'}} {{nbDaysX}}"
+                            autocomplete="off">
+                        <mat-form-field class="m-0 p-0">
+                            <mat-date-range-input [min]="start" [rangePicker]="picker" class="not-display">
+                                <input matStartDate matInput (dateChange)="changeEventDepart($event)">
+                                <input matEndDate matInput (dateChange)="changeEventArrial($event)">
+                            </mat-date-range-input>
+                            <mat-datepicker-toggle class="not-display" matSuffix [for]="picker">
+                            </mat-datepicker-toggle>
+                            <mat-date-range-picker #picker></mat-date-range-picker>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="col-md-3 col-sm-12">
+                        <input type="number" class="input-field form-control" [min]="0" [disabled]="disabledDays" name="nbdays" placeholder="{{'Days'|translate}}" [(ngModel)]="nbDays1" (change)="changeDays($event)">
+                    </div>
+                    <br>
+                </div>
+            </div>
+            <ng-template #oneDatepiker>
+                <!--In case of one date-->
+                <div class="input-icons">
+                    <i class="fas fa-calendar-day icon clickable" (click)="picker.open()">
+                        <mat-datepicker-toggle class="not-display" matSuffix [for]="picker">
+                        </mat-datepicker-toggle>
+                    </i>
+                    <input type="text" placeholder="{{'Depart Date'|translate}}" (click)="picker.open()" class="input-field form-control" [matDatepicker]="picker" [min]="start" name="departDateTime" [(ngModel)]="searchModel.departDateTime" autocomplete="off" id="inputdateOneDate"
+                        #inputdateOneDate>
+                </div>
+                <mat-datepicker #picker></mat-datepicker>
+            </ng-template>
+        </div>
+    </div>
+
+</form>

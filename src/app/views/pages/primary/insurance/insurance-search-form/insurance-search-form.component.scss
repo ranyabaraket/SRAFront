@@ -1,0 +1,110 @@
+.passenger-dropdown {
+    width: 250px!important;
+}
+
+// @media only screen and (max-width: 767px) {
+//     .inputs-field {
+//         height: 185px;
+//     }
+// }
+input[type=text]:focus {
+    border-color: #777;
+    color: #000;
+    background: #fff;
+    outline: 0
+}
+
+@media only screen and (max-width: 575px) {
+    .btn-rotate-90 {
+        transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        -webkit-transform: rotate(90deg);
+    }
+}
+
+mat-form-field {
+    width: 0px !important;
+    height: 0px !important;
+}
+
+.not-display {
+    display: none!important;
+}
+
+.col-period {
+    margin: 0 0 0 0!important;
+    padding: 0 0 0 0!important;
+}
+
+@media only screen and (min-width: 768px) {
+    .inputs-field {
+        height: 45px;
+    }
+}
+
+//@exten
+.px-2 {
+    padding-left: .5rem;
+    padding-right: .5rem;
+}
+
+.py-1 {
+    padding-top: .25rem;
+    padding-bottom: .25rem;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.rounded {
+    border-radius: 2px;
+}
+
+.bg-primary-extra-light {
+    background-color: #dee0ec;
+    font-size: 0.8rem;
+}
+
+.box {
+    width: 150px;
+}
+
+.input-icons i {
+    position: absolute;
+}
+
+.input-icons {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.icon {
+    padding: 10px;
+    min-width: 40px;
+}
+
+.input-field {
+    width: 100%;
+    padding: 10px;
+    text-align: left;
+    padding-left: 30px;
+}
+
+.details {
+    align-items: center;
+    border: 1px solid #dadce0;
+    border-radius: 18px;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: inline-flex;
+    flex: 0 0 auto;
+    height: 36px;
+    overflow: hidden;
+    padding-left: 12px;
+    position: relative;
+}
+
+i {
+    color: grey;
+}

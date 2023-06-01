@@ -1,0 +1,103 @@
+<div class="accordion" id="accordionExample">
+    <form #inputGuestForm="ngForm">
+        <div class="row">
+            <div class="col-md-2 col-sm-4">
+                <label> {{'Name'|translate}} <span class="text-danger"> * </span> </label>
+                <input class="form-control form-control-sm" name="paxName" [(ngModel)]="paxModel.fullName" style="text-transform: uppercase;" pattern="[a-zA-Z]+[a-zA-Z ]+" #paxName="ngModel" required [class.is-invalid]="submitted && paxName.invalid">
+            </div>
+
+            <div class="col-md-6 col-sm-12">
+                <label>{{'Birth date'|translate}} </label>
+                <div class="row">
+
+                    <div class="col-4">
+                        <select class="form-control form-control-sm" name="ddBirthday1" [(ngModel)]="paxModel.ddBirthDate" (change)="fillDaysBirthDate()" #ddBirthday1="ngModel" required [class.is-invalid]="submitted && ddBirthday1.invalid">
+                            <option value=""> {{'Day'|translate}}
+                            </option>
+                            <option *ngFor="let item of BirthDatedays" [value]="item"> {{item}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-4">
+                        <select class="form-control form-control-sm" name="mmBirthday1" (change)="fillDaysBirthDate()" [(ngModel)]="paxModel.mmBirthDate" #mmBirthDay1="ngModel" required [class.is-invalid]="submitted && mmBirthDay1.invalid">
+                            <option value=""> {{'Month'|translate}}
+                            </option>
+                            <option *ngFor="let item of months | async" [value]="item.value"> {{item.name}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-4">
+                        <input type="number" class="form-control form-control-sm" name="yyBirthday1" placeholder="Year" [(ngModel)]="paxModel.yyBirthDate" (change)="applyIntervalYears($event.target.value)" #yyBirthDay1="ngModel" required [class.is-invalid]="submitted && yyBirthDay1.invalid">
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-4 text-right p-2" style="color: green;">
+                <b>{{price}} </b>
+            </div>
+
+        </div>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-4" *ngFor="let item of paxModel.documents ; let index = index;">
+                <label> {{item.ltypedoc}} <span class="text-danger"> * </span></label> <br>
+                <input type="file" name="docVisa" (change)="onFileSelect($event, index, indexx)">
+                <div [innerHTML]=item.noteTypedoc></div>
+            </div>
+        </div>
+        <br>
+
+    </form>
+    <!-- <div class="card" *ngFor="let item of paxModel ; let i = index;">
+        <div class="row">
+            <div class="col-md-2 col-sm-4">
+                <label> {{'Name'|translate}} <span class="text-danger"> * </span> </label>
+                <input class="form-control form-control-sm" name="paxName{{i}}" [(ngModel)]="item.fullName" style="text-transform: uppercase;" pattern="[a-zA-Z]+[a-zA-Z ]+" #paxName="ngModel" required [class.is-invalid]="submitted && paxName.invalid">
+            </div>
+
+            <div class="col-md-6 col-sm-12">
+                <label>{{'Birth date'|translate}} </label>
+                <div class="row">
+
+                    <div class="col-4">
+                        <select class="form-control form-control-sm" name="ddBirthday1{{i}}" [(ngModel)]="item.ddBirthDate" (change)="fillDaysBirthDate()" #ddBirthday1="ngModel" required [class.is-invalid]="submitted && ddBirthday1.invalid">
+                        <option value=""> {{'Day'|translate}}
+                        </option>
+                        <option *ngFor="let item of BirthDatedays" [value]="item"> {{item}}
+                        </option>
+                    </select>
+                    </div>
+                    <div class="col-4">
+                        <select class="form-control form-control-sm" name="mmBirthday1{{i}}" (change)="fillDaysBirthDate()" [(ngModel)]="item.mmBirthDate" #mmBirthDay1="ngModel" required [class.is-invalid]="submitted && mmBirthDay1.invalid">
+                        <option value=""> {{'Month'|translate}}
+                        </option>
+                        <option *ngFor="let item of months | async" [value]="item.value"> {{item.name}}
+                        </option>
+                    </select>
+                    </div>
+                    <div class="col-4">
+                        <input type="number" class="form-control form-control-sm" name="yyBirthday1{{i}}" placeholder="Year" [(ngModel)]="item.yyBirthDate" (change)="applyIntervalYears($event.target.value)" #yyBirthDay1="ngModel" required [class.is-invalid]="submitted && yyBirthDay1.invalid">
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-4 text-right p-2" style="color: green;">
+                <b>{{price}} </b>
+            </div>
+
+        </div>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-4" *ngFor="let itemX of item.documents ; let j = index;">
+                <label> {{item.ltypedoc}} <span class="text-danger"> * </span></label> <br>
+                <input type="file" name="docVisa{{i}}" (change)="onFileSelect($event, j, i)">
+                <div [innerHTML]=itemX.noteTypedoc></div>
+            </div>
+        </div>
+        <br>
+    </div> -->
+</div>

@@ -1,0 +1,38 @@
+<!--<div class="container">
+    <div class="row">
+        <div class="col-10">
+        </div>
+        <div class="col-2 text-right">
+            <div mat-dialog-actions>
+                <button (click)="dialogRef.close()" class="btn btn-basic btn-sm ml-2"><i class="fas fa-times"></i></button>
+
+            </div>
+        </div>
+        <h4 class="title ">
+            {{'News Details'|translate}} - {{data.titreNews}} </h4>
+
+    </div>
+    <img [src]="formatImg(data.entiteLogo)" style="width: 15% !important; height:auto !important;">
+    <hr>
+    <div class="row photo-news">
+        <div class="col " [ngClass]="{' text-center' : data.photoIsCenter == 'O'}">
+            <img [src]=" formatImg(data.photo)" style="width: 1300px; height: 600px;">
+             'width':data.photoWidth+'px', 'height':data.photoHeight+'px' 
+
+
+        </div>
+    </div>
+</div>-->
+<div mat-dialog-actions align="end">
+    <button (click)="dialogRef.close()" class="btn btn-basic btn-sm ml-2"><i class="fas fa-times"></i></button>
+
+</div>
+<h3 mat-dialog-title><b>  {{'News Details'|translate}} - {{data.titreNews}} </b></h3>
+<mat-dialog-content>
+    <img [src]="formatImg(data.entiteLogo)" style="width: 15% !important; height:auto !important;">
+    <hr>
+    <div class="text-center">
+        <img [src]=" formatImg(data.photo)"  [ngStyle]="{'height' : data.photoHeight, 'width' : data.photoWidth}">
+    </div>
+     
+</mat-dialog-content>

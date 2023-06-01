@@ -1,0 +1,144 @@
+<div class="container-fluid"*ngIf="!showVoucher">
+    <div class="mt-4 mb-4">
+
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <h3 class="title"> <button ngbTooltip="{{'back'|translate}}" placement="bottom"
+                        class="btn btn-primary btn-sm ml-2" (click)="back()"><i class="fas fa-arrow-left"></i></button>
+                    {{'Transfer Details'| translate}}</h3>
+            </div>
+            <div class="col-md-6 col-sm-12 text-right">
+                <button
+                type="button"
+                class="btn btn-primary btn-sm"
+                (click)="voucher()"
+              >
+                {{ "See Voucher" | translate }}
+              </button>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col">
+                <div class="row">
+                    <div class="col-4">
+                        <div class="row">
+                            <div class="col text-muted"><b>{{'Pick-Up' | translate}}</b></div>
+                        </div>
+                        <div class="row">
+                            <div class="col"> <b>{{transferDetails.pickupName}}
+                                    ({{typeLocations[transferDetails.pickupType] | translate}}) </b> </div>
+                        </div>
+                        <div class="row">
+                            <div class="col"> <span>{{transferDetails.pickupTime | date :'dd/MM/yyyy hh:mm'}} </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-1 pt-4">
+                        <i class="fas fa-arrow-right  details-span"></i>
+                    </div>
+                    <div class="col-4">
+                        <div class="row">
+                            <div class="col text-muted"><b>{{'Drop-Off'| translate}}</b></div>
+                        </div>
+                        <div class="row">
+                            <div class="col"> <b>{{transferDetails.dropoffName}}
+                                    ({{typeLocations[transferDetails.dropoffType] | translate}}) </b></div>
+                        </div>
+                        <div class="row">
+                            <div class="col"> <b>{{transferDetails.dropoffCity}} </b></div>
+                        </div>
+                    </div>
+                    <div class="col-3 text-muted">
+                        <div class="row">
+                            <div class="col">
+                                <b [ngClass]="{'text-success': transferDetails.etatfilechr === 'C',
+                                    'text-primary': transferDetails.etatfilechr === 'B',
+                                    'text-danger': transferDetails.etatfilechr === 'A'}">
+                                    {{statuts[transferDetails.etatfilechr] | translate}}
+                                </b>
+                                <span class="ml-2">
+                                    {{'On' | translate}}: <b>{{transferDetails.dtfilechr | date :'dd/MM/yyyy
+                                        hh:mm'}}</b>
+                                </span>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <span *ngIf="transferDetails.suppRefChrfile ">
+                                    {{'Ref.' | translate}}: <b>{{transferDetails.suppRefChrfile}}</b>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                {{'Type rent' | translate}} : <b>{{typeRent[transferDetails.typeRent] | translate}} </b>
+                            </div>
+
+                        </div>
+                        <div class="row" *ngIf="transferDetails.dtReturn ">
+                            <div class="col">
+                                {{ 'Return Date' | translate }}: <b>{{transferDetails.dtReturn | date :'dd/MM/yyyy
+                                    hh:mm'}} </b>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br> <br>
+        <h4 class="title">{{'Traveler information'|translate}}</h4>
+        <div class="row">
+            <div class="col-md-3 col-sm-6">
+                {{'Lead Passenger' | translate}} : <b>{{transferDetails.chrNomprenom}}</b>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                {{'Nationality' | translate}} : <b>{{transferDetails.chrNationalite}}</b>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                {{'Flight Number' | translate}} : <b>{{transferDetails.numVol}}</b>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                {{'Passengers number' | translate}} : <b>{{transferDetails.nbrPerson}}</b>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                {{'Note' | translate}} : <b>{{transferDetails.chrComment}}</b>
+            </div>
+        </div>
+        <br> <br>
+        <h4 class="title">{{'Payment'|translate}}</h4>
+        <div class="row">
+            <div class="col-md-4 col-sm-6">
+                {{'Basic fare' | translate}} : <b>
+                    <div class="d-flex">
+                        <div class="mr-2">{{transform(transferDetails.mntAchatChr)}} </div>
+                        <div> {{transferDetails.codeDevise}} </div>
+                    </div>
+                </b>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                {{'Tax' | translate}} : <b>
+                    <div class="d-flex"> 
+                        <div class="mr-2">{{transform(transferDetails.mntServChr)}} </div>
+                        <div> {{transferDetails.codeDevise}} </div>
+                    </div>
+                </b>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                {{'Total fare' | translate}} : <b>
+
+                    <div class="d-flex">
+                        <div class="mr-2">{{transform(transferDetails.mntServChr + transferDetails.mntAchatChr )}}
+                        </div>
+                        <div> {{transferDetails.codeDevise}} </div>
+                    </div>
+                </b>
+            </div>
+
+        </div>
+    </div>
+</div>
+<app-custom-loading *ngIf="loading"></app-custom-loading>
+<app-transfer-history-voucher *ngIf="showVoucher" [transferDetails]="transferDetails"  (backward)='cancelSeeVoucher($event)'></app-transfer-history-voucher>

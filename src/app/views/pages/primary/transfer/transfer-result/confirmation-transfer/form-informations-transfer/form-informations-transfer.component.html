@@ -1,0 +1,219 @@
+<form #transferForm="ngForm">
+  <div class="row">
+    <div class="col-md-4 col-sm-12">
+      <label>{{ "Accommodation name" | translate }} </label>
+      <input
+        type="text"
+        class="form-control form-control-sm"
+        [(ngModel)]="bookingModel.accomodationNameAff"
+        name="acconame"
+        required
+        [class.is-invalid]="submitted && acconame.invalid"
+        #acconame="ngModel"
+        readonly
+      />
+    </div>
+    <div class="col-md-4 col-sm-12">
+      <label
+        >{{ "Accommodation address 1" | translate }}
+        <span class="text-danger"> * </span></label
+      >
+      <input
+        type="text"
+        class="form-control form-control-sm"
+        [(ngModel)]="bookingModel.accoAddress1Aff"
+        name="accoadr1"
+        required
+        [class.is-invalid]="submitted && accoadr1.invalid"
+        #accoadr1="ngModel"
+        [disabled]="success"
+      />
+    </div>
+    <div class="col-md-4 col-sm-12">
+      <label
+        >{{ "Accommodation address 2" | translate }}
+        <span class="text-danger"> * </span></label
+      >
+      <input
+        type="text"
+        class="form-control form-control-sm"
+        [(ngModel)]="bookingModel.accoAddress2Aff"
+        name="accoadr2"
+        required
+        [class.is-invalid]="submitted && accoadr2.invalid"
+        #accoadr2="ngModel"
+        [disabled]="success"
+      />
+    </div>
+  </div>
+  <div class="row mt-md-2">
+    <div class="col-md-4 col-sm-12">
+      <label
+        >{{ " Pickup type " | translate
+        }}<span class="text-danger"> * </span></label
+      >
+      <select
+        class="form-control form-control-sm"
+        [(ngModel)]="bookingModel.pickupType"
+        name="PickupType"
+        required
+        [class.is-invalid]="submitted && PickupType.invalid"
+        #PickupType="ngModel"
+        [disabled]="success"
+      >
+        <option value="A">{{ "Airport" | translate }}</option>
+        <option value="H">{{ "Hotel" | translate }}</option>
+        <option value="S">{{ "Port" | translate }}</option>
+      </select>
+    </div>
+    <div class="col-md-4 col-sm-12">
+      <label>
+        {{ "Dropoff type" | translate }}
+        <span class="text-danger"> * </span></label
+      >
+      <select
+        type="text"
+        class="form-control form-control-sm"
+        [(ngModel)]="bookingModel.dropoffType"
+        name="dropoffType"
+        required
+        [class.is-invalid]="submitted && dropoffType.invalid"
+        #dropoffType="ngModel"
+        [disabled]="success"
+      >
+        <option value="A">{{ "Airport" | translate }}</option>
+        <option value="H">{{ "Hotel" | translate }}</option>
+        <option value="S">{{ "Port" | translate }}</option>
+      </select>
+    </div>
+    <!--<div class="col-md-3 col-sm-12">
+      <label
+        >{{ "Type rent" | translate
+        }}<span class="text-danger"> * </span></label
+      >
+      <select
+        type="text"
+        class="form-control form-control-sm"
+        [(ngModel)]="bookingModel.typeRent"
+        name="typeRent"
+        required
+        [class.is-invalid]="submitted && typeRent.invalid"
+        #typeRent="ngModel"
+        [disabled]="success"
+      >
+        <option value="T">{{ "Transfer" | translate }}</option>
+        <option value="L">{{ "Car rental" | translate }}</option>
+      </select>
+    </div>-->
+    <div class="col-md-4 col-sm-6">
+      <label
+        >{{ "Flight number" | translate }}
+        <span class="text-danger"> * </span></label
+      >
+      <input
+        type="text"
+        class="form-control form-control-sm"
+        [(ngModel)]="bookingModel.airlineNumber"
+        name="airlineNumber"
+        required
+        [class.is-invalid]="submitted && airlineNumber.invalid"
+        (blur)="
+          bookingModel.airlineNumber = removeSpaces(bookingModel.airlineNumber)
+        "
+        #airlineNumber="ngModel"
+        [disabled]="success"
+      />
+    </div>
+  </div>
+  <div class="row mt-md-2">
+    <div class="col-md col-sm-6">
+      <label
+        >{{ "Depart airport" | translate
+        }}<span class="text-danger"> * </span></label
+      >
+      <input
+        type="text"
+        class="form-control form-control-sm"
+        [(ngModel)]="bookingModel.depAirport"
+        name="depAirport"
+        required
+        [class.is-invalid]="submitted && depAirport.invalid"
+        #depAirport="ngModel"
+        [disabled]="success"
+        (keyup)="getAirportsFrom($event)"
+        [matAutocomplete]="autoFrom"
+        aria-label="State"
+      />
+      <mat-autocomplete #autoFrom="matAutocomplete">
+        <mat-option
+          (onSelectionChange)="filteredOptionsFromClear($event)"
+          *ngFor="let option of filteredOptionsFrom | async"
+          [value]="option.id.ciata"
+        >
+          <small
+            >{{ option.id.aireport }}
+            <a class="text-muted">{{ option.id.ciata }}</a>
+          </small>
+        </mat-option>
+      </mat-autocomplete>
+    </div>
+    <div class="col-md col-sm-6">
+      <label
+        >{{ "Destination airport" | translate
+        }}<span class="text-danger"> * </span></label
+      >
+      <input
+        type="text"
+        class="form-control form-control-sm"
+        [(ngModel)]="bookingModel.destAirportCode"
+        name="destAirportCode"
+        required
+        [class.is-invalid]="submitted && destAirportCode.invalid"
+        aria-label="State"
+        #destAirportCode="ngModel"
+        [disabled]="success"
+        (keyup)="getAirportsTo($event)"
+        [matAutocomplete]="autoTo"
+      />
+      <mat-autocomplete #autoTo="matAutocomplete">
+        <mat-option
+          (onSelectionChange)="filteredOptionsToClear($event)"
+          *ngFor="let option of filteredOptionsTo | async"
+          [value]="option.id.ciata"
+        >
+          <small
+            >{{ option.id.aireport }}
+            <a class="text-muted">{{ option.id.ciata }}</a>
+          </small>
+        </mat-option>
+      </mat-autocomplete>
+    </div>
+    <div class="col-md col-sm-6">
+      <label>{{ "Arrival date" | translate }} </label>
+      <input
+        type="datetime-local"
+        class="form-control form-control-sm"
+        [(ngModel)]="searchResult.travelling"
+        name="travelling"
+        required
+        [class.is-invalid]="submitted && travelling.invalid"
+        #travelling="ngModel"
+        readonly
+      />
+    </div>
+    <div class="col-md col-sm-6" *ngIf="searchModel.journeyType !== 1">
+      <label>{{ "Return date" | translate }} </label>
+      <input
+        type="text"
+        class="form-control form-control-sm"
+        [(ngModel)]="searchModel.departureDate"
+        name="returnDate"
+        required
+        [class.is-invalid]="submitted && returnDate.invalid"
+        #returnDate="ngModel"
+        readonly
+      />
+    </div>
+  </div>
+ 
+</form>

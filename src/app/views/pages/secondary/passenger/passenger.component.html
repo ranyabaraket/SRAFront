@@ -1,0 +1,145 @@
+<div class="container-fluid  pt-0" *ngIf="!showEdit">
+    <div class="  mt-4 ">
+        <form #searchForm="ngForm" class="py-3 px-4">
+
+            <div class="row">
+                <div class="col-md-3 col-sm-12">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control form-control-sm" placeholder="{{'Last name'|translate}}"
+                            [(ngModel)]="searchModel.paxName" name="paxName">
+                        <label for="floatingSelect"> {{'Last name'|translate}}</label>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-12">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control form-control-sm" placeholder="{{'Email'|translate}}"
+                            [(ngModel)]="searchModel.paxEmail" name="paxEmail">
+                        <label for="floatingSelect"> {{'Email'|translate}}</label>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-12">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control form-control-sm" placeholder="{{'Tel/Mobile'|translate}}"
+                            [(ngModel)]="searchModel.paxMobile" name="paxMobile">
+                        <label for="floatingSelect"> {{'Tel/Mobile'|translate}} </label>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-12">
+                    <div class="form-floating mb-3">
+                    <select class="form-control form-select" name="service" [(ngModel)]="searchModel.service">
+                        <option value="">{{'All'|translate}}</option>
+                        <option value="HOTEL">{{'hotel'|translate}}</option>
+                        <option value="FLIGHT">{{'Flight'|translate}}</option>
+                    </select>
+                    <label for="floatingSelect">{{'services'|translate}}</label>
+                </div>
+            </div>
+            </div>
+
+            <div class="row  mt-2">
+                <div class="col-12 text-right">
+           
+
+                    <button type="button" class="btn btn-sm btn-primary col-12 col-md-2 m-2" (click)="reset(searchForm)"
+                        [disabled]="loading">{{'Refresh'|translate}}
+                        <div class="icon d-flex align-items-center justify-content-center">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                    </button>
+                    <button type="button" class="btn btn-sm btn-success col-12 col-md-2 m-2" (click)="find()"
+                    [disabled]="loading">
+                    <div *ngIf="loading" class="spinner-border spinner-border-sm text-light" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div> <span>{{'Find'|translate}}</span>
+                    <div class="icon2 d-flex align-items-center justify-content-center">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </button>
+
+                </div>
+            </div>
+        </form>
+    </div>
+    <div>
+        <div class="  card card-no-border  mb-4">
+            <label class="ml-2"> {{'Passengers'|translate}} ({{total}}) </label>
+
+ 
+            <table mat-table [dataSource]="source" class="my-table">
+                <!-- paxEmail Column -->
+                <ng-container matColumnDef="paxEmail">
+                    <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'Email'| translate }}</th>
+                    <td mat-cell *matCellDef="let element" class="text-center "> {{element.paxEmail}} </td>
+                 </ng-container>
+                  <!-- paxTitle Column -->
+                  <ng-container matColumnDef="paxTitle">
+                    <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'Civility'| translate }}</th>
+                    <td mat-cell *matCellDef="let element" class="text-center"> {{element.paxTitle }} </td>
+                </ng-container>
+                <!-- paxName Column -->
+                <ng-container matColumnDef="paxName">
+                    <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'Name'| translate }}</th>
+                    <td mat-cell *matCellDef="let element" class="text-center"> {{element.paxName}} </td>
+                </ng-container>
+              
+                <!-- paxMobile Column -->
+                <ng-container matColumnDef="paxMobile">
+                    <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'Mobile'| translate }}</th>
+                    <td mat-cell *matCellDef="let element" class="text-center"> {{element.paxMobile}} </td>
+                </ng-container>
+
+                <!-- paxNationality Column -->
+                <ng-container matColumnDef="paxNationality">
+                    <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'Nationality'| translate }}
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="text-center"> {{element.paxNationality}} </td>
+                </ng-container>
+
+                <!-- paxSexe Column -->
+                <ng-container matColumnDef="paxSexe">
+                    <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'Sexe'| translate }}</th>
+                    <td mat-cell *matCellDef="let element" class="text-center"> {{element.paxSexe}} </td>
+                </ng-container>
+
+                <!-- service Column -->
+                <ng-container matColumnDef="service">
+                    <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'Service'| translate }}</th>
+                    <td mat-cell *matCellDef="let element" class="text-center"> {{element.service}} </td>
+                </ng-container>
+                <!-- serviceDate Column -->
+                <ng-container matColumnDef="serviceDate">
+                    <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'Create Date'| translate }}
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="text-center"> {{element.serviceDate | date:
+                        'dd/MM/yyyy HH:mm'}} </td>
+                </ng-container>
+
+                <!-- <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef class=" text-center">  {{'Actions'| translate }} </th>
+                    <td mat-cell *matCellDef="let element" class="p-4 action">
+                        
+                        <button  (click)="goToEdit()" class="edit">
+                            <img src="../../../../../../assets/images/edit.png" class="editButtonContent">
+                        </button>
+                        <button  (click)="delete()" class="delete">
+                            <img src="../../../../../../assets/images/delete.png" class="btn-remove">
+                        </button>
+                    </td> 
+                </ng-container> -->
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[100, 200, 300, 400]" showFirstLastButtons>
+            </mat-paginator>
+
+            <!-- <ng2-smart-table (delete)="onDeleteConfirm($event.data)" (edit)="openEdit($event) " id="myTableElementId"
+                [settings]="settings" [source]="source">
+            </ng2-smart-table> -->
+        </div>
+    </div>
+
+</div>
+<app-passenger-details *ngIf="showEdit" [data]="editModel" (backward)='cancel($event)'></app-passenger-details>
+<br><br>

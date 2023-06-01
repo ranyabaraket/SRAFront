@@ -1,0 +1,158 @@
+.navBarX {
+    background-color: rgb(0, 53, 128);
+}
+
+nav{
+    z-index: 10!important;
+}
+.topnavv {
+    padding-left: 13%;
+    background-color:#128bb4 !important;
+    padding-top: 6px;
+    color: white;
+    border: none;
+    letter-spacing: 0.1em;
+    padding-bottom: 16px;
+     padding-top: 16px;
+}
+.container-fluid {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.container {
+   // width: 1170px;
+
+   padding-right: 15px;
+  padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+.clignote {
+    animation: clignote 2s linear infinite;
+  background: #ce282c;
+  padding: 3px 9px;
+  border-radius: 20px;
+  color: white;
+  }
+  @keyframes clignote {  
+    50% { opacity: 0; }
+  }
+  
+  .navbar-default {
+    //   padding: 18px;
+  
+        background-color: #ffffff;
+        border:none!important;
+        /* box-shadow: rgb(149 157 165 / 20%) 0px 8px 24px;*/
+      }
+  
+  
+  
+      .page-title-container {
+        height: 55px;
+        background: var(--dark-blue); 
+      }
+       
+  
+  .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+      
+      border-radius: 13px 13px 0 0;
+  }
+  
+      .navbar-default .navbar-nav>.active>a,
+      .navbar-default .navbar-nav>.active>a:focus,
+      .navbar-default .navbar-nav>.active>a:hover {
+        background-color: var(--input);
+        color: black;
+        border-bottom: 2px solid var(--primary);
+      }
+  
+      .nav-icon {
+  
+        margin-right: 10px;
+        margin-left: 0px;
+      }
+  
+      .dropdown>li {
+       // padding: 12px;
+      }
+  
+      .dropdown>li>a {
+        background-color: transparent;
+      }
+      
+      .nav>li {
+      cursor:pointer;}
+      
+      .navbar-default .navbar-nav>li>a {
+      color: #777;
+      font-size: 12px!important;
+  }
+  
+
+      
+      
+      
+      .dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover {
+      color:black;
+      text-decoration: none;
+      background-color: #8080800f;
+      
+      border-bottom: 1px solid;
+  }
+  
+   .dropdown-menu {
+   border:none;
+  box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;}
+   
+  .dropdown-menu>li>a {
+      display: block;
+      padding: 15px 23!important;
+      clear: both;
+      font-weight: 400;
+      line-height: 1.42857143;
+      color: #333;
+      white-space: nowrap;
+  }  
+  .navbar-nav>li {
+    float: left;
+}
+li>a{
+    color: #777 !important;
+    font-size: 12px!important;
+    padding: 10px 15px;
+    line-height: 20px;
+}
+
+.sra-logo{
+    height: 50px;
+    transform: scale(1.6) !important;
+
+    // margin-top: -17px;
+    //  margin-bottom: -16px;
+}
+
+.profil{
+  width: 600px;
+  padding: 25px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.btn-profil{
+   background-color: #fff;
+   border: 1px solid  #128bb4 !important;
+  font-size: 12px !important;
+  text-transform: capitalize;
+   font-weight: 400;
+  letter-spacing: normal;
+    color: #128bb4;
+   cursor: pointer;
+    padding: 0 15px;
+  // white-space: nowrap;
+   height: 41px;
+  // line-height: 17px;
+}

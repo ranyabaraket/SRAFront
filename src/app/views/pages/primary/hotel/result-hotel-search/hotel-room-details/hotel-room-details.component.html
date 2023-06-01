@@ -1,0 +1,230 @@
+<app-custom-loading *ngIf="loadingSearch" [roomsDetailsModel]="roomsDetailsModel"></app-custom-loading>
+<br>
+<div class="container-fluid" *ngIf="!loadingSearch">
+
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-availability-tab" data-toggle="tab" href="#nav-availability"
+                role="tab" aria-controls="nav-availability" aria-selected="true">{{"Availability"|translate}}</a>
+            <a class="nav-item nav-link" id="nav-desc-tab" data-toggle="tab" href="#nav-desc" role="tab"
+                aria-controls="nav-desc" aria-selected="false">{{"Description"|translate}}</a>
+            <a class="nav-item nav-link" id="nav-img-tab" data-toggle="tab" href="#nav-img" role="tab"
+                aria-controls="nav-img" aria-selected="false">{{"Images"| translate}}</a>
+            <a class="nav-item nav-link" id="nav-map-tab" data-toggle="tab" href="#nav-map" role="tab"
+                aria-controls="nav-map" aria-selected="false">{{"Map"| translate}}</a>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active pt-4" id="nav-availability" role="tabpanel"
+            aria-labelledby="nav-availability-tab">
+            <!-- <div class="row mt-2">
+                <app-custom-loading *ngIf="loadingSearch"
+                    [searchModel]="searchModel"></app-custom-loading>
+            </div> -->
+
+            <div class="row">
+
+                <div class="col-md-12 col-sm-12">
+
+                    <div class="row">
+                        <div class="col- hotelname">
+                            <span> {{hotelDetailsData.name}} </span>
+                        </div>
+                        <div class="col- marginLeft10" *ngIf="nbStars === 3">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <div class="col- marginLeft10" *ngIf="nbStars == 4">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                class="fas fa-star"></i>
+                        </div>
+                        <div class="col- marginLeft10" *ngIf="nbStars === 5">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col px-3"> <i class="fas fa-map-marker-alt iadress mr-2"></i>
+                            <b>{{hotelDetailsData.adress}}</b>
+                        </div>
+
+                    </div>
+
+                    <div class="row mt-2">
+                        <div class="row d-lg">
+                            <div class="col text-right">
+                                <div class="btn-group" role="group">
+                                    <button class=" btn btn-light" (click)="openFilter()"><i
+                                            class="fas fa-filter"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="simple-linear p-2">
+                            <div class="row p-2 model-container">
+                                <div class="col-md-3 d-flex justify-content-center ">
+                                    <i class="fas fa-map-marker-alt mr-2 i-disable mt-2" *ngIf="searchModel.destinationText"></i>
+                                    <span class="h6 textmuted ">{{searchModel.destinationText}}</span>
+                                </div>
+                    
+                    
+                    
+                                <!-- <i class="fas fa-slash p-2 fa-2x separator d-none d-md-block" ></i> -->
+                                <div class="col-md-3 d-flex justify-content-center">
+                                    <i class="fas fa-calendar-alt mr-2 i-disable mt-2" ></i>
+                                    <span class="h6 textmuted">{{searchModel.checkIn | date:'dd/MM'}} - {{searchModel.checkOut |
+                                        date:'dd/MM/yyyy'}} ({{this.searchModel.nbNights}} nights) </span>
+                    
+                                </div>
+                                <!-- <i class="fas p-2 fa-slash fa-2x separator d-none d-md-block"></i> -->
+                                <div class="col-md-3 d-flex justify-content-center">
+                                    <i class="fas fa-bed mr-2 i-disable mt-2"></i>
+                                    <span class="h6  textmuted"> {{searchModel.qteADT}} {{'Adult(s)'|translate}}, {{searchModel.nbRooms}}
+                                        {{'Room'|translate}}</span>
+                                </div>
+                            </div>
+                            </div>
+                    </div>
+                    <div class="col-md-12" style="margin-bottom: 0.2%;">
+                        <div class="form-bloc">
+                            <div class="d-flex simple-linear1 p-2">
+
+
+                                <div class="col-md-4">
+                                    <label>
+                                        <small>{{'Room type' | translate}}</small>
+                                    </label>
+                                    <div class="select-field">
+                                        <select class="form-select" style="background-color: white !important;"
+                                            name="meals" (change)="filterName($event)">
+                                            <option value="" selected> {{'all' | translate}} </option>
+                                            <option value="{{filter.key}}"
+                                                *ngFor="let filter of filterRooms.names | keyvalue let l=index">
+                                                {{filter.key}} </option>
+
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4" style="margin-left: 7px;">
+                                    <label>
+                                        <small>{{'Meal type' | translate}}</small>
+                                    </label>
+                                    <div class="select-field">
+                                        <select class="form-select" style="background-color: white !important;"
+                                            name="meals" (change)="filterMeal($event)">
+                                            <option value="" selected> {{'all' | translate}} </option>
+                                            <option value="{{filter.key}}"
+                                                *ngFor="let filter of filterRooms.meals | keyvalue let l=index">
+                                                {{filter.key}} </option>
+
+                                        </select>
+                                    </div>
+
+                                </div>
+
+                               
+                                <div class="col-md-4" style="margin-left: 7px;">
+                                    <label>
+                                        <small>{{'Refundable' | translate}}</small>
+                                    </label>
+                                    <div class="select-field">
+                                        <select class="form-select" style="background-color: white !important;"
+                                            name="meals" (change)="filter($event)">
+                                            <option value="0" selected> {{'all' | translate}} </option>
+                                            <option value="1">{{'Refundable' | translate}}</option>
+                                            <option value="2">{{'Not Refundable' | translate}}</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                        
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12" style="margin-bottom: 0.2%;">
+                        <button class="btn btn-primary" style="width: 100% ;" (click)="refreshPrice()"><i class="fa fa-refresh" style="color: white;padding-right: 0.5% !important;"></i>
+                            {{"Refresh prices"| translate}}</button>
+
+                    </div>
+                    <!-- <div class="col-2" style="padding: 0">
+                    <app-filter-room-details id="filter" class="filter" [dataInput]="roomDetailsData1" (backward)='filter($event)'>
+                    </app-filter-room-details>
+                </div> -->
+
+                    <div class="roomDetailsCard">
+                        <app-room-details-card id="roomDetailsCard" name="roomDetailsCard"
+                            [events]="eventsFilterSubject.asObservable()"
+                            [data]="{hotelDetailsData: hotelDetailsData, nbStars: nbStars, hotelSearchCode: hotelSearchCode, gds: gds}"></app-room-details-card>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade pt-4" id="nav-desc" role="tabpanel" aria-labelledby="nav-desc-tab">
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="row">
+                        <div class="col- hotelname">
+                            <span> {{hotelDetailsData.name}} </span>
+                        </div>
+                        <div class="col- marginLeft10" *ngIf="nbStars === 3">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <div class="col- marginLeft10" *ngIf="nbStars == 4">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                class="fas fa-star"></i>
+                        </div>
+                        <div class="col- marginLeft10" *ngIf="nbStars === 5">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col px-3"> <i class="fas fa-map-marker-alt iadress mr-2"></i>
+                            <b>{{hotelDetailsData.adress}}</b>
+                        </div>
+
+                    </div>
+                    <div class="row descript px-3 pb-4">
+                        <!-- <div class="col">
+                            <div [innerHTML]="description"> </div>
+                        </div> -->
+                        <div class="row descript px-3">
+                            <div class="col">
+                                <strong>Description : &nbsp;</strong>
+                                <div [innerHTML]="this.hotelDetailsData.description"> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane fade pt-4" id="nav-img" role="tabpanel" aria-labelledby="nav-img-tab">
+            <div class="row">
+                <div class="col-md col-sm-1"></div>
+                <div class="col-md-10 col-sm-10 imageCarousel" *ngIf="photos">
+                    <ngb-carousel [interval]="1000" [pauseOnHover]="pauseOnHover" (slide)="onSlide($event)">
+                        <ng-template ngbSlide *ngFor="let img of photos; index as i">
+                            <div class="carousel-caption">
+                            </div>
+                            <img [src]="img">
+                        </ng-template>
+                    </ngb-carousel>
+                </div>
+                <div class="col-md col-sm-1"></div>
+            </div>
+        </div>
+        <div class="tab-pane fade pt-4" id="nav-map" role="tabpanel" aria-labelledby="nav-map-tab">
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-8 col-sm-12">
+                    <img style="margin-bottom: 20px; border: 4px solid rgb(80, 160, 235); width: 100%; height: 100%;"
+                        src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/pin-l-embassy+f74e4e({{hotelDetailsData.longitude}},{{hotelDetailsData.lattitude}})/{{hotelDetailsData.longitude}},{{hotelDetailsData.lattitude}},14/800x600?access_token=pk.eyJ1IjoiYXltZW56ZW1uaSIsImEiOiJja2hjMXo3bzEwYm54MnRtaXF3eHlxM2UxIn0.bJQiP_oOZGwrEstnMOU2AQ" />
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+    </div>
+</div>

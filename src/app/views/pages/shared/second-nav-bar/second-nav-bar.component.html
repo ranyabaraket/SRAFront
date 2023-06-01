@@ -1,0 +1,52 @@
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navX fixed-top">
+    <div class="container">
+        <a class="navbar-brand" [routerLink]="['/pages/hotel/search']">
+            <img src="../../../assets/ybholidays/images/logo/logo.png" class="logoX" alt="">
+        </a>
+        <div class="btn-group dropleft">
+            <a type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-bars" aria-hidden="true"></i>
+            </a>
+            <div class="dropdown-menu">
+                <li ngbDropdownItem *ngFor="let item of subMenu">
+                    <a [routerLink]="[item.webLink]" >
+                        <span class="{{item.iconName}}" style="margin-right: 10px;"></span><span ngbTooltip="{{item.lmodule | translate}}"
+                        tooltipClass="d-md-none" container="body" placement="bottom"
+                        [class.active-module]="item.lmodule === currentModule().lmodule">{{item.lmodule| translate}}
+                        <span class="badge badge-pill badge-danger" *ngIf="item.lmodule === 'News'">{{nbNews }}</span></span>
+                    </a>
+                </li>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+<!--Navbar -->
+<!-- <nav class="navbar navbar-expand-lg navbar-dark navX fixed-top">
+    <a class="navbar-brand" [routerLink]="['/pages/hotel/search']"> <img
+            src="../../../assets/ybholidays/images/logo/logo.png" class="logoX" alt=""></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555"
+        aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false"> <i class="fa fa-bars" aria-hidden="true"></i></a>
+        <ul class="navbar-nav ml-auto nav-flex-icons" *ngFor="let item of subMenu">
+            <li class="nav-item dropdown" >
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" [routerLink]="[item.webLink]"><span class="{{item.iconName}}"
+                            ngbTooltip="{{item.lmodule | translate}}" tooltipClass="d-md-none" container="body"
+                            placement="bottom"
+                            [class.active-module]="item.lmodule === currentModule().lmodule">{{item.lmodule| translate}}
+                            <span class="badge badge-pill badge-danger" *ngIf="item.lmodule === 'News'">{{nbNews
+                                }}</span></span></a>
+
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav> -->
+<!--/.Navbar -->

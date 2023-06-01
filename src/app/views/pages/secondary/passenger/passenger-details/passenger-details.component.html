@@ -1,0 +1,227 @@
+<div class="container-fluid">
+    <div class="   mt-4  mb-4">
+        <div class="col-md-6 col-sm-12">
+
+            <h3 class="title"><button ngbTooltip="back" placement="bottom" class="btn btn-primary btn-sm ml-2"
+                    (click)="cancel()"><i class="fas fa-arrow-left"></i></button> {{'Passenger Details'|translate}}</h3>
+        </div>
+        <form class="p-3" #saveForm="ngForm">
+            <div class="row mb-2">
+                <div class="col-md-6 col-sm-12">
+                    <label><small> {{'First name'|translate}}</small></label>
+                    <div class="row">
+                        <div class="col-3">
+                            <select class="form-control form-control-sm" name="title" #title="ngModel" required
+                                [class.is-invalid]="submitted && title.invalid" [(ngModel)]="data.psgTitle">
+                                <option value="MS"> {{'MS'|translate}}
+                                </option>
+                                <option value="MRS"> {{'MRS'|translate}}
+                                </option>
+                                <option value="MR"> {{'MR'|translate}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-9">
+
+                            <input type="text" class="form-control form-control-sm" name="name" #name="ngModel" required
+                                [class.is-invalid]="submitted && name.invalid" [(ngModel)]="data.psgName">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <label><small> {{'Last name'|translate}}</small></label>
+                    <input type="text" class="form-control form-control-sm" name="surname" #surname="ngModel" required
+                        [class.is-invalid]="submitted && surname.invalid" [(ngModel)]="data.psgSurname">
+                </div>
+            </div>
+            <div class="row  mb-2">
+                <div class="col-md-6 col-sm-12"> <label><small> {{'Email adresse'|translate}}</small></label>
+                    <input type="text" class="form-control form-control-sm" name="email" #email="ngModel" required
+                        [class.is-invalid]="submitted && email.invalid" [(ngModel)]="data.psgEmail" [email]="true">
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <label><small> {{'Phone number'|translate}}</small></label>
+                    <div class="row">
+                        <div class="col-3">
+                            <select class="form-control form-control-sm" name="countryIdf" (change)="getIdfPays()"
+                                #countryIdf="ngModel" required [class.is-invalid]="submitted && countryIdf.invalid"
+                                [(ngModel)]=" data.paysTel">
+                                <option *ngFor="let item of pays" [ngValue]="item.alpha_2_code"> {{item.en_short_name}}
+                                </option>
+
+                            </select>
+                        </div>
+                        <div class="col-3">
+
+                            <input type="text" class="form-control form-control-sm" name="idfPays"
+                                [(ngModel)]="data.indTelPays" disabled>
+                        </div>
+                        <div class="col-6">
+
+                            <input type="number" class="form-control form-control-sm" name="tel" #tel="ngModel" required
+                                [class.is-invalid]="submitted && tel.invalid" [(ngModel)]="data.psgTel">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row  mb-2">
+                <div class="col-md-6 col-sm-12">
+                    <label><small> {{'Doc. type'|translate}}</small></label>
+                    <select class="form-control form-control-sm" [(ngModel)]="data.typeDoc" name="typeDoc"
+                        #typeDoc="ngModel" required [class.is-invalid]="submitted && typeDoc.invalid">
+                        <option value="P"> {{'Passport'|translate}}
+                        </option>
+                        <option value="N"> {{'National Identity'|translate}}
+                        </option>
+                        <option value="R"> {{'Resident Identity'|translate}}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <label><small> {{'Doc. no'|translate}}</small></label>
+                    <input type="text" class="form-control form-control-sm" name="docNo" #docNo="ngModel" required
+                        [class.is-invalid]="submitted && docNo.invalid" [(ngModel)]="data.psgNumPassport">
+                </div>
+            </div>
+            <div class="row  mb-2">
+                <div class="col-md-6 col-sm-12">
+                    <label><small> {{'Doc. expire'|translate}}</small></label>
+                    <!--<div class="row">
+                        <div class="col-4">
+                            <select class="form-control form-control-sm" [(ngModel)]="data.yyExpdocIdty"
+                                name="yyExpdocIdty" (change)="fillDays()">
+                                <option selected> {{'Year'|translate}}
+                                </option>
+                                <option *ngFor="let item of years" [value]="item"> {{item}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-4">
+                            <select class="form-control form-control-sm" [(ngModel)]="data.yyExpdocIdty"
+                                name="mmExpdocIdty" (change)="fillDays()">
+                                <option value=""> {{'Month'|translate}}
+                                </option>
+                                <option *ngFor="let item of months | async" [value]="item.value"> {{item.name|translate}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-4">
+                            <select class="form-control form-control-sm" [(ngModel)]="data.ddExpdocIdty"
+                                name="mmExpdocIdty">
+                                <option value=""> {{'Day'|translate}}
+                                </option>
+                                <option *ngFor="let item of days" [value]="item"> {{item}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>-->
+                    <div class="row">
+
+                        <div class="col-4">
+                            <select class="form-control form-control-sm" name="ddExpdocIdty"
+                                [(ngModel)]="data.ddExpdocIdty" #ddExpdocIdty="ngModel" required
+                                [class.is-invalid]="submitted && ddExpdocIdty.invalid">
+                                <option value=""> Day
+                                </option>
+                                <option *ngFor="let item of expiredays" [value]="item"> {{item}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-4">
+                            <select class="form-control form-control-sm" name="mmExpdocIdty"
+                                (change)="fillDaysExpireDate()" [(ngModel)]="data.mmExpdocIdty" #mmExpdocIdty="ngModel"
+                                required [class.is-invalid]="submitted && mmExpdocIdty.invalid">
+                                <option value=""> Month
+                                </option>
+                                <option *ngFor="let item of months | async" [value]="item.value"> {{item.name}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-4">
+                            <select class="form-control form-control-sm" name="yyExpire" (change)="fillDaysExpireDate()"
+                                [(ngModel)]="data.yyExpdocIdty" #yyExpire="ngModel" required
+                                [class.is-invalid]="submitted && yyExpire.invalid">
+                                <option> Year
+                                </option>
+                                <option *ngFor="let item of years" [value]="item"> {{item}}
+                                </option>
+                            </select>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <label><small> {{'Issuing country'|translate}}</small></label>
+                    <select class="form-control form-control-sm" [(ngModel)]="data.psgCountry" name="country"
+                        #country="ngModel" required [class.is-invalid]="submitted && country.invalid">
+                        <option *ngFor="let item of pays" [ngValue]="item.alpha_3_code+'-'+item.alpha_2_code">
+                            {{item.en_short_name}}</option>
+                    </select>
+                </div>
+            </div>
+            <hr>
+            <div class="row  mb-2">
+                <div class="col-md-6 col-sm-12">
+                    <label>{{'Add miles'|translate}}</label>
+                    <div class="row">
+                        <div class="col-5 ">
+                            <label><small> {{'Airline name'|translate}}</small></label>
+                            <div *ngIf="!airlines" class=" ml-2 spinner-border spinner-border-sm text-light"
+                                role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                            <select class="form-control form-control-sm" [(ngModel)]="comp" name="air">
+                                <option *ngFor="let item of airlines" [ngValue]="item" >{{item.name}}</option>
+                            </select>
+                        </div>
+                        <div class="col-5 ">
+                            <label><small> {{'Mile card code'|translate}} </small></label>
+                            <input type="text" class="form-control form-control-sm" [(ngModel)]="mileCardcode"
+                                name="code">
+                        </div>
+                        <div class="col-2  mt-4">
+                            <button class="btn btn-sm btn-primary" (click)="addMileCard()">{{'Add'|translate}}</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="table-responsive miles-bloc">
+                        <table class="table table-borderless">
+                            <tr>
+                                <th><small>
+                                        {{'Airline'|translate}}</small> </th>
+                                <th class="text-center"><small>{{'Mile card code'|translate}} </small></th>
+                                <th> </th>
+                            </tr>
+                            <tr *ngFor="let item of data.milesCardCodeList;let index = index;">
+                                <td><small>{{item.lcomp}}</small></td>
+                                <td class="text-center"> <small> {{item.mileCardcode}}</small> </td>
+                                <td><i class="fas fa-minus-circle primary clickable"
+                                        (click)="removeMileCard(index)"></i></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-right">
+                    <button type="button" [disabled]="loadReset || loadSave"
+                        class="btn  btn-sm btn-primary col-12 col-md-2 m-2" (click)="save(saveForm)">
+                        <div *ngIf="loadSave" class="spinner-border spinner-border-sm text-light" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        <span>{{'Save'|translate}}</span>
+                    </button>
+                    <button type="button" [disabled]="loadReset || loadSave"
+                        class="btn  btn-sm btn-secondary col-12 col-md-2 m-2" (click)="data=initData">
+                        <div *ngIf="loadReset" class="spinner-border spinner-border-sm text-light" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        <span>{{'Reset'|translate}}</span>
+                    </button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

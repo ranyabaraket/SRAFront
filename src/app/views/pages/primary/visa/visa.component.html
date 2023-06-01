@@ -1,0 +1,29 @@
+<div class="container-fluid " id="page-container">
+    <div id="cover">
+        <div id="bg">
+        </div>
+    </div>
+    <div id="content-wrap">
+        <div class="rowdisplay" style="opacity: 90%;">
+            <div class="slogan"> {{'visa slogan' | translate}}</div>
+            <div class="slogan1"> {{'visa slogan1' | translate}}</div>
+            <div class="form-field" style="z-index: 10000;">
+                <app-visa-apply #applyModel></app-visa-apply>
+            </div>
+
+            <div class="row ">
+                <div class="col-12 text-center mrgBtm">
+                    <button type="button" class="btn btn-secondary col-sm-11 col-md-1" [disabled]="applyModel.disableButtonIntruction()" (click)="applyModel.visitPorpose()">
+                        <span>{{'Instruction' |translate}}</span>
+                    </button>
+                    <button type="button" class="btn btn-success col-sm-11 col-md-1" style="padding-left: 0; padding-right:0" [disabled]="applyModel.disableButtonNext()" (click)="nextStep(applyModel.getApplyhModel())">
+                       <i class="fas fa-search" style="color: white;"></i> <span>{{'Next' |translate}}</span>
+                    </button>
+                    <button type="button" class="btn btn-danger col-sm-11 col-md-1" (click)="applyModel.reset()">
+                        <span>{{'Reset' |translate}}</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

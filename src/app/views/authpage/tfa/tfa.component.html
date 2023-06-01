@@ -1,0 +1,54 @@
+
+<div class="">
+    <form>
+<div class="row">
+<h2 class="text-white"> Get Qrcode</h2>
+
+    <p class="h7 mb-7" >Scan the qrcode below using google authenticator application that you
+        can download from <a
+            href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en"
+            target="_blank"> <u style="color: blue;"> here </u></a></p>
+    <div class="input-icons">
+        <i class="la la-user mr-1 la-icon l-icon"></i>
+        <input type="text" [(ngModel)]="username" [ngModelOptions]="{standalone: true}" name="username"
+            placeholder="Username" class="input-field form-control " />
+    </div>
+    <br>
+    <div class="input-icons">
+        <i class="la la-lock mr-1 la-icon l-icon"></i>
+        <input type="password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}" name="password"
+            placeholder="Password" class="input-field form-control " />
+    </div>
+    <div class="input-icons m-2 pl-2">
+    <button type="button" class="btn btn-info btn-block my-2 btn-info" (click)="getQrcode()"> Get
+        Qrcode</button>
+</div>
+    </div>
+    <div class="row">
+        <div class="col-12 p-2" align="center">
+    <img [src]="imageUrl" *ngIf="imageUrl" height="150" width="150" /> <br><br>
+    <b> {{this.Qrcode.mfaCode}}</b>
+</div>
+</div>
+<div class="row">
+    <div class="col-12 text-left mb-4 text-center" >
+        <!-- <div class="footer-copyright" style="color:rgba(255, 255, 255, 0.568); text-decoration-style: unset">
+            <u class="primary clickable" (click)="dialogRef.close()"> Back to login</u>
+        </div> -->
+        <button class="button btn-blue" (click)="dialogRef.close()" >
+                
+                {{'Go Back'|translate}}
+            </button>
+    </div>
+</div>
+    <div class="row">
+        <div class="col-12 text-center">
+            <div class="footer-copyrightpy-3" style="color:rgba(255, 255, 255, 0.568); text-decoration-style: unset">©
+                2019 Copyright:
+                <b> WorldSoftGroup</b>
+            </div>
+        </div>
+    </div>
+</form>
+
+</div>

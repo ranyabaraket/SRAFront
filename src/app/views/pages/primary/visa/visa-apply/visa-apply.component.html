@@ -1,0 +1,115 @@
+<form #clientForm="ngForm">
+    <div class="row">
+        <div class="col-sm-12 col-md-12 text-right">
+            <div class="btn-group  mr-2">
+                <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{applyModel.nbrPax}} {{'Pax'|translate}}
+                </button>
+                <div class="dropdown-menu dropdown-menu-right pax-dropdown p-2">
+                    <div id="DropdownPax">
+                        <div class="row">
+                            <div class="col-6"> <i class="fas fa-female icon"> <i class="fas fa-male"></i></i>
+                                {{'Pax'|translate}}
+                                <br>
+                            </div>
+                            <div class="col-6">
+                                <button type="submit" class="btn btn-sm btn-default" [disabled]="applyModel.nbrPax === 1" (click)="applyModel.nbrPax = applyModel.nbrPax-1"><i
+                                        class="fas fa-minus"></i></button> {{applyModel.nbrPax}}
+                                <button type="submit" class="btn btn-sm btn-default" [disabled]="applyModel.nbrPax === 5" (click)="applyModel.nbrPax =applyModel.nbrPax+1"><i
+                                        class="fas fa-plus"></i></button>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <div class="col text-right">
+                            <button type="submit" class="btn btn-sm btn-default mr-2">{{'Cancel'|translate}}</button>
+                            <button type="submit" class="btn btn-sm btn-default"><span
+                                    class="primary">{{'Ok'|translate}}</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-group mr-2">
+                <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{selectedItem(visaTypeList, applyModel.visaType)|translate}}
+                </button>
+                <div class="dropdown-menu dropdown-menu-right">
+                    <button *ngFor="let class of visaTypeList" class="dropdown-item" type="button" (click)="changeValueClass(class.value)">{{class.name | translate}}</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row rowDis">
+        <div class="input-icons col-md-3 col-sm-12">
+            <i class="fas fa-users icon"></i>
+            <input class="form-control form-control-sm" style="text-transform: uppercase;" type="text" placeholder="{{'Pax name'|translate}}" aria-label="State" name="paxName" [(ngModel)]="applyModel.fullName" #paxName="ngModel" required [class.is-invalid]="submitted && paxName.invalid">
+        </div>
+
+        <div class="input-icons col-md-3 col-sm-12">
+            <i class="far fa-flag icon"></i>
+            <select class="form-control form-control-sm" name="originCountry" (change)="onChangeOriginCountry($event)">
+                <option value="" selected disabled>Origin country</option>
+
+                <option *ngFor="let item of listNationalities" [ngValue]="item.lpays">
+                    {{ item.lpays }}
+                </option>
+            </select>
+        </div>
+        <div class="input-icons col-md-3 col-sm-12">
+            <i class="far fa-flag icon"></i>
+            <select class="form-control form-control-sm" name="destination" (change)="onChangeDestCountry($event)">
+                <option value="" selected disabled>Destination country</option>
+                <option *ngFor="let item of listNationalities" [ngValue]="item.lpays">
+                    {{ item.lpays }}
+                </option>
+            </select>
+        </div>
+        <div class="input-icons col-md-3 col-sm-12">
+            <i class="fas fa-phone-square-alt icon"></i>
+            <input type="text" class="form-control form-control-sm" type="number" name="phone" placeholder="{{'Phone number' | translate}}" [(ngModel)]="applyModel.phone" #phone="ngModel" required [class.is-invalid]="submitted && phone.invalid" aria-label="State">
+
+        </div>
+    </div>
+    <div class="row rowDis">
+        <div class="input-icons col-md-3 col-sm-12">
+            <i class="far fa-flag icon"></i>
+            <select class="form-control form-control-sm" name="purposeOfVisit" (change)="onChangePurpose($event)" [disabled]="isPurpose">
+                <option value="" selected disabled>Purpose of visit</option>
+                <option *ngFor="let item of listPurpose" [ngValue]="item.ltypevisa">
+                    {{ item.ltypevisa }}
+                </option>
+            </select>
+        </div>
+
+        <div class="input-icons col-md-3 col-sm-12">
+            <i class="fas fa-calendar-day icon clickable" (click)="picker.open()">
+                <mat-datepicker-toggle class="not-display" matSuffix [for]="picker">
+                </mat-datepicker-toggle>
+            </i>
+            <input type="text" placeholder="{{'Depart Date'|translate}}" (dateChange)="changeEventCheckIn($event)" (click)="picker.open()" class="form-control form-control-sm" [matDatepicker]="picker" [min]="start" name="entryDate" [(ngModel)]="applyModel.entryDate"
+                autocomplete="off">
+        </div>
+        <mat-datepicker #picker></mat-datepicker>
+
+        <div class="input-icons col-md-3 col-sm-12">
+            <i class="fas fa-calendar-day icon clickable" (click)="picker1.open()">
+                <mat-datepicker-toggle class="not-display" matSuffix [for]="picker1">
+                </mat-datepicker-toggle>
+            </i>
+            <input type="text" [disabled]="dateR" placeholder="{{'Return Date'|translate}}" (click)="picker1.open()" class="form-control form-control-sm" [matDatepicker]="picker1" [min]="endDate" name="departleVol1" [(ngModel)]="applyModel.returnDate" autocomplete="off">
+        </div>
+        <mat-datepicker #picker1></mat-datepicker>
+
+        <div class="input-icons col-md-3 col-sm-12">
+            <i class="fas fa-at icon"></i>
+            <input type="text" class="form-control form-control-sm" name="email" placeholder="{{'Email' | translate}}" [(ngModel)]="applyModel.email" #email="ngModel" required [class.is-invalid]="submitted && email.invalid" aria-label="State">
+
+        </div>
+
+    </div>
+
+    <br>
+</form>

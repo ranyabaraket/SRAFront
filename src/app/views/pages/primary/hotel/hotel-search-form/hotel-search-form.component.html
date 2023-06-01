@@ -1,0 +1,311 @@
+<div class="row searchFrm px-3 mb-3">
+    <div class="col-md-4 col-sm-12 p-0 input-icons1">
+        <img src="../../../../../../assets/sra-sa/images/hotels/search-form/outil.png" class="image-dep">
+        <div class="input-icons2">
+            <input class="form-control input-dep is-invalid" type="text" aria-label="State" [matAutocomplete]="autoFrom"
+                placeholder="{{'Choose your destination'|translate}}" name="destination" [(ngModel)]="inputDestination"
+                (keyup)="getDestinationFrom($event)" #destination="ngModel"
+                [ngClass]="{ 'is-invalid': destination.invalid  && (destination.dirty || destination.touched) }"
+                required>
+            <div class="invalid-feedback " *ngIf="destination.invalid">
+                <span>{{'Please Enter your Destination' | translate}}</span>
+            </div>
+        </div>
+        <mat-autocomplete #autoFrom="matAutocomplete">
+            <mat-option *ngIf="!inputDestination" class="text-right">
+            </mat-option>
+            <mat-option (onSelectionChange)="filteredOptionsFromClear($event, option)" *ngFor=" let option of
+                            filteredOptionsDestination | async" [value]="option.code+' | '+option.ville">
+                <img src="../../../../../../assets/sra-sa/images/hotels/search-form/hotel.png" class="image-des">
+
+                <small>{{option.code}}
+                    <a class="text-muted">
+                        {{option.ville}}</a>
+                </small>
+            </mat-option>
+        </mat-autocomplete>
+
+    </div>
+
+
+    <div class="col-md-3  col-sm-12 input-icons1 p-0">
+        <img src="../../../../../../assets/sra-sa/images/hotels/search-form/calendar.png" (click)="picker.open()"
+            class="image-dep">
+        <div class="input-icons2 ">
+
+            <input class="form-control input-dep is-invalid" type="text" (focus)="picker.open()"
+                placeholder="{{'Check In'|translate}}" name="checkIn" [(ngModel)]="searchModel.checkIn"
+                autocomplete="off" [min]="start" matInput [matDatepicker]="picker" #checkIn="ngModel" [required]="true"
+                [ngClass]="{ 'is-invalid': checkIn.invalid  && (checkIn.dirty || checkIn.touched) }">
+
+            <mat-datepicker-toggle class="not-display" matSuffix [for]="picker">
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <div *ngIf="checkIn.invalid" class="invalid-feedback">
+                <span>{{'Please Enter your CheckIn' | translate}}</span>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-md-3 col-sm-12 input-icons1 p-0">
+        <img src="../../../../../../assets/sra-sa/images/hotels/search-form/calendar.png" (click)="picker1.open()"
+            class="image-dep">
+        <div class="input-icons2 ">
+
+            <input class="form-control input-dep is-invalid" type="text" (click)="picker1.open()"
+                placeholder="{{'Check Out'|translate}}" name="checkOut" [(ngModel)]="searchModel.checkOut"
+                autocomplete="off" [min]="searchModel.checkIn" matInput [matDatepicker]="picker1" #checkOut="ngModel"
+                [ngClass]="{ 'is-invalid': checkOut.invalid  && (checkOut.dirty || checkOut.touched) }" required
+                (ngModelChange)="changeEventCheckOut1($event)">
+
+            <mat-datepicker-toggle class="not-display" matSuffix [for]="picker1"
+                (dateChange)="changeEventCheckOut1($event)">
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+            <div *ngIf="checkOut.invalid" class="invalid-feedback">
+                <span>{{'Please Enter your checkOut' | translate}}</span>
+            </div>
+        </div>
+
+
+        
+    </div>
+    <div class="col-md-2 col-sm-12 input-icons1 p-0">
+        <!-- <img src="../../../../../../assets/sra-sa/images/hotels/search-form/calculatrice.png" class="image-dep"> -->
+        <i class="fas fa-calculator image-dep pt-1"></i>
+        <input type="number" class="form-control input-dep" [min]="1" [disabled]="!searchModel.checkOut"
+            name="nbNights" placeholder="{{'Days'|translate}}" [(ngModel)]="searchModel.nbNights"
+            (change)="changeNights($event)">
+    </div>
+
+
+
+</div>
+<hr class="hr-10 hr-border">
+
+<div class="row px-4 mb-4">
+
+
+    <div class="col-md-4 col-sm-12 p-0">
+        <div class="input-icons3">
+            <img src="../../../../../../assets/sra-sa/images/hotels/search-form/report.png" class="image-flag">
+
+            <mat-select class="form-control input-dep" [(ngModel)]="searchModel.nationality" name="nationality"
+                (selectionChange)="onChangeNationality($event)">
+
+                <mat-option *ngFor="let item of listNationalities" [value]="item.codePays">
+                    <span class="flag-icon flag-icon-{{item.codePays | lowercase}} flag-icon-squared mr-2"></span>
+                    <label class="label-search-flight">{{item.nationalite}}</label>
+                </mat-option>
+            </mat-select>
+
+        </div>
+    </div>
+
+    <div class="col-md-3 col-sm-6 input-icons4 pl-0">
+
+
+        <!-- <div class=""> -->
+            <img src="../../../../../../assets/sra-sa/images/hotels/search-form/bed.png" class="image-dep">
+            <input type="button" class="input-field form-control input-dep" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false" [(ngModel)]="nbRoomsX">
+
+            <div class="dropdown-menu dropdown-menu-right room-dropdown dropDownModel">
+                <div id="DropdownRooms" class="row ">
+                    <div *ngFor="let details of detailsData; let j = index">
+                        <div class="col-12 ">
+                            <div class="form-row">
+
+                                <div class="col-1"></div>
+                                <div class="col-8"> {{'Room'|translate}} {{j + 1}} </div>
+                                <div class="col-2" *ngIf="j == 0">
+                                    <button type="submit" class="btn add-qt-btn"
+                                        matTooltip="Add room" [disabled]="searchModel.nbRooms === 8"
+                                        (click)="onChangeRoomX()">
+                                        <i class="fas fa-plus "></i>
+                                    </button>
+                                </div>
+                                <div class="col-2" *ngIf="j != 0">
+                                    <button type="submit" class="btn add-qt-btn"
+                                        [disabled]="searchModel.nbRooms === 1" (click)="onChangeRoomX1(j)">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-1"></div>
+                                <div class="col-4">
+                                    <label>
+                                        <small>{{'Adults'|translate}}</small>
+                                    </label>
+                                </div>
+                                <div class="col">
+                                    <button type="submit" class="btn qt-btn btn-transparent"
+                                        [disabled]="details.nbAdult === 1" (click)="onChangeAdlt1(j)">
+                                        <i class="fas fa-minus"></i>
+                                    </button> {{details.nbAdult}}
+                                    <button type="submit" class="btn qt-btn btn-transparent"
+                                        [disabled]="details.nbAdult === 4" (click)="onChangeAdlt(j)">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-1"></div>
+                                <div class="col-4">
+                                    <label><small>{{'Infant'|translate}}</small></label>
+                                </div>
+                                <div class="col">
+                                    <button type="submit" class="btn qt-btn btn-transparent"
+                                        [disabled]="details.nbInfant === 0" (click)="onChangeInf1(j)"><i
+                                            class="fas fa-minus"></i></button> {{details.nbInfant}}
+                                    <button type="submit" class="btn qt-btn btn-transparent"
+                                        [disabled]="details.nbInfant === 4" (click)="onChangeInf(j)"><i
+                                            class="fas fa-plus"></i></button>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-1"></div>
+                                <div class="col-4">
+                                    <label><small>{{'Children'|translate}}</small></label>
+                                </div>
+                                <div class="col">
+                                    <button type="submit" class="btn qt-btn btn-transparent"
+                                        [disabled]="details.nbChildren === 0" (click)="onChangeChildren(j)">
+                                        <i class="fas fa-minus"></i>
+                                    </button> {{details.nbChildren}}
+                                    <button type="submit" class="btn qt-btn btn-transparent"
+                                        [disabled]="details.nbChildren === 4" (click)="onChangeChildren1(j)">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+
+                            </div>
+                            <div class="form-row" style="width: 180px !important;">
+
+                                <div class="col-5" *ngFor="let ageCh of ageChData[j]; let k = index"
+                                    style="margin-left: 7px;">
+                                    <label>
+                                        <small>{{'Childs'|translate}} {{k + 1}} {{'age'|translate}}</small>
+                                    </label>
+                                    <div class="select-field">
+                                        <select class="select-field" name="ChildAge{{k}}" [(ngModel)]="ageCh.chAge">
+                                            <option value="2"> 2 </option>
+                                            <option value="3"> 3 </option>
+                                            <option value="4"> 4 </option>
+                                            <option value="5"> 5 </option>
+                                            <option value="6"> 6 </option>
+                                            <option value="7"> 7 </option>
+                                            <option value="8"> 8 </option>
+                                            <option value="9"> 9 </option>
+                                            <option value="10"> 10 </option>
+                                            <option value="11"> 11 </option>
+                                            <option value="12"> 12 </option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="w-100" *ngIf="j/2 == 0"></div>
+                    </div>
+
+                </div>
+            </div>
+        <!-- </div> -->
+    </div>
+
+
+
+    <div class="input-icons4 col-md-3 col-sm-6 pl-0">
+        <img src="../../../../.././../assets/sra-sa/images/hotels/search-form/star.png" class="image-dep">
+
+        <input type="button" class="input-dep form-control"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" [(ngModel)]="ratingsX">
+
+        <!-- <button class="btn btn-secondary dropdown-toggle" style="background-color: white;" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span> {{ratingsX}}</span>
+            </button> -->
+        <div class="dropdown-menu dropdown-menu-right">
+            <button class="dropdown-item" type="button" (click)="changeRating('0')"> {{ 'all' | translate}}</button>
+            <button class="dropdown-item" type="button" (click)="changeRating('1')">
+                    <i class="far fa-star"></i>
+                </button>
+            <button class="dropdown-item" type="button" (click)="changeRating('2')">
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                </button>
+            <button class="dropdown-item" type="button" (click)="changeRating('3')">
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                </button>
+            <button class="dropdown-item" type="button" (click)="changeRating('4')">
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                </button>
+            <button class="dropdown-item" type="button" (click)="changeRating('5')">
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                    <i class="far fa-star"></i>
+                </button>
+        </div>
+
+    </div>
+
+    <!-- <div class="col-md-8 col-sm-12 ">
+
+        <div class="row mr-2 pl-2">
+
+            <div class="col rounded-stars  border-top-bottom-left" (click)="changeRating('0')"
+                [ngClass]="{'bg-primary-extra-light' : searchModel.ratings == '0'}">
+                <button class="btn-transparent" type="button">
+                    <span [ngClass]="{'active' : searchModel.ratings == '0'}" class="stars-label"> {{ 'all' |
+                        translate}}</span>
+                </button>
+            </div>
+            <div class="col rounded-stars border-all" (click)="changeRating('1')"
+                [ngClass]="{'bg-primary-extra-light' : searchModel.ratings == '1'}">
+                <button class="btn-transparent" type="button">
+                    <span [ngClass]="{'active' : searchModel.ratings == '1'}" class="stars-label">1 {{ 'Stars' |
+                        translate}}</span>
+                </button>
+            </div>
+
+            <div class="col rounded-stars border-all" (click)="changeRating('2')"
+                [ngClass]="{'bg-primary-extra-light' : searchModel.ratings == '2'}">
+                <button class="btn-transparent" type="button">
+                    <span [ngClass]="{'active' : searchModel.ratings == '2'}" class="stars-label">2 {{ 'Stars' |
+                        translate}}
+                    </span>
+
+                </button>
+            </div>
+            <div class="col rounded-stars border-all" (click)="changeRating('3')"
+                [ngClass]="{'bg-primary-extra-light' : searchModel.ratings == '3'}">
+                <button class="btn-transparent">
+                    <span [ngClass]="{'active' : searchModel.ratings == '3'}" class="stars-label">3 {{ 'Stars' |
+                        translate}}</span>
+                </button>
+            </div>
+            <div class="col rounded-stars border-all" (click)="changeRating('4')"
+                [ngClass]="{'bg-primary-extra-light' : searchModel.ratings == '4'}">
+                <button class="btn-transparent">
+                    <span [ngClass]="{'active' : searchModel.ratings == '4'}" class="stars-label">4 {{ 'Stars' |
+                        translate}}</span>
+                </button>
+            </div>
+            <div class="col rounded-stars border-top-bottom-right" (click)="changeRating('5')"
+                [ngClass]="{'bg-primary-extra-light' : searchModel.ratings == '5'}">
+                <button class="btn-transparent">
+                    <span [ngClass]="{'active' : searchModel.ratings == '5'}" class="stars-label">5 {{ 'Stars' |
+                        translate}}</span>
+                </button>
+            </div>
+        </div>
+    </div> -->
+</div>

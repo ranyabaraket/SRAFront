@@ -1,0 +1,67 @@
+<div class="table-responsive my-2">
+  <table
+    *ngIf="!data.loadingSearch && this.data.pricePerCompagny.length"
+    class="table table-bordered min-padding"
+  >
+    <thead>
+      <tr>
+        <th></th>
+        <th
+          class="td-hover clickable"
+          scope="col"
+          *ngFor="let p of this.data.pricePerCompagny; let i = index"
+          (click)="filterByCompany(p.compagnie.code, i)"
+          [ngClass]="{
+            selected: selectionCase[0].one === 0 && selectionCase[0].tow === i && selectionCase[0].code === p.compagnie.code
+          }"
+        >
+          <img
+            class="img-title"
+            src="http://www.worldsoftgroup.com/airelines/{{
+              p.compagnie.code
+            }}.png"
+            alt="{{ p.compagnie.name }}"
+          />
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let nbStop of this.data.filterSettings.nbstops; let i = index"
+      >
+        <th
+          class="td-hover clickable non-breakable"
+          (click)="filterBynbStops(nbStop.name, i)"
+          [ngClass]="{
+            selected: selectionCase[i+2] && selectionCase[i+2].one === i && selectionCase[i+2].tow === 0
+          }"
+        >
+          {{ nbStop.name }}
+        </th>
+        <td
+          class="td-hover clickable"
+          *ngFor="let p of this.data.pricePerCompagny; let j = index"
+          [ngClass]="{
+            selected: selectionCase[1].one === i && selectionCase[1].tow === j
+          }"
+        >
+          <small *ngFor="let d of p.details">
+            <span
+              *ngIf="nbStop.name === d.nbStop"
+              (click)="
+                filterBynbStopsAndCompany(
+                  p.compagnie.code,
+                  nbStop.name,
+                  d.price,
+                  i,
+                  j
+                )
+              "
+              >{{formatCurr(d.price) }} {{ d.curr }}</span
+            >
+          </small>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

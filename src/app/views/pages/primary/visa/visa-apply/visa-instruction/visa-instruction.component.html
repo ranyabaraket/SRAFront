@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="card" *ngFor="let item of listInstruction ; let index = index;">
+        <div class="card-header" id="headingInstruction{{index}}">
+            <h6 class="mb-0">
+                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" [attr.data-target]="'#collapseInstruction'+index" aria-expanded="true" [attr.aria-controls]="'collapseInstruction'+index">
+                    <span>{{item.ltypedoc}}</span> 
+                </button>
+            </h6>
+        </div>
+
+        <div id="collapseInstruction{{index}}" class="collapse show" [attr.aria-labelledby]="'headingInstruction'+index">
+            <div class="card-body">
+                <div [innerHTML]=item.noteTypedoc></div>
+            </div>
+        </div>
+    </div>
+
+    <div [innerHTML]=listInstruction1></div>
+</div>

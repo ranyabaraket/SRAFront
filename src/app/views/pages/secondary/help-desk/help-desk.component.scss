@@ -1,0 +1,44 @@
+// .nav-item{
+//     background-color: #e9ecef;
+// }
+
+// .btn-primary {
+//     margin-left: 10px;
+//     margin-right: 20px;
+//     box-shadow: 0 1px 3px 0 rgba(60, 64, 67, .30), 0 4px 8px 3px rgba(0, 0, 0, 0.33);
+//     font-size: 17px;
+//     text-transform: capitalize;
+//     font-weight: 400;
+//     letter-spacing: 0.15em;
+//     border: none;
+//     color: #fff;
+//     cursor: pointer;
+//     padding: 0 15px;
+//     white-space: nowrap;
+//     height: 41px;
+//     line-height: 34px;
+//     background-color: #004b7f;
+// }
+.nav-tabs .nav-item  .nav-link {
+    color: #495057;
+    background-color: #fff;
+    border-color: #dee2e6 #dee2e6 #fff;
+ 
+    padding: 1rem 1.2rem!important;
+ 
+  }
+  .nav-item {
+    background-color: #8bbc2d ;
+    color: white ;
+  }
+
+
+  
+@media screen and (max-width: 500px) {
+
+  .nav-tabs{
+
+    padding-top: 50px !important;
+    display: block !important;
+  }
+}

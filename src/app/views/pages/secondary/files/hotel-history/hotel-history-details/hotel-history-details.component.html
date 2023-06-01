@@ -1,0 +1,345 @@
+<div class="container-fluid" *ngIf="!showVoucher">
+    <div class="row">
+        <h3 class="title"> <button ngbTooltip="{{'back'|translate}}" placement="bottom"
+            class="btn btn-primary btn-sm ml-2" (click)="back()"><i class="fas fa-arrow-left"></i></button>
+        {{'Booking Details - INVOICE'|translate}}</h3>
+        <div class="row">
+            <div class="col-4">
+                <div class="col-md-6 col-sm-6 ">
+                    <img [src]="entityLogo" style="width: 100% !important; height:150px !important;">
+                </div>
+                <div class="col-md-10 col-sm-6  text-muted text-left">
+                    {{entityData.entRaisonsocial}}
+                    <br>
+                    <i class="text-muted text-left"></i>
+                    <i class="fas fa-envelope-open-text text-muted mr-2"></i> {{entityData.entEmailSupport}}<br>
+                    <i class="fas fa-phone-square-alt mr-2"></i> {{entityData.mobEntite1}}
+
+                </div>
+            </div>
+            <div class="col-4">
+
+            </div>
+            <div class="col-4">
+                <div class="col-md-6 col-sm-6 ">
+                    <img [src]="tiersLogo" style="width: 100% !important; height:150px !important;">
+                </div>
+                <div class="col-md-10 col-sm-6  text-muted text-left">{{tiersName}}
+                    <br>
+                    <i class="text-muted text-left"></i>
+                    <i class="fas fa-envelope-open-text text-muted mr-2"></i> {{email}}<br>
+                    <i class="fas fa-phone-square-alt mr-2"></i> {{callCenter}}
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="text-right">
+                <button class="btn btn-primary btn-sm" placement="bottom"
+                    ngbTooltip="{{'SEND EMAIL' | translate}}"><i class="fas fa-envelope"></i></button>
+
+                <button class="btn btn-success btn-sm" ngbTooltip="{{'print' | translate}}" placement="bottom"
+                    [printStyle]="{src:{'width' :'20%!important'}}" [useExistingCss]="true"
+                    printSectionId="print-section" ngxPrint><i class="fas fa-print"></i></button>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="mt-4 mb-4">
+        <div class="row">
+            <div class="col-md-8 offset-4 col-sm-12 text-right">
+                <div class="btn-group" role="group" aria-label="actionReq">
+                    <!-- <button type="button" data-toggle="modal" data-target="#modalPush"
+                        class="btn btn-sm btn-success">{{'See policy'|translate}}</button> -->
+                    <button *ngIf="!seeVoucherBtn" type="button" class="btn btn-success btn-sm"
+                        (click)="voucher()">{{'See Voucher'|translate}}</button>
+
+                    <button *ngIf="!disableVoucher" type="button" class="btn btn-success btn-sm"
+                        (click)="issueVoucher()">
+                        <span>{{'ISSUE VOUCHER'|translate}} </span></button>
+
+                    <button *ngIf="!disableCancel" type="button" class="btn btn-success btn-sm"
+                        (click)="cancelBooking()">
+                        <span>{{'CANCEL BOOKING'|translate}} </span></button>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row" id="print-section">
+            <div class="col-12">
+                <br>
+                <hr>
+                <div>
+                    <div class="row">
+                        <div class="voucherRef">
+                            <div class="col-md-12 text-center">
+                                <h1><em>{{'Hotel voucher N°'|translate}} {{bookingDetails.voucherRef}} </em></h1>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-4">
+                            <h3><em>{{'Booking id' | translate}} : {{bookingDetails.bookingId}} </em></h3>
+                        </div>
+                        <div class="col-4">
+                        </div>
+                        <div class="col-4">
+                            <h3><em>{{'Voucher ref' | translate}} : {{bookingDetails.pnrNumber}} </em></h3>
+                        </div>
+                    </div>
+                    <hr>
+                    <div>
+                        <div class="row destination text-center">
+                            <div class="col-md-12 ">
+                                <span> {{bookingDetails.hotelName}} </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 dataBooking">
+                                <span> {{'Pax name' | translate}} : {{bookingDetails.responsable}}</span>
+                            </div>
+                            <div class="col-12 dataBooking">
+                                <span>{{'Hotel adress' | translate}} : {{bookingDetails.adresse}} </span>
+                            </div>
+                            <div class="col-3 dataBooking">
+                                <span> {{'Check in' | translate}}: {{bookingDetails.checkIn | date:'dd/MM/yyyy'}}</span>
+                            </div>
+                            <div class="col-3 dataBooking">
+                                <span> {{'Check out' | translate}}: {{bookingDetails.checkOut | date:'dd/MM/yyyy'}}
+                                </span>
+        
+                            </div>
+                            <div class="col-3 dataBooking">
+                                <span>
+                                    {{'nbnights' | translate}} : {{ bookingDetails.nbNights}} {{'Night(s)' | translate}}
+                                </span>
+        
+                            </div>
+                            
+                        </div>
+
+                    </div>
+
+                </div>
+                <hr>
+                <div class="row destination text-center">
+                    <div class="col-md-12">
+
+                    <span>{{'Rooms details' | translate}}</span>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-2 dataBooking12">
+                        <strong> {{'Room' | translate}} </strong>
+                    </div>
+                    <div class="col-3 dataBooking12">
+                        <strong>{{'Room type' | translate}}</strong>
+                    </div>
+                    <div class="col-3 dataBooking12">
+                        <strong>{{'meals' | translate}}</strong>
+                    </div>
+                    <div class="col-2 dataBooking12">
+                        <strong>{{'Adults' | translate}}</strong>
+                    </div>
+                    <div class="col-2 dataBooking12">
+                        <strong>{{'Children' | translate}}</strong>
+                    </div>
+                </div>
+                <div class="row" *ngFor="let item of bookingDetails.roomsBooked; let j=index">
+                    <div class="col-2 dataBooking1">
+                        <span> {{'Room' | translate}} {{j+1}} </span>
+                    </div>
+                    <div class="col-3 dataBooking1">
+                        <span> {{item.roomName}} </span>
+                    </div>
+                    <div class="col-3 dataBooking1">
+                        <span> {{item.arrgs}}</span>
+                    </div>
+                    <div class="col-2 dataBooking1">
+                        <span> {{item.adultsNo}}</span>
+                    </div>
+                    <div class="col-2 dataBooking1">
+                        <span> {{item.childrenNo}}</span>
+                    </div>
+                </div>
+
+                <br>
+                <hr>
+                <div class="row destination text-center">
+                    <div class="col-md-12">
+
+                    <span>{{'Price Break Down' | translate}}</span>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-2 dataBooking">
+                        <span> {{'Created by' | translate}} : {{bookingDetails.ref_user}}</span>
+                    </div>
+                    <div class="col-2 dataBooking">
+                        <span> {{'Email agent' | translate}} : {{bookingDetails.email_user}}</span>
+                    </div>
+                    <div class="col-3 dataBooking">
+                        <span> {{'Created date' | translate}} : {{bookingDetails.dt_create | date:'dd/MM/yyyy hh:mm'}}</span>
+                    </div>
+                    <div class="col-3 dataBooking">
+                        <span> {{'Vouchered date' | translate}} : {{bookingDetails.dt_voucher | date:'dd/MM/yyyy hh:mm'}}
+                        </span>
+
+                    </div>
+                    <div class="col-2 dataBooking">
+                        <span>
+                            {{'price' | translate}} : {{bookingDetails.amount}} {{bookingDetails.currency}}
+                        </span>
+
+                    </div>
+
+                </div>
+                <div class="row destination text-center">
+                    <div class="col-md-12">
+    
+                        <span>{{'Important notes' | translate}}</span>
+                    </div>
+    
+                    <div class="alert alert-warning" role="alert" style="margin-top : 16px">
+                        <p>
+                            {{'Some hotels may ask for a room guarantee in cash or credit card upon arrival at the end
+                            of their stay.'|translate}} {{'A tourist tax may be required in certain countries (excluding
+                            the cost of the reservation).'|translate}}
+                        </p>
+    
+                    </div>
+                    <hr>
+                </div>
+                    
+
+            </div>
+
+
+        </div>
+
+        <!-- <div class="row mt-4">
+            <div class="col-md-9 col-sm-12">
+                <div class="table-responsive table-v">
+                    <table class="table  table-borderless">
+                        <tr>
+                            <th scope="col"> {{'Hotel name'|translate}} </th>
+                            <td> {{bookingDetails.hotelName}} </td>
+                        </tr>
+                        <tr>
+                            <th scope="col"> {{'Hotel adress'|translate}}</th>
+                            <td> {{bookingDetails.adresse}} </td>
+                        </tr>
+                        <tr>
+                            <th scope="col">{{'Passengers names'|translate}} </th>
+                            <td><a class="p-0" *ngFor="let item of bookingDetails.passengers"> {{item.name}} <br> </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="col">{{'Rooms'|translate}} </th>
+                            <td> <a class="p-0" *ngFor="let item of bookingDetails.roomsBooked"> {{item.roomName}}
+                                    <br></a></td>
+                        </tr>
+                        <tr>
+                            <th scope="col">{{'Meals'|translate}} </th>
+                            <td> {{inputData.resaComment}} <br></td>
+                        </tr>
+                        <tr>
+                            <th scope="col">{{'Check in'|translate}}</th>
+                            <td> {{bookingDetails.checkIn | date:'dd/MM/yyyy'}}</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">{{'Check out'|translate}}</th>
+                            <td> {{bookingDetails.checkOut | date:'dd/MM/yyyy'}} </td>
+
+                        </tr>
+                        <tr>
+                            <th scope="col">{{'Status'|translate}}
+                            </th>
+                            <td>
+                                {{bookingStatus}}
+                            </td>
+                        </tr>
+                    </table>
+
+                    <hr>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-12 text-right">
+                        <div class="d-flex flex-row-reverse">
+                            <div class="primary"><b> {{bookingDetails.amount}} {{bookingDetails.currency}}</b>
+                            </div>
+                            <div class="primary"> {{'Selling price:'|translate}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="title">{{'Need Help?'|translate}}</p>
+                        <p>{{'We would be more than happy to help you. Our team advisor are 24/7 at your service to help
+                            you.'|translate}}
+                        </p>
+                        <div class="title"> <i class="fas fa-phone-alt "></i> <a href="tel:{{callCenter}}">
+                                {{callCenter }}</a> </div>
+                        <div class="title"> <i class="fas fa-envelope-open-text "></i> <a href="mailto:'support@ybholidays.com'"> support@ybholidays.com</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+
+        <!-- <div class="row mt-2">
+
+        </div> -->
+        <!--Modal-->
+        <div class="modal fade" id="modalPush" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered  " role="document">
+                <!--Content-->
+                <div class="modal-content text-center">
+                    <!--Header-->
+                    <div class="modal-header">
+                        <h4 class="modal-title title" id="myModalLabel">{{'Policy informations'|translate}}</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <!--Body-->
+                    <div class="modal-body">
+                        <div class="table-responsive ">
+                            <table class="table table-borderless">
+                                <tr>
+                                    <th class="text-left">{{'Room'|translate}} </th>
+                                    <th>{{'Cancellation On or After'|translate}}</th>
+                                    <th>{{'Cancellation On or Before'|translate}}</th>
+                                    <th class="text-right"> {{'Cancellation charge'|translate}}</th>
+                                </tr>
+                                <tr *ngFor="let item of cancellationHotel">
+                                    <td class="text-left"> {{'Room'|translate}}{{item.idRoom}}</td>
+                                    <td> {{item.fromDate | date:'dd/MM/yyyy'}} </td>
+                                    <td> {{item.toDateCnl | date:'dd/MM/yyyy'}} </td>
+                                    <td class="text-right"> {{item.cancelCharge}} {{item.codeDevise}} </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <!-- <hr> -->
+                    <span>{{defaultPolicy}}</span>
+                </div>
+                <!--/.Content-->
+            </div>
+        </div>
+        <!--Modal-->
+    </div>
+    <app-custom-loading *ngIf="loading"></app-custom-loading>
+
+</div>
+<app-voucher [data]="dataVoucher" (backward)='cancel($event)' *ngIf="showVoucher"></app-voucher>

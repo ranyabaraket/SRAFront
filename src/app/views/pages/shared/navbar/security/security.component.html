@@ -1,0 +1,250 @@
+<button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="dialogRef.close()">
+    <span aria-hidden="true">×</span>
+</button>
+<div class="center">
+    <div class="row mt-1">
+        <div class="col-3 d-flex justify-content-start">
+            <i class="fas fa-arrow-left icon-back" (click)="Back()"  
+             *ngIf="qrCode || email || disable"></i>
+        </div>
+
+        <div class="col-9">
+            <h1> {{'Tow-Factor Authentication' | translate}}</h1>
+        </div>
+    </div>
+    <div class="raw p-0" *ngIf="!qrCode && !email && !disable">
+        <div>
+            <span class="pb-0">{{'Choose a Security Method' | translate}}</span><br>
+            <span class="desc">
+                {{'2-Factor Authentication hepls secure your account in the event of an unauthorized access or access
+                attempts' | translate}}
+            </span>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="row rounded p-3">
+                    <div class="col-1 mt-2">
+                        <input type="checkbox" id="qrCode" [(ngModel)]="qrCode" (change)="showGoogle($event)">
+                    </div>
+                    <div class="col">
+                        <label for="qrCode">
+                           {{' Google Authenticator' | translate}} <br>
+                            <small>
+                               {{'Use an app to scan your code' | translate}}
+                            </small>
+                        </label>
+                    </div>
+                    <div class="col-md-1 mt-2">
+                        <i class="fas fa-qrcode"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-2">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="row rounded p-3">
+                    <div class="col-1 mt-2">
+                        <input type="checkbox" id="email" [(ngModel)]="email" (change)="showEmail($event)">
+                    </div>
+                    <div class="col">
+                        <label for="email">
+                           {{'Email OTP' | translate}} <br>
+                            <small>
+                              {{'Send a code via an email to generate authentication codes' | translate}}
+                            </small>
+                        </label>
+                    </div>
+                    <div class="col-md-1 mt-2">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-0">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="row rounded p-3">
+                    <div class="col-1 mt-2">
+                        <input type="checkbox" id="disable" [(ngModel)]="disable" (change)="showDisable($event)">
+                    </div>
+                    <div class="col">
+                        <label for="Disable">
+                            {{'Disable' | translate}} <br>
+                            <small>
+                                {{'Disabling 2-step verification on my account' | translate}}
+                            </small>
+                        </label>
+                    </div>
+                    <div class="col-md-1 mt-2">
+                        <i class="fas fa-times"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+    <div class="row p-3">
+        <div class="col-md-12 col-sm-12 ">
+            <div *ngIf="qrCode && value !=='next2' || !back ">
+                <div class="col-md-12 col-sm-12 p-2">
+                    <span class="pb-0">
+                        <!-- 1-Vous activez l'authentificationà deux facteurs -->
+                       {{'1-Enable two-factor authentication' | translate}}
+                    </span> <br>
+
+                    <span class="desc">
+                        <!-- Un code sera généré,qu'il faut le sauvegarder. -->
+                        {{'A code will be generated, which must be saved.' | translate}}
+                    </span>
+                </div>
+                <div class="col-12 p-2">
+                    <span class="pb-0">
+                        <!-- 2-Vous téléchargez "Google Authentificator" -->
+                       {{'2-You download Google Authenticator' | translate}}
+                    </span> <br>
+
+                    <span class="desc">
+                        <!-- S'authentifier à l'aide d'une application mobile gratuite(compatible Android /iPhone /Windows
+                        Phone).Un
+                        code vous est ensuite
+                        comminuqué via l'application mobile téléchargée. -->
+                        {{'Authenticate using a free mobile application (Android / iPhone / Windows Phone).A code is then sent to you via the downloaded mobile application.' |translate}}
+                    </span>
+                </div>
+                <div class="col-12 p-2">
+                    <span class="pb-0">
+                        <!-- 3-Vous saisissez votre mot de passe. -->
+                       {{'3-Enter your password.' | translate}}
+                    </span> <br>
+
+                    <span class="desc">
+                        <!-- A chaque fois que vous vous connectez à youcefbooking.com,vous devez saisir votre mot de passe
+                        comme
+                        d'habitude. -->
+                       {{'Each time you log in to youcefbooking.com, you must enter your password as usual' |translate}}
+                    </span>
+                </div>
+
+                <div class="col-12 text-right">
+                    <button type="button" class="btn btn-primary col-md-4" (click)="value = 'next2'">{{'Next' | translate}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 ">
+            <div *ngIf="qrCode && value ==='next2' || !back ">
+                <div class="row">
+                    <p>{{'Google Authenticator SET UP' | translate}}</p>
+                </div>
+                <form [formGroup]="loginForm">
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="input-icons">
+                                <i class="la la-lock icon1"></i>
+                                <input type="password" for="Password" placeholder="{{'Password'|translate}}"
+                                    class="input-dep form-control " name="Password" id="Password"
+                                    formControlName="password"
+                                    [ngClass]="{ 'is-invalid':  loginForm.controls.password.errors}"
+                                    autocomplete="on" />
+                            </div>
+                        </div>
+                        <div class="col-4  d-flex justify-content-end">
+                            <button class="btn btn-primary mt-2 col-12 col-md-12" (click)="generateCode()"
+                                [disabled]=" loading || loginForm.invalid">
+                                <div *ngIf="loading" class="spinner-border spinner-border-sm text-light" role="status">
+                                    <span class="sr-only">{{'loading' | translate}} </span>
+                                </div>
+                               {{'Generate Code' | translate}}
+                            </button>
+
+                        </div>
+                    </div>
+                </form>
+
+                <div class="row">
+                    <div class="col-12 p-2" align="center">
+                        <img [src]="imageUrl" *ngIf="imageUrl" height="100" width="100" /> <br><br>
+                        <b> {{this.Qrcode.mfaCode}}</b>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-center" *ngIf="imageUrl">
+                        <button class="btn btn-sm btn-success col-sm-6 col-md-6 pl-2" (click)="save()"
+                            [disabled]="loading">
+                            <div *ngIf="loadingSave" class="spinner-border spinner-border-sm text-light" role="status">
+                                <span class="sr-only">{{'loading' | translate}}</span>
+                            </div>
+                            {{'Enable Google Authentificator'|translate}}
+                            <div class="icon2 d-flex align-items-center justify-content-center">
+                                <i class="fas fa-check"></i>
+                            </div>
+                        </button>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="row p-3">
+        <div class="col-md-12 col-sm-12" >
+            <div *ngIf=" email ">
+                <div class="col-md-12 col-sm-12 p-2">
+
+                
+                <span class="mb-3">{{'Email Tow-Factor Authentification SET UP' | translate}}</span><br>
+                <span class="desc">{{"The Email OTP method allows you to authenticate using the one-time password (OTP) 
+                    sent to the registered email address. When you try to authenticate to a service, the server sends an OTP to the user's registered email address" | translate}}</span>
+            </div>
+               
+                <!-- <div class="col-12 d-flex justify-content-center" *ngIf="email"> -->
+                <button class="btn btn-sm btn-success col-sm-12 col-md-12 mt-2" (click)="save()" [disabled]="loading">
+                    <div *ngIf="loadingSave" class="spinner-border spinner-border-sm text-light" role="status">
+                        <span class="sr-only">{{'Loading'}}</span>
+                    </div>
+                    {{'Enable Tow-Factor Authentification Email'|translate}}
+                    <div class="icon2 d-flex align-items-center justify-content-center">
+                        <i class="fas fa-check"></i>
+                    </div>
+                </button>
+           
+            </div>
+    
+
+        </div>
+
+    </div>
+
+    <div class="row p-3">
+        <div *ngIf="disable ">
+            <p>{{'Disable Tow-Factor Authentification' | translate}} </p>
+            <span class="desc">
+                {{'Disabling 2-Step Verification overrides security hardening on your account. You only use your password to log in to it.' | translate}}
+            </span>
+            <button class="btn btn-sm btn-success col-sm-12 col-md-12" (click)="save()" [disabled]="loading">
+                <div *ngIf="loadingSave" class="spinner-border spinner-border-sm text-light" role="status">
+                    <span class="sr-only">{{'loading' | translate}}</span>
+                </div>
+                {{'Disable Tow-Factor Authentification'|translate}}
+                <div class="icon2 d-flex align-items-center justify-content-center">
+                    <i class="fas fa-check"></i>
+                </div>
+            </button>
+        </div>
+
+    </div>
+
+</div>

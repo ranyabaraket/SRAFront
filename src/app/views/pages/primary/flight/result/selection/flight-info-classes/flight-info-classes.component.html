@@ -1,0 +1,189 @@
+<div class="row">
+    <div class="col">
+        <h2 mat-dialog-title> {{'Flight Info'|translate}} </h2>
+    </div>
+    <div class="col-1 m-0">
+        <div>
+            <i class="fas fa-times icon clickable" mat-button mat-dialog-close></i>
+        </div>
+    </div>
+</div>
+<mat-dialog-content>
+
+        <div class="row rowdisplay">
+            <div class="col-12">
+                <div *ngFor="let segmentFlightX of data.singleCityPair; let k = index">
+                    <div *ngFor="let segmentFlight of segmentFlightX.flightInfosList; let j = index">
+
+                        <div class="row rowdisplay1">
+                            <div class="col-2">
+                                <img style="width:100px; height: auto;" src="http://www.worldsoftgroup.com/airelines/{{segmentFlight.segment.marketingAirlineCode}}.png">
+                            </div>
+                            <div class="col- flightDetails">
+                                <span> {{segmentFlight.segment.marketingAirlineCode}}-{{segmentFlight.segment.flightNumber}}
+                            {{segmentFlight.segment.departureAirportLocationCode}} =>
+                            {{segmentFlight.segment.arrivalAirportLocationCode}}
+                            {{segmentFlight.segment.departureDateModel}} -
+                            {{segmentFlight.segment.departureTimeModel}}
+                            {{segmentFlight.segment.arrivalDateModel}} - {{segmentFlight.segment.arrivalTimeModel}}
+                        </span>
+                            </div>
+
+                        </div>
+                        <div class="row flightClass">
+                            <div class="col-" *ngFor="let item of segmentFlight.classes; let index = index">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="class{{k}}{{j}}" (change)="changeClass(item, k, j)" [checked]="item == segmentFlight.selectedClass">
+                                    <label class="form-check-label"> {{item}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div id="card-header">
+            <div class="row">
+                <div class="col-2">{{'Passenger type'|translate}}</div>
+                <div class="col-2">{{'Basic fare'|translate}}</div>
+                <div class="col-2">{{'Tax'|translate}}</div>
+                <div class="col-2">{{'Total fare'|translate}}</div>
+                <div class="col-2">{{'Quantite'|translate}}</div>
+                <div class="col-2">{{'total amnt'|translate}}</div>
+            </div>
+        </div>
+        <div id="card-header1">
+            <div class="row">
+                <div class="col-2">{{typePassenger}}</div>
+                <div class="col-2">{{fareBasic}} {{currency}}</div>
+                <div class="col-2">{{taxAmnt}} {{taxDev}}</div>
+                <div class="col-2">{{totalFare}} {{totalFareCurr}}</div>
+                <div class="col-2">{{quantityPassenger}}</div>
+                <div class="col-2">{{totalFare}} {{totalFareCurr}}</div>
+            </div>
+        </div>
+
+        <div id="card-priceDetails">
+            <div class="row">
+                <div class="col-6">{{'Passenger type'|translate}}</div>
+                <div class="col-6">{{typePassenger}}</div>
+            </div>
+            <div class="row">
+                <div class="col-6">{{'Basic fare'|translate}}</div>
+                <div class="col-6">{{fareBasic}} {{currency}}</div>
+            </div>
+            <div class="row">
+                <div class="col-6">{{'Tax'|translate}}</div>
+                <div class="col-6">{{taxAmnt}} {{taxDev}}</div>
+            </div>
+            <div class="row">
+                <div class="col-6">{{'Total fare'|translate}}</div>
+                <div class="col-6">{{totalFare}} {{totalFareCurr}}</div>
+            </div>
+            <div class="row">
+                <div class="col-6">{{'Quantite'|translate}}</div>
+                <div class="col-6">{{quantityPassenger}}</div>
+            </div>
+            <div class="row">
+                <div class="col-6">{{'total amnt'|translate}}</div>
+                <div class="col-6">{{totalFare}} {{totalFareCurr}}</div>
+            </div>
+        </div>
+        
+        <div *ngIf="!newData" class="row ">
+            <div class="col-12  text-right">
+                <button class="btn btn-sm btn-success" (click)="getFare()">{{'Get fare'|translate}}
+            </button>
+            </div>
+        </div>
+
+
+<div *ngIf="newData">
+            <!-- <div id="headingLuggage">
+        <div data-toggle="collapse" class="p-2 clickable h6" data-target="#collapseFN1" aria-expanded="true" aria-controls="collapseFN1"><b>{{'Bagages'|translate}}</b> </div>
+    </div>
+    <div id="collapseFN1" class="collapse show" aria-labelledby="headingLuggage">
+        <div *ngFor="let fareData of newfareData.pricedItineraries[0].originDestinationOptions[0].flightSegment">
+            <span> {{fareData.departureAirportLocationCode}} ==> {{fareData.arrivalAirportLocationCode}}
+                {{fareData.baggage}}</span>
+        </div>
+    </div> -->
+
+            <!-- <div id="headingChange">
+        <div data-toggle="collapse" class="p-2 clickable h6" data-target="#collapseFN11" aria-expanded="true" aria-controls="collapseFN11"><b>{{'changes'|translate}}</b> </div>
+    </div>
+    <div id="collapseFN11" class="collapse show" aria-labelledby="headingChange">
+        <div *ngFor="let changingData of newfareData.availabilityRules.availabilityRuleDetails[0].ruleTxt">
+            <span>{{changingData}}</span>
+        </div>
+    </div> -->
+
+            <!-- <div id="headingCancel">
+        <div data-toggle="collapse" class="p-2 clickable h6" data-target="#collapseFN12" aria-expanded="true" aria-controls="collapseFN12"><b>{{'cancellation'|translate}}</b> </div>
+    </div>
+    <div id="collapseFN12" class="collapse show" aria-labelledby="headingCancel">
+        <div *ngFor="let cancelData of newfareData.availabilityRules.availabilityRuleDetails[1].ruleTxt">
+            <span> {{cancelData}}</span>
+        </div>
+    </div> -->
+
+            <mat-accordion>
+                <mat-expansion-panel hideToggle>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <b>{{'Bagages'|translate}}</b>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div *ngFor="let fareData of newfareData.pricedItineraries[0].originDestinationOptions">
+                        <div *ngFor="let item of fareData.flightSegment">
+                            <div class="row">
+                                <div class="col-6 traget">
+                                    {{item.departureAirportLocationCode}} ==> {{item.arrivalAirportLocationCode}}
+                                </div>
+                                <div class="vl"></div>
+                                <div class="col-3 baggage">
+                                    <i class="fas fa-suitcase-rolling"></i> {{item.baggage}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+
+            <mat-accordion>
+                <mat-expansion-panel hideToggle>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <b>{{'changes'|translate}}</b>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div *ngFor="let changingData of newfareData.availabilityRules.availabilityRuleDetails[0].ruleTxt">
+                        <span>{{changingData}}</span>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+
+            <mat-accordion>
+                <mat-expansion-panel hideToggle>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <b> {{'cancellation'|translate}}</b>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div *ngFor="let cancelData of newfareData.availabilityRules.availabilityRuleDetails[1].ruleTxt">
+                        <span> {{cancelData}}</span>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+
+            <div class="row">
+                <div class="col-12 text-right">
+                    <button class="btn btn-sm btn-success"  (click)="bookflight(newfareData.pricedItineraries[0].fareSourceCode, fareBasic)" >{{'Book'|translate}}
+                </button>
+                </div>
+            </div>
+        </div>
+</mat-dialog-content>
+ 
+<app-custom-loading *ngIf="loadingSearch1"></app-custom-loading>

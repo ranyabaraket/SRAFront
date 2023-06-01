@@ -1,0 +1,255 @@
+<div class="card card-cube mb-2">
+    <div class="card-header" id="headingOne">
+        <span class="badge-corner ">
+            <a class="clickable" ngbTooltip="Source : {{flight.officeId}}" placement="left">{{flight.gds}}</a></span>
+        <div class="row">
+            <div class="col-md-8 col-xs-12">
+                <div *ngFor="let segment of flight.originDestinationOptions">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12 airline-container">
+                            <div class="row text-center">
+                                <div class="col-md-12 mb-2">
+                                    <img class="img-airline"
+                                        src="http://www.worldsoftgroup.com/airelines/{{segment.airlineCodes[0][0]}}.png">
+                                </div>
+                            </div>
+
+                            <div class="row text-center">
+                                <div class="col-md-12 px-5">
+                                    <small class="text-muted" *ngFor="let airline of segment.airlineCodes;">{{airline}}
+                                        <br>
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8 col-sm-12 mt-3 ">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="p-2"> {{'Departure'|translate}}</div>
+                                    <div class="p-1">
+                                        <span class="time"> {{segment.departureTime}} </span>
+                                        <span class="text-muted">{{segment.departureAirportLocationCode}}</span>
+                                    </div>
+                                    <div class="p-1"> {{segment.departureDate}}</div>
+                                    <div class="text-muted p-1">
+                                        <small>{{segment.departureAirportLocation}}</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="totalTime p-2 d-flex justify-content-center"> {{segment.totalTime}}
+                                    </div>
+                                    <div class="p-1 text-center">
+                                        <img src="../../../../../../../../assets/sra-sa/images/flights/arrow.png"
+                                            class="arrow" alt="">
+                                        <img src="../../../../../../../../assets/sra-sa/images/flights/hors-ligne.png"
+                                            class="airplane-img" alt="">
+
+                                    </div>
+                                    <div class="col p-1 text-center">
+                                        <div class="row"><b> {{segment.nbStop}}</b></div>
+
+                                        <div class="row">
+                                            <div class="col">
+                                                <small class="text-success"
+                                                    *ngIf="segment.seat && segment.seat!=='' && segment.seat!=='0'; else noSeatsLeft">
+                                                    <b> {{'only'|translate}} {{segment.seat}} {{'seat left'|translate}}</b></small>
+                                                <ng-template #noSeatsLeft>
+                                                    <small class="text-danger"> <b> {{'No seats left'|translate}}</b></small>
+                                                </ng-template>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col">
+                                                <small *ngIf="segment.baggage"> <i
+                                                        class="fas fa-suitcase-rolling mr-2"></i>{{segment.baggage}}
+                                                </small>
+                                            </div>
+                                        </div>
+                                       </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="p-2">{{'Arrival'|translate}}</div>
+                                    <div class="p-1">
+                                        <span class="time">{{segment.arrivalTime}}</span>
+                                        <span class="text-muted"> {{segment.arrivalAirportLocationCode}}</span>
+                                    </div>
+                                    <div class="p-1">{{segment.arrivalDate}} <small class="text-muted"> +
+                                            {{numberOfDays(segment.arrivalDate,segment.departureDate)}}
+                                            {{'Day'|translate}}</small></div>
+
+                                    <div class="text-muted p-1"><small>
+                                            {{segment.arrivalAirportLocation}}</small></div>
+
+
+                                </div>
+
+                            </div>
+
+
+
+                        </div>
+                        <!-- <div class="col-md-2 col-sm-12 ">
+
+
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-12 text-center mt-4">
+
+                <div class="price-container p-1">
+                   {{formatCurr(flight.totalFare[0].amount)}}
+                        {{flight.totalFare[0].currencyCode}}
+                   </div>
+                   <div class="p-1">
+                    <small *ngIf="flight.refund!=='70';" class="text-danger text-muted">
+                        <b> {{'Not Refundable'|translate}}</b> </small>
+                </div>
+                <div class="row p-1" *ngIf="bestPriceFlight === flight.fareSourceCode && !loadingSearch">
+                    <div class="col">
+                        <a class="badge badge-pill badge-warning p-2">{{'Best Price'|translate}}</a>
+                    </div>
+                </div>
+
+                <div class="p-1">
+                    <button type="button" class="btn-sm" [ngClass]="selectBtnClass"
+                        (click)="selectFligh(flight.fareSourceCode, flight.totalFare[0].amount)">{{'Select'|translate}}
+                    </button>
+
+                    <!-- <button class="btn btn-sm" (click)="selectFligh(flight.fareSourceCode)" [ngClass]="compareSoldeToPriceFlight(flight.totalFare[0].amount)?'btn-secondary':'btn-danger'">{{'Select'|translate}}  </button> -->
+
+                </div>
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+    <div class="row mx-1">
+        <div class="col-3">
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="sendQuote{{index}}"
+                    (change)="flight.sendQuote=!flight.sendQuote;">
+                <label class="form-check-label" for="sendQuote{{index}}"> <small> {{'Send Quote'|translate}}
+                    </small></label>
+            </div>
+
+        </div>
+        <div class="col text-right">
+
+            <button *ngIf="flight.gds === 'AMA'" type="button" class="btn btn-link btn-sm"
+                (click)="openAvailebility(flight);"><small>
+                    {{'Availability'|translate}}</small> </button>
+
+            <button type="button" class="btn btn-link btn-sm" (click)="openPriceBreakDown(flight);"><small>
+                    {{'Price Break Down'|translate}}</small> </button>
+            <button type="button" class="btn btn-link btn-sm" (click)="openFlightDetail(flight);"><small>
+                    {{'More Details'|translate}} </small>
+            </button>
+            <button type="button" class="btn btn-link btn-sm" (click)="openFareRulesDetails(flight)"><small>
+                    {{'Fare Rules'|translate}} </small> </button>
+
+        </div>
+    </div>
+    <div id="collapse{{index}}" *ngIf=" flight.openColapse">
+        <div class="card-body" *ngIf="flightDetails && showFlightDetails ">
+            <div class="row" *ngFor="let destinationOption of flightDetails.originDestinationOptions">
+                <div class="col">
+                    <div *ngFor="let segment of destinationOption.segments; let last = last">
+                        <div class="row">
+                            <div class="col-md-2 col-sm-3 text-center mt-4">
+                                <img class="img-airline"
+                                    src="http://www.worldsoftgroup.com/airelines/{{segment.airline}}.png">
+                            </div>
+                            <div class="col">
+                                <ul class="timeline">
+                                    <li>
+                                        <a>{{segment.departureTime}}</a>.<a>{{segment.departureAireport}}</a>
+                                    </li>
+                                    <small class="text-muted inbetween-text"> {{'Flight Duration'|translate}}
+                                        :{{segment.fligthDuration}}
+                                    </small>
+                                    <li>
+                                        <a>{{segment.arrivalTime}}</a>.<a>{{segment.arrivalAireport}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-2 col-sm-3 my-auto"></div>
+                            <div class="col"> <small class="text-muted ml-4">
+                                    {{segment.airline}}
+                                    .</small>
+                                <small class="text-muted ml-2">{{segment.classCabin}}.</small>
+                                <small class="text-muted ml-2">{{segment.airline}}
+                                    {{segment.flightNum}}</small>
+                                <div *ngIf="!last">
+                                    <hr>
+                                    <div class="text-muted">{{'layover'|translate}} : {{segment.stopOverTime}}
+                                    </div>
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-body" *ngIf="priceDetails && showPriceDetails">
+            <div class="table-responsive">
+                <table class="table min-padding">
+                    <thead>
+                        <tr>
+                            <td scope="col"> <small>{{'Passenger type'|translate}}</small> </td>
+                            <td scope="col"> <small>{{'Basic fare'|translate}}</small> </td>
+                            <td scope="col"> <small> {{'Tax & Fee'|translate}}</small></td>
+                            <td scope="col"> <small>{{'Quantite'|translate}}</small> </td>
+                            <td scope="col"> <small>{{'Per passager'|translate}}</small> </td>
+                            <td scope="col"> <small>{{'Total'|translate}}</small> </td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let priceDetail of priceDetails.ptcFareBreakdowns">
+                            <td> <small>
+                                    {{paxName[priceDetail.passengerTypeQuantity.code]}}
+                                    ({{priceDetail.passengerTypeQuantity.quantity}})
+                                </small>
+                            </td>
+                            <td> <small>{{formatCurr(priceDetail.passengerFare.baseFare.amount)}}
+                                    {{priceDetail.passengerFare.baseFare.currencyCode}}</small>
+                            </td>
+                            <td> <small>{{formatCurr(priceDetail.passengerFare.tax.amount)}}
+                                    {{priceDetail.passengerFare.tax.currencyCode}}</small> </td>
+                            <td><small>X {{priceDetail.passengerTypeQuantity.quantity}}</small>
+                            </td>
+                            <td><small>{{formatCurr(priceDetail.passengerFare.totalFare.amount)}}
+                                    {{priceDetail.passengerFare.totalFare.currencyCode}}</small>
+                            </td>
+                            <td><small>{{formatCurr(priceDetail.passengerFare.totalFare.amount *
+                                    priceDetail.passengerTypeQuantity.quantity)}}
+                                    {{priceDetail.passengerFare.totalFare.currencyCode}}</small>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="row">
+                <div class="col text-right primary">
+                    {{formatCurr(priceDetails.totalFare.amount)}} {{priceDetails.totalFare.currencyCode}}
+                </div>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col text-center">
+                <div *ngIf="loagingDetailsFlight" class="spinner-border spinner-border-sm text-light m-2" role="status">
+                    <span class="sr-only">{{'loading'|translate}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-custom-loading *ngIf="loadingSearch1"></app-custom-loading>

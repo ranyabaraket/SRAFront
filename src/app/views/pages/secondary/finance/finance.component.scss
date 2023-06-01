@@ -1,0 +1,26 @@
+// .nav-item{
+//     background-color: #e9ecef;
+// } 
+
+.nav-tabs .nav-item .nav-link {
+  color: #495057;
+  background-color: #fff;
+  // border-color: #dee2e6 #dee2e6 #fff;
+
+  padding: 1rem 1.2rem !important;
+
+}
+
+.nav-item {
+  background-color: #8bbc2d;
+  color: white;
+}
+
+@media screen and (max-width: 500px) {
+
+  .nav-tabs{
+
+    padding-top: 50px !important;
+    display: block !important;
+  }
+}

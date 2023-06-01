@@ -1,0 +1,112 @@
+<div class="info-bloc">
+    <div class="row rowdisplay1 p-2">
+        <div class="col-md-3 col-sm-12 textmuted">
+            <div class="d-flex">
+                <div><span class="h6 text-muted"> {{searchModel.pickupName}} ( {{searchModel.pickupCode}} )</span>
+                </div>
+
+            </div>
+        </div>
+        <i class="fas fa-slash fa-2x separator d-none d-md-block" style="margin-top:5px;"></i>
+        <div class="col-md-2 col-sm-12 textmuted">
+            <span class="h6 text-muted">{{ searchModel.arrivalDateAff | date :"dd/MM/yyyy"}}
+                {{searchModel.pickupTime}}</span>
+        </div>
+        <div class=" px-2 text-center  "><i class="fas fa-long-arrow-alt-right fa-2x separator "></i></div>
+        <div class="col-md-2 col-sm-12 textmuted">
+            <span class="h6 text-muted">{{ searchModel.departureDateAff | date :"dd/MM/yyyy" }}
+                {{searchModel.dropoffTime}}</span>
+        </div>
+
+        <div class="col-md col-sm-3 text-right">
+            <button class="btn btn-sm btn-light" (click)="showSearchForm=true">{{'modify
+                search'|translate}}</button>
+        </div>
+    </div>
+    <div *ngIf="showSearchForm" class="m-2">
+        <div class="row">
+            <div class="col text-right"><i class="fas fa-times icon clickable" (click)="showSearchForm=false"></i>
+            </div>
+        </div>
+
+        <div class="rowdisplay">
+            <div class="form-field p-2">
+                <app-car-hire-search-form #searchFlighForm [data]="searchModel"></app-car-hire-search-form>
+            </div>
+            <div class="row ">
+                <div class="col-12 text-center mrgBtm">
+                    <button type="button" class="btn btn-success col-11 col-md-2"
+                        style="padding-left: 0; padding-right:0" 
+                        [disabled]="loadingSearch || searchFlighForm.disableButtonSearch()"
+                        (click)="search(searchFlighForm.getSearchModel()); searchModel=searchFlighForm.getSearchModel()">
+                        <div *ngIf="loadingSearch" class="spinner-border spinner-border-sm text-light mr-2"
+                            role="status">
+                            <span class="sr-only">{{'loading' |translate}}</span>
+                        </div><i class="fas fa-search mr-2" style="color: white;"></i> <span>{{'Search'
+                            |translate}}</span>
+                    </button>
+                    <button type="button" [disabled]="loadingSearch" (click)="searchFlighForm.reset()"
+                        class="btn btn-danger col-11 col-md-2">
+                        <span>{{'Reset' |translate}}</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<mat-progress-bar *ngIf="loadingSearch && result.length" mode="indeterminate" [value]="progressValue">
+</mat-progress-bar>
+<div class="row mt-2">
+    <div class="col-lg-2  ">
+        <app-car-hirefilter #filterSett class="filter" id="filterCar-hire" [filterSettings]="filterSettings" [searchModel]="searchModel"
+        [result]="result" (backward)='filter($event)'>
+        </app-car-hirefilter>
+    </div>
+    <div class="col">
+        <div class="row d-lg">
+            <div class="col text-right">
+                <div class="btn-group" role="group">
+                    <button class=" btn btn-light" (click)="openFilter()"><i class="fas fa-filter"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6"></div>
+        </div>
+
+        <div class="row" (click)="closeModal()">
+            <div class="col">
+                <div id="accordion" *ngIf="result">
+                    <div class="row mb-2">
+                        <div class="col"> <span *ngIf="!loadingSearch"> {{resultFiltred.length}}
+                                /<b> {{result.length}}</b> {{'results'|translate}}</span>
+                        </div>
+                        <div class="col text-right">
+                            <u (click)="filterSett.initFilter()" class="clickable primary "><span>
+                                    {{'Clear Filter'|translate}}</span></u>
+                        </div>
+                    </div>
+                    <div *ngIf="resultFiltred">
+                        <div *ngFor="let item of (resultFiltred | slice: lowValue : highValue) ; let index=index">
+                            <app-car-hire-information [data]="item" [searchModel]="searchModel">
+                            </app-car-hire-information>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf=" !loadingSearch && !resultFiltred.length" class="text-center mt-4 text-muted">
+                    {{'No result found'|translate}}
+                </div>
+                <div *ngIf="resultFiltred && resultFiltred.length>10" class="row">
+                    <div class="col text-right">
+                        <mat-paginator [length]="resultFiltred.length" [pageSize]="10"
+                            [pageSizeOptions]="[ 10, 50, 200, 1000]" (page)="getPage($event)">
+                        </mat-paginator>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<app-custom-loading *ngIf="!result.length  && loadingSearch"></app-custom-loading>

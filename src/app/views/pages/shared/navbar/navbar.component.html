@@ -1,0 +1,312 @@
+<div class="navg">
+    <nav class="navbar navbar-default mb-0">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" [routerLink]="['/pages/home']">
+                    <img src="../../../../../assets/sra-sa/images/logo/sra-sa.png" class="sra-logo"></a>
+            </div>
+            <div id="navbar">
+
+                <ul class="nav navbar">
+                    <li class="nav-item">
+                        <a class="nav-link">
+                            <span> {{'Welcome'|translate}} : {{tiersName}}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <div class="dropdown show">
+                            <a class="nav-link dropdown-toggle" role="button" id="dropdownMenuUser"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span> {{trUserName}}</span>
+                            </a>
+
+                            <div class="dropdown-menu profil" aria-labelledby="dropdownMenuUser">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <span>{{'Hi' | translate}} <b>{{trUserName}}</b> : <small>
+                                                {{address}}</small></span> <br>
+
+                                        <small>{{'Email' | translate}} : <b>{{email}}</b></small><br>
+                                    </div>
+                                    <!-- <div class="col-4 d-flex justify-content-end">
+                                        <button type="button" (click)="goToProfil()" class="btn btn-profil">{{'My
+                                            Profile' |translate}}</button>
+
+                                    </div> -->
+                                    <div class="col-5 d-flex justify-content-end">
+                                        <button type="button" (click)="goToProfil()" class="btn  btn-profil mt-4 ml-2 col-6 col-md-6"><i class="fas fa-user-cog"></i> {{'My Profile' |translate}}</button>
+                                        <button type="button"  class="btn btn-profil mt-4 ml-2 col-6 col-md-6"> <i class="fas fa-cogs"></i> {{'Security' |translate}}</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">
+                            <span class="hiden-380 hidden-xs ng-binding"> {{'Your balance is' | translate}}</span>
+                            <span> {{credits}} {{codeDevise}}</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link">
+                            <span class="hiden-380 hidden-xs">
+                                {{'Pending Amount' | translate}}
+                            </span>
+                            <span style="font-size: 13px;">
+                                <!-- -8268USD -->
+                                {{dueAmount}}
+                            </span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+
+<div class="container-fluid topnavv ">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <a><span [routerLink]="['/pages/home']">
+                        <i class="fa fa-home nav-icon" aria-hidden="true"></i> {{'Home' | translate}}
+                    </span>
+                </a>
+            </div>
+            <div class="col">
+                <!-- *ngIf="importPnr == 'O'" -->
+                <a> <span [routerLink]="['/pages/import-pnr']"><i class="fa fa-upload nav-icon" aria-hidden="true"></i>
+                         {{'Import PNR' | translate}}</span>
+                </a>
+            </div>
+
+            <div class="col">
+                <a>
+                    <span [routerLink]="['/pages/help-desk']">
+                        <i class="fa fa-question nav-icon" aria-hidden="true"></i><span> {{'Help Desk' | translate}}</span>
+                    </span>
+                </a>
+            </div>
+
+            <div class="col">
+                <a> <i class="fa fa-rss nav-icon" aria-hidden="true"></i>
+                    <span>  {{'News' | translate}}</span>
+                    <!-- <span class="clignote" *ngIf="numberNews > 0"></span> -->
+                </a>
+
+            </div>
+            <div class="col">
+                <div class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                        aria-expanded="false"><i class="fa fa-plus nav-icon"></i><span>{{'Tools' | translate}} </span><span
+                            class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li *ngFor="let item of subMenu">
+                            <a [routerLink]="[item.webLink]"> <i
+                                    class="{{item.iconName}} nav-icon"></i><span> {{item.lmodule | translate}}</span>
+                                <!-- <span class="badge badge-pill badge-danger" *ngIf="item.lmodule === 'News'">{{nbNews
+                                    }}</span> -->
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <!-- <div class="col">
+                <div (click)="logout()"><a><i class="fa fa-lock nav-icon"></i> <span>Logout</span> <span
+                    class="sr-only">(current)</span></a></div>
+            </div> -->
+            <div class="col">
+                <div class="dropdown">
+                    <a class="dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false"> <i class="fas fa-globe-africa mr-2"></i>{{language}}</a>
+                    <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" (click)="changeLanguage('fr')">Français</a>
+                        <a class="dropdown-item" (click)="changeLanguage('en')">English</a>
+                        <a class="dropdown-item" (click)="changeLanguage('ar')">العربية</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <a (click)="sendEmail()">
+                    <i class="fas fa-envelope" ngbTooltip="{{'Email'|translate}}" placement="bottom"
+                        container="body"></i>
+                    <span>{{'Contact us' | translate}}</span>
+                </a>
+            </div>
+
+            <div class="col">
+                <div (click)="logout()"><a><i class="fa fa-lock nav-icon"></i> <span>{{'Logout' | translate}}</span> <span
+                            class="sr-only">(current)</span></a></div>
+            </div>
+
+
+
+            <!-- <div class="col-md-2 hidden-sm ng-binding">
+                <span class="hiden-435 hidden-xs ng-binding">
+                    Call Center:
+                </span>
+                <span>
+                    92000 86 39
+                    <br>
+                    Email : info@sra-sa.com
+
+                </span>
+            </div> -->
+
+        </div>
+    </div>
+</div>
+
+
+<!-- <li><a ng-click="vm.goToHome()"><i class="fa fa-home nav-icon" aria-hidden="true"
+    [routerLink]="['/pages/home']"></i>Home</a></li>
+<li ng-if="importPnr == 'O'"><a ng-click="vm.goToFlightImport()"><i class="fa fa-upload nav-icon"
+    aria-hidden="true"></i>
+Import PNR</a></li>
+
+<li><a ng-click="vm.goToNews()"> <i class="fa fa-rss nav-icon" aria-hidden="true"></i>
+News <span class="clignote" ng-if="numberNews > 0"
+   ></span></a>
+</li>
+
+<li class="dropdown">
+<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+aria-expanded="false"><i class="fa fa-bars nav-icon"></i>Menu<span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li><a ng-click="vm.goToSearchFlight()"> <i class="fa fa-plane nav-icon"></i>Flights</a>
+</li>
+<li><a ng-click="vm.goToSearchHotel()"><i class="fa fa-bed nav-icon"></i>Hotels</a></li>
+<li ng-if="accountCode=='WS0440' || accountCode=='WS0495' || accountCode=='WS0496'">
+    <a ng-click="vm.goToSearchHotelTunisie()"> <i class="fa fa-hotel nav-icon"> </i> Hotel
+        In Tunisia </a>
+</li>
+
+
+<li role="separator" class="divider"></li>
+
+<li
+    ng-if="accountCode == 'WS0440' || accountCode == 'WS0480' || accountCode == 'WS0497'|| accountCode == 'WS0460'|| accountCode == 'WS0430'">
+    <a ng-click="vm.goToSearchVisa()"><i class="fa fa-cc-visa nav-icon">
+        </i> Visa
+    </a>
+</li>
+<li ng-if="accountCode == 'WS0430' || accountCode == 'WS0480' || accountCode == 'WS0440'">
+    <a ng-click="vm.goToTransfer()"> <i class="fa fa-car nav-icon">
+        </i> Transfer
+    </a>
+</li>
+</ul>
+</li>
+<li class="dropdown">
+<a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+aria-expanded="false"><i class="fa fa-plus nav-icon"></i>Tools <span
+    class="caret"></span></a>
+<ul class="dropdown-menu">
+<li ng-if="importPnr == 'O'"><a ng-click="vm.goToFlightImport()"><i
+            class="fa fa-file nav-icon"></i>Import PNR</a>
+</li>
+<li><a ng-href="#!/SupportClient"><i class="fa fa-question nav-icon"></i>Helpdesk</a></li>
+
+<li><a ng-href="#!/add-user"><i class="fa fa-id-card nav-icon" aria-hidden="true"></i>Create
+        Agents</a></li>
+
+<li><a ng-click="vm.goToAgencyProfile()"><i class="fa fa-building nav-icon"
+            aria-hidden="true"></i>Agency Profile</a></li>
+
+<li role="separator" class="divider"></li>
+<li class="dropdown-header">More</li>
+<li><a ng-click="vm.goToHotelQueue()"> <i class="fa fa-file nav-icon"
+            aria-hidden="true"></i>Files</a></li>
+<li><a ng-click="vm.goToFinance()"> <i class="fa fa-money nav-icon"
+            aria-hidden="true"></i>Finance</a></li>
+<li ng-if="isAdmin == 'O'"><a ng-click="vm.goToCommission()"> <i
+            class="fa fa-credit-card nav-icon" aria-hidden="true"></i>Commissions</a></li>
+
+<li><a ng-click="vm.goToPassenger()"> <i class="fa fa-male nav-icon"
+            aria-hidden="true"></i>Passengers</a></li>
+
+<li><a ng-click="vm.goToCreditRequest()"> <i class="fa fa-money nav-icon"
+            aria-hidden="true"></i>Credit Request</a></li>
+</ul>
+</li>
+<li><a ng-click="vm.popupSendMail()"><i class="fa fa-comment-o nav-icon" aria-hidden="true"></i>
+Contact us</a></li> -->
+
+<!--Navbar -->
+<!-- <nav class="navbar navbar-expand-lg navbar-dark navBarX fixed-top">-->
+<!-- <a class="navbar-brand" [routerLink]="['/pages/home']"> SKY-GULF</a> -->
+<!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-555" aria-controls="navbarSupportedContent-555" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent-555">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link">
+                    <small>{{'Welcome'|translate}} :</small>
+                </a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link">
+                    <small> {{tiersName}}</small>
+
+                </a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link">
+                    <small> {{trUserName}}</small></a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto nav-flex-icons"> -->
+<!-- Dropdown -->
+<!-- <li class="nav-item">
+                <a class="nav-link waves-effect waves-light">
+                    <div class="d-flex">
+                        <div> {{'Your balance is'|translate}} </div>
+                        <div> {{credits}} {{codeDevise}} </div>
+
+                    </div>
+                </a>
+            </li> -->
+<!-- <li class="nav-item">
+                <a class="nav-link">
+                    {{'Your balance is'|translate}}
+                </a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link">
+                    {{credits}} {{codeDevise}}
+
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link waves-effect waves-light" [routerLink]="['/pages/home']">
+                    <i class="fas fa-home" ngbTooltip="{{'Home'|translate}}" placement="bottom" container="body"></i>
+                </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="fas fa-globe-africa mr-2"></i>{{language}}</a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" (click)="changeLanguage('fr')">Français</a>
+                    <a class="dropdown-item" (click)="changeLanguage('en')">English</a>
+                    <a class="dropdown-item" (click)="changeLanguage('ar')">العربية</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link waves-effect waves-light" (click)="sendEmail()">
+                    <i class="fas fa-envelope" ngbTooltip="{{'Email'|translate}}" placement="bottom" container="body"></i>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link waves-effect waves-light" (click)="logout()">
+                    <i class="fas fa-sign-out-alt" ngbTooltip="{{'Logout'|translate}}" placement="bottom" container="body"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav> -->
+<!--/.Navbar -->

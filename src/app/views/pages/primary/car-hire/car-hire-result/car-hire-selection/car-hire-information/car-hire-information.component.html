@@ -1,0 +1,127 @@
+<div class="card card-cube mb-2 p-3">
+    <span class="badge-corner ">
+        <!--<a class="clickable">{{data.gds}}</a></span>-->
+        <a class="clickable">PL</a></span>
+    <div class="row">
+        <div class="col-md-9 col-sm-8">
+            <div class="row">
+                <div class="col-4">
+                    <img src="{{data.car.imageurl}}" class="img-title"
+                        alt="{{data.car.type_name}}">
+                </div>
+                <div class="col-8">
+                    <div class="row">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col h6">
+                                    <b>{{data.car.type_name}}</b>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    {{data.pickup.location}}  <i class="fas fa-long-arrow-alt-right text-muted "></i> {{data.dropoff.location}}  
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col">
+                                    <span class="clickable mr-2" *ngIf="data.car.bags" title="Bag">
+                                        <i class="fas fa-suitcase details-span mr-2"></i>{{data.car.bags}}
+                                    </span>
+                                    <span class="clickable mr-2" *ngIf="data.car.automatic_transmission === 'true'" title="Automatic">
+                                        <i class="fab fa-adn details-span mr-2"></i>
+                                    </span>
+                                    <span class="clickable mr-2" *ngIf="data.car.air_conditioning ==='true' " title="Air conditioner">
+                                        <i class="fas fa-fan details-span mr-2"></i>
+                                    </span>
+                    
+                                    <span class="clickable mr-2" *ngIf="data.car.passengers" title="Passengers">
+                                        <i class="fas fa-user details-span mr-2"></i>
+                                        {{data.car.passengers}}  
+                                    </span>
+                                </div>
+                            </div>
+                           <!---- <div class="row">
+                                <div class="col"> 
+                                        <small class="clickable mr-2" *ngIf="transfer.general.luggage " title="Laguage"> <i
+                                                class="fas fa-suitcase-rolling mr-2"></i>{{transfer.general.luggage}}
+                                        </small>
+                                 
+                                        <small class="clickable mr-2" *ngIf="transfer.general.SmallBagAllowance "
+                                            title="Small Bag">
+                                            <i class="fas fa-suitcase mr-2"></i>{{transfer.general.SmallBagAllowance}}
+                                        </small>
+                                    
+                                        <small class="clickable  mr-2"
+                                            *ngIf="transfer.general.Min_Stops!=='0' && transfer.general.Max_Stops!=='0'"
+                                            title="Stop">
+                                            <i class="fas fa-hand-paper mr-2"></i>
+                                            {{transfer.general.Min_Stops}} - {{transfer.general.Max_Stops}}
+                                        </small>
+                                    
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="transfer.general.NumberOfReviews>0">
+                                <div class="col text-muted">
+                                    <h3 style="display: inline-block"> <span
+                                            class="badge badge-warning mr-2">{{transfer.general.Rating}}</span></h3>
+                                    <span>{{transfer.general.NumberOfReviews}} {{'review' |translate}}</span>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col">
+                                    <div class="row text-muted" *ngIf="transfer.general.description">
+                                        <span class=" ml-3"> {{decriptionTruncated}}
+                                            <u class="clickable primary"
+                                                *ngIf="transfer.general.description.length !== decriptionTruncated.length"
+                                                (click)="showMore()">{{'show more' |translate}}</u>
+                                            <u class="clickable primary"
+                                                *ngIf="transfer.general.description.length === decriptionTruncated.length"
+                                                (click)="showLess()">{{'show less'|translate}}</u> </span>
+                                    </div>
+                                </div>
+                            </div>-->
+                        </div>
+                        <div class="col-md-2 col-sm-6">
+                            <img src="{{data.partner.logo}}" class="img-logo clickable" title="{{data.partner.name}}"
+                                alt="{{data.partner.name}}">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-4  text-right">
+            <div class="row">
+                <div class="col h6">
+                    <!--<b>{{transfer.pricing.price }}
+                            {{transfer.pricing.currency}}</b>-->
+                    <b>{{ format(data.total_fare.totalFare) }}
+                        {{data.total_fare.currency}}</b>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button class="btn btn-sm btn-success" (click)="select(data)">{{'Select'
+                        | translate}}
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class=" col h6">
+                    <small *ngIf="data.price_details.free_cancellation !== 'true' else freeCancelation;" class=" text-right">
+                        <b class="text-error"> {{'Not Refundable'|translate}}</b> </small>
+                    <ng-template #freeCancelation>
+                        <small class="text-danger text-right">
+                            <b> {{'Free Cancellation'|translate}}</b> </small>
+                    </ng-template>
+                </div>
+            </div>
+            <!--<div class="row">
+                <div class="col">
+                    <span class="mt-2">  {{data.price_details.rate}} </span>
+                </div>
+            </div>-->
+        </div>
+    </div>
+</div>

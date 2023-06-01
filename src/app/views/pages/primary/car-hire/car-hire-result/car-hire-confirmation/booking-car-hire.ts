@@ -1,0 +1,61 @@
+export class BookingCarHire {
+  arrivalDate;
+  arrivalTimeH;
+  arrivalTimeM;
+  airlineNumber;
+  depAirport;
+  destAirportCode;
+  accomodationName;
+  accomodationNameAff: any;
+  accoAdress1;
+  accoAddress1Aff: any;
+  accoAdress2;
+  accoAddress2Aff: any;
+  emailid;
+  leadTitle;
+  leadName;
+  leadnameAff: any;
+  leadSurname;
+  leadsurnameAff: any;
+  mobileNo;
+  productid;
+  bookingtypeid;
+  saleprice;
+  noadults;
+  nochildren;
+  noinfants;
+  nopax;
+
+  mobileNumber;
+  countryTel;
+  indPaysTel;
+  customerComm = 0;
+  refUser;
+  nationnality;
+  dropoffType;
+  pickupType;
+  accomodationNameSpaces;
+  deptCityId;
+  departPlace;
+  dropoffCityID;
+  dropoffCity;
+  typeRent;
+  vehiculeDescription;
+  chrComment;
+  codeDeviseGds;
+  codeDeviseTiers;
+  dropoffName;
+  dtReturn;
+  gds;
+  price: any;
+  dtDepart: any;
+  dtArrival: any;
+  arrivalTime: any;
+  ppnBundle: any;
+  custEmail;
+  driverFirstName; // Required
+  driverLastName; // Required
+  custPhone;
+  pickupName: any;
+  nbBagg: any;
+}

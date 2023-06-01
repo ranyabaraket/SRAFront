@@ -1,0 +1,116 @@
+<div class="row mt-2">
+  
+    <div class="col-md-2" *ngIf="!showVoucher">
+        <div class="row">
+            <div class="col text-md-center">
+                <img src="{{carDetails.car.imageurl}}" class="img-title" alt="{{carDetails.car.type_name}}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col  text-md-center">
+                <span class="clickable mr-2" *ngIf="carDetails.car.bags" title="Bag">
+                    <i class="fas fa-suitcase details-span mr-2"></i>{{carDetails.car.bags}}
+                </span>
+                <span class="clickable mr-2" *ngIf="carDetails.car.automatic_transmission === 'true'" title="Automatic">
+                    <i class="fab fa-adn details-span mr-2"></i>
+                </span>
+                <span class="clickable mr-2" *ngIf="carDetails.car.air_conditioning ==='true' " title="Air conditioner">
+                    <i class="fas fa-fan details-span mr-2"></i>
+                </span>
+
+                <span class="clickable mr-2" *ngIf="carDetails.car.passengers" title="Passengers">
+                    <i class="fas fa-user details-span mr-2"></i>
+                    {{carDetails.car.passengers}}  
+                </span>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col text-md-center">
+                <img src="{{carDetails.partner.logo}}" class="img-logo" title="{{carDetails.partner.name}}"
+                    alt="{{carDetails.partner.name}}">
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="row">
+            <div class="col">
+                <span class="h6 text-success" *ngIf="!canceled && showVoucher"><b> {{'Booked' | translate}} - {{bookingId}}</b></span> <br>
+                <span class="h6 text-danger" *ngIf="canceled && showVoucher"><b> {{'Canceled'| translate}} - {{cancelId}}</b></span> <br>
+                <span class="h6"><b>{{carDetails.car.type_name}}</b></span> <br>
+
+                <span class="text-muted">{{carDetails.car.example}}</span>
+            </div>
+            <div class="col-md-3 col-sm-6">
+
+                <span class=" clickable">
+                    <i class="fas fa-exclamation-circle details-span mr-2"></i>{{carDetails.price_details.rate}}
+                </span> <br>  
+                <span class=" clickable" *ngIf="carDetails.price_details.pay_at_booking === 'true'">
+                    <i class="fas fa-hand-holding-usd details-span  mr-2"></i>
+                    {{'Pay at Booking' |translate}}
+                    <br> </span>
+
+                <span class=" clickable" *ngIf="carDetails.price_details.free_cancellation === 'true'">
+                    <i class="far fa-check-circle details-span mr-2"></i>
+                    {{'Free Cancellation' |translate}}
+                </span> <br>
+                <span class=" clickable">
+                    <i class="fas fa-calendar-day details-span mr-2"></i>
+                    {{carDetails.price_details.num_rental_days}}
+                    {{'Days'| translate }}
+                </span> <br>
+
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-4">
+                <div class="row">
+                    <div class="col text-muted"><b>{{'Pick-Up' | translate}}</b></div>
+                </div>
+                <div class="row">
+                    <div class="col"> <b>{{contractModel.pickup_name}} , {{contractModel.pickup_city}} ({{contractModel.pickup_code}}) </b> </div>
+                </div>
+                <div class="row">
+                    <div class="col"> {{contractModel.pickup_date}}  {{contractModel.pickup_time}} </div>
+                </div>
+            </div>
+            <div class="col-1 pt-4">
+                <i class="fas fa-arrow-right  details-span"></i>
+            </div>
+            <div class="col-4">
+                <div class="row">
+                    <div class="col text-muted"><b>{{'Drop-Off'| translate}}</b></div>
+                </div>
+                <div class="row">
+                    <div class="col"> <b>{{contractModel.dropoff_name}} , {{contractModel.dropoff_city}} ({{contractModel.dropoff_code}}) </b> </div>
+                </div>
+                <div class="row">
+                    <div class="col"> {{contractModel.dropoff_date}}  {{contractModel.dropoff_time}} </div>
+                </div>
+            </div>
+             
+        </div>
+        <!--<div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col"> <b>{{carDetails.pickup.location}} ({{carDetails.pickup.location_code}}) </b>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-muted"> {{carDetails.pickup.location_information}} </div>
+                </div>
+            </div>
+        </div>-->
+    </div>
+</div>
+<div class="row mt-2" *ngIf="!canceled">
+    <div class="col-12">
+        <div class="alert alert-warning" role="alert">
+            <div *ngFor="let item of contractModel.booking_conditions">
+                <i class="fas fa-arrow-circle-right mr-2"></i>  {{item.text}}
+            </div>
+           
+          </div>
+    </div>
+</div>

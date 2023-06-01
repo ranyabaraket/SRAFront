@@ -1,0 +1,45 @@
+<div class="container " style="
+margin-top: 67px;
+">
+
+    <div>
+        <div class="rounded">
+            <div class="slogan"> {{'transfer slogan' | translate}}</div>
+            <div class="slogan1"> {{'transfer slogan 2' | translate}}</div>
+
+            <div class="form-field searchField">
+                <app-search-form-transfer #searchTransfer></app-search-form-transfer>
+            </div>
+
+            <div class="row ">
+                <div class="col-12 text-center mrgBtm">
+                    <button type="button" class="btn btn-success col-sm-11 col-md-2"
+                        style="padding-left: 0; padding-right:0" [disabled]="!searchTransfer.disableButtonSearch()"
+                        (click)="search(searchTransfer.getSearchModel())">
+                        <div *ngIf="loadingSearch" class="spinner-border spinner-border-sm text-light" role="status">
+                        </div>
+                        <i *ngIf="!loadingSearch" class="fas fa-search mr-2" style="color: white;"></i> <span>{{'Search'
+                            |translate}}</span>
+                    </button>
+                    <button type="button" (click)="searchTransfer.reset()" class="btn btn-danger col-sm-11 col-md-2">
+                        <span>{{'Reset' |translate}}</span>
+                    </button>
+                </div>
+            </div>
+            <div class="row" id="footerX">
+                <div class="col-md-12 card-columns mx-auto p-2">
+                    <div class="card card-history clickable" *ngFor="let item of latestSearch |async;let index = index"
+                        (click)="searchTransfer.getSearch(item)" title="Latest Search">
+                        <div class="text-center py-3">
+                            <i class="fas fa-history icon"></i> {{index+1}} -
+                            {{item.pickupName}}<br> {{'To'| translate}} {{item.dropoffName}}<br>
+                            <span> {{item.pickupTime |date:'dd/MM/yyyy hh:mm'}}</span>
+                            <span *ngIf="item.dropoffTime">- {{item.dropoffTime |date:'dd/MM/yyyy hh:mm'}}</span>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

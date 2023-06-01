@@ -1,0 +1,107 @@
+<div class="container">
+    <div class="title-container">
+        <span> {{'Sign-in Information' | translate}}
+        </span>
+    </div>
+    <div class="row">
+            <div class="col-6">
+                    <strong> {{'Name' | translate}} </strong><br>
+                    <span>{{trUserName}}</span>
+                </div>
+        <div class="col-6">
+            <strong> {{'Email Address' | translate}} </strong><br>
+            <span>{{email}}</span>
+        </div>
+       
+    </div>
+
+    <div class="row">
+            <div class="col-6">
+                <strong> {{'Customer Ref' | translate}} </strong><br>
+                <span>{{idTiers}}</span>
+            </div>
+            <div class="col-6">
+                    <strong> {{'Code Devise' | translate}} </strong><br>
+                    <span>{{codeDevise}}</span>
+                </div>
+         
+        </div>
+    <hr>
+    <div class="row justify-content-end pb-2">
+        <!-- <div class="col text-right">
+            <button class="btn btn-sm btn-light btn-transparent" (click)="showEditForm = true">
+                <i class="fas fa-edit"></i>
+                {{'Edit Passsword' | translate}}
+
+            </button>
+        </div> -->
+        <button type="button" class="btn btn-success col-sm-6 col-md-6"
+        (click)="showEditForm=true" >
+        {{'Edit Passsword' |translate}}
+           <div class="icon2  d-flex align-items-center justify-content-center">
+                <i class="fas fa-edit"></i>                       </div>
+        </button>
+    </div>
+
+    <div *ngIf="showEditForm" class="mt-2">
+        <div class="row">
+            <form [formGroup]="form">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control"
+                              aria-label="currentPassword"
+                                formControlName="currentPassword"
+                                [ngClass]="{ 'is-invalid':  form.controls.currentPassword.touched && form.controls.currentPassword.errors }" />
+                            <label class="floatingInput">{{'Current Password' | translate}}</label>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12">
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control"
+                               aria-label="password"
+                                formControlName="password"
+                                [ngClass]="{ 'is-invalid':  form.controls.password.touched && form.controls.password.errors }" />
+                            <label class="floatingInput">{{'New Password' | translate}}</label>
+                        </div>
+                    </div>
+                    <div class="col-md-12 col-sm-12">
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control"
+                                 aria-label="confirmPassword"
+                                formControlName="confirmPassword"
+                                [ngClass]="{ 'is-invalid':  form.controls.confirmPassword.touched && form.controls.confirmPassword.errors }" />
+                            <label class="floatingInput">Confirm Password</label>
+
+                            <!-- <div *ngIf="form.get('confirmPassword').errors.confirmPasswordValidator">
+                                Passsword and Confirm Password didn't match.
+                              </div> -->
+                        </div>
+
+                    </div>
+                </div>
+        
+                <div class="row justify-content-end">
+                    <div class="col-md-12 d-flex justify-content-end p-0">
+                            <button type="button" class="btn btn-primary col-sm-5 col-md-5 "
+                        (click)="showEditForm=false" >
+                        {{'Close' |translate}}
+                           <div class="icon d-flex align-items-center justify-content-center">
+                            <i class="fas fa-times-circle"></i>                        </div>
+                        </button>
+                        <button type="button" class="btn btn-success col-sm-5 col-md-5" [disabled]="form.invalid "
+                            (click)="save()">
+                            <span>{{'Save' |translate}}</span>
+                            <div class="icon2 d-flex align-items-center justify-content-center">
+                                    <i class="fas fa-save"></i>
+                            </div>
+                        </button>
+                    
+                    </div>
+                </div>
+            </form>
+        
+            <!-- <div class="col text-right"><i class="fas fa-times icon clickable icon-bg" (click)="showSearchForm=false"></i>
+            </div> -->
+        </div>
+</div>

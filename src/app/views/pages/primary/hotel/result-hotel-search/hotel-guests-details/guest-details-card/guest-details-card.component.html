@@ -1,0 +1,91 @@
+<div class="accordion" id="accordionExample">
+    <form #inputGuestForm="ngForm">
+
+        <div class="row">
+            <div class="col-md-2 col-sm-4">
+                <label> {{'Title'|translate}} <span class="text-danger"> * </span> </label>
+                <select class="form-control form-control-sm" name="title" [(ngModel)]="guestModel.civilite" #title="ngModel" required [class.is-invalid]="submitted && title.invalid">
+                    <option value="MR"> {{'MR'|translate}}
+                    </option>
+                    <option value="MRS"> {{'MRS'|translate}}
+                    </option>
+                    <option value="MS"> {{'MS'|translate}}
+                    </option>             
+               
+                </select>
+            </div>
+
+            <!-- <div class="col-md-2 col-sm-4">
+                <label> {{'Type'|translate}} <span class="text-danger"> * </span> </label>
+                <div *ngIf="guestModel.isChild === false">
+                    <input class="form-control form-control-sm" name="type" disabled placeholder="ADULT">
+                </div>
+                <div *ngIf="guestModel.isChild === true">
+                    <input class="form-control form-control-sm" name="type" disabled placeholder="CHILD">
+                </div>
+            </div> -->
+
+            <div class="col-md-4 col-sm-4">
+                <label> {{'First name'|translate}}<span class="text-danger"> * </span></label>
+                <input type="text" class="form-control form-control-sm" name="fname" [(ngModel)]="guestModel.firstName" required [class.is-invalid]="submitted && fname.invalid" #fname="ngModel" pattern="[a-zA-Z]+[a-zA-Z ]+" (input)="getFirstName($event.target.value)"
+                    aria-label="State" [matAutocomplete]="autofname">
+                <mat-autocomplete #autofname="matAutocomplete">
+                    <mat-option *ngFor="let  option of filteredByFirstNamePsg | async" [value]="option.firstName" (onSelectionChange)="selectPassenger(option)">
+                        {{option.firstName}} {{option.lastName}}
+                    </mat-option>
+                </mat-autocomplete>
+            </div>
+            <div class="col-md-4 col-sm-4">
+                <label>{{'Last name'|translate}} <span class="text-danger"> * </span></label>
+                <input type="text" class="form-control form-control-sm" name="lname" [(ngModel)]="guestModel.lastName" required [class.is-invalid]="submitted && lname.invalid" #lname="ngModel" pattern="[a-zA-Z]+[a-zA-Z ]+" (input)="geLastName($event.target.value)" aria-label="State"
+                    [matAutocomplete]="autolname">
+                <mat-autocomplete #autolname="matAutocomplete">
+                    <mat-option *ngFor="let  option of filteredByLastNamePsg | async" [value]="option.lastName" (onSelectionChange)="selectPassenger(option)">
+                        {{option.firstName}} {{option.lastName}}
+                    </mat-option>
+                </mat-autocomplete>
+            </div> 
+        </div>
+         <br>
+        <div class="row">
+            <!-- <div class="col-md-4 col-sm-4">
+                <label> {{'Nationality'|translate}} <span class="text-danger"> * </span> </label>
+
+                <select class="form-control form-control-sm" name="nationalitePax" [(ngModel)]="guestModel.nationalitePax" #nationalitePax="ngModel" required [class.is-invalid]="submitted && nationalitePax.invalid">
+                        <option value=""> {{'Nationality'|translate}}
+                        </option>
+                        <option *ngFor="let item of pays" [value]="item.nationalite"> {{item.nationalite}}
+                        </option>
+                    </select>
+            </div> -->
+            <div class="col-md-8 col-sm-12">
+                <label>{{'Birth date'|translate}} </label>
+                <div class="row">
+
+                    <div class="col-4">
+                        <select class="form-control form-control-sm" name="ddBirthday" [(ngModel)]="guestModel.ddBirthDay">
+                                <option value=""> {{'Day'|translate}}
+                                </option>
+                                <option *ngFor="let item of BirthDatedays" [value]="item"> {{item}}
+                                </option>
+                            </select>
+                    </div>
+                    <div class="col-4">
+                        <select class="form-control form-control-sm" name="mmBirthday" (change)="fillDaysBirthDate()" [(ngModel)]="guestModel.mmBirthDay">
+                                <option value=""> {{'Month'|translate}}
+                                </option>
+                                <option *ngFor="let item of months | async" [value]="item.value"> {{item.name}}
+                                </option>
+                            </select>
+                    </div>
+                    <div class="col-4">
+                        <input type="number" class="form-control form-control-sm" name="yyBirthday" placeholder="Year" [(ngModel)]="guestModel.yyBirthDay" (change)="applyIntervalYears($event.target.value)">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br> 
+
+    </form>
+</div>

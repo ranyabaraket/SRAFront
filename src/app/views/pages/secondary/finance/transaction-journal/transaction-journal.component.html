@@ -1,0 +1,149 @@
+<div class="container-fluid  pt-0">
+    <div class="  mb-2">
+        <form #searchForm="ngForm" class="py-3">
+            <div class="row">
+                <div class="col-md-3 col-sm-12">
+                    <div class="form-floating mb-3">
+                        <select class="form-control form-select" name="transType" [(ngModel)]="searchModel.natOpr">
+                            <option value="null">{{'All'|translate}}</option>
+                            <option value="C">{{'Credit'|translate}}</option>
+                            <option value="D">{{'Debit'|translate}}</option>
+                        </select>
+                        <label for="floatingSelect">{{'Transaction type'|translate}}</label>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-12">
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control form-control-sm" name="uniqueId"
+                            [(ngModel)]="searchModel.refBook">
+                        <label for="floatingSelect">{{'Unique ID'|translate}} </label>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="row">
+                        <div class="col-md-6 col-xs-12">
+                            <div class="form-floating mb-3">
+                                <input type="date" class="form-control form-control-sm" name="dtStart"
+                                    [(ngModel)]="searchModel.startDt">
+                                <label for="floatingSelect"> {{'Transaction date'|translate}}</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xs-12">
+                            <div class="form-floating mb-3">
+                                <input type="date" class="form-control form-control-sm" name="dtEnd"
+                                    [(ngModel)]="searchModel.endDate" [min]="searchModel.startDt">
+                                <label for="floatingSelect"> {{'Transaction date'|translate}}</label>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div class="row  mt-2">
+                <div class="col-12 text-right">
+                    <button type="button" class="btn  btn-sm btn-success col-12 col-md-2 m-2" (click)="find()"
+                        [disabled]="loading">
+                        <div *ngIf="loading" class="spinner-border spinner-border-sm text-light" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        <span> {{'Find'|translate}} </span>
+                        <div class="icon2 d-flex align-items-center justify-content-center">
+                            <i class="fas fa-search"></i>
+                        </div>
+                    </button>
+
+                    <button type="button" class="btn btn-sm  btn-primary col-12 col-md-2 m-2"
+                        (click)="reset(searchForm)" [disabled]="loading">{{'Refresh'|translate}}
+                        <div class="icon d-flex align-items-center justify-content-center">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div>
+        <div class=" card card-no-border  mb-4">
+            <label class="col ml-2"> {{'Transaction'|translate}} ({{total}}) </label>
+
+            <div class="d-flex justify-content-end">
+                <button style="border:none ; background: none" (click)="exportAsXLSX()">
+                    <i class="far fa-file-excel fa-lg" style="color:rgb(4, 173, 46)"></i>
+                </button>
+                <button style="border:none ; background: none" (click)="exportToPdf()">
+                    <i class="far fa-file-pdf fa-lg" style="color:red"></i>
+                </button>
+            </div>
+
+            <table mat-table [dataSource]="source" class="my-table">
+                <!-- dtCreate Column -->
+                <ng-container matColumnDef="dtCreate">
+                    <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'dtCreate'| translate }}</th>
+                    <td mat-cell *matCellDef="let element"> {{element.dtCreate}} </td>
+                </ng-container>
+                <!-- refBook Column -->
+                <ng-container matColumnDef="refBook">
+                    <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'refBook'| translate }}</th>
+                    <td mat-cell *matCellDef="let element"> {{element.refBook}} </td>
+                </ng-container>
+                <!-- libService Column -->
+                <ng-container matColumnDef="libService">
+                    <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'libService'| translate }}</th>
+                    <td mat-cell *matCellDef="let element" class="text-center"> {{element.libService}} </td>
+                </ng-container>
+                <!-- typeDoc Column -->
+                <ng-container matColumnDef="typeDoc">
+                    <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'typeDoc'| translate }}</th>
+                    <td mat-cell *matCellDef="let element" class="text-center"> {{element.typeDoc}} </td>
+                </ng-container>
+                <!-- credit Column -->
+                <ng-container matColumnDef="credit">
+                    <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'credit'| translate }}</th>
+                    <td mat-cell *matCellDef="let element" class="text-center hotel-name">
+                        <span *ngIf=" element.natOpr === 'C'">
+                            <span>{{'credit'| translate}}</span>
+                        </span>
+                    </td>
+                </ng-container>
+                <!-- debit Column -->
+                <ng-container matColumnDef="debit">
+                    <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'debit'| translate }}</th>
+                    <td mat-cell *matCellDef="let element" class="text-center">
+                        <span *ngIf=" element.natOpr === 'D'">
+                            <span>{{'debit'| translate}}</span>
+                        </span>
+                    </td>
+                </ng-container>
+
+                <!-- mntSoldeTiers Column -->
+                <ng-container matColumnDef="mntSoldeTiers">
+                    <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'mntSoldeTiers'| translate }}
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="text-center"> {{element.mntSoldeTiers}} </td>
+                </ng-container>
+                <!-- codeDevise Column -->
+                <ng-container matColumnDef="codeDevise">
+                    <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'codeDevise'| translate }}</th>
+                    <td mat-cell *matCellDef="let element" class="text-center"> {{element.codeDevise}} </td>
+                </ng-container>
+                <!-- trUserName Column -->
+                <ng-container matColumnDef="trUserName">
+                    <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'trUserName'| translate }}</th>
+                    <td mat-cell *matCellDef="let element" class="text-center"> {{element.trUserName}} </td>
+                </ng-container>
+
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[100, 200, 300, 400]" showFirstLastButtons>
+            </mat-paginator>
+
+            <!-- <ng2-smart-table id="myTableElementId" [settings]="settings" [source]="source"  #htmlData>
+             id="htmlData" 
+        </ng2-smart-table> -->
+        </div>
+    </div>
+</div>

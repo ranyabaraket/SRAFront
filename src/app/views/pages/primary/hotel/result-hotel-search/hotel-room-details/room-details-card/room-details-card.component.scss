@@ -1,0 +1,115 @@
+.sticky-data {
+    position: sticky;
+    top: 0;
+    width: 80%;
+    margin-left: 10%;
+}
+
+.card-cube {
+    border-radius: 0px;
+    width: 100%;
+}
+
+.card-header {
+    background-color: white!important;
+}
+
+.vl {
+    border-left: 1px solid gainsboro;
+    height: auto;
+}
+
+#card-header1 {
+    background-color: rgb(235, 239, 240)!important;
+    height: 40px;
+    width: 100%;
+    //  margin-top: 50px;
+    font-size: 1rem;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 52px;
+    z-index: 2;
+}
+
+.decsript {
+    margin: 0;
+}
+
+@media only screen and (max-width: 752.1px) {
+    .roomDetailsCard {
+        display: none!important;
+    }
+}
+
+@media only screen and (min-width: 752.1px) {
+    .roomDetailsCard1 {
+        display: none!important;
+    }
+}
+
+.card-cubeX {
+    border-radius: 0px;
+    width: 100%;
+    padding: 10px;
+}
+
+.card-headerX {
+    background-color: white!important;
+    margin-bottom: 5px;
+}
+
+.roomType {
+    margin-top: 10px;
+    margin-left: 20px;
+    font-size: 1rem;
+}
+
+.marginTopLeft {
+    margin-top: 10px;
+    margin-left: 5px;
+}
+
+.promo {
+    color: red;
+    margin-left: -8px;
+}
+
+.fontSize {
+    font-size: 24px;
+}
+
+.fontW {
+    font-weight: 400
+}
+
+.btnRight {
+    margin-left: -10px;
+}
+
+.alignCtr {
+    margin: auto;
+    text-align: center
+}
+
+.leftCtr {
+    margin-left: 5px;
+    text-align: center;
+}
+
+.leftCtr1 {
+    margin-left: 5px;
+    color: red;
+}
+
+.mrgRight {
+    margin-right: 10px;
+}
+
+.combFinal {
+    margin-left: -30px;
+    margin-top: -5px;
+}
+
+.combFinal3 {
+    margin-bottom: 5px;
+}

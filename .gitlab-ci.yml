@@ -1,0 +1,98 @@
+image: node:14-alpine
+
+stages:
+  - install-dependencies
+  - lint-angular
+  - test-angular
+  - build-angular
+  - build-image
+  - deploy-pre-prod
+  - deploy-prod
+
+cache:
+  paths:
+    - node_modules/
+    - dist/
+
+install-dependencies:   
+  stage: install-dependencies
+  script:
+    - npm install --silent 
+
+lint-angular:
+  stage: lint-angular
+  allow_failure: true
+  script:
+  - npm run lint
+
+test-angular:unit-test:
+  stage: test-angular
+  allow_failure: true
+  script:
+    - apt-get update && apt-get install -y unzip fontconfig locales gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget
+    - npm run test-ci
+
+test-angular:e2e-test:
+  stage: test-angular
+  allow_failure: true
+  script:
+    - apt-get update && apt-get install -y unzip fontconfig locales gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget
+    - npm run e2e-ci
+
+build-angular:
+  stage: build-angular
+  image: node:14-alpine
+  script:
+    - npm run build-prod
+  artifacts: 
+    paths:
+      - dist
+
+
+  
+build-image:
+  image: docker:18.09
+  stage: build-image
+  services:
+    - docker:18.09-dind
+  before_script:
+    - docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+  script: 
+    - docker build -t $CI_REGISTRY_IMAGE .
+    - docker push $CI_REGISTRY_IMAGE
+  when: manual
+
+
+deploy-pre-prod:
+  image: ubuntu:latest
+  stage: deploy-pre-prod
+  before_script:
+    - 'which ssh-agent || ( apt-get update && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - cat "$PRIVATE_SSH_KEY" | tr -d '\r' | ssh-add - > /dev/null
+    - ssh -o StrictHostKeyChecking=no $USER_SERVER@$IP_SERVER  ls
+    - ssh -o StrictHostKeyChecking=no $USER_SERVER@$IP_SERVER docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+  script:
+    - scp -o StrictHostKeyChecking=no docker-compose.yml $USER_SERVER@$IP_SERVER:~/frontend-b2b-SRA
+    - ssh -o StrictHostKeyChecking=no $USER_SERVER@$IP_SERVER docker-compose -f frontend-b2b-SRA/docker-compose.yml down
+    - ssh -o StrictHostKeyChecking=no $USER_SERVER@$IP_SERVER docker pull $CI_REGISTRY_IMAGE
+    - ssh -o StrictHostKeyChecking=no $USER_SERVER@$IP_SERVER docker-compose -f frontend-b2b-SRA/docker-compose.yml up -d
+  when: manual
+
+
+deploy-prod:
+  image: ubuntu:latest
+  stage: deploy-prod
+  before_script:
+    - 'which ssh-agent || ( apt-get update && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - cat "$SSH_PRIVATE_KEY_PROD" | tr -d '\r' | ssh-add - > /dev/null
+    - ssh -o StrictHostKeyChecking=no $PROD_SERVER_USER@$PROD_SERVER_IP  ls
+    - ssh -o StrictHostKeyChecking=no $PROD_SERVER_USER@$PROD_SERVER_IP docker login -u gitlab-ci-token -p $CI_JOB_TOKEN $CI_REGISTRY
+  script:
+    - scp -o StrictHostKeyChecking=no docker-compose.yml $PROD_SERVER_USER@$PROD_SERVER_IP:~/frontend-b2b-SRA
+    - ssh -o StrictHostKeyChecking=no $PROD_SERVER_USER@$PROD_SERVER_IP docker-compose -f frontend-b2b-SRA/docker-compose.yml down
+    - ssh -o StrictHostKeyChecking=no $PROD_SERVER_USER@$PROD_SERVER_IP docker pull $CI_REGISTRY_IMAGE
+    - ssh -o StrictHostKeyChecking=no $PROD_SERVER_USER@$PROD_SERVER_IP docker-compose -f frontend-b2b-SRA/docker-compose.yml up -d
+  when: manual
+

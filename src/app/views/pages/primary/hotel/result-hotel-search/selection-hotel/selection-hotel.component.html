@@ -1,0 +1,386 @@
+<app-new-search-hotel [searchModel]="searchModel" (backward)='searchHotel1($event)'></app-new-search-hotel>
+
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css' rel='stylesheet' />
+
+<mat-progress-bar *ngIf="loadingSearch" mode="indeterminate" [value]="progressValue">
+</mat-progress-bar>
+<div class="row pt-3">
+    <div class="col-md-2 col-sm-12 zindex">
+        <!-- <app-filter-hotel #filterHtl id="filter" class="filter" [events]="eventsFilterSubject.asObservable()"
+            [hotelData]="gds" (backward)='filter($event)'>
+        </app-filter-hotel> -->
+        <div class="container-fluid">
+            <form #filterForm>
+                <div class="card-hotel">
+                    <div id="headingHotelName">
+                        <div data-toggle="collapse" class="pt-2 clickable h6 titre-hotel" data-target="#collapseFN"
+                            aria-expanded="true" aria-controls="collapseFN"><b>{{'Hotel name'|translate}}</b> </div>
+                    </div>
+                    <div id="collapseFN" class="collapse show" aria-labelledby="headingHotelName">
+                        <div class="row">
+                            <!-- <div class="buttonIn">
+
+                                <input id="enter" type="text" class="form-control form-control-sm mb-2"
+                                    placeholder="{{'Hotel name'|translate}}" name="hotelname" [(ngModel)]="hotelname"
+                                    [ngbTypeahead]="search">
+                                <button id="clear" (click)="clearName()" *ngIf="hotelname != null">clear</button>
+                            </div>
+
+
+                            <div class="text-end">
+
+                                <button class="btn btn-sm btn-black p-0 filterHotel" (click)="checkName()">
+                                    Go
+                                </button>
+
+                            </div> -->
+
+                            <input class="col-10 form-control is-invalid mx-2" type="text" aria-label="State"
+                                [matAutocomplete]="autoFrom" placeholder="{{'Filter with hotel name' | translate}}"
+                                name="destination" [(ngModel)]="inputHotelName" (keyup)="getHotelNames($event)"
+                                #destination="ngModel"
+                                [ngClass]="{ 'is-invalid':  destination.invalid  && (destination.dirty || destination.touched) }"
+                                required>
+                            <button id="clear" (click)="clearName()" *ngIf="showClearButton">clear</button>
+
+
+                            <!-- <div class="col-4 text-end" style="padding-left: 5px;padding-right: 5px;padding-top: 0px;">
+                                <button class="btn btn-sm btn-black p-0 filterHotel" (click)="checkName()">
+                                    {{'Filter' | translate}}
+                                </button>
+                            </div> -->
+
+                        </div>
+                        <mat-autocomplete #autoFrom="matAutocomplete">
+                            <mat-select multiple>
+                                <!-- <mat-option *ngIf="!inputHotelName" class="text-right">
+                                </mat-option> -->
+                                <mat-option *ngFor=" let option of filteredHotelNames let index = i" [value]="option"
+                                    disabled>
+                                    <small>
+                                        <input type="checkbox" (click)="addToList(option)" [value]="option">
+
+                                        <a class="text-muted">
+                                            {{option}}</a>
+                                    </small>
+                                </mat-option> </mat-select>
+
+
+
+                        </mat-autocomplete>
+
+
+
+
+
+
+
+                    </div>
+
+                </div>
+
+                <hr>
+                <div class="card-hotel" *ngIf="searchResultList.length">
+
+
+                    <div id="headingRating">
+                        <div class="d-flex">
+                            <div data-toggle="collapse" class="p-2 clickable h6 flex-grow-1"
+                                data-target="#collapseRating" aria-expanded="true" aria-controls="collapseRating">
+                                <b>{{'Rating'|translate}}</b>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="collapseRating" class="collapse show" aria-labelledby="headingRating">
+                        <div class="panel-content" (change)="checkNbStop(i + 1)" *ngFor="
+                    let item of searchResultHotel.filters.stars | keyvalue; let i = index" style="display: flex">
+
+                            <input type="checkbox" style="margin: 2%;" name="{{ item.key }}" id="{{ item.key }}"
+                                value="{{ item.value }}" [checked]="item.value" id="">
+                            <label *ngIf="item.key == '1'" class="check" for=""> <i
+                                    class="fas fa-star golden"></i></label>
+                            <label *ngIf="item.key == '2'" class="check" for=""> <i class="fas fa-star golden"></i> <i
+                                    class="fas fa-star golden"></i></label>
+                            <label *ngIf="item.key == '3'" class="check"> <i class="fas fa-star golden" for=""></i> <i
+                                    class="fas fa-star golden"></i> <i class="fas fa-star golden"></i></label>
+                            <label *ngIf="item.key == '4'" class="check" for=""> <i class="fas fa-star golden"></i> <i
+                                    class="fas fa-star golden"></i><i class="fas fa-star golden"></i> <i
+                                    class="fas fa-star golden"></i> </label>
+                            <label *ngIf="item.key == '5'" class="check" for=""> <i class="fas fa-star golden"></i> <i
+                                    class="fas fa-star golden"></i><i class="fas fa-star golden"></i><i
+                                    class="fas fa-star golden"></i> <i class="fas fa-star golden"></i> </label>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="card-hotel">
+                    <div id="headingPriceNight">
+
+                        <div class="d-flex">
+                            <div data-toggle="collapse" class="pt-2  clickable h6 flex-grow-1"
+                                data-target="#collapsePrice" aria-expanded="true" aria-controls="collapsePrice"><b
+                                    style="font-size: 16px;">{{'budget'|translate}}</b></div>
+                            <div class="p-2">
+                                <b class="resetprice clickable mr-2 p-1"
+                                    (click)="resetValuePrix()">{{'Reset'|translate}}</b>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div id="collapsePrice" class="custom-slider collapse show" aria-labelledby="headingPriceNight">
+                        <div *ngIf="minValue && maxValue">
+                            <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"
+                                (userChangeEnd)="filterPost()"></ng5-slider>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <!-- <div class="card-assistant">
+                    <img style="width: 100%;" class="contact"
+                        src="../../../../../../../assets/ybholidays/images/hotels/contact.png">
+                </div> -->
+            </form>
+        </div>
+    </div>
+    <br>
+    <div class="col-md-7 col-sm-12">
+        <div class="row mb-2 mrginTop">
+            <div class="col-9" *ngIf="!loadingSearch"> <span> {{searchNbr1}}
+                    / <b>{{searchNbr}} </b> in {{searchModel.destinationText}} <b> <i class="fa fa-cloud"
+                            aria-hidden="true"></i> {{weather}}</b> </span>
+            </div>
+            <div class="col-md-12" style="margin-bottom: 0.2%;">
+                <div class="form-bloc">
+                    <div class="d-flex  p-2">
+                        <div class="col-md-3" style="padding: 0.5%;">
+                            {{'Sort results by' | translate}} :
+                        </div>
+                        <div class="col-md-3">
+
+                            <div class="select-field">
+                                <select class="form-select" style="background-color: white !important;"
+                                    (change)="sortBy($event)">
+                                    <option value="" selected>{{'Price' | translate}}</option>
+                                    <option value="price">{{'Price' | translate}} ↑</option>
+                                    <option value="price1">{{'Price' | translate}} ↓</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3" style="margin-left: 7px;">
+
+                            <div class="select-field">
+                                <select class="form-select" style="background-color: white !important;"
+                                    (change)="sortBy($event)">
+                                    <option value="" selected>{{'Name' | translate}}</option>
+                                    <option value="name">{{'Name' | translate}} ↑</option>
+                                    <option value="name1">{{'Name' | translate}} ↓</option>
+
+                                </select>
+                            </div>
+
+                        </div>
+
+
+
+
+
+                        <div class="col-md-3" style="margin-left: 7px;">
+
+                            <div class="select-field">
+                                <select class="form-select" style="background-color: white !important;" name="meals"
+                                    (change)="sortBy($event)">
+                                    <option value="" selected>{{'stars' | translate}}</option>
+                                    <option value="rate">{{'stars' | translate}} ↑</option>
+                                    <option value="rate1">{{'stars' | translate}} ↓</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-2">
+            <app-custom-loading *ngIf="!searchResultList.length && loadingSearch || loadingSearch"
+                [searchModel]="searchModel"></app-custom-loading>
+
+            <!-- <div class="row d-lg">
+                <div class="col text-right">
+                    <div class="btn-group" role="group">
+                        <button class=" btn btn-light" (click)="openFilter()"><i class="fas fa-filter"></i></button>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+
+
+
+        <div class="container py-3">
+
+            <div class="card" class="card card-cube" *ngFor="let hotelResult of searchResultList  ; let index=index">
+                <!-- <div class="badge-corner-bot" *ngIf="displayProvider == 'O'">{{hotelResult.gds}}</div> -->
+                <div class="badge-corner-bot">{{hotelResult.gds}}</div>
+
+                <div class="badge-corner-top" *ngIf="hotelResult.ratings != null && hotelResult.ratings != 0"><a
+                        class="hotelcard-rating"></a>{{hotelResult.ratings}}</div>
+
+
+                <div class="row ">
+
+                    <div class="col-md-4">
+
+                        <div class="">
+
+                            <!-- <img class="d-block   hotel-image" *ngIf="hotelResult.logo !== '' "
+                                [src]="hotelResult.logotxt!=null?hotelResult.logotxt:hotelResult.logo "> -->
+                            <img class="d-block  hotel-image"
+                                *ngIf="hotelResult.logo != '' && hotelResult.logo != null " [src]="hotelResult.logo ">
+                            <img class="d-block  hotel-image" *ngIf="hotelResult.logo == null || hotelResult.logo == ''"
+                                src="../../../../../../../assets/ybholidays/images/hotels/hotel-unknown.jpg">
+
+                        </div>
+
+
+                    </div>
+                    <!-- End of carousel -->
+                    <div class="col-md-8 px-3">
+                        <div class="row">
+                            <div>
+                                <div class="row">
+                                    <div class="col-md-7 hotelname mt-4">
+                                        <div class="row">
+                                            <div class="col-md-12 ">
+
+                                                <b class="nameH"> {{hotelResult.name}} </b>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+
+                                            <span class="text-muted"> <i class="fas fa-map-marker-alt icon-address"></i>
+                                                {{hotelResult.adress}}</span>
+                                        </div>
+                                        <div class="row mt-1"
+                                            *ngIf="hotelResult.description != undefined && hotelResult.description != null">
+                                            <div class="col ">
+                                                <!-- <p class= "description"> {{hotelResult.description | slice:0:strLimit1}}</p> -->
+                                                <p [innerHTML]="hotelResult.description.slice(0 , strLimit1[index])"
+                                                    class="text"> </p>
+                                                <span
+                                                    *ngIf="hotelResult.description.length > 60 && hotelResult.description.length != strLimit1[index]"
+                                                    class="show">
+                                                    <a href="javascript:;" *ngIf="showMore2[index] = 1"
+                                                        (click)="showMore3(index)">{{'show more'|translate}}
+                                                    </a>
+                                                </span>
+                                                <span *ngIf="hotelResult.description.length == strLimit1[index]"
+                                                    class="show">
+                                                    <a href="javascript:;" *ngIf="showLess2[index] = 1"
+                                                        (click)="showLess3(index)">{{'show less'|translate}}
+                                                    </a>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <hr *ngIf="hotelResult.price.forRoomType != null">
+                                        <div *ngIf="hotelResult.price.forRoomType != null">
+                                            <span>{{'This price for' | translate}} :
+                                                {{hotelResult.price.forRoomType}}</span>
+
+                                        </div>
+
+
+                                        <!-- <div class="row">
+                                                <div class="col description">
+                                                    <p style=" font-size: 10px;"> {{hotelResult.description}}</p>
+                                                </div>
+                                            </div> -->
+
+
+
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <!-- <div class="absolute"> -->
+                                        <div class="row pt-4 pl-4">
+                                            <div class="col-10 stars " *ngIf="hotelResult.stars === 1 " p-0>
+                                                <i class="fas fa-star"></i>
+
+                                            </div>
+                                            <div class="col-10 stars " *ngIf="hotelResult.stars === 2 " p-0>
+                                                <i class="fas fa-star"></i><i class="fas fa-star"></i>
+
+                                            </div>
+
+                                            <div class="col-10 stars " *ngIf="hotelResult.stars === 3 " p-0>
+                                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                                    class="fas fa-star"></i>
+
+                                            </div>
+
+
+                                            <div class="col-sm-10 stars" *ngIf="hotelResult.stars === 4" p-0>
+                                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                                    class="fas fa-star"></i><i class="fas fa-star"></i>
+
+                                            </div>
+                                            <div class="col-sm-10 stars" *ngIf="hotelResult.stars === 5" p-0>
+                                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                                    class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                                    class="fas fa-star"></i>
+
+                                            </div>
+                                        </div>
+                                        <div class="row pt-2">
+                                            <span class="text-center">{{'Price From'|translate}}</span>
+                                            <div class="col text-center">
+                                                <span class="price-label"> {{format(hotelResult.price.amount)}}</span>
+                                                <span class="code-Devise"> {{codeDevise}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="row pt-3">
+                                            <div class="col text-center">
+                                                <button class="btn btn-sm btn-primary" type="button"
+                                                    (click)="selectHotel(hotelResult)"> <span
+                                                        style="font-size: 10px;">{{'Choose your
+                                                        room'|translate}}</span></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-12" *ngIf="!loadingSearch ">
+            <button *ngIf="searchNbr1 != searchNbr " class="btn btn-primary col-md-12" (click)="loadMore()"
+                [hidden]="!showMore">{{'Load more'|translate}}
+            </button>
+        </div>
+    </div>
+
+    <div class="col-md-3 col-sm-12">
+        <div class="row">
+            <div class="col-3 openMap">
+                <u (click)="openBiggerMap()" class="clickable"><span>{{'Open map' | translate}}</span></u>
+            </div>
+            <div class="col-3">
+                <u (click)="resetData()" class="clickable">
+                    <span>{{'Reset' | translate}}</span>
+                </u>
+            </div>
+        </div>
+
+
+        <app-search-hotel-map *ngIf="openMapx" id="mapBox" (messageEvent)="receiveMessage($event)"
+            [events]="eventsMapSubject.asObservable()" [dataInput]="searchModel"></app-search-hotel-map>
+    </div>
+</div>

@@ -1,0 +1,181 @@
+<div class="container-fluid">
+    <div class="  mt-4  mb-2">
+        <form #saveForm="ngForm">
+            <div class="row p-3">
+                <div class="col-lg-3 col-md-4 col-sm-4  col-xs-6 mb-4  mt-5 text center">
+                    <img *ngIf="tiersLogo" [src]="tiersLogo" class="rounded mx-auto d-block"
+                        style="width: 170px!important; height:170px!important;">
+                    <img *ngIf="!tiersLogo" [src]="'./assets/sra-sa/images/templateImage/170x170.png'"
+                        class="rounded mx-auto d-block" style="width: 170px!important; height:170px!important;">
+                    <div class="text-center">
+                        <input type="file" style="display: none" multiple (change)="preview($event); preview1($event) "
+                            accept="image/*" #hiddenfileinput>
+
+                        <button class="btn  col-7  btn-sm btn-primary mt-3 btn-sm buttonImage " (click)="hiddenfileinput.click()"
+                            type="button" [disabled]="loadReset || loadSave"
+                            [ngClass]="{ 'is-invalid': (submitted && !picture)}">
+                            {{'Add picture'|translate}}
+                            <div class="icon d-flex align-items-center justify-content-center">
+                            <i class="fas fa-camera" style="padding-right: 6px;padding-left: 5px"></i>
+                        </div>
+                        </button>
+                    </div>
+
+                </div>
+                <div class="col-lg-9 col-md-8 col-sm-12">
+                    <div class="row mb-2 ">
+                        <div class="col-6">
+                            <div class="form-floating">
+                            <input type="text" class="form-control form-control-sm" name="name"
+                                placeholder="{{'Name'|translate}}" #name="ngModel" required
+                                [class.is-invalid]="submitted && name.invalid" [(ngModel)]="refTiers.tiersName">
+                                <label class="floatingInput">{{'Name'|translate}}</label>
+                        </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="form-floating">
+                            <input type="text" class="form-control form-control-sm" name="phone"
+                                placeholder="{{'Tel office'|translate}}" [(ngModel)]="refTiers.tiersTelOffice"
+                                #phone="ngModel" required [class.is-invalid]="submitted && phone.invalid">
+                            <label class="floatingInput">{{'Tel office'|translate}}</label>
+                        </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-2">
+                        <div class="col-6"> 
+                            <div class="form-floating">
+                             <input type="text" class="form-control form-control-sm" [(ngModel)]="refTiers.tiersRegcomm"
+                                placeholder="{{'TRADE REGISTER'|translate}}" name="trad" #trad="ngModel" required
+                                [class.is-invalid]="submitted && trad.invalid">
+                                <label class="form-floating" >{{'Trade register'|translate}}</label>
+                        </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="form-floating">
+                            <input type="text" class="form-control form-control-sm" [(ngModel)]="refTiers.tiersRibFact"
+                                placeholder="{{'Bank account'|translate}}" name="zip" #zip="ngModel" required
+                                [class.is-invalid]="submitted && zip.invalid">
+                                <label  class="form-floating">{{'Bank account'|translate}}</label>
+                        </div>
+                    </div>
+                    </div>
+                    <div class="row mb-2 ">
+                        <div class="col-6"> 
+                            <div class="form-floating">
+                            <input type="email" class="form-control form-control-sm" #email="ngModel" required
+                                [class.is-invalid]="submitted && email.invalid" [(ngModel)]="refTiers.tiersEmail"
+                                placeholder="{{'Email'|translate}}" name="email" [email]="true">
+                                <label  class="form-floating" >{{'Email'|translate}}</label>
+
+                        </div>
+                    </div>
+                        <div class="col-6"> 
+                            <div class="form-floating">
+                            <input type="text" class="form-control form-control-sm" [(ngModel)]="refTiers.tiersWebsite"
+                                #webSite="ngModel" required [class.is-invalid]="submitted && webSite.invalid"
+                                placeholder="{{'Website'|translate}}" name="webSite">
+                                <label class="form-floating" >{{'Website'|translate}}</label>
+
+                        </div>
+                    </div>
+                    </div>
+                    <div class="row mb-2 ">
+                        <div class="col-6">
+                            <div class="form-floating">
+                            <input type="text" class="form-control form-control-sm" #tierbob="ngModel" required
+                                [class.is-invalid]="submitted && tierbob.invalid" [(ngModel)]="refTiers.tiersMobile"
+                                placeholder="{{'Mobile '|translate}}" name="tierbob">
+                                <label class="form-floating">{{'Mobile'|translate}}</label>
+                        </div>
+                        </div>
+
+                        <div class="col-6"> 
+                            <div class="form-floating">
+                            <input type="text" class="form-control form-control-sm"
+                                placeholder="{{'Zip code'|translate}}" [(ngModel)]="refTiers.tiersCodepostal"
+                                #zip="ngModel" required [class.is-invalid]="submitted && zip.invalid" name="zip">
+                                <label>{{'Zip code'|translate}}</label>
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-6">
+                            <div class="form-floating " >
+                                <!-- placeholder= "{{'Country'|translate}}" -->
+                            <select class="form-control form-select" for="floatingSelect"  [(ngModel)]="refTiers.idpays" name="pays"
+                                #position="ngModel" required [class.is-invalid]="submitted && pays.invalid"
+                                (change)="getCities($event.target.value)">
+                                <option *ngFor="let item of pays" [ngValue]="item.idPays"> {{item.lpays}}
+                                </option>
+                            </select>
+                            <label  for="floatingSelect">{{'Country'|translate}}</label>
+                        </div>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="form-floating">
+                                <!-- placeholder= "{{'City'|translate}}" -->
+                            <select class="form-control form-select"  for="floatingSelect"  [(ngModel)]="refTiers.tiersVille" name="city"
+                                #city="ngModel" required [class.is-invalid]="submitted && city.invalid"
+                                (change)="onChangeCity($event.target.value)">
+                                <option *ngFor="let item of cities" [value]="item.lcity"> {{item.lcity}}
+                                </option>
+
+                            </select>
+
+                            <label for="floatingSelect">{{'City'|translate}}</label>
+                        </div>
+                    </div>
+                    </div>
+
+                    <div class="row mb-2 ">
+                        <div class="col-12"> 
+                            <div class="form-floating">
+                               <input type="text" class="form-control form-control-sm" [(ngModel)]="refTiers.tiersAdress"
+                                #adr="ngModel" required [class.is-invalid]="submitted && adr.invalid"
+                                placeholder="{{'Adresse'|translate}}" name="adr">
+                                <label class="form-floating">{{'Adresse'|translate}}</label>
+                        </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row  mt-2">
+                <div class="col-12 text-right">
+                    <button type="button" [disabled]="loadReset || loadSave"
+                        class="btn  btn-sm btn-success col-12 col-md-2 m-2" (click)="save(saveForm)">
+                        <div *ngIf="loadSave" class="spinner-border spinner-border-sm text-light" role="status">
+                            <span class="sr-only">Loading...</span>
+                            <span>{{'Save'|translate}}</span>
+                        </div>
+
+                        {{'Save'|translate}}
+                        <div class="icon2 d-flex align-items-center justify-content-center">
+                            <i class="far fa-save"></i>                                            </div>
+                    </button>
+                    <button type="button" [disabled]="loadReset || loadSave"
+                        class="btn  btn-sm btn-primary col-12 col-md-2 m-2" (click)="getRefTiers()">
+                        <div *ngIf="loadReset" class="spinner-border spinner-border-sm text-light" role="status">
+                            <span class="sr-only">Loading...</span>
+
+                        </div>
+
+                        {{'Refresh'|translate}}
+                        <div class="icon d-flex align-items-center justify-content-center">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                    </button>
+
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <br><br>
+</div>
+

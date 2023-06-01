@@ -1,0 +1,19 @@
+<div class="container-fluid">
+    <div class="container m-0 p-0">
+        <nav class="ml-3 mt-4 mr-3">
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link "
+                    [ngClass]="{'active':currentOnglet('/pages/finance/transaction-journal') }" id="nav-flight-tab"
+                    data-toggle="tab" role="tab" aria-controls="nav-flight" aria-selected="true"
+                    [routerLink]="['/pages/finance/transaction-journal']"><i class="fas fa-book"></i> {{'Transaction
+                    journal'|translate}}</a>
+                <a class="nav-item nav-link " [ngClass]="{'active':currentOnglet('/pages/finance/invoice') }"
+                    id="nav-flight-tab" data-toggle="tab" role="tab" aria-controls="nav-flight" aria-selected="true"
+                    [routerLink]="['/pages/finance/invoice']"><i class="fas fa-file-invoice"></i>
+                    {{'Invoice'|translate}}</a>
+            </div>
+        </nav>
+    </div>
+    <router-outlet class=" mt-0"></router-outlet>
+    <br><br>
+</div>

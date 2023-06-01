@@ -1,0 +1,31 @@
+.cell-title{
+    background-color: #e9ecef;
+    border: 1px solid #dadce0;
+ }
+ .active{
+     background-color: #f8f9fa;
+ }
+  
+   .vertical-center {
+     height: auto; /* Fallback for browsers do NOT support vh unit */ 
+     display: flex;
+     align-items: center;
+   }
+   .bg-light-blue{
+     background-color: #e4ecf8;
+   
+ }
+ .text-title{
+ color: #5880bd;
+ }
+ .card-rule{
+ border-top: 0.3px solid rgb(214, 213, 213);
+ border-left: 0.3px solid rgb(214, 213, 213);
+ border-right: 0.3px solid rgb(214, 213, 213);
+ }
+ .title-box :focus {
+   z-index: 3;
+   border-color: #86b7fe;
+   outline: 0;
+ //  box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
+ }

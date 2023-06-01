@@ -1,0 +1,316 @@
+<!-- <div class="modal right fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3">
+    <div class="modal-dialog" role="document" data-tor="place.right place.bottom">
+        <div class="modal-content">
+
+            <div class="modal-header p-0">
+                <div class="row py-2 pl-4">
+                    <div class="col-11">
+
+                        <h1> {{'update}}</h1>
+                    </div>
+                    <div class="col-1">
+
+                        <button type="button" class="close col-1" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="modal-body p-1">
+                <div class="row p-2">
+                    <form #saveForm="ngForm">
+                        <div class="col-lg-12 col-md-8 col-sm-12 p-2">
+                            <div class="row mb-2">
+                                <div class="col-6">
+                                    <div class="col-md-6 col-sm-12">
+                                        <label><small> {{'Country'|translate}}</small></label>
+                                        <select class="form-control form-control-sm" [(ngModel)]="data.subAgent.country"
+                                            name="country">
+                                            <option *ngFor="let item of data.pays" [value]="item.lpays"> {{item.lpays}}
+                                            </option>
+
+                                        </select>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="col-md-6 col-sm-12">
+                                        <label><small> {{'Address'|translate}}</small></label>
+                                        <input type="text" class="form-control form-control-sm"
+                                            [(ngModel)]="data.subAgent.adress" name="adress">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row ">
+
+
+
+
+
+
+                                <div class="col-md-6 col-sm-12">
+                                    <label><small> {{'Balance'|translate}}</small></label>
+                                    <input type="text" class="form-control form-control-sm"
+                                        [value]="formatCurr(data.subAgent.mntUserbalance)" name="login" disabled>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <label><small> {{'Devise'|translate}}</small></label>
+                                    <select class="form-control form-control-sm" [(ngModel)]="data.subAgent.idDevise"
+                                        name="devise">
+                                        <option *ngFor="let item of data.devises" [value]="item.idDevise">
+                                            {{item.ldevise}}
+                                        </option>
+                                    </select>
+                                </div>
+
+
+
+
+
+                            </div>
+                        
+                            <div class="row mb-2 ">
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control form-control-sm" #login="ngModel"
+                                            required [class.is-invalid]="submitted && login.invalid"
+                                            placeholder="{{'Login'|translate}}"
+                                            [(ngModel)]="refUtilisateurTiers.trUserLogin" name="login">
+                                        <label for="inputPassword4">{{'Login'|translate}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-floating mb-3">
+                                        <input type="password" class="form-control form-control-sm" #password="ngModel"
+                                            required [class.is-invalid]="submitted && password.invalid"
+                                            autocomplete="new-password" [(ngModel)]="refUtilisateurTiers.trUserPwd"
+                                            name="password">
+                                        <label for="inputPassword4">{{'Password'|translate}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-12 mt-2">
+                                    <div class="row">
+                                        <div class="col-md-3 col-sm-12">
+                                            <div class="row">
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="form-check-input" id="exampleCheck1"
+                                                        (change)="data.subAgent.displayAll=changeValue(data.subAgent.displayAll)"
+                                                        [checked]="data.subAgent.displayAll ==='O'">
+                                                    <label class="form-check-label" for="exampleCheck1"> <small>
+                                                            {{'Dispaly all'|translate}}</small>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="form-check-input" id="exampleCheck2"
+                                                        (change)="data.subAgent.search=changeValue(data.subAgent.search)"
+                                                        [checked]="data.subAgent.search ==='O'">
+                                                    <label class="form-check-label" for="exampleCheck2">
+                                                        <small>{{'Search'|translate}}</small>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-12">
+                                            <div class="row">
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="form-check-input" id="exampleCheck3"
+                                                        (change)="data.subAgent.select=changeValue(data.subAgent.select)"
+                                                        [checked]="data.subAgent.select ==='O'">
+                                                    <label class="form-check-label" for="exampleCheck3">
+                                                        <small>{{'Select'|translate}}</small></label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="form-check-input" id="exampleCheck4"
+                                                        (change)="data.subAgent.book=changeValue(data.subAgent.book)"
+                                                        [checked]="data.subAgent.book ==='O'">
+                                                    <label class="form-check-label" for="exampleCheck4">
+                                                        <small>{{'Book'|translate}}</small>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-12">
+                                            <div class="row">
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="form-check-input" id="exampleCheck4"
+                                                        (change)="data.subAgent.orderticket=changeValue(data.subAgent.orderticket)"
+                                                        [checked]="data.subAgent.orderticket ==='O'">
+                                                    <label class="form-check-label" for="exampleCheck4"> <small>{{'Order
+                                                            ticket'|translate}}</small></label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="form-check-input" id="exampleCheck5"
+                                                        (change)="data.subAgent.cancel =changeValue(data.subAgent.cancel )"
+                                                        [checked]="data.subAgent.cancel ==='O'">
+                                                    <label class="form-check-label" for="exampleCheck5">
+                                                        <small>{{'Cancel'|translate}}</small></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3 col-sm-12">
+                                            <div class="row">
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="form-check-input" id="exampleCheck6"
+                                                        (change)="data.subAgent.addUser =changeValue(data.subAgent.addUser )"
+                                                        [checked]="data.subAgent.addUser ==='O'">
+                                                    <label class="form-check-label" for="exampleCheck6"> <small>{{'Add
+                                                            user'|translate}} </small>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="form-check-input" id="exampleCheck7"
+                                                        [checked]="data.subAgent.actifTruser ==='O'"
+                                                        (change)="data.subAgent.actifTruser =changeValue(data.subAgent.actifTruser )">
+                                                    <label class="form-check-label" for="exampleCheck7">
+                                                        <small>{{'Active'|translate}}</small></label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 p-0 ">
+                                <div class="row mb-2">
+                                    <div class="col-md-12 col-sm-12">
+                                        <div class="row ">
+                                            <ul class="ks-cboxtags p-0 m-0">
+
+                                                <li><input type="checkbox" class="form-check-input" id="checkboxOne"
+                                                        (change)="refUtilisateurTiers.displayAll=changeValue(refUtilisateurTiers.displayAll)">
+                                                    <label for="checkboxOne"> <small> {{'Dispaly
+                                                            all'|translate}}</small></label>
+                                                </li>
+
+                                                <li><input type="checkbox" class="form-check-input" id="checkboxTwo"
+                                                        (change)="refUtilisateurTiers.displayAll=changeValue(refUtilisateurTiers.displayAll)">
+                                                    <label for="checkboxTwo"> <small>
+                                                            {{'search a flight'|translate}}</small></label>
+                                                </li>
+
+                                                <li><input type="checkbox" class="form-check-input" id="checkboxThree"
+                                                        (change)="refUtilisateurTiers.displayAll=changeValue(refUtilisateurTiers.displayAll)">
+                                                    <label for="checkboxThree"> <small>
+                                                            {{'Select'|translate}}</small></label>
+                                                </li>
+
+                                                <li><input type="checkbox" class="form-check-input" id="checkboxFour"
+                                                        (change)="refUtilisateurTiers.displayAll=changeValue(refUtilisateurTiers.displayAll)">
+                                                    <label for="checkboxFour"> <small>
+                                                            {{'Book'|translate}}</small></label>
+                                                </li>
+
+                                                <li><input type="checkbox" class="form-check-input" id="checkboxFive"
+                                                        (change)="refUtilisateurTiers.displayAll=changeValue(refUtilisateurTiers.displayAll)">
+                                                    <label for="checkboxFive"> <small> {{'Order
+                                                            ticket'|translate}}</small></label>
+                                                </li>
+
+                                                <li><input type="checkbox" class="form-check-input" id="checkboxSix"
+                                                        (change)="refUtilisateurTiers.displayAll=changeValue(refUtilisateurTiers.displayAll)">
+                                                    <label for="checkboxSix"> <small>
+                                                            {{'Cancelticket'|translate}}</small></label>
+                                                </li>
+
+                                                <li><input type="checkbox" class="form-check-input" id="checkboxSeven"
+                                                        (change)="refUtilisateurTiers.displayAll=changeValue(refUtilisateurTiers.displayAll)">
+                                                    <label for="checkboxSeven"><small> {{'Add
+                                                            user'|translate}}</small></label>
+                                                </li>
+
+
+                                            </ul>
+
+
+
+
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+
+
+
+
+                            <div class="col-6 my-5 ">
+
+                                <div class="col-12 text-right mt-4">
+                                    <button type="button" class="btn  btn-sm btn-success col-11 col-md-8 m-1"
+                                        [disabled]="loadSave" (click)="save(saveForm)">
+                                        <div *ngIf="loadSave" class="spinner-border spinner-border-sm text-light"
+                                            role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                        {{'Save'|translate}}
+                                        <div class="icon2 d-flex align-items-center justify-content-center">
+                                            <i class="far fa-save"></i>
+                                        </div>
+                                    </button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div>
+            <form #searchForm="ngForm" class="py-2">
+                <div class="row mt-4 ml-2">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control form-control-sm" placeholder="{{'Email'|translate}}"
+                                [(ngModel)]="searchModel.email" name="ref">
+                            <label for="floatingSelect">{{'Email'|translate}} </label>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="form-floating mb-3">
+                            <input type="mobile" class="form-control form-control-sm"
+                                placeholder="{{'Mobile'|translate}}" [(ngModel)]="searchModel.mobile" name="Mobile">
+                            <label for="floatingSelect">{{'Mobile'|translate}} </label>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row  mt-2">
+                    <div class="col-12 text-right">
+                        <button type=" button" class="btn btn-sm btn-add col-12 col-md-2 m-2" data-toggle="modal"
+                            data-target="#myModal3">
+                            {{'Add-Agent'|translate}}
+                            <div class="iconAdd d-flex align-items-center justify-content-center">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+ -->

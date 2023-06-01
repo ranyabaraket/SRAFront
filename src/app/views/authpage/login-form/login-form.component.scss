@@ -1,0 +1,35 @@
+// formulaire
+
+.form {
+  float: left;
+  height: 86%;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 40px;
+}
+
+.l-icon{
+  position: absolute!important;
+  color: #ffffff63!important;
+  font-size: 23px!important;
+  margin-top: 7px!important;
+  margin-left: 9px!important;
+}
+
+.form-control {
+  height: 46px;
+}
+
+#UserName,
+#Password ,#AccountCode{
+
+  color: gray !important;
+}
+
+
+.btn-blue{
+  background: #00749c;
+  padding: 0 18px 0;
+  border-radius: 19px;
+  color: white;
+}

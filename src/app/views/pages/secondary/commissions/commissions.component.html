@@ -1,0 +1,107 @@
+<div>
+    <div class="ml-4  card card-no-border mr-4">
+        <div class="row  mt-2">
+            <div class="col-12 text-right mt-4">
+                <button type="button" class="btn btn-sm btn-primary col-12 col-md-2 m-2" (click)="add()"
+                    [disabled]="loading">
+                    <span>{{'add'|translate}}</span>
+                    <div class="icon d-flex align-items-center justify-content-center">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                </button>
+
+                <button type="button" class="btn btn-sm btn-success col-12 col-md-2 m-2" (click)="getCommissions()"
+                    [disabled]="loading">
+                    <div *ngIf="loading" class="spinner-border spinner-border-sm text-light" role="status">
+                        <span class="sr-only">{{'loading' | translate}}</span>
+                    </div>
+                    {{'Find'|translate}}
+                    <div class="icon2 d-flex align-items-center justify-content-center">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                </button>
+
+            </div>
+         </div>
+        <div class="ml-4  card card-no-border mr-4">
+            <label class="ml-2 mt-2"> {{'Commissions'|translate}}({{total}}) </label>
+
+            <table mat-table [dataSource]="source" class=" my-table">
+                <!-- codeModule Column -->
+                <ng-container matColumnDef="codeModule">
+                    <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'codeModule'| translate }}</th>
+                    <td mat-cell *matCellDef="let element" class="text-center ">
+                        <span *ngIf="element.codeModule==='H'">{{'hotel'| translate }}</span>
+                        <span *ngIf="element.codeModule==='T'">{{'Flight'| translate }}</span>
+                        <span *ngIf="element.codeModule==='V'">{{'Visa'| translate }}</span>
+                        <span *ngIf="element.codeModule==='F'">{{'Transfer'| translate }}</span>
+                        <span *ngIf="element.codeModule==='G'">{{'Package'| translate }}</span>
+                    </td>
+                </ng-container>
+                <!-- txMarkup Column -->
+                <ng-container matColumnDef="txMarkup">
+                    <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'txMarkup'| translate }}</th>
+                    <td mat-cell *matCellDef="let element" class="text-center"> {{element.txMarkup}} </td>
+                </ng-container>
+                <!-- mntMarkup Column -->
+                <ng-container matColumnDef="mntMarkup">
+                    <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'mntMarkup'| translate }}</th>
+                    <td mat-cell *matCellDef="let element" class="text-center"> {{element.mntMarkup}} </td>
+                </ng-container>
+                <!-- addToPrice Column -->
+                <ng-container matColumnDef="addToPrice">
+                    <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'addToPrice'| translate }}</th>
+                    <td mat-cell *matCellDef="let element" class="text-center">
+                        <span *ngIf="element.addToPrice==='O'"> {{'Yes'| translate}} </span>
+                        <span *ngIf="element.addToPrice==='N'"> {{'No'| translate}} </span>
+
+                    </td>
+                </ng-container>
+                <!-- refUser Column -->
+                <ng-container matColumnDef="refUser">
+                    <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'User'| translate }}</th>
+                    <td mat-cell *matCellDef="let element" class="text-center"> {{element.refUser}} </td>
+                </ng-container>
+                <!-- dtCreate Column -->
+                <ng-container matColumnDef="dtCreate">
+                    <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'Create Date'| translate }}
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="text-center"> {{element.dtCreate | date: 'dd/MM/yyyy
+                        HH:mm'}} </td>
+                </ng-container>
+
+                <!-- dtModif Column -->
+                <ng-container matColumnDef="dtModif">
+                    <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'Last Update'| translate }}
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="text-center"> {{element.dtModif | date: 'dd/MM/yyyy
+                        HH:mm'}} </td>
+                </ng-container>
+
+
+                <!-- action Column -->
+
+                <ng-container matColumnDef="actions">
+
+                    <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'Actions'| translate }} </th>
+
+
+                    <td mat-cell *matCellDef="let element" class="text-center">
+
+                        <button (click)="goToEdit(element)" class="edit">
+                            <img src="../../../../../../assets/images/edit.png" class="editButtonContent">
+                        </button>
+                        <button (click)="onDeleteConfirm(element)" class="delete">
+                            <img src="../../../../../../assets/images/delete.png" class="btn-remove">
+                        </button>
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+        <mat-paginator [pageSizeOptions]="[100, 200, 300, 400]" showFirstLastButtons *ngIf="source">
+        </mat-paginator>
+    </div>
+</div>

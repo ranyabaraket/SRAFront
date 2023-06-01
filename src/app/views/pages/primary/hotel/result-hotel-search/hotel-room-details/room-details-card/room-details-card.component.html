@@ -1,0 +1,301 @@
+<div id="roomDetailsCard" class="col-12 roomDetailsCard">
+    <div id="card-header1">
+        <div class="row">
+            <div class="col-4 marginTopLeft">
+                <strong> {{'Room type'|translate}}</strong>
+            </div>
+            <div class="col-2 marginTopLeft">
+                <strong>{{'Meal type'|translate}}</strong>
+            </div>
+            <div class="col-2 marginTopLeft">
+                <strong>{{'price'|translate}}</strong>
+            </div>
+            <div class="col-3 marginTopLeft">
+                <strong>{{'cancelation policy'|translate}}</strong>
+            </div>
+            <div class="col ">
+                <strong> </strong>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="roomDetailsData">
+        <div class="card card-cube" *ngFor="let hotelResult of roomDetailsData; let index=index">
+            <div class="card-header" id="headingOne">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-4 marginTopLeft">
+                                <div class="row"><span class="h6"> 1 : {{hotelResult.name}} </span></div>
+                                <div class="row "
+                                    *ngIf="hotelResult.descriptions != undefined && hotelResult.descriptions != null">
+                                    <div *ngFor="let mandatory of hotelResult.taxes; let itaxes = index">
+                                        <div *ngIf="!mandatory.includedBySupplier"
+                                            style="font-weight: bold;color: red;">
+                                            {{mandatory.name+ ": " +mandatory.amount+ " "+ mandatory.currency }}
+                                        </div>
+
+                                    </div>
+                                    <div *ngFor="let description of hotelResult.descriptions; let i = index">
+
+                                        <div *ngIf="selectedGds === 'TB'">
+                                            <div [innerHTML]="description">
+                                            </div>
+
+                                        </div>
+                                        <!-- {{ description}} -->
+                                        <div *ngIf="selectedGds !== 'TB'">
+
+                                            <div *ngIf="!showMore[index]; else fullText">
+                                                {{ description.slice(0, 50) }}...
+                                            </div>
+                                            <ng-template #fullText>
+                                                {{ description }}
+                                            </ng-template>
+                                        </div>
+
+                                    </div>
+                                    <div *ngIf="selectedGds !== 'TB'">
+
+                                        <div *ngIf="!showMore[index]">
+                                            <!-- <button (click)="showMore[index] = true">Show More</button> -->
+                                            <a href="javascript:;" (click)="showMore[index] = true">{{'show
+                                                more'|translate}}
+                                            </a>
+
+
+
+
+                                        </div>
+                                        <div *ngIf="showMore[index]">
+                                            <a href="javascript:;" (click)="showMore[index] = false">{{'show
+                                                less'|translate}}
+                                            </a>
+                                            <!-- <button (click)="showMore[index] = false">Show Less</button> -->
+
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <!-- <div [innerHTML]="hotelResult.descriptions[0].slice(0 , strLimit1[index])"> </div>
+                                    {{ hotelResult.descriptions[0]}}
+                                    <br>
+                                    <span
+                                        *ngIf="hotelResult.descriptions.length > 1 && hotelResult.descriptions.length != strLimit1[index]">
+                                        <a href="javascript:;" *ngIf="showMore2[index] = 1"
+                                            (click)="showMore3(index)">{{'show more'|translate}}
+                                        </a>
+                                    </span>
+                                    <span *ngIf="hotelResult.descriptions.length == strLimit1[index]">
+                                        <a href="javascript:;" *ngIf="showLess2[index] = 1"
+                                            (click)="showLess3(index)">{{'show less'|translate}}
+                                        </a>
+                                    </span> -->
+                                </div>
+                            </div>
+                            <div class="col-2 marginTopLeft vl ">
+                                <div class="row"><span class="h6"> {{hotelResult.meals}} </span></div>
+                            </div>
+                            <div class="col-2 mt-2 vl">
+                                <strong class="text-primary h5" style="font-weight: bold !important">
+                                    {{hotelResult.price.amount}}</strong>
+                                <strong class="text-primary h8"> {{hotelResult.price.currency}}</strong>
+                                <br> <b class="text-danger" *ngIf="hotelResult.notRefundable === true">{{'NON
+                                    REFUNDABLE'|translate}}</b>
+                            </div>
+                            <div class="col-3 marginTopLeft vl">
+                                <div *ngIf="hotelResult.cancellationPolicies.length > 0 && !hotelResult.notRefundable">
+                                    <div *ngFor="let cancelModel of hotelResult.cancellationPolicies; let index=index">
+                                        <div class="row"
+                                            *ngIf="cancelModel.fromDate == null && cancelModel.toDate != null">
+                                            {{'cancel before'|translate}} : {{cancelModel.toDate}} </div>
+                                        <div class="row"
+                                            *ngIf="cancelModel.fromDate != null && cancelModel.toDate != null">
+                                            {{'cancel from'|translate}} : {{cancelModel.fromDate}} {{'cancel
+                                            to'|translate}} :
+                                            {{cancelModel.toDate}}</div>
+                                        <div class="row"
+                                            *ngIf="cancelModel.toDate == null && cancelModel.fromDate != null">
+                                            {{'cancel
+                                            from'|translate}} : {{cancelModel.fromDate}} </div>
+                                        <div class="row" *ngIf="cancelModel.type == 'no_show_fee'"
+                                            style="font-weight: bold;">
+                                            {{'No show fee value' | translate }} :
+
+                                        </div>
+                                        <div class="row" *ngIf="cancelModel.type == 'nights'"
+                                            style="font-weight: bold;">
+                                            {{'Nights' | translate }} :
+
+                                        </div>
+
+
+                                        <div class="row" *ngIf="hotelResult.cancellationPolicies.length > 0">
+                                            <span class="text-muted">
+                                                <div *ngIf="cancelModel.type !='nights'">{{'charge amnt'|translate}} :
+                                                    {{cancelModel.amountFinal}}
+                                                    <small
+                                                        *ngIf="cancelModel.type !='Percentage' && cancelModel.type !='nights'">
+                                                        {{cancelModel.currency}}</small>
+                                                    <small *ngIf="cancelModel.type =='Percentage'"> %</small>
+                                                    <small *ngIf="cancelModel.type =='nights'">{{cancelModel.nights}}
+                                                        {{'Nights' | translate }}</small>
+                                                    <!-- <div *ngIf="cancelModel.type =='nights'">{{cancelModel.nights+ " Night(s)"}}</div> -->
+                                                </div>
+
+                                                <div *ngIf="cancelModel.type =='nights'">
+                                                    <small>{{cancelModel.nights}} {{'Nights' | translate }}</small>
+                                                </div>
+
+
+
+                                            </span>
+                                        </div>
+                                        <hr>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col text-right vl">
+                                <button class="btn btn-sm btn-primary btnRight" type="button"
+                                    (click)="selectRoomHotel(hotelResult, index)">{{'book'|translate}}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- <div *ngIf="roomDetailsData">
+        <div class="card card-cube" *ngFor="let hotelResult of roomDetailsData; let index=index">
+            <div class="card-header" id="headingOne">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-3 marginTopLeft">
+                                <div class="row"><span class="h6"> 1 : {{hotelResult.name}} </span></div>
+                                <div class="row combFinal" *ngIf="hotelResult.roomsCombinationsfinal.length > 0">
+                                    <div class="col-12 combFinal3" *ngFor="let combination of hotelResult.roomsCombinations; let i = index">
+                                        <span class="h6"> {{i+2}} : {{combination.roomName}} </span>
+                                    </div>
+                                </div>
+                                <div class="row " *ngIf="hotelResult.description != undefined && hotelResult.description != null">
+                                    {{ hotelResult.description | slice:0:strLimit1 }} -->
+    <!-- <div [innerHTML]="hotelResult.description.slice(0 , strLimit1[index])"> </div>
+                                    <br>
+                                    <span *ngIf="hotelResult.description.length > 60 && hotelResult.description.length != strLimit1[index]">
+                                    <a href="javascript:;" *ngIf="showMore2[index] = 1" (click)="showMore3(index)">{{'show more'|translate}}
+                                        </a>
+                                </span>
+                                    <span *ngIf="hotelResult.description.length == strLimit1[index]">
+                                    <a href="javascript:;" *ngIf="showLess2[index] = 1" (click)="showLess3(index)">{{'show less'|translate}}
+                                        </a>
+                                </span>
+                                </div>
+                            </div>
+                            <div class="vl"></div>
+                            <div class="col-2 marginTopLeft">
+                                <div class="row"><span class="h6"> {{hotelResult.roomOptions[0].arrgs}} </span></div> -->
+    <!-- <div class="row"><strong class="marginTopLeft"> {{hotelResult.roomOptions[0].arrgs}}</strong>
+                                </div> -->
+
+    <!-- <div class="row combFinal" *ngIf="hotelResult.roomsCombinationsfinal.length > 0">
+                                    <div class="col-12 combFinal3" *ngFor="let combination of hotelResult.roomsCombinationsfinal;">
+                                        <span class="h6" *ngIf="combination.roomOptions != null">{{combination.roomOptions[0].arrgs}} </span> <br>
+                                    </div>
+                                </div> -->
+
+    <!-- </div>
+                            <div class="vl"></div>
+                            <div class="col-2 mt-2">
+                                <strong class="text-primary h5  "> {{prixTotal[index]}}</strong>
+                                <strong class="text-primary h5 "> {{hotelResult.roomOptions[0].codeDev}}</strong>
+                                <br> <strong class="text-danger" *ngIf="hotelResult.roomOptions[0].refundable === false">{{'NON REFUNDABLE'|translate}}</strong>
+                            </div>
+                            <div class="vl"></div>
+                            <div class="col-3 marginTopLeft">
+                                <div *ngIf="hotelResult.cancellationModel.length > 0">
+                                    <div *ngFor="let cancelModel of hotelResult.cancellationModel; let index=index">
+                                        <div class="row" *ngIf="cancelModel.fromDate == null "> {{'cancel beforecancel before'|translate}} : {{cancelModel.toDate}} </div>
+                                        <div class="row" *ngIf="cancelModel.fromDate !== null "> {{'cancel from'|translate}} : {{cancelModel.fromDate}} {{'cancel to'|translate}} : {{cancelModel.toDate}}</div>
+                                        <div class="row" *ngIf="hotelResult.cancellationModel.length > 0"> <span class="text-muted">
+                                        {{'charge amnt'|translate}} : {{cancelModel.mntCharge1}}
+                                           <small *ngIf="cancelModel.chargeType1 ==='Fixed'"> {{cancelModel.currency}}</small>
+                                           <small *ngIf="cancelModel.chargeType1 =='Percentage'"> %</small>
+                                        </span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="vl"></div>
+                            <div class="col text-right">
+                                <button class="btn btn-sm btn-primary btnRight" type="button" (click)="selectRoomHotel(hotelResult, index)">{{'Book'|translate}}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+    <!-- <div class="col-12 roomDetailsCard1" *ngIf="roomDetailsData">
+    <div class="card card-cubeX" *ngFor="let hotelResult of roomDetailsData; let index=index">
+        <div class="card-headerX" id="headingOne1">
+
+            <div class="row"><span class="roomType"> 1 : {{hotelResult.name}} </span></div>
+            <div class="row" *ngIf="hotelResult.roomsCombinationsfinal.length > 0">
+                <div *ngFor="let combination of hotelResult.roomsCombinationsfinal; let i = index">
+                    <span class="roomType"> {{i+2}} : {{combination.roomName}} </span>
+                </div>
+            </div>
+            <div class="row decsript" *ngIf="hotelResult.description != undefined && hotelResult.description != null">
+
+                {{ hotelResult.description | slice:0:strLimit1 }}
+                <span *ngIf="hotelResult.description.length > 60 && hotelResult.description.length != strLimit1">
+                        <a href="javascript:;" *ngIf="showMore2[index] = 1" (click)="showMore3(index)">{{'show more'|translate}}</a>
+                    </span>
+                <span *ngIf="hotelResult.description.length == strLimit1">
+                        <a href="javascript:;" *ngIf="showLess2[index] = 1" (click)="showLess3(index)">{{'show less'|translate}}</a>
+                    </span>
+
+            </div>
+
+            <div class="row leftCtr">
+                <div class="col-"><strong class="text-muted"> {{hotelResult.roomOptions[0].arrgs}}</strong>
+                </div>
+            </div>
+            <div class="row leftCtr1">
+                <div class="col-"><span>
+                        {{hotelResult.roomOptions[0].promotion}}</span>
+                </div>
+            </div>
+
+            <div class="row marginTopLeft">
+                <div class="col-12">
+                    <div class="row" *ngIf="hotelResult.cancellationModel.length > 0"> {{'cancel before'|translate}} : {{hotelResult.cancellationModel[0].toDate}}
+                    </div>
+                    <div class="row" *ngIf="hotelResult.cancellationModel.length > 0"> <span class="text-muted">
+                        {{'charge amnt'|translate}} : {{hotelResult.cancellationModel[0].mntCharge1}}
+                        {{hotelResult.cancellationModel[0].currency}}</span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-right">
+                    <strong class="text-primary fontSize"> {{hotelResult.roomOptions[0].finalRate1Origin}}</strong>
+                    <span class="text-primary fontW"> {{hotelResult.roomOptions[0].codeDev}}</span>
+
+                    <button class="btn btn-sm btn-primary mrgRight" type="button" (click)="selectRoomHotel(hotelResult, index)">{{'Select'|translate}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+    <app-custom-loading *ngIf="loadingSearch"></app-custom-loading>

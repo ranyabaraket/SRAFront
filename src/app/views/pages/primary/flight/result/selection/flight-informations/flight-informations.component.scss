@@ -1,0 +1,93 @@
+ul.timeline {
+    list-style-type: none;
+    position: relative;
+}
+
+ul.timeline:before {
+    content: ' ';
+    background: #d4d9df;
+    display: inline-block;
+    position: absolute;
+    left: 29px;
+    width: 1px;
+    height: 90%;
+    z-index: 6;
+}
+ul.timeline >.inbetween-text{
+    padding-left: 45px;
+}
+ul.timeline>li {
+    margin: 20px 0;
+    padding-left: 40px;
+}
+
+ul.timeline>li:before {
+    content: ' ';
+    background: white;
+    display: inline-block;
+    position: absolute;
+    border-radius: 50%;
+    border: 5px dotted #d4d9df;
+    left: 25px;
+    width: 10px;
+    height: 10px;
+    z-index: 6;
+}
+.card-cube {
+    border-radius: 0px;
+}
+
+.vl {
+    border-right: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.card-header {
+    background-color: white!important;
+    border: 0 none;
+}
+i {
+    color: grey;
+}
+.card {
+    box-shadow: 1px 1px 8px rgb(223, 222, 222);
+  }
+
+.img-airline{
+    width:150px;
+    height: auto;
+}
+.airline-container{
+    padding: 16px;
+    margin-top: 5%;
+    // display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.time{
+    font-size: 18px !important;
+    font-weight: 700 !important;
+    color: #128bb4 !important;
+}
+.totalTime{
+    margin-top: 10px;
+    margin-bottom: 8%;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+}
+
+
+.arrow{
+    width: 60% !important;
+     height: 8px !important;  
+     margin-right: 1px !important;
+     margin-left: 5%;
+}
+.airplane-img{
+    height: 20px;
+}
+
+.price-container{
+    font-size: 20px !important;
+    font-weight: 700 !important;
+    color: #000000 !important;
+}

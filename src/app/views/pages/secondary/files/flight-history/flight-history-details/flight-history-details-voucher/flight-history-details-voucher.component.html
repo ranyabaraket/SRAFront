@@ -1,0 +1,174 @@
+<div class="mt-4">
+  <div class="row">
+    <div class="col">
+      <div class="text-right">
+        <button
+          class="btn btn-primary btn-sm ml-2"
+          ngbTooltip="{{ 'print' | translate }}"
+          placement="bottom"
+          [printStyle]="{ src: { width: '20%!important' } }"
+          [useExistingCss]="true"
+          printSectionId="print-section"
+          ngxPrint
+        >
+          <i class="fas fa-print"></i>
+        </button>
+        <button
+          class="btn btn-primary btn-sm ml-2"
+          ngbTooltip="{{ 'close' | translate }}"
+          placement="bottom"
+          (click)="cancel()"
+        >
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="row" id="print-section">
+    <div class="col-12">
+      <div class="row mt-2">
+        <div class="col-6">
+          <div style=" height: 80px; width: 50px;">
+            <img
+              src="../../../../../../../../assets//sra-sa/images/logo/sra-sa.png"
+              height="80px"
+              style="float: left;"
+            />
+             
+          </div>
+          <h4 class="text-muted mt-2">
+            {{ "ELECTRONIC TICKET RECEIPT" | translate }}
+          </h4>
+        </div>
+        <div class="col-6 text-right text-muted">
+          {{ data.details.idTiers }} - {{ data.details.tiersName }}
+          <br />
+          <i class="fas fa-map-marked text-muted mr-2"></i>  {{adress}}<br />
+          <i class="fas fa-envelope-open-text text-muted mr-2"></i>  info@sra-sa.com<br />
+          <i class="fas fa-phone-square-alt text-muted mr-2"></i> 92000 86 39 
+          
+        </div>
+      </div>
+      <div class="row rowdisplay">
+        <div class="col-12">
+          <div class="row">
+            <div class="col-md-4 col-sm-6">{{ "Passenger name" | translate }} :</div>
+            <div class="col-md-8 col-sm-6">
+              {{ data.passenger.firstName }} {{ data.passenger.lastName }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 col-sm-6">{{ "Passport" | translate }} :</div>
+            <div class="col-md-8 col-sm-6">{{ data.passenger.passportNum }}</div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 col-sm-6">PNR :</div>
+            <div class="col-md-8 col-sm-6">{{ data.details.numPnr }}</div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 col-sm-6">{{ "Airline PNR" | translate }} :</div>
+            <div class="col-md-8 col-sm-6">{{ data.details.airlinePnr }}</div>
+          </div>
+        </div>
+      </div>
+      <div class="row rowdisplay">
+        <div class="col-12">
+          <div class="row">
+            <div class="col-md-4 col-sm-6">{{ "Num ticket" | translate }} :</div>
+            <div class="col-md-8 col-sm-6">{{ data.passenger.numTicket }}</div>
+          </div>
+        </div>
+      </div>
+     
+      <div class="row rowdisplay">
+        <div class="col-12">
+          <div class="row">
+            <div class="col-md-4 col-sm-6">{{ "Ticketing date" | translate }} :</div>
+            <div class="col-md-8 col-sm-6">
+              {{
+                data?.details?.flightTickets[0]?.confirmedDate
+                  | date: "dd/MM/yyyy"
+              }}
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 col-sm-6">{{'Issuance'| translate}} :</div>
+            <div class="col-md-8 col-sm-6">
+              {{ data?.details?.tiersName }} -
+              {{ data?.details?.user }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+ 
+      <div *ngIf="data.displayPrice" class="row rowdisplay">
+        <div class="col-12">
+          <div class="row">
+            <div class="col-md-4 col-sm-6">{{ "Amount" | translate }} :</div>
+            <div class="col-md-8 col-sm-6">{{ format(mntTicket) }} {{ data.details.currencyCode }}</div>
+          </div>
+        </div>
+      </div>
+      
+
+      <div class="table-responsive">
+        <table class="tabBorder">
+          <thead>
+            <tr>
+              <th scope="col">
+                <b>{{ "Airlines" | translate }}</b>
+              </th>
+              <th scope="col">
+                <b>{{ "Flight No" | translate }}</b>
+              </th>
+              <th scope="col">
+                <b>{{ "Departure" | translate }} </b>
+              </th>
+              <th scope="col">
+                <b>{{ "Departure terminal" | translate }}</b>
+              </th>
+              <th scope="col">
+                <b>{{ "Arrival" | translate }}</b>
+              </th>
+              <th scope="col">
+                <b>{{ "Arrival terminal" | translate }}</b>
+              </th>
+              <th scope="col">
+                <b>{{ "Bagages" | translate }} </b>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of data.details.segments">
+              <td><img src="{{ getSrcImg(item.codeCom) }}" /></td>
+              <td>{{ item.codeCom }}{{ item.flightNum }}</td>
+              <td>
+                {{ item.villeDepNom }} ({{ item.villeDepCode }})
+                {{ item?.dateDepart | date: "dd/MM/yyyy" }}
+                {{ item.heureDepart }}
+              </td>
+              <td>{{ item.departureTerminal }}</td>
+              <td>
+                {{ item.villeArrNom }} ({{ item.villeArrCode }})
+                {{ item?.dateArrivee | date: "dd/MM/yyyy" }}
+                {{ item.heureArrivee }}
+              </td>
+              <td>{{ item.arrivalTerminal }}</td>
+              <td>{{ item.baggage }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="alert alert-danger mt-3">
+        <p>
+          {{
+            "iataNotice" | translate
+          }}
+          http://www.iatatravelcentre.com/e-ticket-notice/General/English
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,102 @@
+[
+  {
+    "value": "AVMeal",
+    "name": "Asian Vegetarian Meal"
+  },
+  {
+    "value": "babyMeal",
+    "name": "Baby Meal"
+  },
+  {
+    "value": "blandMeal",
+    "name": "Bland Meal"
+  },
+  {
+    "value": "childMeal",
+    "name": "Children Meal"
+  },
+  {
+    "value": "diabetMeal",
+    "name": "Diabetic Meal"
+  },
+  {
+    "value": "fruitMeal",
+    "name": "Fruit Platter Meal"
+  },
+  {
+    "value": "glutenMeal",
+    "name": "Gluten Intolerant Meal"
+  },
+  {
+    "value": "fibreMeal",
+    "name": "High Fibre Meal"
+  },
+  {
+    "value": "hinduMeal",
+    "name": "Hindu Non-Vegetarian Meal"
+  },
+  {
+    "value": "juniorMeal",
+    "name": "Junior Meal"
+  },
+  {
+    "value": "kosherMeal",
+    "name": "Kosher Meal"
+  },
+  {
+    "value": "lowFatMeal",
+    "name": "Low Fat Meal"
+  },
+  {
+    "value": "noLactoseMeal",
+    "name": "No Lactose Meal"
+  },
+  {
+    "value": "lowProteinMeal",
+    "name": "Low Protein Meal"
+  },
+  {
+    "value": "lowPurinMeal",
+    "name": "Low Purin Meal"
+  },
+  {
+    "value": "lowSaltMeal",
+    "name": "Low Salt Meal"
+  },
+  {
+    "value": "muslimMeal",
+    "name": "Muslim Meal"
+  },
+  {
+    "value": "orientalMeal",
+    "name": "Oriental Meal"
+  },
+  {
+    "value": "peanutFreeMeal",
+    "name": "Peanut Free Meal"
+  },
+  {
+    "value": "seaFoodMeal",
+    "name": "Seafood Meal"
+  },
+  {
+    "value": "VJainMeal",
+    "name": "Vegetarian Jain Meal"
+  },
+  {
+    "value": "VLactoMeal",
+    "name": "Vegetarian Lacto-ovo Meal"
+  },
+  {
+    "value": "VOrientalMeal",
+    "name": "Vegetarian Oriental Meal"
+  },
+  {
+    "value": "VRawMeal",
+    "name": "Vegetarian Raw Meal"
+  },
+  {
+    "value": "VVeganMeal",
+    "name": "Vegetarian Vegan Meal"
+  }
+]

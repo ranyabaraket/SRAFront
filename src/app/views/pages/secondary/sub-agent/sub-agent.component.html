@@ -1,0 +1,729 @@
+<div class="modal right fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2">
+    <div class="modal-dialog" role="document" data-tor="place.right place.bottom">
+        <div class="modal-content">
+
+            <div class="modal-header p-0">
+                <div class="row py-2 pl-4">
+                    <div class="col-11">
+
+                        <h1> {{'Add-Agent'|translate}}</h1>
+                    </div>
+                    <div class="col-1">
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="modal-body p-1">
+                <div class="row p-2">
+                    <form #saveForm="ngForm">
+
+                        <div class="">
+
+                            <div class="mb-2">
+                                <div class="col-md-12 col-sm-12">
+                                    <div class="row ">
+                                        <ul class="ks-cboxtags p-0 m-0">
+                                            <li><input type="checkbox" class="form-check-input" id="checkboxOne"
+                                                    (change)="refUtilisateurTiers.displayAll=changeValue(refUtilisateurTiers.displayAll)">
+                                                <label for="checkboxOne"> <small> {{'Dispaly
+                                                        all'|translate}}</small></label>
+                                            </li>
+
+
+                                            <li><input type="checkbox" class="form-check-input" id="checkboxTwo"
+                                                    (change)="refUtilisateurTiers.search=changeValue(refUtilisateurTiers.search)">
+                                                <label for="checkboxTwo"> <small>
+                                                        {{'search a flight'|translate}}</small></label>
+                                            </li>
+
+                                            <li><input type="checkbox" class="form-check-input" id="checkboxThree"
+                                                    (change)="refUtilisateurTiers.select=changeValue(refUtilisateurTiers.select)">
+                                                <label for="checkboxThree"> <small>
+                                                        {{'Select'|translate}}</small></label>
+                                            </li>
+
+                                            <li><input type="checkbox" class="form-check-input" id="checkboxFour"
+                                                    (change)="refUtilisateurTiers.book=changeValue(refUtilisateurTiers.book)">
+                                                <label for="checkboxFour"> <small>
+                                                        {{'Book'|translate}}</small></label>
+                                            </li>
+
+                                            <li><input type="checkbox" class="form-check-input" id="checkboxFive"
+                                                    (change)="refUtilisateurTiers.orderticket=changeValue(refUtilisateurTiers.orderticket)">
+                                                <label for="checkboxFive"> <small> {{'Order
+                                                        ticket'|translate}}</small></label>
+                                            </li>
+
+                                            <li><input type="checkbox" class="form-check-input" id="checkboxSix"
+                                                    (change)="refUtilisateurTiers.cancel=changeValue(refUtilisateurTiers.cancel)">
+                                                <label for="checkboxSix"> <small>
+                                                        {{'Cancelticket'|translate}}</small></label>
+                                            </li>
+
+                                            <li><input type="checkbox" class="form-check-input" id="checkboxSeven"
+                                                    (change)="refUtilisateurTiers.addUser=changeValue(refUtilisateurTiers.addUser)">
+                                                <label for="checkboxSeven"><small> {{'Add
+                                                        user'|translate}}</small></label>
+                                            </li>
+                                            <li><input type="checkbox" class="form-check-input" id="checkboxEight1"
+                                                    (change)="refUtilisateurTiers.actifTruser=changeValue(refUtilisateurTiers.addUser)">
+                                                <label for="checkboxEight1"><small> {{'Is Active
+                                                        ?'|translate}}</small></label>
+                                            </li>
+                                            <li><input type="checkbox" class="form-check-input" id="checkboxTen1"
+                                                    (change)="refUtilisateurTiers.canGenerate=changeValue(refUtilisateurTiers.canGenerate)">
+                                                <label for="checkboxTen1"><small> {{'Applay Google
+                                                        Autentificate ?'|translate}}</small></label>
+                                            </li>
+                                            <li><input type="checkbox" class="form-check-input" id="checkboxEleven1"
+                                                    (change)="refUtilisateurTiers.otpMail=changeValue(refUtilisateurTiers.otpMail)">
+                                                <label for="checkboxEleven1"><small> {{'Applay OTP Mail
+                                                        ?'|translate}}</small></label>
+                                            </li>
+
+
+                                        </ul>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+
+
+                </div>
+                <div class="col-lg-12 col-md-8 col-sm-12 p-2">
+                    <div class="row mb-2">
+
+                        <div class="col-lg-4 col-md-6 col-sm-6  col-xs-6 pb-2">
+                            <img *ngIf="this.refUtilisateurTiers.trUserPhoto" [src]="img"
+                                class="m-0 rounded mx-auto d-block"
+                                style="width: 150px!important; height:150px!important;">
+                            <img *ngIf="!this.refUtilisateurTiers.trUserPhoto"
+                                [src]="'./../assets/sra-sa/images/templateImage/170x170.png'"
+                                class="m-0 rounded mx-auto d-block"
+                                style="width: 150px!important; height:150px!important;">
+                            <div class="text-center">
+                                <input type="file" style="display: none" multiple
+                                    (change)="preview($event); preview1($event) " accept="image/*" #hiddenfileinput>
+                                <button class="btn  col-7  btn-sm btn-primary mt-3 btn-sm buttonImage"
+                                    (click)="hiddenfileinput.click()" type="button" [disabled]="loadReset || loadSave"
+                                    [ngClass]="{ 'is-invalid': (submitted && !picture)}">
+                                    {{'Picture'|translate}}
+                                    <div class="icon d-flex align-items-center justify-content-center">
+                                        <i class="fas fa-camera" style="padding-right: 6px;padding-left: 5px"></i>
+                                    </div>
+
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-floating ">
+                                        <input type="text" class="form-control form-control-sm" name="name"
+                                            #name="ngModel" required [class.is-invalid]="submitted && name.invalid"
+                                            placeholder="{{'First & Last name'|translate}}"
+                                            [(ngModel)]="refUtilisateurTiers.trUserName">
+                                        <label for="inputPassword4">{{'First & Last name'|translate}}</label>
+                                    </div>
+
+                                </div>
+
+                                <div class="col-6">
+                                    <div class="form-floating mb-3">
+                                        <select class="form-control form-select"
+                                            [(ngModel)]="refUtilisateurTiers.idFonction" name="position"
+                                            #position="ngModel" required
+                                            [class.is-invalid]="submitted && position.invalid">
+                                            <option *ngFor="let item of fonctions" [value]="item.id.idFonction">
+                                                {{item.lfonction|translate}}
+                                            </option>
+
+                                        </select>
+                                        <label for="inputPassword4 floatingSelect ">{{'Position'|translate}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <div class="col-4 ">
+                                    <div class="form-floating mb-3">
+
+                                        <select class="form-control form-select"
+                                            [(ngModel)]="refUtilisateurTiers.idPays" name="country" #country="ngModel"
+                                            required [class.is-invalid]="submitted && country.invalid"
+                                            (change)="onChangeCountry($event)">
+                                            <option *ngFor="let item of pays" [value]="item.idPays">
+                                                {{item.lpays}}
+                                            </option>
+
+                                        </select>
+                                        <label for="floatingSelect"> {{'Country'|translate}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-12">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control form-control-sm"
+                                            placeholder="{{'Code'|translate}}" disabled [(ngModel)]="indexTel"
+                                            name="indexTel">
+                                        <label for="floatingSelect">{{'Code'|translate}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-5 col-sm-12">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control form-control-sm" #phone="ngModel"
+                                            placeholder="{{'Phone number'|translate}}" required
+                                            [class.is-invalid]="submitted && phone.invalid" [(ngModel)]="trUserMobile"
+                                            name="phone">
+                                        <label for="inputPassword4">{{'Phone
+                                            number'|translate}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-2 ">
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control form-control-sm" #login="ngModel"
+                                            required [class.is-invalid]="submitted && login.invalid"
+                                            placeholder="{{'Login'|translate}}"
+                                            [(ngModel)]="refUtilisateurTiers.trUserLogin" name="login">
+                                        <label for="inputPassword4">{{'Login'|translate}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-floating mb-3">
+                                        <input type="password" class="form-control form-control-sm" #password="ngModel"
+                                            required [class.is-invalid]="submitted && password.invalid"
+                                            autocomplete="new-password" [(ngModel)]="refUtilisateurTiers.trUserPwd"
+                                            name="password">
+                                        <label for="inputPassword4">{{'Password'|translate}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-floating mb-3">
+                                        <input type="email" class="form-control form-control-sm" #email="ngModel"
+                                            required [class.is-invalid]="submitted && email.invalid"
+                                            [(ngModel)]="refUtilisateurTiers.trUserEmail" name="email" [email]="true"
+                                            placeholder="{{'Email Address'|translate}}">
+                                        <label for="inputPassword4">{{'Email Address'|translate}}</label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="form-floating mb-3">
+                                        <select class="form-control form-select"
+                                            [(ngModel)]="refUtilisateurTiers.idDevise" name="devise1" #devise1="ngModel"
+                                            required [class.is-invalid]="submitted && devise1.invalid">
+                                            <option *ngFor="let item of devise" [value]="item.idDevise">
+                                                {{item.ldevise}}
+                                            </option>
+                                        </select>
+                                        <label for="floatingSelect"> {{'Devise'|translate}}</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <div class="row">
+                    <div class="col-12 text-right">
+                        <!-- <button class="btn btn-primary btn-sm" (click)="exportAsPDF()"><i
+                                                class="fas fa-download"></i></button> -->
+
+
+                        <button type="button" data-dismiss="modal" aria-label="Close" aria-hidden="true"
+                            class="btn btn-sm  btn-primary col-sm-5 col-md-3 mr-1 exit">
+                            Exit
+                            <div class="icon d-flex align-items-center justify-content-center exit ">
+                                <i class="fas fa-close"></i>
+                            </div>
+                        </button>
+
+                        <button type="button" [disabled]="loadSave"
+                            class="btn btn-sm  btn-primary col-sm-5 col-md-3 mr-1"
+                            (click)="saveForm.reset();this.refUtilisateurTiers.trUserPhoto =null">
+                            {{'Refresh'|translate}}
+                            <div class="icon d-flex align-items-center justify-content-center">
+                                <i class="fas fa-sync-alt"></i>
+                            </div>
+                        </button>
+
+
+
+                        <button type="button" class="btn  btn-sm btn-success col-sm-5 col-md-3 mr-1"
+                            [disabled]="loadSave" (click)="save(saveForm)">
+                            <div *ngIf="loadSave" class="spinner-border spinner-border-sm text-light" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                            {{'Save'|translate}}
+                            <div class="icon2 d-flex align-items-center justify-content-center">
+                                <i class="far fa-save"></i>
+                            </div>
+                        </button>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid">
+
+    <div class="row">
+        <div>
+            <form #searchForm="ngForm" class="py-2">
+                <div class="row mt-4 ml-2">
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-floating mb-3">
+                            <input type="email" class="form-control form-control-sm" placeholder="{{'Email'|translate}}"
+                                [(ngModel)]="searchModel.email" name="ref">
+                            <label for="floatingSelect">{{'Email'|translate}} </label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <div class="form-floating mb-3">
+                            <input type="mobile" class="form-control form-control-sm"
+                                placeholder="{{'Mobile'|translate}}" [(ngModel)]="searchModel.mobile" name="Mobile">
+                            <label for="floatingSelect">{{'Mobile'|translate}} </label>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-6 col-sm-6">
+                        <button type=" button" class="btn btn-primary ajout " data-toggle="modal"
+                            data-target="#myModal2">
+                            {{'Add-Agent'|translate}}
+
+                        </button>
+
+                    </div> -->
+                    <!-- <div class="col-md-3 col-sm-6">
+                        <button type=" button" class="btn btn-primary  ajout" data-toggle="modal" data-target="#myModal2">
+                            {{'Add-Agent'|translate}}
+        
+                        </button>
+                    </div> -->
+
+
+
+
+                </div>
+                <div class="row  mt-2">
+                    <div class="col-12 text-right">
+                        <button type="button" class="btn btn-sm btn-primary col-12 col-md-2 m-2"
+                            (click)="resetCretertias(searchForm)" [disabled]="loading">{{'Refresh'|translate}}
+                            <div class="icon d-flex align-items-center justify-content-center">
+                                <i class="fas fa-sync-alt"></i>
+                            </div>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-success col-12 col-md-2 m-2" (click)="find()"
+                            [disabled]="loading">
+                            <div *ngIf="loading" class="spinner-border spinner-border-sm text-light" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div> <span>{{'Find'|translate}}</span>
+                            <div class="icon2 d-flex align-items-center justify-content-center">
+                                <i class="fas fa-search"></i>
+                            </div>
+                        </button>
+                        <button type=" button" class="btn btn-sm btn-add col-12 col-md-2 m-2" data-toggle="modal"
+                            data-target="#myModal2">
+                            {{'Add-Agent'|translate}}
+                            <div class="iconAdd d-flex align-items-center justify-content-center">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                        </button>
+                        <!-- <button class="btn aqua-gradient">Add Agent</button>
+                        <button class="btn blue-gradient">Add Agent</button> -->
+
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-12 col-sm-12">
+
+        <div class=" card card-no-border  mb-2">
+
+            <label class="ml-2 mt-2"> {{'Users'|translate}} ({{total}}) </label>
+            <table mat-table [dataSource]="source" class="my-table">
+                <!-- country Column -->
+                <ng-container matColumnDef="country">
+                    <th mat-header-cell *matHeaderCellDef class="border2 text-center"> {{'country'| translate }}
+                    </th>
+                    <td mat-cell *matCellDef="let element" class="text-center "> {{element.country}} </td>
+                </ng-container>
+                <!-- trUserName Column -->
+                <ng-container matColumnDef="trUserName">
+                    <th mat-header-cell *matHeaderCellDef class="border2 text-center"> {{'trUserName'| translate
+                        }}</th>
+                    <td mat-cell *matCellDef="let element" class="text-center"> {{element.trUserName}} </td>
+                </ng-container>
+                <!-- trUserEmail Column -->
+                <ng-container matColumnDef="trUserEmail">
+                    <th mat-header-cell *matHeaderCellDef class="border2 text-center"> {{'trUserEmail'|
+                        translate }}</th>
+                    <td mat-cell *matCellDef="let element" class="text-center"> {{element.trUserEmail}} </td>
+                </ng-container>
+                <!-- trUserLogin Column -->
+                <ng-container matColumnDef="trUserLogin">
+                    <th mat-header-cell *matHeaderCellDef class="border2 text-center"> {{'trUserLogin'|
+                        translate }}</th>
+                    <td mat-cell *matCellDef="let element" class="text-center"> {{element.trUserLogin}} </td>
+                </ng-container>
+                <!-- trUserMobile Column -->
+                <ng-container matColumnDef="trUserMobile">
+                    <th mat-header-cell *matHeaderCellDef class="border2 text-center"> {{'Mobile'|
+                        translate }}</th>
+                    <td mat-cell *matCellDef="let element" class="text-center"> {{element.trUserMobile}} </td>
+                </ng-container>
+                <!-- actifTruser Column -->
+                <ng-container matColumnDef="actifTruser">
+                    <th mat-header-cell *matHeaderCellDef class="border2 text-center"> {{'actifTruser'|
+                        translate }}</th>
+                    <td mat-cell *matCellDef="let element" class="text-center">
+                        <span class="text-g" *ngIf="element.actifTruser === 'O'">
+                            {{'Yes' | translate}}
+                        </span>
+                        <span class="text-r" *ngIf="element.actifTruser === 'N'">
+                            {{'No' | translate}}
+                        </span>
+                    </td>
+
+                </ng-container>
+                <!-- is Admin Column -->
+                <ng-container matColumnDef="isAdmin">
+                    <th mat-header-cell *matHeaderCellDef class="border2 text-center"> {{'isAdmin'|translate }}</th>
+                    <td mat-cell *matCellDef="let element" class="text-center">
+                        <span class="text-g" *ngIf="element.isAdmin === 'O'">
+                            {{'Yes' | translate}}
+                        </span>
+                        <span class="text-r" *ngIf="element.isAdmin === 'N'">
+                            {{'No' | translate}}
+                        </span>
+                    </td>
+
+                </ng-container>
+                <!-- action Column -->
+                <ng-container matColumnDef="actions">
+                    <th mat-header-cell *matHeaderCellDef class="border2 text-center"> {{'Actions'| translate }}
+                    </th>
+
+                    <td mat-cell *matCellDef="let element; let i = index;" class="action">
+                        <div class="action1">
+
+                            <button class="edit pb-1" data-toggle="modal" data-target="#myModal3"
+                                (click)="setModalUpdate(element)">
+                                <small>
+                                    <u class="lienAction">{{'Update' | translate}}</u>
+                                </small>
+                            </button>
+
+
+                            <a (click)="updateTiersActif(element)" class="lienAction">
+                                <small>
+                                    <u class="lienAction">{{'Active/Block' | translate}}</u>
+                                </small>
+                            </a>
+
+                            <a (click)="getCommission(element)" class="lienAction">
+                                <small>
+                                    <u class="lienAction"> {{'Commission' | translate}} </u>
+                                </small>
+                            </a>
+                            <a (click)="autorisation(element)" class="lienAction">
+                                <small>
+                                    <u class="lienAction"> {{'autorisation' | translate}} </u>
+                                </small>
+                            </a>
+                        </div>
+
+
+
+                    </td>
+
+
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[100, 200, 300, 400]" showFirstLastButtons>
+            </mat-paginator>
+
+        </div>
+        </div>
+        <div class="modal right fade" id="myModal3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel3">
+            <div class="modal-dialog" role="document" data-tor="place.right place.bottom">
+                <div class="modal-content">
+
+                    <div class="modal-header p-0">
+                        <div class="row py-2 pl-4">
+                            <div class="col-11">
+
+                                <h1> {{'Update-Agent'|translate}}</h1>
+                            </div>
+                            <div class="col-1">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-body p-1">
+                        <div class="row p-2">
+                            <form #saveForm="ngForm">
+                                <div class="row">
+
+
+                                    <div class=" mb-2">
+                                        <ul class="ks-cboxtags p-0 m-0">
+
+                                            <li><input type="checkbox" class="form-check-input" id="checkboxOne1"
+                                                    [(ngModel)]="candisplayAll" (change)="onChangeDisplayAll()"
+                                                    name="candisplayAll">
+                                                <label for="checkboxOne1"> <small> {{'Dispaly
+                                                        all'|translate}}</small></label>
+                                            </li>
+
+                                            <li><input type="checkbox" class="form-check-input" id="checkboxTwo1"
+                                                    [(ngModel)]="canSearch" (change)="onChangeSearch()"
+                                                    name="canSearch"> <label for="checkboxTwo1">
+                                                    <small>
+                                                        {{'search a flight'|translate}}</small></label>
+                                            </li>
+
+                                            <li><input type="checkbox" class="form-check-input" id="checkboxThree1"
+                                                    [(ngModel)]="canSelect" (change)="onChangeSelect()"
+                                                    name="canSelect"> <label for="checkboxThree1">
+                                                    <small>
+                                                        {{'Select'|translate}}</small></label>
+                                            </li>
+
+                                            <li><input type="checkbox" class="form-check-input" id="checkboxFour1"
+                                                    [(ngModel)]="canBook" (change)="onChangeBook()" name="canBook">
+                                                <label for="checkboxFour1">
+                                                    <small>
+                                                        {{'Book'|translate}}</small></label>
+                                            </li>
+
+                                            <li><input type="checkbox" class="form-check-input" id="checkboxFive1"
+                                                    [(ngModel)]="canOrderTicket" (change)="onChangeOrderTicket()"
+                                                    name="canOrderTicket">
+                                                <label for="checkboxFive1">
+                                                    <small> {{'Order
+                                                        ticket'|translate}}</small></label>
+                                            </li>
+
+                                            <li><input type="checkbox" class="form-check-input" id="checkboxSix1"
+                                                    [(ngModel)]="canCancel" (change)="onChangeCancel()"
+                                                    name="canCancel"> <label for="checkboxSix1">
+                                                    <small>
+                                                        {{'Cancelticket'|translate}}</small></label>
+                                            </li>
+
+                                            <li><input type="checkbox" class="form-check-input" id="checkboxSeven1"
+                                                    [(ngModel)]="canAddUser" (change)="onChangeAddUser()"
+                                                    name="canAddUser">
+                                                <label for="checkboxSeven1"><small> {{'Add
+                                                        user'|translate}}</small></label>
+                                            </li>
+
+                                            <li><input type="checkbox" class="form-check-input" id="checkboxEight1"
+                                                    [(ngModel)]="canActifTruser" (change)="onChangeActifTrUser()"
+                                                    name="canActifTruser">
+                                                <label for="checkboxEight1"><small> {{'Is Active
+                                                        ?'|translate}}</small></label>
+                                            </li>
+                                            <li><input type="checkbox" class="form-check-input"
+                                                    [(ngModel)]="canDisplayProvider"
+                                                    (change)="onChangeDisplayProvider()" name="canDisplayProvider"
+                                                    id="checkboxprovider">
+                                                <label for="checkboxprovider"><small> {{'Display
+                                                        Provider'|translate}}</small></label>
+                                            </li>
+                                            <li><input type="checkbox" class="form-check-input" id="checkboxTen1"
+                                                    [(ngModel)]="canGenerate" (change)="onChangeCanGenerate()"
+                                                    name="canGenerate">
+                                                <label for="checkboxTen1"><small> {{'Apply Google
+                                                        Autentificate ?'|translate}}</small></label>
+                                            </li>
+                                            <li><input type="checkbox" class="form-check-input" id="checkboxEleven1"
+                                                    [(ngModel)]="canOptmail" (change)="onChangeOtpMail()"
+                                                    name="canOptmail">
+                                                <label for="checkboxEleven1"><small> {{'Apply OTP Mail
+                                                        ?'|translate}}</small></label>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+
+                                </div>
+                                <div class="">
+                                    <div class="row mb-2">
+
+                                        <div class="col-lg-4 col-md-6 col-sm-6  col-xs-6 ">
+                                            <img *ngIf="refUtilisateurTiersUpdated.userPhoto != null && !changePhoto && img2==null"
+                                                [src]="photo" class="m-0 rounded mx-auto d-block"
+                                                style="width: 140px!important; height:140px!important;">
+                                            <img *ngIf="refUtilisateurTiersUpdated.userPhoto == null && !changePhoto && img2==null"
+                                                [src]="'./../assets/sra-sa/images/templateImage/170x170.png'"
+                                                class="m-0 rounded mx-auto d-block"
+                                                style="width: 140px!important; height:140px!important;">
+
+                                            <img *ngIf="changePhoto && img2 != null" [src]="img2" accept="image/*"
+                                                class="m-0 rounded mx-auto d-block"
+                                                style="width: 140px!important; height:140px!important;">
+
+                                            <div class="text-center">
+                                                <input type="file" style="display: none" multiple
+                                                    (change)="preview3($event); preview2($event) " accept="image/*"
+                                                    #hiddenfileinput1>
+                                                <button class="btn  col-7  btn-sm btn-primary mt-3 btn-sm buttonImage"
+                                                    (click)="hiddenfileinput1.click()" type="button"
+                                                    [disabled]="loadReset || loadSave"
+                                                    [ngClass]="{ 'is-invalid': (submitted && !picture)}">
+                                                    {{'Avatar'|translate}}
+                                                    <div class="icon d-flex align-items-center justify-content-center">
+                                                        <i class="fas fa-camera"
+                                                            style="padding-right: 6px;padding-left: 5px"></i>
+                                                    </div>
+
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-8">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <div class="form-floating mb-3">
+                                                        <input type="text" class="form-control form-control-sm"
+                                                            name="name" #name="ngModel" required
+                                                            [class.is-invalid]="submitted && name.invalid"
+                                                            placeholder="{{'First & Last name'|translate}}"
+                                                            [(ngModel)]="refUtilisateurTiersUpdated.trUserName">
+                                                        <label for="inputPassword4">{{'Agentname'|translate}}</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-6  ">
+                                                    <div class="form-floating mb-3">
+
+                                                        <select class="form-control form-select"
+                                                            [(ngModel)]="refUtilisateurTiersUpdated.idPays"
+                                                            name="country" #country="ngModel" required
+                                                            [class.is-invalid]="submitted && country.invalid"
+                                                            (change)="onChangeCountry($event)">
+                                                            <option *ngFor="let item of pays" [value]="item.idPays">
+                                                                {{item.lpays}}
+                                                            </option>
+
+                                                        </select>
+                                                        <label for="floatingSelect"> {{'Country'|translate}}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row ">
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-floating mb-3">
+                                                        <input type="text" class="form-control form-control-sm"
+                                                            #phone="ngModel" placeholder="{{'Phone number'|translate}}"
+                                                            required [class.is-invalid]="submitted && phone.invalid"
+                                                            [(ngModel)]="refUtilisateurTiersUpdated.trUserMobile"
+                                                            name="phone">
+                                                        <label for="inputPassword4">{{'Agent
+                                                            Mobile'|translate}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-floating mb-3">
+                                                        <input type="email" class="form-control form-control-sm"
+                                                            #email="ngModel" required
+                                                            [class.is-invalid]="submitted && email.invalid"
+                                                            [(ngModel)]="refUtilisateurTiersUpdated.trUserEmail"
+                                                            name="email" [email]="true"
+                                                            placeholder="{{'Email Address'|translate}}">
+                                                        <label for="inputPassword4">{{'Agent
+                                                            Email'|translate}}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-2">
+
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-floating mb-3">
+                                                        <select class="form-control form-select"
+                                                            [(ngModel)]="refUtilisateurTiersUpdated.idDevise"
+                                                            name="devise1" #devise1="ngModel" required
+                                                            [class.is-invalid]="submitted && devise1.invalid">
+                                                            <option *ngFor="let item of devise" [value]="item.idDevise">
+                                                                {{item.ldevise}}
+                                                            </option>
+                                                        </select>
+                                                        <label for="floatingSelect"> {{'Devise'|translate}}</label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <div class="form-floating mb-3">
+                                                        <input type="number" class="form-control form-control-sm"
+                                                            #nbrTentativeCnx="ngModel" required
+                                                            [class.is-invalid]="submitted && nbrTentativeCnx.invalid"
+                                                            [(ngModel)]="refUtilisateurTiersUpdated.nbrTentativeCnx"
+                                                            name="nbrTentativeCnx" id="nbrTentativeCnx"
+                                                            placeholder="{{'Email Address'|translate}}">
+                                                        <label for="nbrTentativeCnx">{{'Connection
+                                                            Attempt'|translate}}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+                                </div>
+                                <div class="row">
+
+                                    <div class="col-12 text-right">
+                                        <button type="button" data-dismiss="modal" aria-label="Close" aria-hidden="true"
+                                            class="btn btn-sm  btn-primary col-sm-5 col-md-3 mr-1 exit">
+                                            Exit
+                                            <div class="icon d-flex align-items-center justify-content-center exit ">
+                                                <i class="fas fa-close"></i>
+                                            </div>
+                                        </button>
+
+                                        <button type="button" class="btn  btn-sm btn-success col-11 col-md-3 m-1"
+                                            [disabled]="loadEdit" (click)="edit()">
+                                            <div *ngIf="loadEdit" class="spinner-border spinner-border-sm text-light"
+                                                role="status">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                            {{'Save'|translate}}
+                                            <div class="icon2 d-flex align-items-center justify-content-center">
+                                                <i class="far fa-save"></i>
+                                            </div>
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+            </div>
+
+
+        </div>

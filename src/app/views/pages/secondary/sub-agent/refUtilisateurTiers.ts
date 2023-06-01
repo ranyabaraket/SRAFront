@@ -1,0 +1,27 @@
+export class RefUtilisateurTiers {
+    trUserName;
+    trUserEmail;
+    trUserMobile;
+    trUserPwd;
+    trUserLogin;
+    idFonction;
+    addUser;
+    displayAll;
+    book;
+    search;
+    select;
+    cancel;
+    trUserPhoto;
+    idDevise;
+    country;
+    refUser;
+    orderticket;
+    idPays;
+    codeDevise;
+    canGenerate;
+    otpMail;
+    actifTruser;
+    displayProvider;
+    nbrTentativeCnx;
+    userPhoto;
+}

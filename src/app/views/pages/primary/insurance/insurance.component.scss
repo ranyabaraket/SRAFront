@@ -1,0 +1,141 @@
+#page-container {
+    position: relative;
+    min-height: 58vh;
+}
+
+#bg {
+    background: url('../../../../../assets/images/moduleBg/insurance1.jpg') no-repeat center center fixed;
+    //   background-repeat: no-repeat;
+    height: 100%!important;
+    width: 100%!important;
+    margin-left: -16px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position: fixed;
+    // -webkit-filter: opacity(50%);
+    // filter: opacity(50%);
+}
+
+#cover {
+    background-color: rgba(255, 255, 255, .9)!important;
+    height: 300px!important;
+}
+
+#content-wrap {
+    padding-bottom: 2.5rem;
+    /* Footer height */
+    margin-top: 5rem;
+    //background: url('../../../../../assets/images/moduleBg/flight.jpg');  
+}
+
+.title-module {
+    font-size: 40px;
+}
+.card-history{
+    min-height: 100px!important;
+    background-color: black; border-color: white;
+}
+#footerX {
+    position: absolute;
+    width: 92%;
+    height: 2.5rem;
+   margin-left: 1%;
+    margin-top: 3%;
+    //   opacity: 70%;
+    color: white;
+}
+
+@media only screen and (max-width: 767px) {
+    .title-module {
+        font-size: 25px;
+    }
+    #cover {
+        height: 200px!important;
+    }
+    .search-bloc {
+        margin-top: 40px;
+    }
+ 
+     
+    .mrgBtm {
+        margin-bottom: -20px;
+    }
+    
+    #footerX {
+        position: absolute;
+        width: 80%;
+        height: 2.5rem;
+        margin-left: 7%;
+        //    opacity: 70%;
+        color: white;
+    }
+}
+
+.form-field {
+    width: 98%;
+    margin-left: 1%;
+    margin-top: 5px;
+    // min-height: 170px!important;
+}
+
+.card-cube {
+    border-radius: 0px;
+}
+
+// .card :hover {
+//     box-shadow: 1px 1px 8px rgb(202, 200, 200);
+//     background-color: whitesmoke;
+// }
+
+.rowdisplay {
+    //  opacity: 80%;
+    width: 96%;
+    margin-left: 2%;
+    margin-top: -210px;
+    background-color: black;
+    border-radius: 15px;
+    -webkit-box-shadow: 9px 9px 13px -7px rgba(0, 0, 0, 0.33);
+    -moz-box-shadow: 9px 9px 13px -7px rgba(0, 0, 0, 0.33);
+    box-shadow: 0px 0px 13px 0px rgba(0, 0, 0, 0.33);
+}
+
+ 
+
+.searchField {
+    padding-top: 1%;
+    padding-bottom: 2%;
+    width: 98%;
+    margin-left: 1%;
+}
+
+@media only screen and (max-width: 580px) {
+    .slogan {
+        font-size: 1.5rem;
+        color: white;
+        padding-top: 20px;
+        padding-left: 15px;
+    }
+}
+
+@media only screen and (min-width: 580px) {
+    .slogan {
+        font-size: 1.9rem;
+        color: white;
+        padding-top: 20px;
+        padding-left: 15px;
+    }
+}
+
+@media only screen and (max-width: 420px) {
+    .slogan {
+        font-size: 1.3rem;
+        color: white;
+        padding-top: 20px;
+        padding-left: 15px;
+    }
+}
+.mrgBtm {
+    margin-bottom: -20px;
+}

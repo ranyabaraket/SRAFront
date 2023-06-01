@@ -1,0 +1,86 @@
+<form #saveForm="ngForm">
+    <mat-dialog-content>
+        <div class="row ">
+            <div class="col-md-4 col-sm-12">
+                <div class="col-md-3 col-sm-4  col-xs-6  mt-2 mb-2">
+                    <img *ngIf="this.refNotification.notifPhoto" [src]="img" class="rounded"
+                        style="width: 170px!important; height:170px!important;">
+                    <img *ngIf="!this.refNotification.notifPhoto"
+                        [src]="'./assets/sra-sa/images/templateImage/170x170.png'" class="rounded  "
+                        style="width: 170px!important; height:170px!important;">
+                    <div>
+                        <input type="file" style="display: none" multiple (change)="preview($event); preview1($event) "
+                            accept="image/*" #hiddenfileinput>
+                        <button class="btn btn-sm add-pic-btn btn-primary mt-3" (click)="hiddenfileinput.click()" type="button"
+                            [disabled]="disableForm">
+                            <a class="nobr">  {{'Add picture'|translate}}  </a></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 col-sm-12">
+                <div class="row mb-2">
+                    <div class="col-6">
+                        <label><small> {{'Sent by'|translate}}</small></label>
+                        <input type="text" class="form-control form-control-sm" [(ngModel)]="refNotification.sentBy"
+                            name="sentBy" disabled>
+                    </div>
+                    <div class="col-6">
+                        <label><small> {{'Sent to'|translate}} </small></label>
+                        <select class="form-control form-control-sm" [(ngModel)]="refNotification.sentTo" name="sto"
+                            [disabled]="disableForm" #sto="ngModel" required
+                            [class.is-invalid]="submitted && sto.invalid">
+                            <option *ngFor="let item of sentTo" [value]="item.value"> {{item.name}}
+                            </option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="row mb-2">
+                    <div class="col-6">
+                        <label><small> {{'Status'|translate}}</small></label>
+                        <select class="form-control form-control-sm" [(ngModel)]="refNotification.notifStatus"
+                            name="notifStatus" disabled>
+                            <option *ngFor="let item of status" [value]="item.value"> {{item.name}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-6">
+                        <label><small> {{'Date request'|translate}}</small></label>
+                        <input type="text" class="form-control form-control-sm"
+                            [(ngModel)]="refNotification.dtNotifAff" name="dtNotif" disabled>
+                    </div>
+
+                </div>
+                <div class="row mb-2">
+                    <div class="col-12">
+                        <label><small> {{'Notif title'|translate}} </small></label>
+                        <input type="text" class="form-control form-control-sm" [(ngModel)]="refNotification.notifTitle"
+                            name="notifTitle" [disabled]="disableForm" #notifTitle="ngModel" required
+                            [class.is-invalid]="submitted && notifTitle.invalid">
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-12">
+                        <label for="textNotif"><small> {{'Notif text'|translate}}</small></label>
+                        <textarea class="form-control form-control-sm" id="textNotif" rows="3"
+                            [(ngModel)]="refNotification.notifTexte" name="textNotif" #textNotif="ngModel" required
+                            [class.is-invalid]="submitted && textNotif.invalid" [disabled]="disableForm"></textarea>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end">
+        <button class="btn btn-sm  btn-primary  mr-2" (click)="save(saveForm)" [disabled]="loading || disableForm">
+            <div *ngIf="loading" class="spinner-border spinner-border-sm text-light" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            {{'Save'|translate}}
+        </button>
+        <button class="btn btn-sm  btn-secondary" mat-button mat-dialog-close [disabled]="loading">{{'Cancel'|translate}}</button>
+    </mat-dialog-actions>
+</form>

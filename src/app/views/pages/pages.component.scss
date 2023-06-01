@@ -1,0 +1,213 @@
+ /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+
+ @media screen and (max-height: 450px) {
+     .sidebar {
+         padding-top: 15px;
+     }
+
+     .sidebar a {
+         font-size: 18px;
+     }
+ }
+
+ /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+
+ #main {
+     transition: margin-left .5s;
+     /* If you want a transition effect */
+     //  padding-top: 48px;
+    //  min-height: 150% !important;
+     background-color:#ffff !important;
+     margin-bottom: 0 !important;
+     //margin-left: 3em;
+ }
+
+ nav>.breadcrumb {
+
+     border-radius: 0 !important;
+ }
+
+ .menu {
+     position: fixed;
+     top: 55px;
+     left: 0;
+     height: 100%;
+     //list-style-type: none;
+     margin: 0;
+     padding: 0;
+     background-color: #128bb4;
+     z-index: 9;
+     overflow: hidden;
+     // box-shadow: 2px 0 18px rgba(0, 0, 0, 0.26);
+     /// width: 0;   
+
+    //  padding-top: 20px;
+     transition: 0.5s;
+    //  margin-top: 55px !important;
+     overflow: hidden;
+ }
+
+ .menu li a {
+     display: block;
+     text-indent: -500em;
+     height: 3em;
+     width: 3em;
+     line-height: 3em;
+     text-align: center;
+     color: white;
+     position: relative;
+     border-bottom: 1px solid #f1f3ec34;
+     transition: background 0.1s ease-in-out;
+ }
+
+ .menu-bar li a {
+     display: block;
+     //text-indent: -500em;
+     height: 3em;
+     font-family: "Cairo";
+     width: 10em;
+     line-height: 3em;
+     // text-align:center;
+     color: white;
+     position: relative;
+     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+     transition: background 0.1s ease-in-out;
+ }
+
+ .menu-bar li:hover{
+    
+    background: #8bbc2d;
+    border-radius: 24px 0 0 24px;
+    padding-left: 16px;
+ }
+ .menu li a:before,
+ .menu-bar li a:before {
+     //  font-family: FontAwesome;
+     text-indent: 0em;
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     font-size: 1.2em;
+ }
+
+ .menu-bar li a:hover,
+ .menu li a:hover {
+     text-shadow: 1px 1px 2px #A9CCE3, 0 0 25px rgb(189, 189, 247), 0 0 5px rgb(80, 80, 151);
+     color: white;
+ }
+
+ .menu-bar {
+     transition: all 0.1s ease-in-out;
+     position: fixed;
+     top: 0;
+     left: 3em;
+     height: 100%;
+     list-style-type: none;
+     margin: 0;
+     padding: 0;
+     background-color:  #8bbc2d;
+     overflow: hidden;
+     z-index: 9;
+     transition: 0.5s;
+     margin-top: 50px !important;
+     overflow: hidden;
+ }
+
+ .open {
+     width: 10em;
+     height: 100%;
+ }
+
+ @media all and (max-width: 500px) {
+     .container {
+         margin-top: 100px;
+     }
+
+     .menu {
+         height: auto;
+         width: 100%;
+     }
+
+     .menu li {
+         display: inline-block;
+         float: left;
+     }
+
+     .menu-bar li a {
+         width: 100%;
+     }
+
+     .menu-bar {
+         width: 100%;
+         left: 0;
+         height: 0;
+     }
+
+     .open {
+         width: 100%;
+         height: auto;
+     }
+
+     .para {
+         padding-left: 5px;
+     }
+
+     #main {
+         margin-top: 2em;
+         margin-left: 0em !important;
+
+         .breadcrumb {
+             display: none;
+         }
+     }
+ }
+
+ @media all and (max-width: 419px) {
+     #main {
+         margin-top: 5em !important;
+     }
+ }
+
+ @media screen and (max-height: 34em) {
+
+     .menu li,
+     .menu-bar {
+         font-size: 80%;
+     }
+ }
+
+ @media screen and (max-height: 34em) and (max-width: 500px) {
+     .menu {
+         height: 4.4em;
+     }
+ }
+
+ .active-module {
+     color: white !important;
+ }
+
+ // scroll up
+
+ #myBtn {
+     display: none;
+     position: fixed;
+     bottom: 20px;
+     right: 30px;
+     z-index: 99;
+     font-size: 18px;
+     border: none;
+     outline: none;
+     background-color: rgb(0, 53, 128);
+     color: white;
+     cursor: pointer;
+     padding: 15px;
+     border-radius: 4px;
+     opacity: 0.55;
+ }
+
+ #myBtn:hover {
+
+     background-color: rgb(51, 98, 163);
+ }

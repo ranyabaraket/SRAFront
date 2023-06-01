@@ -1,0 +1,64 @@
+<h4 class="text-white text-center" style="
+font-size: 26px!important;
+margin-top: 24px;
+"> Account Login</h4>
+<form [formGroup]="loginForm" #loginFormauth="ngForm">
+    <div class="input-icons">
+        <i class="la la-user mr-1 la-icon l-icon"></i>
+        <input type="text" for="accountCode" placeholder="{{'Account Code'|translate}}" autocomplete="off" 
+            class=" form-control " name="accountCode" id="accountCode" formControlName="accountCode"
+           [ngClass]="{ 'is-invalid': loginForm.controls.accountCode.errors}" />
+    </div>
+    <div class="input-icons">
+        <i class="la la-user mr-1 la-icon l-icon"></i>
+        <input type="text" for="UserName" placeholder="{{'User Login'|translate}}" autocomplete="off" 
+        class=" form-control "
+            name="UserName" id="UserName" formControlName="username"
+            [ngClass]="{ 'is-invalid': (submittedLogin && loginForm.controls.username.errors)}" />
+    </div>
+    <div class="input-icons">
+
+        <i class="la la-lock mr-1 la-icon l-icon"></i>
+        <input type="password" for="Password" placeholder="{{'Password'|translate}}" class=" form-control " 
+            name="Password" id="Password" formControlName="password"
+            [ngClass]="{ 'is-invalid': (submittedLogin && loginForm.controls.password.errors)}" autocomplete="on" />
+    </div>
+
+    <!--- <div class="row">
+        <div class="col-6 ">
+              <label class="ml-2">
+                <input type="checkbox" checked="checked" name="remember"> {{'Remember me'|translate}}
+            </label>  
+        </div>
+        <div class=" col text-right">
+            <u class="primary clickable" (click)="openForgetPw()"> {{'Forgot password?'|translate}}</u>
+        </div>
+    </div> -->
+    <!-- <div class="row">  
+    <div class="col ml-2" style="transform: scale(0.90);transform-origin: 0;">
+        <re-captcha (resolved)="resolved($event)" siteKey="{{recaptcha}}" 
+            [ngClass]="{ 'is-invalid': (submittedLogin && !captchaResponse)}"></re-captcha>
+</div>
+    </div> -->
+    <div class="row">
+        <br>
+        <div class="col-12 p-3 text-right">
+            <!--<button class="btn  btn-sm btn-facebook mt-2 col-12 mr-md-2 col-md-6" (click)="signInWithFB()"
+                [disabled]="loading || loadingFB">
+                    <div *ngIf="loadingFB" class="spinner-border spinner-border-sm text-light" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    SignIn with facebook
+                </button>-->
+            <u class="text-link clickable" (click)="openForgetPw()"> {{'Forgot password?'|translate}}</u>
+            &nbsp;
+ 
+            <button class="btn btn-primary" (click)="login()" [disabled]="loading || loadingFB || loginForm.invalid">
+                <div *ngIf="loading" class="spinner-border spinner-border-sm text-light" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div> {{'GET STARTED'|translate}}
+            </button>
+        </div>
+
+    </div>
+</form>

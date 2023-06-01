@@ -1,0 +1,74 @@
+.rowdisplay {
+    margin-left: 2%;
+    margin-right: 0px;
+    margin-top: 25px;
+    background-color: rgb(229, 233, 241);
+    margin-top: 1%;
+    padding: 1%;
+    width: 96%;
+    border-radius: 5px;
+    -webkit-box-shadow: 9px 9px 13px -7px rgba(0, 0, 0, 0.33);
+    -moz-box-shadow: 9px 9px 13px -7px rgba(0, 0, 0, 0.33);
+    box-shadow: 9px 9px 13px -7px rgba(0, 0, 0, 0.33);
+}
+
+.rowdisplay1 {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 6px;
+    background-color: white;
+    border-radius: 5px;
+    -webkit-box-shadow: 9px 9px 13px -7px rgba(0, 0, 0, 0.33);
+    -moz-box-shadow: 9px 9px 13px -7px rgba(0, 0, 0, 0.33);
+    box-shadow: 9px 9px 13px -7px rgba(0, 0, 0, 0.33);
+}
+
+.rowdisplayX {
+    margin-left: 1%;
+    margin-right: 0px;
+    margin-top: 6px;
+    background-color: white;
+    border-radius: 5px;
+    -webkit-box-shadow: 9px 9px 13px -7px rgba(0, 0, 0, 0.33);
+    -moz-box-shadow: 9px 9px 13px -7px rgba(0, 0, 0, 0.33);
+    box-shadow: 9px 9px 13px -7px rgba(0, 0, 0, 0.33);
+    position: sticky;
+    top: 4rem;
+}
+
+.rowdisplayX {
+    margin-left: 1%;
+    margin-right: 0px;
+    margin-top: 6px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 1px 1px 8px rgb(223, 222, 222);
+    position: sticky;
+    top: 4rem;
+}
+
+.dataBooking {
+ //   font-size: 1.1rem;
+//    text-transform: uppercase;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.dataEmail {
+  //  font-size: 1.1rem;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.dataRef {
+    background-color: rgb(229, 233, 241);
+    font-size: 1.5rem;
+    margin: auto;
+    text-align: center;
+  //  text-transform: uppercase;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 40px;
+    padding: 10px;
+    color: rgba(20, 80, 211, 0.801);
+}

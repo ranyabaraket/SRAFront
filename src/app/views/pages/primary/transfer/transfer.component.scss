@@ -1,0 +1,107 @@
+#page-container {
+    position: relative;
+    min-height: 58vh;
+}
+
+#bg {
+    background: url('../../../../../assets/images/moduleBg/transfer1.0.jpg') no-repeat center center fixed;
+    height: 100%!important;
+    width: 100%!important;
+    margin-left: -16px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position: fixed;
+}
+.card-history{
+    min-height: 100px!important; 
+}
+#cover {
+    height: 300px!important;
+}
+
+#content-wrap {
+    padding-bottom: 2.5rem;
+    margin-top: 5rem;
+}
+
+.title-module {
+    font-size: 40px;
+}
+
+ 
+
+@media only screen and (max-width: 767px) {
+    .title-module {
+        font-size: 25px;
+    }
+    #cover {
+        height: 200px!important;
+    }
+    .search-bloc {
+        margin-top: 40px;
+    }
+    .btn-danger {
+        margin-top: 10px;
+        margin-left: 0!important;
+        width: 98%;
+    }
+    .btn-success {
+        width: 98%;
+    }
+    .mrgBtm {
+        margin-bottom: 20px!important;
+    }
+    
+}
+ 
+
+.card-cube {
+    border-radius: 0px;
+}
+
+.bottom-text {
+    position: relative;
+    bottom: 12px;
+    width: 100%;
+    color: rgba(60, 64, 67, 1);
+}
+ 
+  
+.mrgBtm { 
+    margin-top: 10px;
+}
+
+ 
+.info-bloc {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    background-color: #fafafa;
+}
+@media only screen and (max-width: 600px) {
+    .slogan {
+        font-size: 1.2rem; 
+        padding-top: 20px;
+        padding-left: 10px;
+    }
+    .slogan1 {
+        font-size: 1rem; 
+        padding-top: 20px;
+        padding-left: 10px;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .slogan {
+        font-size: 2rem; 
+        padding-top: 20px;
+        padding-left: 10px;
+    }
+    .slogan1 {
+        font-size: 1.4rem; 
+        padding-top: 20px;
+        padding-left: 10px;
+    }
+}

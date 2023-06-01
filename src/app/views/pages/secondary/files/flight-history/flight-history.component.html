@@ -1,0 +1,192 @@
+<div class="container-fluid pt-0">
+    <div *ngIf="!showDetails">
+        <div class="  mb-2">
+            <form #searchForm="ngForm" class="py-2">
+                <div class="row pl-2">
+                    <div class="col-md-2 col-sm-6 form-check">
+                        <div class="inputGroup">
+                        <input type="radio" class="form-check-input" name="etat" value="0" id="etat1"
+                            [(ngModel)]="searchModel.etat">
+                        <label class="form-check-label" for="etat1"> <small>{{'All'|translate}}</small> </label>
+                    </div>
+                </div>
+                    <div class="col-md-2 col-sm-6 form-check">
+                        <div class="inputGroup">
+                        <input type="radio" class="form-check-input" name="etat" value="E" id="etat2"
+                            [(ngModel)]="searchModel.etat">
+                        <label class="form-check-label" for="etat2"> <small>{{'Pending
+                                queue'|translate}}</small></label>
+                    </div>
+                </div>
+                    <div class="col-md-2 col-sm-6 form-check">
+                        <div class="inputGroup">
+                        <input type="radio" class="form-check-input" name="etat" id="etat3" value="B"
+                            [(ngModel)]="searchModel.etat">
+                        <label class="form-check-label" for="etat3"><small>{{'Booking queue'|translate}}</small></label>
+                    </div>
+                </div>
+                    <div class="col-md-2 col-sm-6 form-check">
+                        <div class="inputGroup">
+                        <input type="radio" class="form-check-input" name="etat" value="P" id="etat4"
+                            [(ngModel)]="searchModel.etat">
+                        <label class="form-check-label" for="etat4"><small> {{'Ticket Order
+                                queue'|translate}}</small></label>
+                    </div>
+                </div>
+                </div>
+                <div class="row  pl-2">
+                    <div class="col-md-2 col-sm-6 form-check">
+                        <div class="inputGroup">
+                        <input type="radio" class="form-check-input" name="etat" id="etat5" value="T"
+                            [(ngModel)]="searchModel.etat">
+                        <label class="form-check-label" for="etat5"><small> {{'Ticketed
+                                queue'|translate}}</small></label>
+                    </div>
+                </div>
+                    <div class="col-md-2 col-sm-6 form-check">
+                        <div class="inputGroup">
+                        <input type="radio" class="form-check-input" name="etat" id="etat6" value="A"
+                            [(ngModel)]="searchModel.etat">
+                        <label class="form-check-label" for="etat6"><small> {{'Canceled
+                                queue'|translate}}</small></label>
+                    </div>
+                </div>
+                    <div class="col-md-2 col-sm-6 form-check">
+                        <div class="inputGroup">
+                        <input type="radio" class="form-check-input" name="etat" id="etat7" value="R"
+                            [(ngModel)]="searchModel.etat">
+                        <label class="form-check-label" for="etat7"><small> {{'Refund queue'|translate}}</small>
+                        </label>
+                    </div>
+                </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-2 col-sm-6">
+                        <div class="form-floating mb-3">
+                        <input type="text" class="form-control form-control-sm" placeholder="{{'Ref.'|translate}}"
+                            [(ngModel)]="searchModel.ref" name="ref">
+                            <label for="floatingSelect">{{'Ref.'|translate}}</label>
+                    </div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="form-floating mb-3">
+                        <input type="text" class="form-control form-control-sm"
+                            placeholder="{{'Ticket num.'|translate}}" [(ngModel)]="searchModel.ticketNum"
+                            name="ticketNum">
+                            <label for="floatingSelect">{{'Ticket number'|translate}}</label>
+                    </div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="form-floating mb-3">
+                        <input type="text" class="form-control form-control-sm" placeholder="{{'Passenger'|translate}}"
+                            [(ngModel)]="searchModel.passenger" name="passenger">
+                            <label for="floatingSelect"> {{'Passenger'|translate}}</label>
+                    </div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="form-floating mb-3">
+                        <div *ngIf="!airlines" class="ml-3 spinner-border spinner-border-sm text-light" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        <select class="form-control form-control-sm" [(ngModel)]="searchModel.airline" name="airline">
+                            <option *ngFor="let item of airlines" [value]="item.iata"> {{item.name}}
+                            </option>
+                        </select>
+                        <label for="floatingSelect"> {{'Airline'|translate}}</label>
+                    </div>
+                    </div>
+                    <div class="col-md-2 col-sm-6">
+                        <div class="form-floating mb-3">
+                        <select class="form-control form-control-sm" name="domestic" [(ngModel)]="searchModel.domestic">
+                            <option value="">{{'All'|translate}} </option>
+                            <option value="N"> {{'International'|translate}}</option>
+                            <option value="O"> {{'Domestic'|translate}}</option>
+                        </select>
+                        <label for="floatingSelect"> {{'Domestic'|translate}}</label>
+                    </div>
+                    </div>
+                    <div class="col-md-2 col-sm-6 ">
+                        <div class="form-floating mb-3">
+                        <input type="text" class="form-control form-control-sm" placeholder="Pnr"
+                            [(ngModel)]="searchModel.numPnr" name="numPnr">
+                            <label for="floatingSelect"> {{'Num PNR'|translate}}</label>
+                    </div>
+                    </div>
+
+                </div>
+                <div class="row  mt-2">
+
+                    <div class="col-md-3 col-sm-6  ">
+                        <div class="form-floating mb-3">
+                        <input type="date" class="form-control form-control-sm" name="travelDateFom"
+                            [(ngModel)]="searchModel.travelDateFom">
+                            <label for="floatingSelect"> {{'Travel date from'|translate}}</label>
+                    </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6  ">
+                        <div class="form-floating mb-3">
+                        <input type="date" class="form-control form-control-sm" name="travelDateTo"
+                            [(ngModel)]="searchModel.travelDateTo" [min]="searchModel.travelDateFom">
+                            <label for="floatingSelect"> {{'Travel date to'|translate}}</label>
+                    </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="form-floating mb-3">
+                        <input type="date" class="form-control form-control-sm" name="bookingDateFrom"
+                            [(ngModel)]="searchModel.bookingDateFrom">
+                            <label for="floatingSelect">{{'Booking date from'|translate}}</label>
+                    </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 ">
+                        <div class="form-floating mb-3">
+                        <input type="date" class="form-control form-control-sm" name="bookingDateTo"
+                            [(ngModel)]="searchModel.bookingDateTo" [min]="searchModel.bookingDateFrom">
+                            <label for="floatingSelect"> {{'Booking date to'|translate}}</label>
+                    </div>
+                    </div>
+                </div>
+                <div class="row  mt-2">
+                    <div class="col-12 text-right">
+                        <button type="button" class="btn  btn-sm btn-success col-12 col-md-2 m-2"
+                            (click)="findFromDataBase()" [disabled]="loadSynchGds || loadFindfromDB">
+                            <div *ngIf="loadFindfromDB" class="spinner-border spinner-border-sm text-light"
+                                role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                            <span>{{'Find'|translate}}</span>
+                            <div class="icon d-flex align-items-center justify-content-center">
+                                <i class="fas fa-search"></i>
+                            </div>
+                        </button>
+
+                        <!-- <button type="button" class="btn  btn-sm btn-primary col-12 col-md-3 m-2" (click)="synchronizeWithGds()" [disabled]="loadSynchGds || loadFindfromDB">
+                        <div *ngIf="loadSynchGds" class="spinner-border spinner-border-sm text-light" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        <span> {{'Synchronize with GDS'|translate}}
+                            </span>
+                    </button> -->
+
+                        <button type="button" class="btn btn-sm  btn-primary col-12 col-md-2 m-2"
+                            (click)="reset(searchForm)"
+                            [disabled]="loadSynchGds || loadFindfromDB">{{'Refresh'|translate}}
+                            <div class="icon d-flex align-items-center justify-content-center">
+                                <i class="fas fa-sync-alt"></i>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="card card-no-border mb-4">
+            <label class="ml-2"> {{'Booking'|translate}}({{total}} {{'results'|translate}}) </label>
+
+            <ng2-smart-table id="myTableElementId" [settings]="settings" [source]="source" (custom)="customOption($event)">
+            </ng2-smart-table>
+
+        </div>
+    </div>
+    <app-flight-history-details [inputData]="data" (backward)='cancel($event)' *ngIf="showDetails">
+    </app-flight-history-details>
+</div>

@@ -1,0 +1,157 @@
+<div class="container-fluid">
+    <div class="row mt-4">
+        <div class="col-md-12 col-sm-12">
+            <div class="text-right">
+                <button
+                  class="btn btn-primary btn-sm ml-2"
+                  ngbTooltip="{{ 'print' | translate }}"
+                  placement="bottom"
+                  [printStyle]="{ src: { width: '20%!important' } }"
+                  [useExistingCss]="true"
+                  printSectionId="print-section"
+                  ngxPrint
+                >
+                  <i class="fas fa-print"></i>
+                </button>
+                <button
+                  class="btn btn-primary btn-sm ml-2"
+                  ngbTooltip="{{ 'close' | translate }}"
+                  placement="bottom"
+                  (click)="back()"
+                >
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>    
+    </div>
+
+
+    <div id="print-section">
+        <div class="row mt-2">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-6">
+                        <div style=" height: 80px; width: 50px;">
+                            <img
+                            src="../../../../../../../../assets//sra-sa/images/logo/sra-sa.png"
+                              height="80px"
+                              style="float: left;"
+                            />
+                             
+                          </div>
+                    </div>
+                    <div class="col-6 text-right text-muted">
+                        {{ insuranceDetails.idTiers }} - {{ tiersName }}
+                        <br />
+                        <i class="fas fa-map-marked text-muted mr-2"></i>  {{adress}}<br />
+                        <i class="fas fa-envelope-open-text text-muted mr-2"></i>  info@sra-sa.com<br />
+                        <i class="fas fa-phone-square-alt text-muted mr-2"></i> 92000 86 39 
+                        
+                      </div>
+                </div>
+
+                <div class="voucherRef">Certificate of Insurance N° {{insuranceDetails.refAssfile}}</div>
+                <br>
+                <hr>
+                <div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <span>Congratulations ! You are now protected. Life is easier when you are worry free. Thank you for having confidence in us to protect you throughout your life’s journeys and adventures. </span>
+                        </div>
+                       
+                    </div>
+                    <hr>
+                    <div class="voucherRef1">
+                        <span> Tune Protect Travel Assurance </span>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-2 dataBooking11">
+                            <span> Policy No. </span>
+                        </div>
+                        <div class="col-4 dataBooking">
+                            <span> {{insuranceDetails.refAssfile}}</span>
+                        </div>
+                        <div class="col-2 dataBooking11">
+                            <span> Issue Date</span>
+                        </div>
+                        <div class="col-4 dataBooking">
+                            <span> {{insuranceDetails.dtFileass | date:'dd/MM/yyyy'}}</span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-2 dataBooking11">
+                            <span> Departure date </span>
+                        </div>
+                        <div class="col-4 dataBooking">
+                            <span> {{insuranceDetails.dtStartass | date:'dd/MM/yyyy'}}</span>
+                        </div>
+                        <div class="col-2 dataBooking11">
+                            <span> Return Date</span>
+                        </div>
+                        <div class="col-4 dataBooking">
+                            <span> {{insuranceDetails.dtEndass | date:'dd/MM/yyyy'}}</span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-2 dataBooking11">
+                            <span> Plan type </span>
+                        </div>
+                        <div class="col-4 dataBooking">
+                            <span> {{insuranceDetails.insuranceTitle}}</span>
+                        </div>
+                        <!-- <div class="col-2 dataBooking">
+                            <span> Return Date</span>
+                        </div>
+                        <div class="col-2 dataBooking">
+                            <span> {{returnDateTime | date:'dd/MM/yyyy'}}</span>
+                        </div> -->
+                    </div>
+                    <br>
+
+                    <div class="row destination">
+                        <div class="col-2 dataBooking1">
+                            <span> {{'No.' | translate}}</span>
+                        </div>
+                        <div class="col-4 dataBooking1">
+                            <span> Insured Name</span>
+                        </div>
+                        <div class="col-2 dataBooking1">
+                            <span> Gender</span>
+                        </div>
+                        <div class="col-2 dataBooking1">
+                            <span> D.O.B</span>
+                        </div>
+                        <div class="col-2 dataBooking1">
+                            <span> Passport</span>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                        <div class="col-2 dataBooking11">
+                            <span> 1 </span>
+                        </div>
+                        <div class="col-4 dataBooking11">
+                            <span> {{insuranceDetails.assPrenom}}  {{insuranceDetails.assNom}}</span>
+                        </div>
+                        <div class="col-2 dataBooking11">
+                            <span *ngIf="insuranceDetails.persCivilite[0] === 'F'"> Female</span>
+                            <span *ngIf="insuranceDetails.persCivilite[0] === 'M'"> Male</span>
+                        </div>
+                        <div class="col-2 dataBooking11">
+                            <span> {{insuranceDetails.dtNaissance | date:'dd/MM/yyyy'}}</span>
+                        </div>
+                        <div class="col-2 dataBooking11">
+                            <span> {{insuranceDetails.numPasseport}}</span>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+                <br>
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>

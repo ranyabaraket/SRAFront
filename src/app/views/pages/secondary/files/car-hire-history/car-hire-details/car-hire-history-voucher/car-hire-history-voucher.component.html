@@ -1,0 +1,117 @@
+<div class="container-fluid" >
+    <div class="row mt-4 mb-3">
+        <div class="col-12 ">
+
+            <div class="text-right">
+                <button class="btn btn-primary btn-sm ml-2" ngbTooltip="{{'print' | translate}}" placement="bottom"
+                    [printStyle]="{src:{'width' :'20%!important'}}" [useExistingCss]="true" printSectionId="print-section" ngxPrint><i
+                        class="fas fa-print"></i></button>
+                <button class="btn btn-primary btn-sm ml-2" ngbTooltip="{{'close' | translate}}" placement="bottom" (click)="cancel()"><i
+                        class="fas fa-times"></i></button>
+
+
+            </div>
+            <!--<div class="text-center">
+                <h4 class="title">
+                        <table>
+                                <tr>
+                                  <td>  {{'Hotel voucher N°'|translate}}</td>
+                                <td>{{data.bookingDetails.voucherRef}}</td>
+                                </tr>
+                              </table> 
+                    
+                    </h4>
+            </div>-->
+        </div>
+
+    </div>
+    <div class="row" id="print-section">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-6">
+                    <div style=" height: 80px; width: 50px;"> 
+                        <img
+                        src="../../../../../../../assets/sra-sa/images/logo/sra-sa.png" 
+                          height="80px"
+                          style="float: left;"
+                        />
+                         
+                      </div>
+                  
+                </div>
+                <div class="col-md-6 col-sm-6  text-muted text-right"  >{{tiersName}} 
+                    <br> 
+                    <i class="fas fa-map-marked text-muted mr-2"></i>  {{adress}}<br />
+                    <i class="fas fa-envelope-open-text text-muted mr-2"></i>
+                    info@sra-sa.com <br>
+                    <i class="fas fa-phone-square-alt mr-2"></i>  {{callCenter}} 
+                   
+                </div>
+            </div>
+            <div class="voucherRef">{{'Car Hire voucher N°'|translate}} {{data.suppRefChrfile}}</div>
+
+            <br>
+            <hr>
+            <div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>{{'Agency & User details' | translate}}</h2>
+                    </div>
+                    
+                </div>
+                <hr>
+                <div class="row destination">
+                    <span> {{'Car description'| translate}} : {{data.vehiculeDesc}} </span>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-4 dataBooking">
+                        <span> {{'Customer'| translate}} : {{data.driver }}</span>
+                </div>
+                </div>
+                 <br>
+                <div class="row">
+                    <div class="col-6 dataBooking">
+                        <span> {{'Pick up ' | translate}}: {{data.pickupName}} </span>
+                    </div>
+                    <div class="col-6 dataBooking">
+                        <span> {{'Drop off ' | translate}}: {{data.dropoffName}}  </span>
+                    </div> 
+                    
+                </div>
+               
+                <br>
+                <div class="row">
+                    <div class="col-6 dataBooking">
+                        <span>  {{'Pickup Date/Time' | translate}}: {{data.pickupTime  | date: "dd/MM/yyyy hh:mm"}} </span>
+
+                    </div>
+                    <div class="col-6 dataBooking">
+                        <span>  {{'DropOff Date/Time' | translate}}: {{data.dtReturn | date: "dd/MM/yyyy hh:mm"}} </span>
+
+                    </div>
+                </div>
+               
+                <br>
+
+                <div class="row">
+                    <div class="col-12 dataBooking">
+                        <span> {{'Total Passengers' | translate}}: {{data.nbrPerson}}  </span>
+                    </div>
+                </div> 
+            <br>
+            <hr>
+            <div *ngIf="data.customerComm">
+                <h2>{{'Note:' | translate}}</h2>
+                <div class="alert alert-warning" role="alert">
+                    {{data.customerComm}}
+                </div>
+            </div>
+         
+             <!--<img style="margin-bottom: 20px; border: 4px solid rgb(80, 160, 235); width: 100%;" src='https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/geojson(%7B%22type%22%3A%22FeatureCollection%22%2C%22features%22%3A%5B%7B%22type%22%3A%22Feature%22%2C%22properties%22%3A%7B%22marker-color%22%3A%22%23462eff%22%2C%22marker-size%22%3A%22medium%22%2C%22marker-symbol%22%3A%22bus%22%7D%2C%22geometry%22%3A%7B%22type%22%3A%22Point%22%2C%22coordinates%22%3A%5B{{contractModel.pickup_latitude}},{{contractModel.pickup_longitude}}%5D%7D%7D%2C%7B%22type%22%3A%22Feature%22%2C%22properties%22%3A%7B%22marker-color%22%3A%22%23d505ff%22%2C%22marker-size%22%3A%22medium%22%2C%22marker-symbol%22%3A%22music%22%7D%2C%22geometry%22%3A%7B%22type%22%3A%22Point%22%2C%22coordinates%22%3A%5B{{contractModel.dropoff_latitude}},{{contractModel.dropoff_longitude}}%5D%7D%7D%5D%7D)/{{contractModel.pickup_latitude}},{{contractModel.pickup_longitude}},9/500x300?access_token=pk.eyJ1IjoiYXltZW56ZW1uaSIsImEiOiJja2hjMXo3bzEwYm54MnRtaXF3eHlxM2UxIn0.bJQiP_oOZGwrEstnMOU2AQ'>  
+             -->
+           <!---- <img style="margin-bottom: 20px; border: 4px solid rgb(197, 222, 247); width: 100%;" src='https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/pin-s-a+9ed4bd({{voucherDetailsModel.search.pickupLatitude}},{{voucherDetailsModel.search.pickupLongitude}}),pin-s-b+000({{voucherDetailsModel.search.dropoffLatitude}},{{voucherDetailsModel.search.dropoffLongitude}}),path-5+f44-0.5({{polyLineCode}})/auto/500x300?access_token=pk.eyJ1IjoiYXltZW56ZW1uaSIsImEiOiJja2hjMXo3bzEwYm54MnRtaXF3eHlxM2UxIn0.bJQiP_oOZGwrEstnMOU2AQ'>
+           -->
+        </div>
+    </div>
+</div>

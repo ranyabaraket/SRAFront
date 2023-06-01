@@ -1,0 +1,1036 @@
+// // body {        
+// //     animation: fake 1s infinite;
+// // }
+// .worko-tabs {
+//     //position: absolute;
+//     width: 100%;
+//     height: 100%;
+//     justify-content: center;
+//     align-items: center;
+//     .state {
+//         position: absolute;
+//         left: -10000px;
+//     }
+//     .flex-tabs {
+//         display: flex;
+//         justify-content: space-between;
+//         flex-wrap: wrap;
+//         .tab {
+//             flex-grow: 1;
+//             max-height: 40px;
+//         }
+//         .panel {
+//             background-color: #76b80199;
+//             padding: 20px;
+//             min-height: 300px;
+//             display: none;
+//             width: 100%;
+//             flex-basis: auto;
+//             opacity: 0.9;
+//         }
+//     }
+//     .tab {
+//         display: inline-block;
+//         padding: 10px;
+//         vertical-align: top;
+//         background-color: #fff;
+//         cursor: hand;
+//         cursor: pointer;
+//         border-left: 10px solid #76b80199;
+//     }
+// }
+
+// #tab-one:checked~.tabs #tab-one-label,
+// #tab-two:checked~.tabs #tab-two-label,
+// #tab-three:checked~.tabs #tab-three-label {
+//     background-color: #2d467c;
+//     opacity: 0.8;
+//     color: white;
+//     font-family: arial;
+//     font-size: 20px;
+//     font-style: gras;
+//     cursor: default;
+//     border-left-color: #5c6bc0;
+//     // opacity: 0.6;
+//     ;
+// }
+
+// #tab-one:checked~.tabs #tab-one-panel,
+// #tab-two:checked~.tabs #tab-two-panel,
+// #tab-three:checked~.tabs #tab-three-panel {
+//     display: block;
+// }
+
+// @media (max-width: 300px) {
+//     .flex-tabs {
+//         flex-direction: column;
+//         .tab {
+//             background: #fff;
+//             border-bottom: 1px solid white;
+//             &:last-of-type {
+//                 border-bottom: none;
+//             }
+//         }
+//         #tab-one-label {
+//             order: 1;
+//         }
+//         #tab-two-label {
+//             order: 3;
+//         }
+//         #tab-three-label {
+//             order: 5;
+//         }
+//         ;
+//         #tab-one-panel {
+//             order: 2;
+//         }
+//         #tab-two-panel {
+//             order: 4;
+//         }
+//         #tab-three-panel {
+//             order: 6;
+//         }
+//     }
+//     #tab-one:checked~.tabs #tab-one-label,
+//     #tab-two:checked~.tabs #tab-two-label,
+//     #tab-three:checked~.tabs #tab-three-label {
+//         border-bottom: none;
+//     }
+//     #tab-one:checked~.tabs #tab-one-panel,
+//     #tab-two:checked~.tabs #tab-two-panel,
+//     #tab-three:checked~.tabs #tab-three-panel {
+//         border-bottom: 1px solid #fff;
+//     }
+// }
+
+// .logo {
+//     height: 70px;
+//     width: 250px;
+//     margin-left: 100px;
+// }
+
+// #head {
+//     background-color: white;
+//     opacity: 0.7;
+// }
+
+// #container {
+//     min-height: 100%;
+//     position: relative;
+//     background: url("../../../assets/ybholidays/images/hotels/authPageHotel.jpg");
+//     background-position: center;
+//     background-repeat: no-repeat;
+//     background-size: cover;
+// }
+
+// #body {
+//     padding: 10px;
+// }
+
+// #footer {
+//     bottom: 0;
+//     width: 100%;
+//     //height: 13%;
+//     background: white;
+//     // margin-right: -9px;
+//     //  padding-left: -9px;
+//      padding-left: 30px;
+//     margin-top: 10px;
+//     margin-bottom: -10px;
+// }
+
+// img {
+//     width: 70px;
+//     height: 70px;
+//     border-radius: 5px;
+// }
+
+// .input-icons i {
+//     position: absolute;
+//     margin-top: 4px;
+//     margin-left: 6px;
+// }
+
+// .input-icons {
+//     width: 100%;
+//     margin-bottom: 5px;
+// }
+
+// .icon {
+//     color: grey;
+//     padding: 8px;
+//     min-width: 40px;
+// }
+
+// span.psw {
+//     padding-left: 60px;
+//     padding-top: 50px;
+// }
+
+// .input-field {
+//     width: 100%;
+//     padding: 8px;
+//     text-align: left;
+//     padding-left: 30px;
+//     margin: 6px;
+//     // color:black;
+// } 
+// .btn-facebook{
+//     background-color: #3b5998;
+//     border-color:#3b5998;
+//     color: white;
+// }
+
+// .btn-facebook:hover, .btn-facebook:focus, .btn-facebook:active, .btn-facebook.active, .open>.dropdown-toggle.btn-facebook {
+//     color: white!important;
+//     background-color: #2f4981;
+//     border-color:#3b5998;
+// }
+// .card-history{
+//     border-radius: 0%;
+// }
+
+
+// body {        
+//     animation: fake 1s infinite;
+// }
+
+
+
+ 
+.worko-tabs {
+    //position: absolute;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+
+    .state {
+        position: absolute;
+        left: -10000px;
+    }
+
+    .flex-tabs {
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        .text-center {
+            color: white;
+        }
+
+        .tab {
+            flex-grow: 1;
+            max-height: 40px;
+        }
+
+        .panel {
+            background-color: #8bbc2d;
+            padding: 7%;
+            width: 500px;
+            border-radius: 11px;
+            padding-bottom: 58px;
+            display: none;
+            opacity: 0.9;
+        }
+    }
+
+    .tab {
+        display: inline-block;
+        padding: 10px;
+        vertical-align: top;
+        background-color: #fff;
+        cursor: hand;
+        cursor: pointer;
+        border-left: 10px solid #76b80199;
+    }
+}
+
+#tab-one:checked~.tabs #tab-one-label,
+#tab-two:checked~.tabs #tab-two-label,
+#tab-three:checked~.tabs #tab-three-label {
+    background-color: #2d467c;
+    opacity: 0.8;
+    color: white;
+    font-family: arial;
+    font-size: 20px;
+    font-style: gras;
+    cursor: default;
+    border-left-color: #5c6bc0;
+    // opacity: 0.6;
+    ;
+}
+
+#tab-one:checked~.tabs #tab-one-panel,
+#tab-two:checked~.tabs #tab-two-panel,
+#tab-three:checked~.tabs #tab-three-panel {
+    display: block;
+}
+
+@media (max-width: 300px) {
+    .flex-tabs {
+        flex-direction: column;
+
+        .tab {
+            background: #fff;
+            border-bottom: 1px solid white;
+
+            &:last-of-type {
+                border-bottom: none;
+            }
+        }
+
+        #tab-one-label {
+            order: 1;
+        }
+
+        #tab-two-label {
+            order: 3;
+        }
+
+        #tab-three-label {
+            order: 5;
+        }
+
+        ;
+
+        #tab-one-panel {
+            order: 2;
+        }
+
+        #tab-two-panel {
+            order: 4;
+        }
+
+        #tab-three-panel {
+            order: 6;
+        }
+    }
+
+    #tab-one:checked~.tabs #tab-one-label,
+    #tab-two:checked~.tabs #tab-two-label,
+    #tab-three:checked~.tabs #tab-three-label {
+        border-bottom: none;
+    }
+
+    #tab-one:checked~.tabs #tab-one-panel,
+    #tab-two:checked~.tabs #tab-two-panel,
+    #tab-three:checked~.tabs #tab-three-panel {
+        border-bottom: 1px solid #fff;
+    }
+}
+
+.logo {
+    height: 70px;
+    width: 250px;
+}
+
+.logoX {
+
+    height: 70px;
+    margin-bottom: 30px;
+
+}
+
+#head {
+    background-color: white;
+}
+
+#container {
+    min-height: 100%;
+    position: relative;
+    background: url("https://www.reviewpro.com/wp-content/uploads/2018/10/HD_Hotel.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#body {
+    padding: 10px;
+}
+
+.container-fluid {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+#footer {
+    bottom: 0;
+    width: 100%;
+    //height: 13%;
+    background: white;
+    // margin-right: -9px;
+    //  padding-left: -9px;
+    padding-left: 30px;
+    margin-top: 10px;
+    margin-bottom: -10px;
+}
+
+
+.input-icons i {
+    position: absolute;
+    margin-top: 4px;
+    margin-left: 6px;
+}
+
+.input-icons {
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.icon {
+    color: white;
+    padding: 8px;
+    min-width: 40px;
+}
+
+span.psw {
+    padding-left: 60px;
+    padding-top: 50px;
+    padding-right: 60px;
+}
+
+.signup-form {
+    background-color: black;
+}
+
+.input-field {
+    border: none;
+    width: 100%;
+    padding: 8px;
+    text-align: left;
+    background: transparent !important;
+    height: 55px;
+    padding-left: 30px;
+    margin: 6px;
+    border-bottom: 2px solid #ffffff !important;
+    color: white;
+    border-radius: 0px;
+}
+
+.btn-facebook {
+    background-color: #3b5998;
+    border-color: #3b5998;
+    color: white;
+}
+
+.btn-facebook:hover,
+.btn-facebook:focus,
+.btn-facebook:active,
+.btn-facebook.active,
+.open>.dropdown-toggle.btn-facebook {
+    color: white !important;
+    background-color: #2f4981;
+    border-color: #3b5998;
+}
+
+.card-history {
+    border-radius: 0%;
+}
+
+
+/************takwa***********/
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@500&display=swap');
+
+h1,
+h2,
+h3,
+h4,
+p,
+span,
+td {
+    font-family: "Cairo", sans-serif !important;
+
+}
+
+h4 {
+    font-size: 30px !important;
+    line-height: 1.3em !important;
+}
+
+.title {
+
+    font-size: 2.5em;
+}
+
+.signup-bg {
+    background: #2e477c;
+}
+
+.section-api {
+    background: url(https://www.grnconnect.com/v4/img/home/GRN-APIConnect-bg.png);
+
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    /* background-size: cover; */
+    width: 100%;
+    height: 352px;
+}
+
+.grad-bg {
+    background-image: linear-gradient(302.88deg, #21004C 0%, #F71B6A 50.83%, #EBEBEB 100%);
+    background-attachment: fixed;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    height: 150vh;
+
+}
+
+.grad-bg:hover {
+    background-position: right center;
+    /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+}
+
+::placeholder {
+    color: white;
+    opacity: 1;
+    /* Firefox */
+}
+
+:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+
+    color: white;
+}
+
+::-ms-input-placeholder {
+    /* Microsoft Edge */
+
+    color: white;
+}
+
+.input-icons {
+    color: white;
+}
+
+.button {
+    padding: 10px 20px;
+    font-size: 15px;
+    justify-content: center;
+    width: 180px;
+    border: none;
+    text-align: center;
+    border-radius: 25px;
+    background-color: #4285f4;
+    color: #fff;
+}
+
+.input-icons .fa {
+    color: white;
+}
+
+.modal {
+
+    background-color: #0000009e !important;
+
+}
+
+.modal-content {
+    color: white !important;
+    background-color: #100101a1 !important;
+    border: none !important;
+
+}
+
+
+@media (min-width: 768px) {
+    .modal-dialog {
+        width: 1000px !important;
+    }
+}
+.carousel{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    height: 400px;
+    margin: 0 auto;
+    position: relative;
+    animation-duration: 0.5ms;
+    animation: delay 0.5ms; 
+     
+ 
+}
+
+ 
+
+#section1 {
+    background: url('../../../../assets/ybholidays/images/hotels/pexels-photo-189296.jpeg');
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    height: 620px;
+    margin: 0 auto;
+    position: relative;
+     
+}
+
+
+
+#section3 {
+    background: url('../../../../assets/ybholidays/images/6854.jpg');
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    height: 230px;
+    /* 100% of viewport height */
+    margin: 0 auto;
+    position: relative;
+}
+
+
+#section4 {
+    background: url('../../../../assets/ybholidays/images/hotels/test.png');
+    background-color: #fff;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    height: 600px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.p-scroll {
+
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: 106vh;
+}
+
+
+
+/*****sercices***/
+
+
+.card::after {
+    display: block;
+    position: absolute;
+    bottom: -10px;
+    left: 20px;
+    width: calc(100% - 40px);
+    height: 35px;
+    background-color: #fff;
+    -webkit-box-shadow: 0 19px 28px 5px rgba(64, 64, 64, 0.09);
+    box-shadow: 0 19px 28px 5px rgba(64, 64, 64, 0.09);
+    content: '';
+    z-index: -1;
+}
+
+a.card {
+    text-decoration: none;
+}
+
+.card {
+    position: relative;
+    border: 0;
+    border-radius: 0;
+    background-color: #fff;
+    -webkit-box-shadow: 0 12px 20px 1px rgba(64, 64, 64, 0.09);
+    box-shadow: 0 12px 20px 1px rgba(64, 64, 64, 0.09);
+}
+
+.card {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: .25rem;
+}
+
+.box-shadow {
+    -webkit-box-shadow: 0 12px 20px 1px rgba(64, 64, 64, 0.09) !important;
+    box-shadow: 0 12px 20px 1px rgba(64, 64, 64, 0.09) !important;
+}
+
+.ml-auto,
+.mx-auto {
+    margin-left: auto !important;
+}
+
+.mr-auto,
+.mx-auto {
+    margin-right: auto !important;
+}
+
+.rounded-circle {
+    border-radius: 50% !important;
+}
+
+.bg-white {
+    background-color: #fff !important;
+}
+
+.ml-auto,
+.mx-auto {
+    margin-left: auto !important;
+}
+
+.mr-auto,
+.mx-auto {
+    margin-right: auto !important;
+}
+
+.d-block {
+    display: block !important;
+}
+
+img,
+figure {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+.card-text {
+    padding-top: 12px;
+    color: #8c8c8c;
+}
+
+.text-sm {
+    font-size: 12px !important;
+}
+
+p,
+.p {
+    margin: 0 0 16px;
+}
+
+.card-title {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 900;
+}
+
+.pt-1,
+.py-1 {
+    padding-top: .25rem !important;
+}
+
+.head-icon {
+    margin-top: 18px;
+    color: #8abb2c;
+}
+
+input#Email.input-field.form-control:focus {
+    background-color: black !important;
+    outline: none;
+    border: none;
+    color: white;
+}
+
+input#UserName.input-field.form-control:focus-visible {
+    outline: 2px solid crimson;
+    border-radius: 3px;
+}
+
+
+input#UserName.input-field.form-control::placeholder,
+input#Password.input-field.form-control::placeholder,
+
+input#login.input-field.form-control::placeholder,
+
+input#email.input-field.form-control::placeholder {
+    color: white;
+    font-size: 19px;
+}
+
+
+input-field.select:focus {
+    background-color: ivory;
+}
+
+#FirstName::placeholder,
+
+#LastName::placeholder,
+#phone::placeholder,
+#Email::placeholder,
+#WebSite::placeholder,
+#code::placeholder,
+#Adresse::placeholder,
+#Companyname::placeholder {
+    color: white;
+}
+
+.sevice-section {
+    display: flex;
+    justify-content: space-around;
+    padding: 4%;
+
+}
+.icone-title{
+    height:120px ;
+    font-weight: 200px;
+    margin-left: 10px; 
+}
+
+.icon-service {
+    height: 120px;
+}
+
+#numbers {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#numbers .number {
+    padding-top: 15px;
+    width: 50%;
+    display: table-cell;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+#numbers .number .int {
+    font-size: 4vw;
+    display: block;
+    margin-bottom: 21px;
+}
+
+#numbers .number .text {
+    display: block;
+}
+
+
+
+
+/************ nvb****/
+@at-root #menuToggle {
+    display: block;
+    position: relative;
+    top: 50px;
+    right: 50px;
+
+    z-index: 1;
+
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+#menuToggle a {
+    text-decoration: none;
+    color: #232323;
+    font-size: 13px;
+
+    transition: color 0.3s ease;
+}
+
+#menuToggle a:hover {
+    color: #2d467c;
+}
+
+
+#menuToggle input {
+    display: block;
+    width: 40px;
+    height: 32px;
+    position: absolute;
+    top: -7px;
+    left: -5px;
+
+    cursor: pointer;
+
+    opacity: 0;
+    /* hide this */
+    z-index: 2;
+    /* and place it over the hamburger */
+
+    -webkit-touch-callout: none;
+}
+
+.navbar {
+
+    justify-content: right;
+}
+
+/*
+ * Just a quick hamburger
+ */
+#menuToggle span {
+    display: block;
+
+    width: 32px;
+    color: white;
+    height: 2px;
+    margin-bottom: 7px;
+    position: relative;
+    background: black;
+    border-radius: 3px;
+
+    z-index: 1;
+
+    transform-origin: 4px 0px;
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+        background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0),
+        opacity 0.55s ease;
+}
+
+#menuToggle span:first-child {
+    transform-origin: 0% 0%;
+}
+
+#menuToggle span:nth-last-child(2) {
+    transform-origin: 0% 100%;
+}
+
+/* 
+ * Transform all the slices of hamburger
+ * into a crossmark.
+ */
+#menuToggle input:checked~span {
+    opacity: 1;
+    transform: rotate(45deg) translate(-2px, -1px);
+    background: black;
+}
+
+/*
+ * But let's hide the middle one.
+ */
+#menuToggle input:checked~span:nth-last-child(3) {
+    opacity: 0;
+    transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+/*
+ * Ohyeah and the last one should go the other direction
+ */
+#menuToggle input:checked~span:nth-last-child(2) {
+    transform: rotate(-45deg) translate(0, -1px);
+}
+
+
+#menu {
+    /****
+
+     position: absolute;
+     width: 300px;
+     margin: -41px 0 0 355px;
+
+     padding: 50px;
+     padding-top: 125px;
+
+     background: wheat;
+     list-style-type: none;
+     -webkit-font-smoothing: antialiased; 
+     transform-origin: 0% 0%;
+     transform: translate(-22%, 0);
+
+     transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1.0);***/
+
+    width: 300px;
+    position: fixed;
+    right: 0;
+    z-index: 2000;
+    padding: 20px;
+    background: #fff;
+    height: 200px;
+    -webkit-transform: translateX(110%);
+    -ms-transform: translateX(110%);
+    transform: translateX(110%);
+    -webkit-box-shadow: -10px 0 20px -10px rgba(0, 0, 0, 0.1);
+    box-shadow: -10px 0 20px -10px rgba(0, 0, 0, 0.1);
+    -webkit-transition: .3s all ease-in-out;
+    -o-transition: .3s all ease-in-out;
+    transition: .3s all ease-in-out;
+}
+
+.offcanvas-menu .site-mobile-menu {
+    -webkit-transform: translateX(0%);
+    -ms-transform: translateX(0%);
+    transform: translateX(0%);
+}
+
+
+#menu li {
+    padding: 10px 0;
+    font-size: 22px;
+
+    list-style: none;
+}
+
+/*
+ * And let's slide it in from the left
+ */
+#menuToggle input:checked~ul {
+    transform: none;
+}
+
+.title {
+
+    font-size: 2.5em;
+}
+
+.card-title {
+
+    color: #53b28e;
+    font-size: 2em;
+}
+
+
+/****************lang************/
+.icon-service {
+    height: 65px;
+    margin-bottom: 10px;
+}
+
+.description p {
+
+    font-size: 1.5em;
+}
+
+
+svg {
+    fill: white;
+}
+
+#section5 {
+    background: #124d77;;
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    height: 195px;
+    /* 100% of viewport height */
+    margin: 0 auto;
+    position: relative;
+    margin-top: 280px;
+}
+
+
+.carousel-indicators {
+    padding-top: 3px;
+    margin: -150px;
+    font-size: larger;
+     
+}
+
+ 
+
+
+
+
+
+ 
+
+  

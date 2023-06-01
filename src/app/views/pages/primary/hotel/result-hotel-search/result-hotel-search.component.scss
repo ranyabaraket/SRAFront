@@ -1,0 +1,40 @@
+.btn {
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    border-radius: 5px;
+    color: white;
+}
+
+.btn-light {
+    background-color: #ced6df;
+    font-size: 14px;
+    text-transform: capitalize;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 0 15px;
+    white-space: nowrap;
+    line-height: 34px;
+    margin-right: 30px;
+}
+#center{
+    margin-right: 5px;
+    display: block !important;
+  } 
+
+@media only screen and (max-width: 500px) {
+    /* The Modal (background) */
+    .workflow {
+        margin-top: 10%;
+    }
+}
+
+@media only screen and (max-width: 416px) {
+    /* The Modal (background) */
+    .workflow {
+        margin-top: 23%;
+    }
+}

@@ -1,0 +1,56 @@
+i {
+    color: rgb(170, 169, 177);
+}
+
+mat-form-field {
+    width: 0px !important;
+    height: 0px !important;
+}
+
+.not-display {
+    display: none!important;
+}
+
+select {
+    color: rgb(128, 123, 123);
+}
+
+// test  
+.input-icons i {
+    position: absolute;
+}
+
+.input-icons {
+    padding: 5px;
+    //   margin-bottom: 10px;
+}
+
+.icon {
+    padding: 10px;
+    min-width: 40px;
+}
+
+.form-control {
+    ///  width: 100%;
+    //   padding: 10px;
+    text-align: left;
+    padding-left: 30px;
+}
+
+@media only screen and (max-width: 767px) {
+    .form-control {
+        border-radius: 0!important;
+    }
+    .btn-custom1 {
+        border-radius: 0!important;
+    }
+}
+
+.pax-dropdown {
+    width: 250px!important;
+}
+
+.rowDis {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}

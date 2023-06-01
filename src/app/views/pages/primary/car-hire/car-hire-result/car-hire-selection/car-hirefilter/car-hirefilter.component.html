@@ -1,0 +1,97 @@
+<div class="row w-100">
+    <form #filterForm>
+        <div class="col-12">
+            <div id="headingName">
+                <div data-toggle="collapse" class="p-2 h6 clickable" data-target="#collapseTN" aria-expanded="true"
+                    aria-controls="collapseTN"> <b>{{'Product type'| translate}} </b> </div>
+            </div>
+            <div id="collapseTN" class="collapse show" aria-labelledby="headingName">
+                <input type="text" class="form-control form-control-sm mb-2" placeholder="{{'Product type'| translate}}"
+                    autocomplete="off" (input)="applyFilter($event)" name="productType"
+                    [(ngModel)]="filterSettings.productType">
+            </div>
+            <hr>
+            <div id="headingP">
+                <div class="d-flex">
+                    <div class="p-2 flex-grow-1 h6 clickable" data-toggle="collapse" data-target="#collapseP"
+                        aria-expanded="true" aria-controls="collapseP"><b>{{'Tour price'| translate}}</b> </div>
+                    <div class="p-2">
+                        <b class="primary"><b class="primary clickable" (click)="changePriceToReset()">{{'Reset'|translate}}</b></b>
+                    </div>
+                </div>
+            </div>
+            <div id="collapseP" class="collapse show" aria-labelledby="headingP">
+                <div *ngIf="filterSettings.isComplete">
+                    <ng5-slider [(value)]="filterSettings.minPrice" [(highValue)]="filterSettings.maxPrice"
+                        [options]="sliderOptions()" (valueChange)="applyFilter($event)"></ng5-slider>
+                </div>
+            </div>
+            <hr>
+            <!--<div id='map' style='width: auto; height: 200px;'></div>-->
+            <div id="headingAir">
+                <div class="d-flex">
+                  <div
+                    class="p-2 flex-grow-1 h6 clickable"
+                    data-toggle="collapse"
+                    data-target="#collapseAir"
+                    aria-expanded="true"
+                    aria-controls="collapseAir"
+                  >
+                    <b>{{ "Company" | translate }}</b>
+                  </div>
+                  <div class="p-2">
+                    <b
+                      class="primary clickable mr-2"
+                      (click)="changeValueToCheckAll('companies')"
+                      >{{ "all" | translate }}</b
+                    >
+                    <b
+                      (click)="changeValueToNone('companies')"
+                      class="clickable primary"
+                      >{{ "none" | translate }}</b
+                    >
+                  </div>
+                </div>
+              </div>
+              <div id="collapseAir" class="collapse show" aria-labelledby="headingAir">
+                <div
+                  class="row"
+                  *ngFor="let company of filterSettings.companies; let index = index"
+                >
+                  <div class="col">
+                    <div class="form-check form-check-inline mb-2">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="{{ index }}"
+                        name="company{{ index }}"
+                        (change)="applyFilter($event)"
+                        [(ngModel)]="company.value"
+                      />
+                      <label class="form-check-label" for="company{{ index }}">
+                        {{ company.name }}</label
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+               <div id="headingMap" *ngIf="this.searchModel.lattitude && this.searchModel.longitude">
+                <div class="d-flex">
+                  <div
+                    class="p-2 flex-grow-1 h6 clickable"
+                    data-toggle="collapse"
+                    data-target="#collapseMap"
+                    aria-expanded="true"
+                    aria-controls="collapseMap"
+                    (click)="openBiggerMap()"
+                  >
+                    <b>{{ "Show map" | translate }}</b>
+                  </div>
+                  <div class="p-2">
+                     
+                  </div>
+                </div>
+              </div>
+        </div>
+    </form>
+</div>

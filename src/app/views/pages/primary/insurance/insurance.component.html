@@ -1,0 +1,42 @@
+<div class="container-fluid " id="page-container">
+    <div id="cover">
+        <div id="bg">
+        </div>
+    </div>
+    <div id="content-wrap">
+        <div class="rowdisplay" style="opacity: 90%;">
+            <div class="slogan"> {{'insurance slogan' | translate}}</div>
+            <div class="form-field" style="padding-top: 1%; z-index: 10000;">
+                <app-insurance-search-form #searchInsurance></app-insurance-search-form>
+            </div>
+            <div class="row ">
+                <div class="col-12 text-center mrgBtm ">
+                    <button type="button" class="btn btn-success col-sm-12 col-md-2  mr-md-2"
+                        style="padding-left: 0; padding-right:0;" [disabled]="searchInsurance.disableButtonSearch()"
+                        (click)="search(searchInsurance.getSearchModel())">
+                        <div *ngIf="loading" class="spinner-border spinner-border-sm text-light mr-2" role="status"> </div> 
+                        <i *ngIf="!loading" class="fas fa-search  mr-2" style="color: white;"></i> <span>{{'Search' |translate}}</span>
+                    </button>
+                    <button type="button" (click)="searchInsurance.reset()" class="  btn btn-danger col-sm-12 col-md-2">
+                        <span>{{'Reset' |translate}}</span>
+                    </button>
+                </div>
+            </div>
+            <div id="footerX">
+                <div class="col-md-12 card-columns mx-auto p-2">
+                    <div class="card card-history clickable" *ngFor="let item of latestSearch |async;let index = index"
+                        (click)="searchInsurance.getSearch(item)" title="Latest Search">
+                        <div class="text-center py-3">
+                            <i class="fas fa-history icon"></i> {{index+1}} - {{item.destIns}}<br> {{'To'| translate}}
+                            {{item.departIns}}<br>
+                            <span *ngIf="!item.dtReturn"> {{'On'| translate}} {{item.dtDept |date :'dd/MM/yyyy'}}
+                            </span>
+                            <span *ngIf="item.dtReturn"> {{item.dtDept |date:'dd/MM/yyyy'}} -
+                                {{item.dtReturn|date:'dd/MM/yyyy'}} </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

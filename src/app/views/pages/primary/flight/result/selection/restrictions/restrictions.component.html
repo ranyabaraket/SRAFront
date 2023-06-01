@@ -1,0 +1,16 @@
+<div class="row  mt-5">
+    <div class="col">
+        <h2 mat-dialog-title class=" text-warning">
+            <i class="fas fa-exclamation-triangle alert-icon  text-warning"></i> {{'Restrictions'|translate}} </h2>
+    </div>
+    <div class="col-1 m-0">
+        <div>
+            <i class="fas fa-times icon clickable" mat-button mat-dialog-close></i>
+        </div>
+    </div>
+</div>
+<mat-dialog-content>
+    <div *ngFor="let restriction of data" class="p-2">
+        <p [innerHTML]="restriction.txtRestriction"></p>
+    </div>
+</mat-dialog-content>

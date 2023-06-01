@@ -1,0 +1,89 @@
+<div>
+    <div class="mt-4  card card-no-border  mb-4">
+        <label class="ml-2"> Total result: ({{total}}) </label>
+
+        <table mat-table [dataSource]="source" class="my-table">
+            <!-- uniqueId Column -->
+            <ng-container matColumnDef="uniqueId">
+                <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'uniqueId'| translate }}</th>
+                <td mat-cell *matCellDef="let element" class="text-center "> {{element.uniqueId}} </td>
+            </ng-container>
+            <!-- customer Column -->
+            <ng-container matColumnDef="customer">
+                <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'customer'| translate }}</th>
+                <td mat-cell *matCellDef="let element" class="text-center"> {{element.customer}} </td>
+            </ng-container>
+            <!-- typeReq Column -->
+            <ng-container matColumnDef="typeReq">
+                <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'typeReq'| translate }}</th>
+                <td mat-cell *matCellDef="let element" class="text-center"> {{element.typeReq}} </td>
+            </ng-container>
+            <!-- sector Column -->
+            <ng-container matColumnDef="sector">
+                <th mat-header-cell *matHeaderCellDef class=" text-center">  {{'sector'| translate }}</th>
+                <td mat-cell *matCellDef="let element" class="text-center"> {{element.sector}} </td>
+            </ng-container>
+            <!-- airline Column -->
+            <ng-container matColumnDef="airline">
+                <th mat-header-cell *matHeaderCellDef class=" text-center">  {{'airline'| translate }}</th>
+                <td mat-cell *matCellDef="let element" class="text-center"> {{element.airline}} </td>
+            </ng-container>
+            <!-- passengers Column -->
+            <ng-container matColumnDef="passengers">
+                <th mat-header-cell *matHeaderCellDef class=" text-center">  {{'passengers'| translate }}</th>
+                <td mat-cell *matCellDef="let element" class="text-center"> {{element.passengers}} </td>
+            </ng-container>
+            <!-- travelDt Column -->
+            <ng-container matColumnDef="travelDt">
+                <th mat-header-cell *matHeaderCellDef class=" text-center">  {{'travelDt'| translate }}</th>
+                <td mat-cell *matCellDef="let element" class="text-center"> {{element.travelDt}} </td>
+            </ng-container>
+            <!-- dtReq Column -->
+            <ng-container matColumnDef="dtReq">
+                <th mat-header-cell *matHeaderCellDef class=" text-center">  {{'dtReq'| translate }}</th>
+                <td mat-cell *matCellDef="let element" class="text-center"> {{element.dtReq}} </td>
+            </ng-container>
+            <!-- refUser Column -->
+            <ng-container matColumnDef="refUser">
+                <th mat-header-cell *matHeaderCellDef class=" text-center">  {{'refUser'| translate }}</th>
+                <td mat-cell *matCellDef="let element" class="text-center"> {{element.refUser}} </td>
+            </ng-container>
+            <!-- traitedDate Column -->
+            <ng-container matColumnDef="traitedDate">
+                <th mat-header-cell *matHeaderCellDef class=" text-center">  {{'traitedDate'| translate }}</th>
+                <td mat-cell *matCellDef="let element" class="text-center"> {{element.traitedDate}} </td>
+            </ng-container>
+            <!-- traitedBy Column -->
+            <ng-container matColumnDef="traitedBy">
+                <th mat-header-cell *matHeaderCellDef class=" text-center">  {{'traitedBy'| translate }}</th>
+                <td mat-cell *matCellDef="let element" class="text-center"> {{element.traitedBy}} </td>
+            </ng-container>
+            <!-- statusReq Column -->
+            <ng-container matColumnDef="statusReq">
+                <th mat-header-cell *matHeaderCellDef class=" text-center">  {{'statusReq'| translate }}</th>
+                <td mat-cell *matCellDef="let element" class="text-center"> {{element.statusReq}} </td>
+            </ng-container>
+ 
+            <!-- action Column -->
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef class=" text-center">  {{'Actions'| translate }} </th>
+                <td mat-cell *matCellDef="let element" class="p-4 action">
+                    <button  (click)="goToEdit()" class="edit">
+                        <img src="../../../../../../assets/images/edit.png" class="editButtonContent">
+                    </button>
+                    <button  (click)="delete()" class="delete">
+                        <img src="../../../../../../assets/images/delete.png" class="btn-remove">
+                    </button>
+                </td> 
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [pageSizeOptions]="[100, 200, 300, 400]" showFirstLastButtons>
+        </mat-paginator>
+
+        <!-- <ng2-smart-table id="myTableElementId" [settings]="settings" [source]="source"  >
+        </ng2-smart-table> -->
+    </div>
+</div>

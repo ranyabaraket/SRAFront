@@ -1,0 +1,83 @@
+@media print {
+    #printPageButton {
+        display: none;
+    }
+}
+
+.dataBooking1 {
+    font-size: 1.0rem;
+    text-transform: uppercase;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.dataBooking12 {
+    font-size: 1.0rem;
+    text-transform: uppercase;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: grey;
+}
+
+.dataBooking11 {
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.dataBooking {
+    font-size: 1.0rem;
+    //  text-transform: uppercase;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    //  text-align: right;
+}
+
+.dataEmail {
+    font-size: 1.0rem;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    // text-align: right;
+}
+
+.dataEmail1 {
+    font-size: 1.3rem;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.notes {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: red;
+}
+
+.voucherRef {
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    background-color: rgba(51, 46, 131, 0.514);
+    font-size: 1.2rem;
+    height: 50px;
+    padding: 15px;
+    color: white;
+}
+
+.destination {
+    background-color: rgba(51, 46, 131, 0.514);
+    font-size: 1.2rem;
+    height: 40px;
+    padding: 12px;
+    color: white;
+}
+#component1 {
+    width: 90%;
+    margin-left: 5%;
+    background-color: rgb(233, 227, 227);
+    -webkit-print-color-adjust: exact;
+}

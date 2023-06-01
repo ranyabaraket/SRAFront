@@ -1,0 +1,100 @@
+<!-- <div class="container-fluid " id="page-container">
+    <div id="cover">
+        <div id="bg">
+
+        </div>
+        <div class="row bottom-text">
+            <div class="col text-center">
+                <span class="title-module"> <b>{{'Flights'|translate}}</b> </span>
+            </div>
+        </div>
+    </div>
+    <div id="content-wrap">
+        <div class="rowdisplay">
+            <div class="form-field">
+                <app-search-form #searchFligh></app-search-form>
+            </div>
+            <div class="row ">
+                <div class="col-12 text-center mrgBtm">
+                    <button type="button" class="btn btn-success col-sm-11 col-md-1" style="padding-left: 0; padding-right:0" [disabled]="searchFligh.disableButtonSearch()" (click)=" search(searchFligh.getSearchModel() )">
+                        <div *ngIf="loadingSearch" class="spinner-border spinner-border-sm text-light" role="status">
+                            <span class="sr-only">{{'loading' |translate}}</span> </div><i class="fas fa-search" style="color: white;"></i> <span>{{'Search' |translate}}</span>
+                    </button>
+                    <button type="button" [disabled]="loadingSearch" (click)="searchFligh.reset()" class="btn btn-danger col-11 col-md-1">
+                        <span>{{'Reset' |translate}}</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <footer class="row" id="footer">
+            <div class="col-md-12 card-columns mx-auto p-2">
+                <div class="card card-history clickable" *ngFor="let item of latestSearch |async;let index = index" (click)="searchFligh.getSearch(item)" title="Latest Search">
+                    <div class="text-center py-3">
+                        <i class="fas fa-history icon"></i> {{index+1}} - {{'From'| translate}} {{item.depart}} {{'To'| translate}} {{item.arrival}} <br>
+                        <span *ngIf="!item.dtArrival"> {{'On'| translate}} {{item.dtDepart  |date :'dd/MM/yyyy'}} </span>
+                        <span *ngIf="item.dtArrival"> {{item.dtDepart |date:'dd/MM/yyyy'}} - {{item.dtArrival|date:'dd/MM/yyyy'}} </span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div> -->
+
+
+<div class="container-fluid " style="
+margin-top: 4%;
+">
+
+    <div class="container">
+
+        <div class="rounded">
+            <div>
+                <div class="slogan"> {{'flight slogan' | translate}}</div>
+                <div class="slogan1"> {{'flight slogan1' | translate}}</div>
+                <div class="form-field searchField">
+                    <app-search-form #searchFligh></app-search-form>
+                </div>
+                <div class="row ">
+                    <div class="col-12  ">
+                        <button type="button" class="btn btn-success col-sm-11 col-md-2 "
+                            [disabled]="searchFligh.disableButtonSearch()"
+                            (click)="search(searchFligh.getSearchModel())">
+                            <div *ngIf="loadingSearch" class="spinner-border spinner-border-sm text-light pr-2"
+                                role="status"> </div>
+                            <!-- <span class="sr-only">{{'loading' |translate}}</span> </div><i class="fas fa-search" style="color: white;"></i> <span>{{'Search' |translate}}</span> -->
+                            <i *ngIf="!loadingSearch" class="fas fa-search pr-2" style="color: white;"></i>
+                            <span>{{'Search'
+                                |translate}}</span>
+                        </button>
+                        <button type="button" [disabled]="loadingSearch" (click)="searchFligh.reset()"
+                            class="btn btn-danger col-sm-11 col-md-2">
+                            <span>{{'Reset' |translate}}</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- <i class="fas fa-history icon"></i> {{index+1}} - {{item.paysDepart}}-{{item.depart}}-{{item.villeDepart}} <br> {{'To'| translate}} {{item.paysArrival}}-{{item.arrival}}-{{item.villeArrival}} <br> -->
+
+                <div>
+                    <div class="col-md-12 card-columns mx-auto p-2">
+                        <div class="card card-history clickable  p-2 "
+                            *ngFor="let item of latestSearch | async ;let index = index"
+                            (click)="searchFligh.getSearch(item)" title="Latest Search">
+                            <div class="text-center py-3">
+                                <i class="fas fa-history icon"></i> {{index+1}} - {{item.paysDepart}} -
+                                {{item.villeDepart}}
+                                - {{item.depart}} {{'To'| translate}} {{item.paysArrival}} - {{item.villeArrival}} -
+                                {{item.arrival}} <br>
+                                <span *ngIf="!item.dtArrival"> {{'On'| translate}} {{item.dtDepart |date :'dd/MM/yyyy'}}
+                                </span>
+                                <span *ngIf="item.dtArrival"> {{item.dtDepart |date:'dd/MM/yyyy'}} -
+                                    {{item.dtArrival|date:'dd/MM/yyyy'}} </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

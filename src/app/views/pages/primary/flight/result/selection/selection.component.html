@@ -1,0 +1,199 @@
+<app-custom-loading-flight-search *ngIf="!flights.length && loadingSearch"
+    [searchModel]="searchModel"></app-custom-loading-flight-search>
+<div class="info-bloc">
+    <div class="simple-linear p-2">
+        <div class="row p-2 model-container">
+            <div class="col-md-6">
+                <div class="row">
+
+
+
+                    <div class="col-md-6"> <i class="fas fa-map-marker-alt i-search"></i> <b>{{searchModel.departVol1}}
+                            - </b>
+                        <span>{{searchModel.departVolTxt}}</span>
+                    </div>
+                    <div class="col-md-1">
+                        <i class="fas fa-long-arrow-alt-right fa-2x i-search"></i>
+                    </div>
+                    <div class="col-md-5">
+                        <i class="fas fa-map-marker-alt i-search"></i>
+                        <b>{{searchModel.destinationVol1}} -
+                        </b><span>{{searchModel.destinationVolTxt}}</span>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="col-md-2">
+                <i class="fas fa-calendar-alt i-search"></i>
+                <span>{{searchModel.departleVol1  }}</span>
+                <span *ngIf="searchModel.typeSearch === 2"> to
+                    {{searchModel.retourleVol1 }}</span>
+
+            </div>
+            <div class="col-md-2">
+                <i class="fas fa-user-friends i-search"></i>
+                <span> {{searchModel.qteADT}} {{'Adult'|translate}}</span>
+                <span *ngIf="searchModel.qteCHD && searchModel.qteCHD!==0 ">
+                    {{searchModel.qteCHD}}
+                    {{'Childs'|translate}}</span>
+                <span *ngIf="searchModel.qteINF && searchModel.qteINF!==0"> {{searchModel.qteINF}}
+                    {{'Infant'|translate}}</span>
+
+            </div>
+            <div class="col-md-2 d-flex justify-content-end p-0">
+                <button class="btn btn-primary col-sm-6 col-md-10" type="button" (click)="showSearchForm = true">
+                    <span>
+                        {{'modify search'|translate}}
+                    </span>
+                    <div class="icon2 d-flex align-items-center justify-content-center">
+                        <i class="fas fa-edit"></i>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="showSearchForm" class="m-2">
+        <div class="row">
+            <div class="col text-right"><i class="fas fa-times icon clickable" (click)="showSearchForm=false"></i>
+            </div>
+        </div>
+        <div class="rowdisplay">
+            <div class="form-field">
+                <app-search-form #searchFlighForm [data]="searchModel"></app-search-form>
+            </div>
+            <div class="row ">
+                <div class="col-12 text-right mrgBtm ">
+                    <button type="button" class="btn btn-primary col-sm-11 col-md-2"
+                        [disabled]="loadingSearch || searchFlighForm.disableButtonSearch()"
+                        (click)="search(searchFlighForm.getSearchModel()); searchModel=searchFlighForm.getSearchModel()">
+                        <!-- <i class="la la-search  mr-2"></i>  -->
+                        <span>{{'Search' |translate}}</span>
+                        <div class="icon2 d-flex align-items-center justify-content-center">
+                            <i class="la la-search"></i>
+                        </div>
+                    </button>
+                    <!-- <button type="button" [disabled]="loadingSearch" (click)="searchHotel.reset()"
+                        class="btn btn-primary col-sm-11 col-md-2">
+                        <span>
+                            {{'Refresh' |translate}}</span>
+                        <div class="icon d-flex align-items-center justify-content-center">
+                            <i class="la la-sync-alt"></i>
+                        </div>
+                    </button> -->
+                </div>
+            </div>
+            <!-- <div class="row ">
+                <div class="col-12 text-center mrgBtm">
+                    <button type="button" class="btn btn-success col-sm-11 col-md-2"
+                        [disabled]="loadingSearch || searchFlighForm.disableButtonSearch()"
+                        (click)="search(searchFlighForm.getSearchModel()); searchModel=searchFlighForm.getSearchModel()">
+
+                        <i class="fas fa-search pr-2" style="color: white;"></i> <span>{{'Search' |translate}}</span>
+                    </button>
+                    <button type="button" [disabled]="loadingSearch" (click)="searchFlighForm.reset()"
+                        class="btn btn-danger col-sm-11 col-md-2">
+                        <span>{{'Reset' |translate}}</span>
+                    </button>
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+</div>
+<mat-progress-bar *ngIf="loadingSearch && flights.length" mode="indeterminate" [value]="progressValue">
+</mat-progress-bar>
+<div class="row mt-2">
+    <div class="col-md-2 ">
+        <app-filter #filterSett id="filter" class="filter"
+            [data]="{filterSettings:filterSettings, searchModel:searchModel, flights:flights}"
+            (backward)='filter($event)'>
+        </app-filter>
+    </div>
+    <div class="col-md-10 col-sm-12">
+        <div class="row d-lg">
+            <div class="col text-right">
+                <div class="btn-group" role="group">
+                    <button class=" btn btn-light" (click)="openFilter()"><i class="fas fa-filter"></i></button>
+                    <button class=" btn btn-light" (click)="openStatisticsTable()"><i
+                            class="fas fa-border-all"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-md-6 col-sm-12 text-right">
+                <form #sendEtenraryForm="ngForm">
+                    <div class="d-flex">
+                        <div class="p-2 flex-grow-1">
+                            <label class="sr-only" for="itineraryEmail"><small>{{'Email'|translate}}</small> </label>
+                            <input type="email" name="email" class="form-control form-control-sm  " id="email"
+                                placeholder="Enter Your Email" email="true" [(ngModel)]="iteneraryData.mail"
+                                #email="ngModel" required [class.is-invalid]="submittedItenerary && email.invalid">
+                        </div>
+                        <div class="p-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="includePrice"
+                                    [(ngModel)]="iteneraryData.includePrice" name="includePrice">
+                                <label class="form-check-label" for="includePrice">
+                                    <small>{{'Include Price'|translate}} </small>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="p-2">
+                            <u (click)="sendItinerary(sendEtenraryForm)" class="clickable primary"><small>
+                                    {{'Send Itinerary'|translate}}</small></u>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <app-statistics-table #tabSett class="statistics-table" id="statistics-table"
+                    [data]="{pricePerCompagny:pricePerCompagny,flights:flights,filterSettings:filterSettings[0], loadingSearch :loadingSearch}"
+                    (backward)='filter($event)'></app-statistics-table>
+            </div>
+        </div>
+        <div class="row" (click)="closeModal()">
+            <div class="col">
+                <div id="accordion" *ngIf="flights">
+                    <div *ngIf="restrictions?.length;">
+                        <div class="alert alert-warning" role="alert">
+                            <i class="fas fa-exclamation-triangle alert-icon mr-2"></i>{{'Country travel
+                            restrictions'|translate}} <u (click)="openRestricions()" class="clickable">
+                                {{'Find out more'|translate}}</u>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col "> <span *ngIf="!loadingSearch"> {{flightsFiltred.length}}
+                                /<b>{{flights.length}}</b> {{'results'|translate}}</span>
+                        </div>
+                        <div class="col text-right">
+                            <u (click)="filterSett.initFilter(); tabSett.initTable()" class="clickable primary "><span>
+                                    {{'Clear Filter'|translate}}</span></u>
+                        </div>
+                    </div>
+
+                    <div *ngFor="let flight of (flightsFiltred | slice: lowValue : highValue) ; let index=index">
+                        <app-flight-informations [flightsFiltred]="flightsFiltred" [loadingSearch]="loadingSearch"
+                            [index]="index" [flight]="flight" [bestPriceFlight]="bestPriceFlight">
+                        </app-flight-informations>
+                    </div>
+                </div>
+                <div *ngIf="!flightsFiltred.length && !loadingSearch;" class="text-center mt-4 text-muted">
+                    {{'No result found'|translate}}
+                </div>
+                <div *ngIf="flightsFiltred.length>10" class="row">
+                    <div class="col text-right">
+                        <mat-paginator [length]="flightsFiltred.length" [pageSize]="10"
+                            [pageSizeOptions]="[ 10, 50, 200, 1000]" (page)="getPage($event)">
+                        </mat-paginator>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- <app-custom-loading *ngIf="!flights.length && loadingSearch"></app-custom-loading> -->

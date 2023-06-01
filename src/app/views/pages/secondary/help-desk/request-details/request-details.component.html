@@ -1,0 +1,152 @@
+<div class="container-fluid">
+    <div class="mt-4 mb-4">
+
+        <div class="row">
+            <div class="col-12">
+                <h3 class="title"> <button ngbTooltip="back" placement="bottom" class="btn btn-primary btn-sm ml-2"
+                        (click)="back();"><i class="fas fa-arrow-left"></i></button> Booking
+                    Details - INVOICE</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3 col-sm-6">
+            <b> ID Request </b>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <b> Passenger</b>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <b> Request Type</b>
+        </div>
+        <div class="col-md-3 col-sm-6">
+            <b>Status</b>
+        </div>
+    </div>
+    <div class="row" *ngFor="let requestDetail of requestDetails">
+        <div class="col-md-3 col-sm-6">
+
+            {{requestDetail.idRequest}}
+        </div>
+        <div class="col-md-3 col-sm-6">
+
+            <a *ngFor="let item of requestDetail.passengers">{{item}}</a>
+        </div>
+        <div class="col-md-3 col-sm-6">
+
+            {{requestDetail.typeReq}}
+        </div>
+        <div class="col-md-3 col-sm-6">
+
+            {{requestDetail.status}}
+        </div>
+    </div>
+    <div class="details p-2 my-2" *ngFor="let requestDetail of requestDetails">
+        <h4 class="m-1">REQUEST NO : {{requestDetail.idRequest}} - <b> {{requestDetail.typeReq}}</b></h4>
+        <h4 class=" m-1 mt-2">Itinerary Informations</h4>
+        <div class="table-responsive m-1">
+            <table class="table  table-borderless noPadding">
+                <thead>
+                    <tr>
+                        <th scope="col"> <b>Airlines</b> </th>
+                        <th scope="col"> <b>Flight No</b></th>
+                        <th scope="col"><b>Departure </b> </th>
+                        <th scope="col"><b>Arrival</b></th>
+                        <th scope="col"><b>Class </b></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of requestDetail.psegments">
+                        <td><img src={{getSrcImg(item.codeCom)}}></td>
+                        <td> {{item.codeCom}}{{item.flightNum}} </td>
+                        <td> ({{item.villeDepCode}}) <br>
+                            {{item.dateDepart}} {{item.heureDepart}} </td>
+                        <td> ({{item.villeArrCode}}) <br>
+                            {{item.dateArrivee}}  {{item.heureArrivee}} </td>
+                        <td> ?</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <h4 class=" m-1 mt-2">Charges</h4>
+        <div class="table-responsive m-1">
+            <table class="table  table-borderless noPadding">
+                <thead>
+                    <tr>
+                        <th scope="col"> <b>Passenger </b> </th>
+                        <th scope="col"> <b>Source Amount</b></th>
+                        <th scope="col"><b>Curr.</b> </th>
+                        <th scope="col"><b>Rfd. Fare</b></th>
+                        <th scope="col"><b>Rfd. Tax </b></th>
+                        <th scope="col"><b>Rfd. Fuel </b></th>
+                        <th scope="col"><b>Penality </b></th>
+                        <th scope="col"><b>Provider Fee </b></th>
+                        <th scope="col"><b>Total Tax </b></th>
+                        <th scope="col"><b>Admin Fee </b></th>
+                        <th scope="col"><b>Final Refund </b></th>
+                        <th scope="col"><b>Cust. Curr. </b></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of requestDetail.charges">
+                        <td></td>
+                        <td>{{item.mntAFacturer}}</td>
+                        <td>{{item.codeDevise}}</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>{{item.adminFee}}</td>
+                        <td>{{item.rfndFinal}}</td>
+                        <td>{{requestDetail.codeDevise}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <div *ngIf=" requestDetail.status ==='Confirmed'">
+            <hr>
+            <div class="row">
+                <div class="col-12 text-right">Total Charges:{{requestDetail.totAdminFee}} {{requestDetail.codeDevise}}
+                </div>
+                <div class="col-12 text-right">Total Refundable Amount: ??? </div>
+                <a class="col-md-6 col-sm-12 m-1">{{requestDetail.noteAgent}}</a>
+            </div>
+            <div class="row">
+                <div class="col-md-6 m-2 col-sm-12">
+                    <textarea class="form-control " id="noteAgent" rows="2"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 text-right">
+                    <button class="btn btn-secondary btn-sm ml-2"
+                        (click)=" updateStatus('J', requestDetail.idRequest, requestDetail.noteAgent)">Reject</button>
+                    <button class="btn btn-primary btn-sm ml-2"
+                        (click)=" updateStatus('T', requestDetail.idRequest, requestDetail.noteAgent)">Accept</button>
+                </div>
+            </div>
+        </div>
+        <div *ngIf=" requestDetail.status !=='Confirmed'">
+            <h4 class=" m-1 mt-2" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+                aria-controls="collapseExample">messages history</h4>
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+                   <div class="row">
+                       <div class="col-md-6 col-sm-12">
+                           ?
+                       </div>
+                       <div class="col-md-6 col-sm-12">
+                        {{requestDetail.noteAgent}}
+                       </div>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,60 @@
+<div class="container-fluid">
+    <form #filterForm>
+
+        <div id="headingInsuranceName">
+            <div class="d-flex">
+                <div data-toggle="collapse" class="p-2 clickable h6 flex-grow-1" data-target="#collapseFN"
+                    aria-expanded="true" aria-controls="collapseFN"><b>{{'Title'|translate}}</b></div>
+                <div class="p-1">
+                    <b class="primary clickable mr-1" (click)="resetName()">{{'Reset'|translate}}</b>
+                </div>
+            </div>
+        </div>
+        <div id="collapseFN" class="collapse show" aria-labelledby="headingInsuranceName">
+            <div>
+                <input type="text" class="form-control form-control-sm mb-2"
+                    placeholder="{{'InsuranceTitle'|translate}}" autocomplete="off" [(ngModel)]="filter2.insuranceType"
+                    (keyup)="applyFilter()" name="insuranceType">
+            </div>
+        </div>
+        <hr>
+        <div id="headingPrice">
+            <div class="d-flex">
+                <div data-toggle="collapse" class="p-2 clickable h6 flex-grow-1" data-target="#collapsePrice"
+                    aria-expanded="true" aria-controls="collapsePrice"><b>{{'Price'|translate}}</b></div>
+                <div class="p-1">
+                    <b class="primary clickable mr-1" (click)="resetValuePrix()">{{'Reset'|translate}}</b>
+                </div>
+            </div>
+        </div>
+        <div id="collapsePrice" class="collapse show" aria-labelledby="headingPrice">
+            <div>
+                <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"
+                    (userChangeEnd)="applyFilter()"></ng5-slider>
+            </div>
+        </div>
+        <hr>
+        <div id="headingType">
+            <div class="d-flex">
+                <div data-toggle="collapse" class="p-2 clickable h6 flex-grow-1" data-target="#collapseType"
+                    aria-expanded="true" aria-controls="collapseType"><b>{{'Type'|translate}}</b></div>
+                <div class="p-1">
+                    <b class="primary clickable mr-1" (click)="resetType()">{{'Reset'|translate}}</b>
+                </div>
+            </div>
+        </div>
+        <div id="collapseType" class="collapse show" aria-labelledby="headingType">
+            <div>
+                <input class="checkbox mr-2" name="perPassenger" [(ngModel)]="filter.perPassenger" type="checkbox"
+                    (change)="applyFilter()" id="perPassenger">
+                <label class="check" for="perPassenger"> {{'PerPassenger' | translate}} </label>
+            </div>
+            <div>
+                <input class="checkbox mr-2" name="perBooking" [(ngModel)]="filter.perBooking" type="checkbox"
+                    (change)="applyFilter()" id="perBooking">
+                <label class="check" for="perBooking">{{'PerBooking' | translate}}</label>
+            </div>
+        </div>
+        <hr>
+    </form>
+</div>

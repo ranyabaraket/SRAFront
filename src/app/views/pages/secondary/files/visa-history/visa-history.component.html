@@ -1,0 +1,110 @@
+<div class="container-fluid  pt-0">
+    <div *ngIf="!showDetails">
+        <div class="mb-2">
+            <form #searchForm="ngForm" class="py-4">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="form-floating mb-3">
+                        <input type="text" class="form-control form-control-sm" style="text-transform: uppercase;" placeholder="{{'Full name'|translate}}"
+                         [(ngModel)]="searchModel.fullName" name="ref">
+                         <label for="floatingSelect"> {{'Full name'|translate}}</label>
+                    </div>
+                </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="form-floating mb-3">
+                        <select class="form-control form-control-sm" name="originCountry" [(ngModel)]="countryFrom" (change)="onChangeCountry($event)">
+                        <option value="" selected disabled>{{'Visa from'|translate}}</option>        
+                        <option *ngFor="let item of countryList" value="{{item.lpays}}">
+                            {{ item.lpays }}
+                        </option>
+                    </select>
+                    <label for="floatingSelect"> {{'Visa from'|translate}}</label>
+                    </div>
+                </div>
+
+                    <div class="col-md-3 col-sm-6">
+                        <div class="form-floating mb-3">
+                        <select class="form-control form-control-sm" name="countryTo" [(ngModel)]="countryTo" (change)="onChangeCountryTo($event)">
+                        <option value="" selected disabled>{{'Visa to'|translate}}</option>        
+                        <option *ngFor="let item of countryList" value="{{item.lpays}}">
+                            {{ item.lpays }}
+                        </option>
+                    </select>
+                    <label for="floatingSelect"> {{'Visa to'|translate}}</label>
+                    </div>
+                </div>
+
+                    <div class="col-md-3 col-sm-6">
+                        <div class="form-floating mb-3">
+                        
+                        <select type="text" class="form-control form-control-sm" [(ngModel)]="searchModel.typeVisa" name="visaType">
+                        <option value="" selected disabled>{{'All'|translate}} </option>
+                        <option value="Y"> {{'Touristic'|translate}}</option>
+                        <option value="C"> {{'Business'|translate}}</option>
+                        <option value="F"> {{'conference'|translate}}</option>
+                        <option value="W"> {{'Study'|translate}}</option>
+                    </select>
+                    <label for="floatingSelect">{{'Type visa'|translate}}</label>
+                    </div>
+                </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-3 col-sm-6">
+                        <div class="form-floating mb-3">
+                        <select type="text" class="form-control form-control-sm" [(ngModel)]="searchModel.etatVisa" name="statusVisa">
+                        <option value="" selected disabled>{{'All'|translate}} </option>
+                        <option value="C"> {{'Cancled'|translate}}</option>
+                        <option value="E"> {{'Pending'|translate}}</option>
+                        <option value="B"> {{'Booking'|translate}}</option>
+                        <option value="Y"> {{'In Process'|translate}}</option>
+                    </select>
+                    <label for="floatingSelect">{{'Status visa'|translate}}</label>
+                    </div>
+                </div>
+                    <div class="col-md-3 col-sm-6  ">
+                        <div class="form-floating mb-3">
+                        <input type="date" class="form-control form-control-sm" name="travelDateFom"
+                         [(ngModel)]="searchModel.startDateS">
+                        <label for="floatingSelect"> {{'Travel date from'|translate}}</label>
+                    </div>
+                </div>
+
+                </div>
+                <div class="row  mt-2">
+                    <div class="col-12 text-right">
+                        <button type="button" class="btn btn-sm btn-success col-12 col-md-2 m-2" (click)="find()" 
+                                [disabled]="loading"> <div *ngIf="loading" class="spinner-border spinner-border-sm text-light" role="status">
+                                    <span class="sr-only">Loading...</span>
+                                </div> <span>{{'Find'|translate}}</span>
+                                    <div class="icon d-flex align-items-center justify-content-center">
+                                        <i class="fas fa-search"></i>
+                                    </div>
+                                </button>
+                        <!-- <button type="button" class="btn btn-sm  btn-primary col-12 col-md-2 m-2"
+                            (click)="reset(searchForm)" [disabled]="loading">{{'Refresh'|translate}}</button> -->
+
+                                <button type="button" class="btn btn-sm btn-primary col-12 col-md-2 m-2" (click)="reset(searchForm)" 
+                                [disabled]="loading">{{'Refresh'|translate}}
+                                    <div class="icon d-flex align-items-center justify-content-center">
+                                        <i class="fas fa-sync-alt"></i>
+                                    </div>
+                                </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="container rounded">
+        <div class=" card card-no-border  mb-4">
+            <label class="ml-2"> {{'Visa'|translate}}({{total}} {{'results'|translate}}) </label>
+            <ng2-smart-table id="myTableElementId" [settings]="settings" [source]="source" (custom)="getVisaDetails($event)">
+            </ng2-smart-table>
+        </div>
+    </div>
+    </div>
+
+    <app-visa-history-details [visaDetails2]="visaDetails" (backward)='cancel($event)' *ngIf="showDetails">
+    </app-visa-history-details>
+
+    <app-custom-loading *ngIf="loading"></app-custom-loading>
+</div>

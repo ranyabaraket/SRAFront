@@ -1,0 +1,190 @@
+<div *ngFor="let item of insuranceRslt  ; let index=index">
+    <div class="card card-cube mb-2">
+        <div class="card-header" id="headingOne">
+            <div class="row">
+                <div class="col-9">
+                    <div class="row">
+                        <div class="col">
+                            <b> {{item.planTitle}}</b>
+
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col">
+                            <small class="text-muted ml-2">
+                                {{'MinAge'|translate}} : {{item.minAge}} / {{'MaxAge'|translate}} : {{item.maxAge}}
+                                <br>
+                            </small>
+                        </div>
+                    </div>
+    
+
+
+                </div>
+                <div class="col-3">
+                    <div class="row">
+                        <div class="col-12 h6 text-right">
+                            <b>{{format(item.finalPrice?.prixClient)}} {{item.finalPrice?.currencyCode}}</b>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 text-md-right">
+                          
+                                <button type="button" class="btn-sm btn  btn-success"
+                                    (click)="confirmInsurance(item)">{{'Select'|translate}}
+                                </button>
+                          
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="row mt-md-2">
+                <div class="col">
+                    <p [innerHTML]="item.planContent"> </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-right">
+                <button type="button" class="btn btn-link btn-sm" (click)="openPriceBreakDown(item, index);"><small>
+                        {{'Price Break Down'|translate}}</small> </button>
+
+            </div>
+        </div>
+        <div class="row" *ngIf="showPriceDetails[index]">
+            <div class="col-12" *ngIf="item.planPremiumChargeType === 'PerPassenger'">
+                <div class="table-responsive">
+                    <table class="table min-padding">
+                        <thead>
+                            <tr>
+                                <td scope="col"> <small>{{'Passenger type'|translate}}</small> </td>
+                                <td scope="col"> <small>{{'Quantite'|translate}}</small> </td>
+                                <td scope="col"> <small>{{'Basic fare'|translate}}</small> </td>
+                                <td scope="col"> <small>{{'Total'|translate}}</small> </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngIf="adltNb > 0">
+                                <td> <small>adult </small> </td>
+                                <td> <small>{{adltNb}}</small> </td>
+                                <td> <small>{{format(item.finalPrice?.premiumAmount)}} {{item.finalPrice?.currencyCode}}</small>
+                                </td>
+                                <td><small>{{format(item.finalPrice?.prixClient)}} {{item.finalPrice?.currencyCode}}</small>
+                                </td>
+                            </tr>
+                            <tr *ngIf="childNb > 0">
+                                <td> <small>child </small> </td>
+                                <td> <small>{{childNb}}</small> </td>
+                                <td> <small>{{item.premiumAmount}} {{item.currencyCode}}</small> </td>
+                                <td><small>{{amtChd[index]}} {{item.currencyCode}}</small>
+                                </td>
+                            </tr>
+                            <tr *ngIf="infantNb > 0">
+                                <td> <small>infant </small> </td>
+                                <td> <small>{{infantNb}}</small> </td>
+                                <td> <small>0 {{item.finalPrice?.currencyCode}}</small> </td>
+                                <td><small> 0 {{item.finalPrice?.currencyCode}}</small>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col text-right text-primary ">
+                        <div class="p-2">
+                            {{format(item.finalPrice?.prixClient)}} {{item.finalPrice?.currencyCode}}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-12" *ngIf="item.planPremiumChargeType === 'PerBooking'">
+                <div class="table-responsive">
+                    <table class="table min-padding">
+                        <thead>
+                            <tr>
+                                <td scope="col"> <small>{{'Passenger type'|translate}}</small> </td>
+                                <td scope="col"> <small>{{'Quantite'|translate}}</small> </td>
+                                <td scope="col"> <small>{{'Basic fare'|translate}}</small> </td>
+                                <td scope="col"> <small>{{'Total'|translate}}</small> </td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngIf="adltNb > 0">
+                                <td> <small>adult </small> </td>
+                                <td> <small>{{adltNb}}</small> </td>
+                                <td> <small> - </small> </td>
+                                <td><small> - </small>
+                                </td>
+                            </tr>
+                            <tr *ngIf="childNb > 0">
+                                <td> <small>child </small> </td>
+                                <td> <small>{{childNb}}</small> </td>
+                                <td> <small> - </small> </td>
+                                <td><small> - </small>
+                                </td>
+                            </tr>
+                            <tr *ngIf="infantNb > 0">
+                                <td> <small>infant </small> </td>
+                                <td> <small>{{infantNb}}</small> </td>
+                                <td> <small> - </small> </td>
+                                <td><small> - </small>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col text-right text-primary">
+                        <div class="p-2"> 
+                            {{format(item.finalPrice?.prixClient)}} {{item.finalPrice?.currencyCode}}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!---- <div class="row">
+            <div class="col-md-7 col-sm-12 text-left">
+                <span class="h6"> {{item.planTitle}} </span>
+            </div>
+            <div class="col-md-5 col-sm-12 text-right">
+            
+                <div class="row">
+                    <div class="col-5 priceIns">
+                        {{item.finalPrice?.prixClient}} {{item.finalPrice?.currencyCode}}
+                    </div>
+                    <div class="col-6">
+                        <button class="btn btn-sm btn-primary" style="width: 80%;" type="button" (click)="confirmInsurance(item)">{{'Select'|translate}}</button>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-7 col-sm-12 text-left"> {{'MinAge'|translate}} : {{item.minAge}} / {{'MaxAge'|translate}} : {{item.maxAge}}
+            </div>
+            <div class="col-md-5 col-sm-12 text-right">
+                <div class="row">
+                    <div class="col-5">
+                        <button type="button" class="btn btn-link btn-sm" (click)="openPriceBreakDown(item, index)"><small>
+                                {{'Price Break Down'|translate}}</small> </button>
+                      
+                    </div>
+     
+
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div [innerHTML]="item.planContent"> </div>
+                </div>
+            </div>
+        </div>
+       -->

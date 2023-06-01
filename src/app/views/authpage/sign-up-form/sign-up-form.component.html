@@ -1,0 +1,172 @@
+<form [formGroup]="signupForm">
+    <!-- <div class="row inputs-field"> -->
+    <div class="form-row">
+        <div class="col-sm-12 col-md-4">
+            <div class="input-icons">
+              <i class="la la-map-marker-alt icon la-icon l-icon" ></i>  
+                <select class="input-field form-control" id="country" name="country" formControlName="country"
+                    [ngClass]="{ 'is-invalid': (submittedSignup && signupForm.controls.country.errors)}"
+                    (change)="getCity($event);">
+                    <option value="" disabled> {{'Country'|translate}} </option>
+                    <option *ngFor="let item of listPays | async" [value]="item.idPays">{{item.lpays}} </option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-4">
+            <div class="input-icons">
+                 <i class="la la-map-marker-alt icon la-icon l-icon" ></i> 
+                <select class="input-field form-control" id="city" name="city" formControlName="city"
+                    [ngClass]="{ 'is-invalid': (submittedSignup && signupForm.controls.city.errors)}">
+                    <option value="" disabled> {{'City'|translate}}</option>
+                    <option *ngFor=" let item of cities | async" [value]="item.id.idCity"> {{item.lcity}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-4">
+            <div class="input-icons">
+               <i class="la la-user-tie icon la-icon l-icon" ></i> 
+                <select class="input-field form-control" id=" Business" name="Business" formControlName="business"
+                    [ngClass]="{ 'is-invalid': (submittedSignup && signupForm.controls.business.errors)}">
+                    <option value="" disabled> {{'Business Type'|translate}} </option>
+                    <option *ngFor=" let item of listCategories | async" [value]="item.idCatTiers"> {{item.lcatTiers}}
+                    </option>
+                </select>
+            </div>
+        </div>
+</div>
+<div class="form-row">
+        <div class="col-sm-12 col-md-2">
+            <div class="input-icons">
+              <i class="la la-user icon la-icon l-icon" ></i>
+                <select name="Title" id="Title" class="input-field form-control" id="gender" formControlName="title"
+                    [ngClass]="{ 'is-invalid': (submittedSignup && signupForm.controls.title.errors)}">
+
+                    <option value="" disabled> {{'Gender'|translate}} </option>
+                    <option value="F"> {{'Female'|translate}}
+                    </option>
+                    <option value="M"> {{'Male'|translate}}
+                    </option>
+
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-4">
+            <div class="input-icons">
+              <i class="la la-user icon la-icon l-icon" ></i>
+                <input type="text" placeholder="{{'First Name'|translate}}" class="input-field form-control"
+                    name="FirstName" id="FirstName" formControlName="firstName"
+                    [ngClass]="{ 'is-invalid': (submittedSignup && signupForm.controls.firstName.errors)}" />
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <div class="input-icons">
+              <i class="la la-user icon la-icon l-icon" ></i>
+                <input type="text" placeholder="{{'Last Name'|translate}}" class="input-field form-control"
+                    id="LastName" formControlName="lastName"
+                    [ngClass]="{ 'is-invalid': (submittedSignup && signupForm.controls.lastName.errors)}"
+                    placeholder="Last Name" />
+            </div>
+        </div>
+</div>
+<div class="form-row">
+        <div class="col-sm-12 col-md-2">
+            <div class="input-icons">
+              <i class="la la-phone icon la-icon l-icon" ></i>
+                <input type="text" class="input-field form-control" formControlName="code" id="code" readonly />
+
+
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-4">
+            <div class="input-icons">
+              <i class="la la-phone icon la-icon l-icon" ></i>
+                <input type="tel" placeholder="{{'Phone Number'|translate}}" class="input-field form-control"
+                    name="phone" id="phone" formControlName="phoneNumber"
+                    [ngClass]="{ 'is-invalid': (submittedSignup && signupForm.controls.phoneNumber.errors)}"
+                    pattern='^\d{5,14}' />
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <div class="input-icons">
+              <i class="la la-building icon la-icon l-icon" ></i>
+                <input type="text" placeholder="{{'Company Name'|translate}}" class="input-field form-control"
+                    name="Companyname" id="Companyname" formControlName="companyName"
+                    [ngClass]="{ 'is-invalid': (submittedSignup && signupForm.controls.companyName.errors)}" />
+            </div>
+        </div>
+</div>
+<div  class="form-row">
+        <div class="col-sm-12 col-md-4">
+            <div class="input-icons">
+              <i class="la la-envelope icon la-icon l-icon" ></i>
+                <input type="email" placeholder="{{'Email'|translate}}" class="input-field form-control" name="Email"
+                    id="Email" formControlName="email"
+                    [ngClass]="{ 'is-invalid': (submittedSignup && signupForm.controls.email.errors)}" [email]="true" />
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-4">
+            <div class="input-icons">
+              <i class="la la-map-marked-alt icon la-icon l-icon" ></i>
+                <input type="text" placeholder="{{'Address'|translate}}" class="input-field form-control" name="Adresse"
+                    id="Adresse" formControlName="adresse"
+                    [ngClass]="{ 'is-invalid': (submittedSignup && signupForm.controls.adresse.errors)}" />
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-4">
+            <div class="input-icons">
+              <i class="la la-globe icon la-icon l-icon" ></i>
+                <input type="text" placeholder="{{'Web Site'|translate}}" class="input-field form-control"
+                    name="WebSite" id="WebSite" formControlName="website"
+                    [ngClass]="{ 'is-invalid': (submittedSignup && signupForm.controls.website.errors)}" />
+            </div>
+        </div>
+        </div>
+        <div  class="form-row">
+        <div class="col-sm-12 col-md-6">
+            <div class="input-icons">
+              <!-- <i class="la la-globe icon la-icon l-icon"></i>
+              <input type="text" placeholder="{{'Web Site'|translate}}" class="input-field form-control"
+                    name="WebSite" id="WebSite" formControlName="website"
+                    [ngClass]="{ 'is-invalid': (submittedSignup && signupForm.controls.website.errors)}" />   -->
+                <select class="form-control input-field">
+                    <!-- ng-change="vm.authentificationBeans.refInscription.motifInscri=='C' ? 
+                        vm.authentificationBeans.getSalesList(18) : null"
+                            ng-model="vm.authentificationBeans.refInscription.motifInscri" -->
+                    <option class="hidden" selected disabled value="">How did you know about us?</option>
+                    <option value="A">Social Media</option>
+                    <option value="B">One of your friends</option>
+                    <option value="C">Sales Person</option>
+                </select>
+            </div>
+        </div>
+    </div>
+ 
+    <div class="row">
+        <div class="col-md-6" style="transform: scale(0.90);transform-origin: 0;">
+            <re-captcha (resolved)="resolved($event)" siteKey="{{recaptcha}}"
+                [ngClass]="{ 'is-invalid': (submittedSignup && !captchaResponse)}">
+            </re-captcha>
+
+        </div>
+        <div class="col-md-6 d-flex justify-content-end  mt-3">
+            <!---- <button class="btn  btn-sm btn-facebook  mt-2 col-sm-12 mr-md-2 col-md-3" (click)="signUpWithFB()"
+                [disabled]="loading || loadingFb">
+                <div *ngIf="loadingFb" class="spinner-border spinner-border-sm text-light" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                SignUp with facebook
+            </button>-->
+            <!-- Button create Account -->
+
+
+            <button class="btn btn-primary"
+                id="btn1" (click)="signup()" [disabled]="loading || loadingFb || signupForm.invalid">
+                <div *ngIf="loading" class="spinner-border spinner-border-sm text-light" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                {{'CREATE ACCOUNT'|translate}}
+            </button>
+        </div>
+    </div>
+
+</form>

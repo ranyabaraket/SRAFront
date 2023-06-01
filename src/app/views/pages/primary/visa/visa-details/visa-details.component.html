@@ -1,0 +1,57 @@
+<app-custom-loading *ngIf="loadingVisa"></app-custom-loading>
+<br>
+
+<div class="row rowdisplay">
+    <div class="col-md-6 col-sm-12">
+        <div class="row mb-2">
+            <span> Responsable: <b>{{visaModel.fullName | uppercase}}</b></span>
+        </div>
+        <div class="row mb-2">
+            <span> Mobile: <b>{{visaModel.phone}}</b></span>
+        </div>
+        <div class="row mb-2">
+            <span> Origin Country: <b>{{visaModel.originCountry | uppercase}}</b></span>
+        </div>
+    </div>
+    <div class="col-md-6 col-sm-12">
+        <div class="row mb-2">
+            <span> Email: <b>{{visaModel.email}}</b></span>
+        </div>
+        <div class="row mb-2">
+            <span> Entry/return date: <b>{{startDate}} / {{endDate}}</b> </span>
+        </div>
+        <div class="row mb-2">
+            <span> Destination: <b>{{visaModel.destination | uppercase}}</b></span>
+        </div>
+    </div>
+
+</div>
+
+<div class="rowdisplay">
+    <div class="card" *ngFor="let item of paxModel1 ; let index = index;">
+        <div class="card-header" id="headingRoom{{index}}">
+            <h6 class="mb-0">
+                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" [attr.data-target]="'#collapseRoom'+index" aria-expanded="true" [attr.aria-controls]="'collapseRoom'+index">
+                    <span>Guest {{index+1}} : </span> 
+                </button>
+            </h6>
+        </div>
+
+        <div id="collapseRoom{{index}}" class="collapse show" [attr.aria-labelledby]="'headingRoom'+index" data-parent="#accordionExample">
+            <div *ngIf="prixVisaData1" class="card-body">
+                <app-visa-details-card [paxModel]="item" [indexx]="index" [price]="priceToSend" (backward)='visaDocx($event)' [submitted]="submitted" id="visaGuestForm{{index}}" #visaPaxDetails></app-visa-details-card>
+
+            </div>
+        </div>
+    </div>
+
+
+    <br>
+
+    <div class="col-12 text-right">
+        <b style="margin-right: 10px">Total amount: {{totalAmnt}}</b>
+
+        <button class="btn btn-success col-12 col-md-2" [disabled]="disableBtn" (click)="saveData()"> Reserve </button>
+    </div>
+    <br>
+</div>

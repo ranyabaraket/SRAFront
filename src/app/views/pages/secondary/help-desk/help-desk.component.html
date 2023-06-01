@@ -1,0 +1,14 @@
+   
+   <div class="container-fluid">
+   <nav class="ml-3 mt-4 mr-3">
+        <!-- <div class="container rounded"> -->
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link " [ngClass]="{'active':currentOnglet(item.link) }" id="nav-flight-tab" data-toggle="tab" role="tab" aria-controls="nav-flight"
+                aria-selected="true" *ngFor="let item of menu" [routerLink]="[item.link]" >{{item.name}}</a>
+        </div>
+    <!-- </div> -->
+    </nav> 
+    <router-outlet class=" mt-0"></router-outlet> 
+    <br><br>
+
+</div>

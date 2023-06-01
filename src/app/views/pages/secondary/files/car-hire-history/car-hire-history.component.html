@@ -1,0 +1,165 @@
+<div class="container-fluid  pt-0">
+    <div *ngIf="!showDetails">
+    <div class="mb-2">
+        <form #searchForm="ngForm" class="py-4">
+            <div class="row pl-4">
+                <div class="col-md-2 col-sm-6 form-check">
+                    <div class="inputGroup">
+                    <input type="radio" class="form-check-input" name="etat" value="" id="etat1"
+                        [(ngModel)]="searchModel.etatfilechr">
+                    <label class="form-check-label" for="etat1"> <small>{{'All'|translate}}</small> </label>
+                </div>
+                </div>
+                <div class="col-md-2 col-sm-6 form-check">
+                    <div class="inputGroup">
+                    <input type="radio" class="form-check-input" name="etat" value="C" id="etat2"
+                        [(ngModel)]="searchModel.etatfilechr">
+                    <label class="form-check-label" for="etat2"> <small>{{'Confirmed queue'|translate}}</small></label>
+                </div>
+                </div>
+                <div class="col-md-2 col-sm-6 form-check">
+                    <div class="inputGroup">
+                    <input type="radio" class="form-check-input" name="etat" id="etat3" value="B"
+                        [(ngModel)]="searchModel.etatfilechr">
+                    <label class="form-check-label" for="etat3"><small>{{'Booking queue'|translate}}</small></label>
+                </div>
+                </div>
+                <div class="col-md-2 col-sm-6 form-check">
+                    <div class="inputGroup">
+                    <input type="radio" class="form-check-input" name="etat" id="etat4" value="A"
+                        [(ngModel)]="searchModel.etatfilechr">
+                    <label class="form-check-label" for="etat4"><small>{{'Canceled queue'|translate}}</small></label>
+                </div>
+                </div>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col-md col-sm-6">
+                    <div class="form-floating mb-3">
+                    <input type="text" class="form-control form-control-sm" placeholder="{{'Ref.'|translate}}"
+                        [(ngModel)]="searchModel.ref" name="ref">
+                        <label for="floatingSelect"> {{'Ref.'|translate}}</label>
+                </div>
+                </div>
+                <div class="col-md col-sm-6">
+                    <div class="form-floating mb-3">
+                    <input type="text" class="form-control form-control-sm" placeholder="{{'Unique ID'|translate}}"
+                        [(ngModel)]="searchModel.uniqueId" name="uniqueId">
+                        <label for="floatingSelect"> {{'Unique ID'|translate}}</label>
+                </div>
+                </div>
+                <div class="col-md col-sm-6">
+                    <div class="form-floating mb-3">
+                    <input type="text" class="form-control form-control-sm" placeholder="{{'Passenger'|translate}}"
+                        [(ngModel)]="searchModel.passenger" name="passenger">
+                        <label for="floatingSelect">{{'Passenger'|translate}}</label>
+                </div>
+                </div>
+                <!--<div class="col-md-2 col-sm-6">
+                    <label><small>{{'Type rent' | translate}} </small></label>
+                    <select type="text" class="form-control form-control-sm" [(ngModel)]="searchModel.typeRent" name="typerent" >
+                        <option value="T"> {{'Transfer' | translate}} </option>
+                        <option value="L"> {{'Car rent' | translate}} </option>
+                    </select>
+                </div>-->
+                <div class="col-md col-sm-6">
+                    <div class="form-floating mb-3">
+                    
+                    <input type="text" class="form-control form-control-sm" placeholder="{{'Pick-Up'|translate}}"
+                        [(ngModel)]="searchModel.pickupName" name="pickupName">
+                        <label for="floatingSelect">{{'Pick-Up'|translate}}</label>
+                </div>
+                </div>
+                <!--<div class="col-md-2 col-sm-6">
+                    <label><small>{{'Pickup type'|translate}}</small></label>
+                    <select type="text" class="form-control form-control-sm" [(ngModel)]="searchModel.pickupType"
+                        name="dropoffType">
+                        <option value="A"> {{'Airport' | translate}} </option>
+                        <option value="H"> {{'Hotel'| translate}} </option>
+                        <option value="S"> {{'Port' | translate}} </option>
+                    </select>
+                </div>-->
+                <!--<div class="col-md-2 col-sm-6  ">
+                    <label><small> {{'Travel date from'|translate}}</small></label>
+                    <input type="date" class="form-control form-control-sm" name="travelDateFom"
+                        [(ngModel)]="searchModel.travelDateFom">
+                </div>
+                <div class="col-md-2 col-sm-6  ">
+                    <label><small>{{'Travel date to'|translate}}</small></label>
+                    <input type="date" class="form-control form-control-sm" name="travelDateTo"
+                        [(ngModel)]="searchModel.travelDateTo">
+                </div>-->
+
+
+            </div>
+            <div class="row  mt-2">
+                <div class="col-md col-sm-6">
+                    <div class="form-floating mb-3">
+                    <input type="text" class="form-control form-control-sm" placeholder="{{'Drop-Off'|translate}}"
+                        [(ngModel)]="searchModel.dropoffName" name="pickupName">
+                        <label for="floatingSelect">{{'Drop-Off'|translate}}</label>
+                </div>
+                </div>
+                <div class="col-md col-sm-6">
+                    <div class="form-floating mb-3">
+                    <input type="date" class="form-control form-control-sm" name="pickupDateFrom"
+                        [(ngModel)]="searchModel.pickupDateFrom">
+                        <label for="floatingSelect">{{'Picking Date From'|translate}}</label>
+                </div>
+                </div>
+                <div class="col-md col-sm-6 ">
+                    <div class="form-floating mb-3">
+                    <input type="date" class="form-control form-control-sm" name="pickupDateTo"
+                        [(ngModel)]="searchModel.pickupDateTo" [min]="searchModel.pickupDateFrom">
+                        <label for="floatingSelect">{{'Picking Date To'|translate}}</label>
+                </div>
+                </div>
+               
+                <!--<div class="col-md-2 col-sm-6">
+                    <label><small>{{'Dropoff type'|translate}}</small></label>
+                    <select type="text" class="form-control form-control-sm" [(ngModel)]="searchModel.dropoffType"
+                        name="dropoffType">
+                        <option value="A"> {{'Airport' | translate}} </option>
+                        <option value="H"> {{'Hotel'| translate}} </option>
+                        <option value="S"> {{'Port' | translate}} </option>
+                    </select>
+                </div>-->
+                <div class="col-md col-sm-6">
+                    <div class="form-floating mb-3">
+                    <input type="date" class="form-control form-control-sm" name="bookingDateFrom"
+                        [(ngModel)]="searchModel.bookingDateFrom">
+                        <label for="floatingSelect">{{'Booking date from'|translate}}</label>
+                </div>
+                </div>
+                <div class="col-md col-sm-6 ">
+                    <div class="form-floating mb-3">
+                    <input type="date" class="form-control form-control-sm" name="bookingDateTo"
+                        [(ngModel)]="searchModel.bookingDateTo" [min]="searchModel.bookingDateFrom">
+                        <label for="floatingSelect">{{'Booking date to'|translate}}</label>
+                </div>
+                </div>
+
+            </div>
+            <div class="row  mt-2">
+                <div class="col-12 text-right">
+                    <button type="button" class="btn  btn-sm btn-success col-12 col-md-2 m-2" (click)="find()"
+                        [disabled]="loading">
+                        <div *ngIf="loading" class="spinner-border spinner-border-sm text-light" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div> <span>{{'Find'|translate}}</span>
+                    </button>
+                    <button type="button" class="btn btn-sm  btn-primary col-12 col-md-2 m-2"
+                        (click)="reset(searchForm)" [disabled]="loading">{{'Refresh'|translate}}</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class=" card card-no-border  mb-4">
+        <label class="ml-2"> {{'Booking'|translate}}({{total}} {{'results'|translate}}) </label>
+        <ng2-smart-table id="myTableElementId" [settings]="settings" [source]="source" (custom)="getBookingDetails($event)">
+        </ng2-smart-table>
+    </div>
+</div>
+    <app-car-hire-details *ngIf="showDetails" [inputData]="data" (backward)='cancel($event)'></app-car-hire-details> 
+
+</div>

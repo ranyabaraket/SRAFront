@@ -1,0 +1,101 @@
+<!-- <div class="container-fluid">
+    <form #filterForm>
+        <div class="card-hotel">
+            <div id="headingHotelName">
+                <div data-toggle="collapse" class="pt-2 clickable h6 titre-hotel" data-target="#collapseFN"
+                    aria-expanded="true" aria-controls="collapseFN"><b>{{'Hotel name'|translate}}</b> </div>
+            </div>
+            <div id="collapseFN" class="collapse show" aria-labelledby="headingHotelName">
+                <input type="text" class="form-control form-control-sm mb-2" placeholder="{{'Hotel name'|translate}}"
+                    autocomplete="off" [(ngModel)]="filter2.hotelname" (keyup)="applyFilter()" name="hotelname">
+
+            </div>
+
+        </div>
+        <hr>
+        <div class="card-hotel">
+            <div id="headingPriceNight">
+
+                <div class="d-flex">
+                    <div data-toggle="collapse" class="pt-2  clickable h6 flex-grow-1" data-target="#collapsePrice"
+                        aria-expanded="true" aria-controls="collapsePrice"><b style="font-size: 16px;">{{'budget'|translate}}</b></div>
+                    <div class="p-2">
+                        <b class="filter clickable mr-2" (click)="resetValuePrix()">{{'Reset'|translate}}</b>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div id="collapsePrice" class="collapse show" aria-labelledby="headingPriceNight">
+                <div *ngIf="minValue && maxValue">
+                    <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"
+                        (userChangeEnd)="applyFilter()"></ng5-slider>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="card-hotel">
+
+
+            <div id="headingRating">
+                <div class="d-flex">
+                    <div data-toggle="collapse" class="p-2 clickable h6 flex-grow-1" data-target="#collapseRating"
+                        aria-expanded="true" aria-controls="collapseRating"><b>{{'Rating'|translate}}</b></div>
+                    <div class="p-2">
+                        <b class="filter clickable mr-2" (click)="changeValueToCheckAll1()">{{'all'|translate}}</b> <b
+                            (click)="changeValueToNone1()" class="clickable filter">{{'none'|translate}}</b>
+                    </div>
+                </div>
+            </div>
+            <div id="collapseRating" class="collapse show" aria-labelledby="headingRating">
+                <div>
+                    <input class="checkbox " name="rating" [(ngModel)]="filter1.rating" type="checkbox"
+                        (change)="applyFilter()" id="rating">
+                    <label [ngClass]="filter1.rating ? 'golden' : ''" class="check" for="rating"> <i
+                            class="fas fa-star"></i></label>
+                </div>
+                <div>
+                    <input class="checkbox " name="rating1" [(ngModel)]="filter1.rating1" type="checkbox"
+                        (change)="applyFilter()" id="rating1">
+                    <label [ngClass]="filter1.rating1 ? 'golden' : ''" class="check" for="rating1"> <i
+                            class="fas fa-star"></i> <i class="fas fa-star"></i></label>
+                </div>
+                <div>
+                    <input class="checkbox " name="rating2" [(ngModel)]="filter1.rating2" type="checkbox"
+                        (change)="applyFilter()" id="rating2">
+                    <label [ngClass]="filter1.rating2 ? 'golden' : ''" class="check"> <i class="fas fa-star"
+                            for="rating2"></i> <i class="fas fa-star"></i> <i class="fas fa-star"></i></label>
+                </div>
+                <div>
+                    <input class="checkbox " name="rating3" [(ngModel)]="filter1.rating3" type="checkbox"
+                        (change)="applyFilter()" id="rating3">
+                    <label [ngClass]="filter1.rating3 ? 'golden' : ''" class="check" for="rating3"> <i
+                            class="fas fa-star"></i> <i class="fas fa-star"></i><i class="fas fa-star"></i> <i
+                            class="fas fa-star"></i> </label>
+                </div>
+                <div>
+                    <input class="checkbox " name="rating4" [(ngModel)]="filter1.rating4" type="checkbox"
+                        (change)="applyFilter()" id="rating4">
+                    <label [ngClass]="filter1.rating4 ? 'golden' : ''" class="check" for="rating4"> <i
+                            class="fas fa-star"></i> <i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                            class="fas fa-star"></i> <i class="fas fa-star"></i> </label>
+                </div>
+                <div>
+                    <input class="checkbox " name="rating0" [(ngModel)]="filter1.rating0" type="checkbox"
+                        (change)="applyFilter()" id="rating0">
+                    <label class="check" [ngClass]="filter1.rating0 ? 'golden' : ''" for="rating0">
+                        {{'unrated'|translate}}
+                    </label>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="card-assistant">
+            <img class="contact" src="../../../../../../../assets/ybholidays/images/hotels/contact.png">
+        </div>
+    </form>
+
+</div> -->
+
+

@@ -1,0 +1,120 @@
+#page-container {
+    position: relative;
+    min-height: 58vh;
+}
+
+#bg {
+    background: url('../../../../../assets/images/moduleBg/flight1.0.jpg') no-repeat center center fixed;
+    //   background-repeat: no-repeat;
+    height: 100% !important;
+    width: 100% !important;
+    margin-left: -16px;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position: fixed;
+    // -webkit-filter: opacity(50%);
+    // filter: opacity(50%);
+}
+
+#cover {
+    background-color: rgba(255, 255, 255, .9) !important;
+    height: 300px !important;
+}
+
+#content-wrap {
+    padding-bottom: 2.5rem;
+    /* Footer height */
+    margin-top: 1rem;
+    //background: url('../../../../../assets/images/moduleBg/flight.jpg');  
+}
+
+.title-module {
+    font-size: 40px;
+}
+
+
+@media only screen and (max-width: 767px) {
+    .title-module {
+        font-size: 25px;
+    }
+
+    #cover {
+        height: 200px !important;
+    }
+
+    .search-bloc {
+        margin-top: 40px;
+    }
+
+    .btn-danger {
+        margin-top: 10px;
+        margin-left: 0 !important;
+        width: 98%;
+    }
+
+    .btn-success {
+        width: 98%;
+    }
+
+    .mrgBtm {
+        margin-bottom: 20px !important;
+    }
+
+}
+
+@media only screen and (max-width: 600px) {
+    .slogan {
+        font-size: 1.2rem;
+        padding-top: 20px;
+        padding-left: 10px;
+    }
+
+    .slogan1 {
+        font-size: 1rem;
+        padding-top: 20px;
+        padding-left: 10px;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .slogan {
+        font-size: 2rem;
+        padding-top: 20px;
+        padding-left: 10px;
+    }
+
+    .slogan1 {
+        font-size: 1.4rem;
+        padding-top: 20px;
+        padding-left: 10px;
+    }
+}
+
+.form-field {
+    width: 100%;
+    //   margin-left: 1%;
+    margin-top: 5px;
+    // min-height: 170px!important;
+}
+
+.card-cube {
+    border-radius: 0px;
+}
+
+// .card :hover {
+//     box-shadow: 1px 1px 8px rgb(202, 200, 200);
+//     background-color: whitesmoke;
+// }
+.bottom-text {
+    position: relative;
+    bottom: 12px;
+    width: 100%;
+    color: rgba(60, 64, 67, 1);
+}
+
+.form-control {
+    border: 1px solid #8bbc2d !important;
+    border-radius: 8px !important;
+}

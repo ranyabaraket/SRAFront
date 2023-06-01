@@ -1,0 +1,252 @@
+<div class="row w-100">
+  <form #filterForm>
+    <div class="col-12">
+      <div>
+        <div id="headingFlightNo">
+          <div
+            data-toggle="collapse"
+            class="p-2 h6 clickable"
+            data-target="#collapseFN"
+            aria-expanded="true"
+            aria-controls="collapseFN"
+          >
+            <b>{{ "Flight number" | translate }}</b>
+          </div>
+        </div>
+        <div
+          id="collapseFN"
+          class="collapse show"
+          aria-labelledby="headingFlightNo"
+        >
+          <div
+            *ngFor="let filter of data.filterSettings; let index = index"
+            class="mt-2"
+          >
+            <input
+              type="text"
+              class="form-control form-control-sm mb-2"
+              placeholder="{{ 'Flight No' | translate }} {{
+                filter.destination
+              }}"
+              autocomplete="off"
+              (input)="applyFilter($event)"
+              name="filghtno{{ index }}"
+              [(ngModel)]="filter.flightNo"
+            />
+          </div>
+        </div>
+        <hr />
+        <div id="headingS">
+          <div class="d-flex">
+            <div
+              class="p-2 flex-grow-1 h6 clickable"
+              data-toggle="collapse"
+              data-target="#collapseS"
+              aria-expanded="true"
+              aria-controls="collapseS"
+            >
+              <b>{{ "stop" | translate }}</b>
+            </div>
+            <div class="p-2">
+              <b
+                class="primary clickable mr-2"
+                (click)="changeValueToCheckAll('nbstops')"
+                >{{ "all" | translate }}</b
+              >
+              <b
+                (click)="changeValueToNone('nbstops')"
+                class="clickable primary"
+                >{{ "none" | translate }}</b
+              >
+            </div>
+          </div>
+        </div>
+        <div id="collapseS" class="collapse show" aria-labelledby="headingOne">
+          <div *ngFor="let filter of data.filterSettings; let index = index">
+            <span class="primary"> {{ filter.destination }}</span>
+            <div class="row" *ngFor="let stop of filter.nbstops">
+              <div class="col">
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="{{ stop.name }}{{ index }}"
+                    name="{{ stop.name }}{{ index }}"
+                    (change)="applyFilter($event)"
+                    [(ngModel)]="stop.value"
+                  />
+                  <label
+                    class="form-check-label"
+                    for="{{ stop.name }}{{ index }}"
+                    >{{ stop.name }}</label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div id="headingTf">
+          <div class="d-flex">
+            <div
+              class="p-2 flex-grow-1 h6 clickable"
+              data-toggle="collapse"
+              data-target="#collapseTF"
+              aria-expanded="true"
+              aria-controls="collapseTF"
+            >
+              <b>{{ "Time frame" | translate }}</b>
+            </div>
+            <div class="p-2">
+              <b class="primary"
+                ><b
+                  class="primary clickable"
+                  (click)="changeTimeValueToReset()"
+                  >{{ "Reset" | translate }}</b
+                ></b
+              >
+            </div>
+          </div>
+        </div>
+        <div id="collapseTF" class="collapse show" aria-labelledby="headingTF">
+          <div *ngFor="let filter of data.filterSettings; let index = index">
+            <span class="primary"> {{ filter.destination }}</span>
+            <div>
+              <span class="text-muted">
+                {{ "Takeoff from" | translate }}
+                {{ data.searchModel.departVol1 }}</span
+              >
+              <ng5-slider
+                [(value)]="filter.timeFrame.minValueTakeoff"
+                [(highValue)]="filter.timeFrame.maxValueTakeoff"
+                [options]="options"
+                (userChangeEnd)="applyFilter($event)"
+              ></ng5-slider>
+              <span class="text-muted">
+                {{ "Landing in" | translate }}
+                {{ data.searchModel.destinationVol1 }}</span
+              >
+              <ng5-slider
+                [(value)]="filter.timeFrame.minValueLanding"
+                [(highValue)]="filter.timeFrame.maxValueLanding"
+                [options]="options"
+                (userChangeEnd)="applyFilter($event)"
+              ></ng5-slider>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div id="headingAir">
+          <div class="d-flex">
+            <div
+              class="p-2 flex-grow-1 h6 clickable"
+              data-toggle="collapse"
+              data-target="#collapseAir"
+              aria-expanded="true"
+              aria-controls="collapseAir"
+            >
+              <b>{{ "Airline" | translate }}</b>
+              <span class="text-muted"> </span>
+            </div>
+            <div class="p-2">
+              <b
+                class="primary clickable mr-2"
+                (click)="changeValueToCheckAll('companies')"
+                >{{ "all" | translate }}</b
+              >
+              <b
+                (click)="changeValueToNone('companies')"
+                class="clickable primary"
+                >{{ "none" | translate }}</b
+              >
+            </div>
+          </div>
+        </div>
+        <div
+          id="collapseAir"
+          class="collapse show"
+          aria-labelledby="headingAir"
+        >
+          <div *ngFor="let filter of data.filterSettings; let index = index">
+            <span class="primary"> {{ filter.destination }}</span>
+            <div class="row" *ngFor="let company of filter.companies">
+              <div class="col">
+                <div class="form-check form-check-inline mb-2">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="{{ company.code }}{{ index }}"
+                    name="{{ company.code }}{{ index }}"
+                    (change)="applyFilter($event)"
+                    [(ngModel)]="company.value"
+                  />
+                  <label
+                    class="form-check-label"
+                    for="{{ company.code }}{{ index }}"
+                  >
+                    {{ company.name }}</label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div id="headingAir">
+          <div class="d-flex">
+            <div
+              class="p-2 flex-grow-1 h6 clickable"
+              data-toggle="collapse"
+              data-target="#collapseClass"
+              aria-expanded="true"
+              aria-controls="collapseClass"
+            >
+              <b>{{ "class" | translate }}</b>
+            </div>
+            <div class="p-2">
+              <b
+                class="primary clickable mr-2"
+                (click)="changeValueToCheckAll('classes')"
+                >{{ "all" | translate }}</b
+              >
+              <b
+                (click)="changeValueToNone('classes')"
+                class="clickable primary"
+                >{{ "none" | translate }}</b
+              >
+            </div>
+          </div>
+        </div>
+        <div
+          id="collapseClass"
+          class="collapse show"
+          aria-labelledby="headingAir"
+        >
+          <div *ngFor="let filter of data.filterSettings; let index = index">
+            <span class="primary"> {{ filter.destination }}</span>
+            <div class="row" *ngFor="let class of filter.classes">
+              <div class="col">
+                <div class="form-check form-check-inline mb-2">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="{{ class.name }}{{ index }}"
+                    name="{{ class.name }}{{ index }}"
+                    (change)="applyFilter($event)"
+                    [(ngModel)]="class.value"
+                  />
+                  <label
+                    class="form-check-label"
+                    for="{{ class.name }}{{ index }}"
+                  >
+                    {{ class.name }}
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

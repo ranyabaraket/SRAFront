@@ -1,0 +1,207 @@
+<div class="container-fluid  pt-2">
+    <div class="  mt-4  mb-2">
+        <form #searchForm="ngForm">
+            <div class="alert alert-warning" role="alert" *ngIf="this.searchModel.officeId">
+                {{'I have already transferred the PNR (s) to the office ID'|translate}} <strong
+                    *ngIf="officeIdList.length > 0">{{this.searchModel.officeId}}</strong> {{'with the
+                command:'|translate}} <strong>ES{{this.searchModel.officeId}}-B</strong>
+            </div>
+<div class="row">
+                <div class="col-md-4 col-sm-12">
+                    <div class="form-floating mb-3">
+                    <input type="text" class="form-control form-control-sm" style="text-transform:uppercase"
+                        placeholder="{{'Num PNR'|translate}}" [(ngModel)]="searchModel.pnrNumber" name="pnr" required
+                        #pnr="ngModel" [class.is-invalid]="search && pnr.invalid">
+                        <label for="floatingSelect">{{'Num PNR'|translate}} </label>
+                </div>
+            </div>
+    
+    <div class="col-md-4 col-sm-12">
+        
+                <!-- <div *ngIf="loadOfficeIdList" class="ml-2 spinner-border spinner-border-sm text-light" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div> -->
+                <div class="form-floating mb-3">
+            <select class="form-select form-control-sm" [(ngModel)]="searchModel.officeId" name="officeId" required
+                #officeId="ngModel" [class.is-invalid]="search && officeId.invalid">
+               <!-- placeholder="{{'Office ID'|translate}}" -->
+                <option *ngFor="let item of officeIdList" [ngValue]="item.value"> {{item.value}} </option>
+            </select>
+            <label for="floatingSelect"> {{'Office ID'|translate}} </label>
+        </div>
+    </div>
+
+        <div class="col-md-4 col-sm-12 d-flex justify-content-end">
+            <button type="button" class="btn  btn-sm btn-success col-md-8 col-sm-8 m-2" (click)="importPnr(searchForm)"
+                [disabled]="loadImport || loadHistory"> 
+                <div *ngIf="loadImport" class="spinner-border spinner-border-sm text-light" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div> <span> {{'Import PNR'|translate}}</span>
+                <div class="icon d-flex align-items-center justify-content-center">
+                    <i class="fas fa-file-import"></i>
+                </div>
+            </button>
+            <!-- <button type="button" class="btn btn-sm  btn-primary col-12 col-md-2 m-2" (click)="historyPnr(searchForm)" [disabled]="loadImport || loadHistory" (click)="historyPnr(searchForm)">
+                            <div *ngIf="loadHistory" class="spinner-border spinner-border-sm text-light" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                            <span> {{'History PNR'|translate}}</span>
+                        </button> -->
+            </div>
+
+</div>
+
+</form>
+</div>
+<div *ngIf="importPnrModel" class="  mb-4  mt-2  mb-2">
+    <div class="row ml-2 mt-2">
+        <div class="col-md-6 col-sm-12">Status : <b class="tzxt-muted">{{importPnrModel.etat}} </b> </div>
+        <div class="col-md-6 col-sm-12 text-right">
+            <span>{{'Ticket Time Limit :'|translate}}</span>
+            <button type="button" class="btn btn-link" [disabled]="loadOrderEticket|| loadCancel"
+                (click)="orderEticket()">
+                <div *ngIf="loadOrderEticket" class="spinner-border spinner-border-sm text-light" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <span class="text-success">{{'Order E-Ticket'|translate}}</span>
+            </button>
+            <button type="button" class="btn btn-link" [disabled]="loadOrderEticket|| loadCancel"
+                (click)="cancelTicket()">
+                <div *ngIf="loadCancel" class="spinner-border spinner-border-sm text-light" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div> <span class="text-danger">{{'Cancel'|translate}}</span>
+            </button>
+        </div>
+    </div>
+    <div class="mt-4">
+        <div class="row  mx-2">
+            <div class="col-md-3 col-sm-6">
+                <div class="row">
+                    <div class="col"> </div>
+                    <div class="col">
+                        {{'AirLine'|translate}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6">{{'Departure'|translate}}</div>
+            <div class="col-md-3 col-sm-6">{{'Arrival'|translate}}</div>
+            <div class="col-md-3 col-sm-6">{{'PNR number'|translate}} </div>
+        </div>
+        <div class="row  mx-2" *ngFor="let item of importPnrModel.travelItinerary.itineraryInfo.reservationItems">
+            <div class="col-md-3 col-sm-6">
+                <div class="row">
+                    <div class="col"> <img
+                            src="http://www.worldsoftgroup.com/airelines/{{item.marketingAirlineCode}}.png"> </div>
+                    <div class="col">
+                        <b>{{item.marketingAirline}}</b> <br> {{item.marketingAirlineCode}} {{item.flightNumber}} /
+                        {{item.resBookDesigCode}}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6"><b>{{item.departureAirportLocation}}</b><br> {{item.departureDateTime |
+                date:'dd/MM/yyyy hh:mm'}}</div>
+            <div class="col-md-3 col-sm-6"><b>{{item.arrivalAirportLocation}}</b><br> {{item.arrivalDateTime |
+                date:'dd/MM/yyyy hh:mm'}}</div>
+            <div class="col-md-3 col-sm-6"> <b>{{item.airlinePNR}}</b></div>
+        </div>
+    </div>
+    <hr>
+    <div class="row ml-2">
+        <div class="col-12">
+            <h3 class="title">{{'Passenger'|translate}}
+            </h3>
+        </div>
+    </div>
+    <div *ngFor="let item of importPnrModel.travelItinerary.itineraryInfo.customerInfos">
+        <div class="row  mx-2 my-2 psg-title">
+            <div class="col-12">
+                {{item.customer.paxName.passengerFirstName}} {{item.customer.paxName.passengerLastName}}
+            </div>
+        </div>
+        <div class="row my-2 mx-2">
+            <div class="col-md-3 col-sm-6">{{'Birthday :'|translate}} <b> {{item.customer.paxName.birthDay |
+                    date:'dd/MM/yyyy'}}</b> </div>
+            <div class="col-md-3 col-sm-6">{{'Passport No :'|translate}} <b>
+                    {{item.customer.paxName.passportNumber}}</b> </div>
+            <div class="col-md-3 col-sm-6">{{'Expiry :'|translate}} <b> {{item.customer.paxName.expiryDate |
+                    date:'dd/MM/yyyy'}}</b> </div>
+            <div class="col-md-3 col-sm-6"> {{'Nationality :'|translate}} <b>
+                    {{item.customer.paxName.nationality}}</b></div>
+        </div>
+    </div>
+    <hr>
+    <div class="row ml-2">
+        <div class="col-12">
+            <h3 class="title">{{'Payment'|translate}}
+            </h3>
+        </div>
+    </div>
+    <div class="table-responsive">
+        <table class="table  table-borderless noPadding">
+            <thead>
+                <tr>
+                    <th scope="col"> {{'Passenger type'|translate}} </th>
+                    <th scope="col">{{'Basic fare'|translate}}</th>
+                    <th scope="col">{{'Tax'|translate}} </th>
+                    <th scope="col">{{'Per passager'|translate}}</th>
+                    <th scope="col">{{'Total'|translate}}</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of importPnrModel.travelItinerary.itineraryInfo.tripDetailsPTCFareBreakdowns">
+                    <td>{{item.passengerTypeQuantity.code}} (X {{item.passengerTypeQuantity.quantity}})</td>
+                    <td> {{item.tripDetailsPassengerFare.equiFare.amount}} (X
+                        {{item.passengerTypeQuantity.quantity}}) {{item.tripDetailsPassengerFare.totalFare.amount}}
+                    </td>
+                    <td> {{item.tripDetailsPassengerFare.tax.amount}} (X {{item.passengerTypeQuantity.quantity}})
+                        {{item.tripDetailsPassengerFare.totalFare.amount}}
+                    </td>
+                    <td> {{item.tripDetailsPassengerFare.totalFare.amount}}
+                        {{item.tripDetailsPassengerFare.totalFare.currencyCode}}</td>
+                    <td> {{item.tripDetailsPassengerFare.totalFare.amount}}
+                        {{item.tripDetailsPassengerFare.totalFare.amount}} </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+<div *ngIf="HistoryPnrModel" class="card  mb-4 mt-2  mb-2">
+
+    <div class="row m-2">
+        <div class="col-sm-12 col-md-6">
+            <h3 class="title">{{'History Pnr'|translate}} </h3>
+        </div>
+        <div class="col-sm-12 col-md-6 text-right"> {{'Pnr Number:'|translate}}<b>{{HistoryPnrModel.pnr}}</b>
+        </div>
+    </div>
+    <div class="row m-2">
+        <div class="table-responsive">
+            <table class="table  noPadding">
+                <thead>
+                    <tr>
+                        <th scope="col"> {{'Previous record'|translate}} </th>
+                        <th scope="col">{{'Current record'|translate}} </th>
+                        <th scope="col">{{'Action type'|translate}} </th>
+                        <th scope="col">{{'Element type'|translate}} </th>
+                        <th scope="col">{{'Text information'|translate}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of HistoryPnrModel.historyPnr">
+                        <td>{{item.previousRecord}}</td>
+                        <td>{{item.currentRecord}}</td>
+                        <td>{{item.actionType}}</td>
+                        <td>{{item.elementType}}</td>
+                        <td>{{item.textInformation}}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+    </div>
+</div>
+<br><br>
+</div>

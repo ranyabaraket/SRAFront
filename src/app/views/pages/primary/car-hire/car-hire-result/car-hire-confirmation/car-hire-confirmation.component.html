@@ -1,0 +1,499 @@
+<div class="pb-4 pt-4" *ngIf="contractModel && !showVoucher" id="print-section">
+  <div class="row " *ngIf="showConfirmation">
+    <div class="col-12">
+      <div class="text-right"> 
+        <button  *ngIf=" !canceled" 
+          class="btn btn-primary btn-sm mr-2" 
+           (click)="showVoucher = true" 
+        >
+        {{ 'See voucher' | translate }}
+        </button>
+         <button class="btn btn-danger btn-sm  mr-2" *ngIf=" !canceled" (click)="cancel()"> 
+           {{'Cancel'|translate}} </button>
+    
+      </div>
+    </div>
+  </div>
+  <div *ngIf="carDetails">
+    <app-car-hire-review
+      [carDetails]="carDetails"
+      [contractModel]="contractModel"
+      [showVoucher]="showVoucher"
+      [bookingId]="bookingId"
+      [canceled] ="canceled"
+      [cancelId]="cancelId"
+    ></app-car-hire-review>
+  </div>
+  <div class="mt-2" id="accordion" *ngIf="!showConfirmation">
+    <div class="card">
+      <div class="card-header" id="headingTwo">
+        <h5 class="mb-0">
+          <button
+            class="btn btn-link"
+            data-toggle="collapse"
+            data-target="#collapseTow"
+            aria-expanded="true"
+            aria-controls="collapseTow"
+          >
+            {{ "Driver's Informations" | translate }}
+          </button>
+        </h5>
+      </div>
+
+      <div
+        id="collapseTow"
+        class="collapse show"
+        aria-labelledby="headingTwo"
+        data-parent="#accordion"
+        *ngIf="carDetails"
+      >
+        <div class="card-body">
+          <form #psgfrm="ngForm">
+            <div class="row">
+              <div class="col-md-2 col-sm-4">
+                <label>
+                  {{ "Title" | translate
+                  }}<span class="text-danger"> * </span></label
+                >
+                <select
+                  class="form-control form-control-sm"
+                  name="title"
+                  [(ngModel)]="bookingModel.leadTitle"
+                  #title="ngModel"
+                  required
+                  [class.is-invalid]="submitted && title.invalid"
+                  [disabled]="success"
+                >
+                  <option value="MS">{{ "MS" | translate }}</option>
+                  <option value="MRS">{{ "MRS" | translate }}</option>
+                  <option value="MR">{{ "MR" | translate }}</option>
+                </select>
+              </div>
+              <div class="col-md-4 col-sm-8">
+                <label>
+                  {{ "First name" | translate }}
+                  <span class="text-danger"> * </span></label
+                >
+                <input
+                  type="text"
+                  class="form-control form-control-sm"
+                  name="fname"
+                  [(ngModel)]="bookingModel.leadnameAff"
+                  required
+                  [class.is-invalid]="submitted && fname.invalid"
+                  #fname="ngModel"
+                  pattern="[a-zA-Z]+[a-zA-Z ]+"
+                  (input)="getFirstName($event.target.value)"
+                  aria-label="State"
+                  [matAutocomplete]="autofname"
+                  [disabled]="success"
+                />
+                <mat-autocomplete #autofname="matAutocomplete">
+                  <mat-option
+                    *ngFor="let option of filteredByFirstNamePsg | async"
+                    [value]="option.firstName"
+                    (onSelectionChange)="selectPassenger(option)"
+                  >
+                    {{ option.firstName }} {{ option.lastName }}
+                  </mat-option>
+                </mat-autocomplete>
+              </div>
+              <div class="col-md-4 col-sm-12">
+                <label
+                  >{{ "Last name" | translate }}
+                  <span class="text-danger"> * </span></label
+                >
+                <input
+                  type="text"
+                  class="form-control form-control-sm"
+                  name="lname"
+                  [(ngModel)]="bookingModel.leadsurnameAff"
+                  required
+                  [class.is-invalid]="submitted && lname.invalid"
+                  #lname="ngModel"
+                  pattern="[a-zA-Z]+[a-zA-Z ]+"
+                  (input)="geLastName($event.target.value)"
+                  aria-label="State"
+                  [matAutocomplete]="autolname"
+                  [disabled]="success"
+                />
+                <mat-autocomplete #autolname="matAutocomplete">
+                  <mat-option
+                    *ngFor="let option of filteredByLastNamePsg | async"
+                    [value]="option.lastName"
+                    (onSelectionChange)="selectPassenger(option)"
+                  >
+                    {{ option.firstName }} {{ option.lastName }}
+                  </mat-option>
+                </mat-autocomplete>
+              </div>
+              <div class="col-md-2 col-sm-12">
+                <label
+                  >{{ "Nationality" | translate
+                  }}<span class="text-danger"> * </span></label
+                >
+                <select
+                  class="form-control form-control-sm"
+                  name="nationnality"
+                  [(ngModel)]="bookingModel.nationnality"
+                  required
+                  [class.is-invalid]="submitted && nationnality.invalid"
+                  #nationnality="ngModel"
+                  [disabled]="success"
+                >
+                  <option value=""></option>
+                  <option
+                    *ngFor="let item of countries | async"
+                    [ngValue]="item.alpha_3_code"
+                  >
+                    {{ item.nationality }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="row mt-md-2">
+              <div class="col-md-3 col-sm-12">
+                <label
+                  >{{ "Country" | translate
+                  }}<span class="text-danger"> * </span></label
+                >
+                <select
+                  class="form-control form-control-sm"
+                  name="countryTel"
+                  [(ngModel)]="bookingModel.countryTel"
+                  required
+                  [class.is-invalid]="submitted && countryTel.invalid"
+                  #countryTel="ngModel"
+                  (change)="getIdfPays($event)"
+                  [disabled]="success"
+                >
+                  <option value=""></option>
+                  <option
+                    *ngFor="let item of countries | async"
+                    [ngValue]="item.alpha_2_code"
+                  >
+                    {{ item.en_short_name }}
+                  </option>
+                </select>
+              </div>
+
+              <div class="col-md-5 col-sm-12">
+                <label
+                  >{{ "Tel/Mobile" | translate
+                  }}<span class="text-danger"> * </span></label
+                >
+                <div class="row">
+                  <div class="col-3">
+                    <input
+                      type="text"
+                      class="form-control form-control-sm"
+                      name="codeTel"
+                      [(ngModel)]="bookingModel.indPaysTel"
+                      readonly
+                    />
+                  </div>
+                  <div class="col">
+                    <input
+                      type="text"
+                      class="form-control form-control-sm"
+                      name="mobileNo"
+                      [(ngModel)]="bookingModel.custPhone"
+                      required
+                      [class.is-invalid]="submitted && mobileNo.invalid"
+                      #mobileNo="ngModel"
+                      (input)="getMobileNo($event.target.value)"
+                      pattern="^(0|[1-9][0-9]*)$"
+                      aria-label="State"
+                      [matAutocomplete]="autoemobileNo"
+                      [disabled]="success"
+                    />
+                    <mat-autocomplete #autoemobileNo="matAutocomplete">
+                      <mat-option
+                        *ngFor="let option of filteredByMoileNo | async"
+                        [value]="option.lastName"
+                        (onSelectionChange)="selectPassenger(option)"
+                      >
+                        {{ option.firstName }} {{ option.lastName }}
+                      </mat-option>
+                    </mat-autocomplete>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-12">
+                <label
+                  >{{ "Email Address" | translate
+                  }}<span class="text-danger"> * </span></label
+                >
+                <input
+                  type="text"
+                  class="form-control form-control-sm"
+                  name="emailid"
+                  [(ngModel)]="bookingModel.custEmail"
+                  required
+                  [class.is-invalid]="submitted && emailid.invalid"
+                  #emailid="ngModel"
+                  (input)="getEmail($event.target.value)"
+                  aria-label="State"
+                  id="mailLead"
+                  [matAutocomplete]="autoemailid"
+                  [email]="true"
+                  [disabled]="success"
+                />
+                <mat-autocomplete #autoemailid="matAutocomplete">
+                  <mat-option
+                    *ngFor="let option of filteredByEmailPsg | async"
+                    [value]="option.lastName"
+                    (onSelectionChange)="selectPassenger(option)"
+                  >
+                    {{ option.firstName }} {{ option.lastName }}
+                  </mat-option>
+                </mat-autocomplete>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" id="headingThree">
+        <h5 class="mb-0">
+          <button
+            class="btn btn-link"
+            data-toggle="collapse"
+            data-target="#collapseThree"
+            aria-expanded="true"
+            aria-controls="collapseThree"
+          >
+            {{ "Important Informations" | translate }}
+          </button>
+        </h5>
+      </div>
+
+      <div
+        id="collapseThree"
+        class="collapse"
+        aria-labelledby="headingThree"
+        data-parent="#accordion"
+      >
+        <div class="card-body">
+          <div
+            class="m-0 card-rule"
+            *ngFor="
+              let item of contractModel.important_information;
+              let index = index
+            "
+          >
+            <div
+              class="d-flex title-box"
+              [ngClass]="item.open ? 'bg-light-blue' : 'c'"
+            >
+              <div class="pl-2 pt-2 flex-grow-1 clickable text-title">
+                <b>{{ index + 1 }} - {{ item.title }}</b>
+              </div>
+              <div class="p-2">
+                <i
+                  class="fas fa-plus text-title clickable"
+                  *ngIf="!item.open; else closed"
+                  (click)="showHideRule(index)"
+                ></i>
+                <ng-template #closed>
+                  <i
+                    class="fas fa-minus text-title clickable"
+                    (click)="showHideRule(index)"
+                  ></i>
+                </ng-template>
+              </div>
+            </div>
+            <div class="px-2" [hidden]="!item.open">
+              <p>{{ item.text }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header" id="headingFour">
+        <h5 class="mb-0">
+          <button
+            class="btn btn-link"
+            data-toggle="collapse"
+            data-target="#collapseFour"
+            aria-expanded="true"
+            aria-controls="collapseFour"
+          >
+            {{ "Car Policy" | translate }}
+          </button>
+        </h5>
+      </div>
+
+      <div
+        id="collapseFour"
+        class="collapse"
+        aria-labelledby="headingFour"
+        data-parent="#accordion"
+      >
+        <div class="card-body">
+          <div
+            class="m-0 card-rule"
+            *ngFor="
+              let item of contractModel.car_policy_data;
+              let index = index
+            "
+          >
+            <div
+              class="d-flex title-box"
+              [ngClass]="item.open ? 'bg-light-blue' : 'c'"
+            >
+              <div class="pl-2 pt-2 flex-grow-1 clickable text-title">
+                <b>{{ index + 1 }} - {{ item.title }}</b>
+              </div>
+              <div class="p-2">
+                <i
+                  class="fas fa-plus text-title clickable"
+                  *ngIf="!item.open; else closed"
+                  (click)="showHidePolicy(index)"
+                ></i>
+                <ng-template #closed>
+                  <i
+                    class="fas fa-minus text-title clickable"
+                    (click)="showHidePolicy(index)"
+                  ></i>
+                </ng-template>
+              </div>
+            </div>
+            <div class="px-2" [hidden]="!item.open">
+              <p [innerHTML]="item.description"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-2" *ngIf="showConfirmation">
+    <div class="col" >
+      <b>{{ "Driver's Informations" | translate }} </b>
+      <br />
+      {{ bookingModel.leadTitle }} {{ bookingModel.leadsurnameAff }}
+      {{ bookingModel.leadnameAff }} <br />
+      {{"Tel/Mobile" | translate }} : {{ bookingModel.custPhone }} <br />
+      {{"Email"| translate}} : {{ bookingModel.custEmail }} <br>
+       {{ "Note" | translate }} : {{ bookingModel.chrComment }}
+    </div>
+  </div>
+  <div class="row mt-2" *ngIf="!showConfirmation">
+    <div class="col">
+      <label> {{ "Note" | translate }} </label>
+      <textarea
+        class="form-control"
+        name="note"
+        [(ngModel)]="bookingModel.chrComment"
+        rows="3"
+        [disabled]="success"
+      ></textarea>
+    </div>
+  </div>
+
+  <div class="alert alert-info mt-2" role="alert" *ngIf="!canceled">
+    <i class="fas fa-arrow-circle-right mr-2"></i>
+    {{ contractModel.pricing.total_label }} <br />
+    <i class="fas fa-arrow-circle-right mr-2"></i> Payment Methode :
+    <b *ngFor="let item of contractModel.payment_method_data"
+      >{{ item.name }} ,
+    </b>
+  </div>
+  <div class="alert alert-danger mt-2" role="alert" *ngIf="canceled">
+    <p>
+      {{canceltext}}
+    </p>
+  </div>
+  
+  <!--<div class="row mt-2">
+    <div class="col">
+      <b>Car Policy : </b>
+      <div class="alert alert-info">
+        <div *ngFor="let item of contractModel.car_policy_data">
+          <i class="fas fa-arrow-circle-right mr-2"></i> 
+          <label>{{item.title}} : </label>
+          <p  [innerHTML]="item.description"></p>
+        </div>
+      
+      </div>
+     
+    </div>
+  </div>-->
+  <div class="row mt-2" *ngIf="!showConfirmation">
+    <div class="col">
+      <form class="form-inline float-right">
+        <div class="form-group m-2">
+          <label for="custCharge" class="mr-2 text-muted">
+            {{ "Customer Charge" | translate }}
+          </label>
+          <input
+            type="number"
+            id="custCharge"
+            class="form-control form-control-sm"
+            placeholder="Customer Charge"
+            name="custCharge"
+            [(ngModel)]="bookingModel.customerComm"
+            (change)="SumtotalPrice($event)"
+            min="0"
+            [disabled]="success"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="row mt-2" *ngIf="carDetails">
+    <div class="col text-right">
+      <strong class="primary m-2">
+        {{ "total amnt" | translate }} :
+        <span class="h6">
+          {{ formatCurr(totalPrice) }}
+          {{ carDetails.total_fare.currency }}
+        </span>
+      </strong>
+    </div>
+  </div>
+
+  <div class="row" *ngIf="!canceled">
+    <div class="col">
+      <div
+        class="alert alert-light"
+        role="alert"
+        [innerHTML]="contractModel.cdw.html"
+      ></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col text-muted" *ngIf="!canceled">
+      <b>{{ contractModel.shuttle_text }}</b>
+    </div>
+  </div>
+  <div class="row my-4" *ngIf="carDetails && !showConfirmation">
+    <div class="col text-right">
+      <button
+        class="btn btn-success col-12 col-md-2"
+        (click)="booking()"
+        [disabled]="success"
+      >
+        <div
+          *ngIf="loading"
+          class="spinner-border spinner-border-sm text-light"
+          role="status"
+        >
+          <span class="sr-only">{{ "loading" | translate }}</span>
+        </div>
+        {{ "Confirm" | translate }}
+      </button>
+    </div>
+  </div>
+</div>
+<app-car-hire-voucher *ngIf="showVoucher"
+[contractModel]="contractModel"
+[bookingModel]="bookingModel"
+(backward)='cancelSeeVoucher($event)'
+[bookingId]="bookingId"></app-car-hire-voucher>
+
+<app-custom-loading *ngIf="loading"
+></app-custom-loading>

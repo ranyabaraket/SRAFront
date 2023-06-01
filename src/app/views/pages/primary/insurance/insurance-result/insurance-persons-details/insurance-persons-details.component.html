@@ -1,0 +1,247 @@
+<app-custom-loading *ngIf="loadingSearch"></app-custom-loading>
+<div class="pb-4 pt-4">
+    <div class="row">
+        <div class="col-md-10 col-sm-12">
+
+            <div class="row">
+                <div class="col">
+                    <span class="h6"> {{selectedInsurance.selectedItem.planDesc}} </span>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-2 col-sm-12">
+
+            <div class="row">
+                <div class="col">
+                    <span class="text-muted"> {{'MinAge'|translate}} : {{selectedInsurance.selectedItem.minAge}} /
+                        {{'MaxAge'|translate}} : {{selectedInsurance.selectedItem.maxAge}} </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <span class="text-muted" *ngIf="selectedInsurance.searchModel.totalAdults">
+                        {{selectedInsurance.searchModel.totalAdults}} {{'Adult' | translate}} </span>
+                    <span class="text-muted" *ngIf="selectedInsurance.searchModel.totalChild">
+                        {{selectedInsurance.searchModel.totalChild}} {{'Child' | translate}} </span>
+                    <span class="text-muted" *ngIf="selectedInsurance.searchModel.totalInfants">
+                        {{selectedInsurance.searchModel.totalInfants}} {{'Infant' | translate}} </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <span class="text-muted"> {{'Depart'|translate}} : {{selectedInsurance.searchModel.departDateTime |
+                        date:'dd/MM/yyyy' }} </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <span class="text-muted" *ngIf="selectedInsurance.searchModel.returnDateTime ">
+                        {{'Return'|translate}} : {{selectedInsurance.searchModel.returnDateTime | date:'dd/MM/yyyy'}} </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row mb-2">
+        <div class="col-4">
+            <div class="row">
+                <div class="col text-muted"><b>{{'From' | translate}}</b></div>
+            </div>
+            <div class="row">
+                <div class="col"> <b>{{selectedInsurance.searchModel.departureAirport}} ({{selectedInsurance.searchModel.departStationCode}}) </b> </div>
+            </div>
+        </div>
+        <div class="col-1 pt-4">
+            <i class="fas fa-arrow-right  details-span"></i>
+        </div>
+        <div class="col-4">
+            <div class="row">
+                <div class="col text-muted"><b>{{'To'| translate}}</b></div>
+            </div>
+            <div class="row">
+                <div class="col"> <b>{{selectedInsurance.searchModel.arrivelAirport}} ({{selectedInsurance.searchModel.arrivalStationCode}}) </b> </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <div class="alert alert-warning" role="alert" [innerHTML]="trustHtml(selectedInsurance.selectedItem.planContent)">
+            </div>
+
+        </div>
+    </div>
+    <!--<div class="rowdisplay1">
+    <div class="row">
+        <div class="col-" style="margin-left: 20px">
+            <span class="h6"> {{selectedInsurance.selectedItem.planDesc}} </span>
+        </div>
+        <div class="col text-right" style="color: rgb(6, 168, 6); font-size: 1.3rem">
+            <b>
+                {{selectedInsurance.finalPrice?.prixClient}} {{selectedInsurance.finalPrice?.currencyCode}}
+            </b>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12 ml-1"> {{'MinAge'|translate}} : {{selectedInsurance.selectedItem.minAge}} /
+            {{'MaxAge'|translate}} : {{selectedInsurance.selectedItem.maxAge}}</div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-sm-12">
+            <div [innerHTML]="trustHtml(selectedInsurance.selectedItem.planContent)"> </div>
+        </div>
+    </div>
+</div>-->
+    <div *ngIf="inputData">
+        <div>
+            <div *ngIf="selectedInsurance.searchModel.totalAdults > 0">
+                <div class="card" *ngFor="let item of passengerModel1; let index = index;">
+                    <div class="card-header" id="headingRoom{{index}}">
+                        <h6 class="mb-0">
+                            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" [attr.data-target]="'#collapsePerson'+index" aria-expanded="true" [attr.aria-controls]="'collapsePerson'+index">
+                                <span>{{'Adult'|translate}} {{index+1}} : </span>
+                            </button>
+                        </h6>
+                    </div>
+                    <div id="collapsePerson{{index}}" class="collapse show" [attr.aria-labelledby]="'headingRoom'+index" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <app-person-details [guestModel]="item" [submitted]="submitted" id="insurancePersonForm{{index}}">
+                            </app-person-details>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="selectedInsurance.searchModel.totalChild > 0">
+                <div class="card" *ngFor="let item of passengerModel2; let index1 = index;">
+                    <div class="card-header1" id="headingRoom{{index1}}">
+                        <h6 class="mb-0">
+                            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" [attr.data-target]="'#collapsePerson'+index1" aria-expanded="true" [attr.aria-controls]="'collapsePerson'+index1">
+                                <span>{{'Childs'|translate}} {{index1 + 1}} : </span>
+                            </button>
+                        </h6>
+                    </div>
+                    <div id="collapsePerson{{index1}}" class="collapse show" [attr.aria-labelledby]="'headingRoom'+index1" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <app-person-details [guestModel]="item" [submitted]="submitted" id="insurancePersonForm{{index1}}">
+                            </app-person-details>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="selectedInsurance.searchModel.totalInfants > 0">
+                <div class="card" *ngFor="let item of passengerModel3; let index2 = index;">
+                    <div class="card-header" id="headingRoom{{index2}}">
+                        <h6 class="mb-0">
+                            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" [attr.data-target]="'#collapsePerson'+index2" aria-expanded="true" [attr.aria-controls]="'collapsePerson'+index2">
+                                <span>{{'Infant'|translate}} {{index2 + 1}} : </span>
+                            </button>
+                        </h6>
+                    </div>
+                    <div id="collapsePerson{{index2}}" class="collapse show" [attr.aria-labelledby]="'headingRoom'+index2" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <app-person-details [guestModel]="item" [submitted]="submitted" id="insurancePersonForm{{index2}}">
+                            </app-person-details>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" id="headingGI">
+                    <h6 class="mb-0">
+                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseCD" aria-expanded="false" aria-controls="collapseCD">
+                            {{'client details'|translate}}
+                        </button>
+                    </h6>
+                </div>
+                <div id="collapseCD" class="collapse show" aria-labelledby="headingGI" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <form #clientForm="ngForm">
+                            <div class="row">
+                                <div class="col-md-2 col-sm-6">
+                                    <label> {{'PNR number'|translate}} <span class="text-danger"> * </span> </label>
+                                    <input class="form-control form-control-sm" style="text-transform:uppercase" name="PNRnumber1" [(ngModel)]="PNRnumber" #PNRnumber1="ngModel" required [class.is-invalid]="submitted && PNRnumber1.invalid">
+                                </div>
+
+                                <div class="col-md-3 col-sm-6">
+                                    <label> {{'Ticketing date'|translate}} <span class="text-danger"> * </span> </label>
+                                    <input class="form-control form-control-sm" type="date" name="departleVol1" [(ngModel)]="confirmPurchase.purchaseDate" #departleVol1="ngModel" required [class.is-invalid]="submitted && departleVol1.invalid">
+                                    <!--<div class="input-icons">
+                                        <i class="fas fa-calendar-day icon clickable" (click)="picker.open()">
+                                        </i>
+                                        <input type="text" (click)="picker.open()"
+                                            class="form-control form-control-sm input-field" [matDatepicker]="picker"
+                                            name="departleVol1" [(ngModel)]="confirmPurchase.purchaseDate"
+                                            autocomplete="off">
+                                    </div>
+                                    <mat-datepicker #picker></mat-datepicker>-->
+                                </div>
+                                <!-- <div class="col-md-4 col-sm-3">
+                                <label> {{'contact person'|translate}} <span class="text-danger"> * </span> </label>
+                                <input class="form-control form-control-sm" style="text-transform:uppercase" name="contact1" [(ngModel)]="contactName" #contact1="ngModel" required [class.is-invalid]="submitted && contact1.invalid">
+                            </div> -->
+                                <div class="col-md-3 col-sm-6">
+                                    <label> {{'contact person'|translate}}<span class="text-danger"> * </span></label>
+                                    <input type="text" class="form-control form-control-sm" name="fname" [(ngModel)]="contactName" required [class.is-invalid]="submitted && fname.invalid" #fname="ngModel" pattern="[a-zA-Z]+[a-zA-Z ]+" (input)="getFirstName($event.target.value)" aria-label="State"
+                                        [matAutocomplete]="autofname">
+                                    <mat-autocomplete #autofname="matAutocomplete">
+                                        <mat-option *ngFor="let  option of filteredByFirstNamePsg | async" [value]="option.firstName + ' ' + option.lastName" (onSelectionChange)="selectPassenger(option)">
+                                            {{option.firstName}} {{option.lastName}}
+                                        </mat-option>
+                                    </mat-autocomplete>
+                                </div>
+                                <div class="col-md-4 col-sm-6">
+                                    <label> {{'CONTACT E-MAIL'|translate}} <span class="text-danger"> * </span> </label>
+                                    <input class="form-control form-control-sm" name="emailContact1" [(ngModel)]="emailContact" #emailContact1="ngModel" required [class.is-invalid]="submitted && emailContact1.invalid">
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="row">
+                                <div class="col-md-3 col-sm-6">
+                                    <label> {{'Dep. airline code'|translate}} <span class="text-danger"> * </span>
+                                    </label>
+                                    <input class="form-control form-control-sm" style="text-transform:uppercase" name="departAirlineCode" [(ngModel)]="departAirlineCode1" #departAirlineCode="ngModel" required [class.is-invalid]="submitted && departAirlineCode.invalid">
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <label> {{'Flight number'|translate}} <span class="text-danger"> * </span> </label>
+                                    <input class="form-control form-control-sm" style="text-transform:uppercase" name="departFlightNo" [(ngModel)]="departFlightNo1" #departFlightNo="ngModel" required [class.is-invalid]="submitted && departFlightNo.invalid">
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <label> {{'return airline code'|translate}} <span class="text-danger"> * </span>
+                                    </label>
+                                    <input class="form-control form-control-sm" name="returnAirlineCode" [(ngModel)]="returnAirlineCode1" #returnAirlineCode="ngModel" required [class.is-invalid]="submitted && returnAirlineCode.invalid">
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <label> {{'Flight number'|translate}} <span class="text-danger"> * </span> </label>
+                                    <input class="form-control form-control-sm" style="text-transform:uppercase" name="returnFlightNo" [(ngModel)]="returnFlightNo1" #returnFlightNo="ngModel" required [class.is-invalid]="submitted && returnFlightNo.invalid">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row mt-2">
+            <div class="col text-right">
+                <strong class="primary  m-2">
+                    {{'total amnt'|translate}} :
+                    <span class="h6">{{format(selectedInsurance.selectedItem.finalPrice?.prixClient)}}
+                        {{selectedInsurance.selectedItem.finalPrice?.currencyCode}}
+
+                    </span>
+                </strong>
+            </div>
+        </div>
+        <div class="row  my-2">
+            <div class="col  text-right">
+
+                <button class="btn btn-sm btn-success col-12 col-md-2 " (click)="select(clientForm)" type="button">{{'Confirm'|translate}}</button>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,125 @@
+<form #passengerForm="ngForm">
+    <div class="row">
+        <div class="col-md-2 col-sm-4">
+            <label> {{'Title' |translate }}<span class="text-danger"> * </span></label>
+            <select class="form-control form-control-sm" name="title" [(ngModel)]="bookingModel.leadTitle"
+                #title="ngModel" required [class.is-invalid]="submitted && title.invalid" [disabled]="success">
+                <option value="MS">{{'MS'|translate }}
+                </option>
+                <option value="MRS"> {{'MRS' |translate }}
+                </option>
+                <option value="MR">{{'MR' |translate }}
+                </option>
+            </select>
+        </div>
+        <div class="col-md-4 col-sm-8">
+            <label> {{'First name' |translate }} <span class="text-danger"> * </span></label>
+            <input type="text" class="form-control form-control-sm" name="fname" [(ngModel)]="bookingModel.leadnameAff"
+                required [class.is-invalid]="submitted && fname.invalid" #fname="ngModel" pattern="[a-zA-Z]+[a-zA-Z ]+"
+                (input)="getFirstName($event.target.value)" aria-label="State" [matAutocomplete]="autofname" [disabled]="success">
+            <mat-autocomplete #autofname="matAutocomplete">
+                <mat-option *ngFor="let  option of filteredByFirstNamePsg | async" [value]="option.firstName"
+                    (onSelectionChange)="selectPassenger(option)">
+                    {{option.firstName}} {{option.lastName}}
+                </mat-option>
+            </mat-autocomplete>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <label>{{'Last name' |translate }} <span class="text-danger"> * </span></label>
+            <input type="text" class="form-control form-control-sm" name="lname" [(ngModel)]="bookingModel.leadsurnameAff"
+                required [class.is-invalid]="submitted && lname.invalid" #lname="ngModel" pattern="[a-zA-Z]+[a-zA-Z ]+"
+                (input)="geLastName($event.target.value)" aria-label="State" [matAutocomplete]="autolname" [disabled]="success">
+            <mat-autocomplete #autolname="matAutocomplete">
+                <mat-option *ngFor="let  option of filteredByLastNamePsg | async" [value]="option.lastName"
+                    (onSelectionChange)="selectPassenger(option)">
+                    {{option.firstName}} {{option.lastName}}
+                </mat-option>
+            </mat-autocomplete>
+        </div>
+        <div class="col-md-2 col-sm-12">
+            <label>{{'Nationality' | translate }}<span class="text-danger"> * </span></label>
+            <select class="form-control form-control-sm" name="nationnality" [(ngModel)]="bookingModel.nationnality"
+                required [class.is-invalid]="submitted && nationnality.invalid" #nationnality="ngModel" 
+                 [disabled]="success">
+                <option value=""> </option>
+                <option *ngFor="let item of countries |async" [ngValue]="item.alpha_3_code" 
+                > {{item.nationality}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="row mt-md-2">
+
+        <div class="col-md-3 col-sm-12">
+            <label>{{'Country' | translate }}<span class="text-danger"> * </span></label>
+            <select class="form-control form-control-sm" name="countryTel" [(ngModel)]="bookingModel.countryTel"
+                required [class.is-invalid]="submitted && countryTel.invalid" #countryTel="ngModel" 
+                (change)="getIdfPays($event)" [disabled]="success">
+                <option value=""> </option>
+                <option *ngFor="let item of countries |async" [ngValue]="item.alpha_2_code" 
+                > {{item.en_short_name}}</option>
+            </select>
+        </div>
+
+        <div class="col-md-5 col-sm-12">
+            <label>{{'Tel/Mobile' | translate}}<span class="text-danger"> * </span></label>
+            <div class="row">
+                <div class="col-3">
+                    <input type="text" class="form-control form-control-sm" name="codeTel" [(ngModel)]="bookingModel.indPaysTel" readonly>
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control form-control-sm" name="mobileNo"
+                        [(ngModel)]="bookingModel.mobileNumber" required [class.is-invalid]="submitted && mobileNo.invalid"
+                        #mobileNo="ngModel"  (input)="getMobileNo($event.target.value)" pattern="^(0|[1-9][0-9]*)$"
+                        aria-label="State" [matAutocomplete]="autoemobileNo" [disabled]="success">
+                    <mat-autocomplete #autoemobileNo="matAutocomplete">
+                        <mat-option *ngFor="let  option of filteredByMoileNo | async" [value]="option.lastName"
+                            (onSelectionChange)="selectPassenger(option)">
+                            {{option.firstName}} {{option.lastName}}
+                        </mat-option>
+                    </mat-autocomplete>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-sm-12">
+            <label>{{'Email Address'  | translate}}<span class="text-danger"> * </span></label>
+            <input type="text" class="form-control form-control-sm" name="emailid" [(ngModel)]="bookingModel.emailid"
+                required [class.is-invalid]="submitted && emailid.invalid" #emailid="ngModel"
+                  (input)="getEmail($event.target.value)" aria-label="State" id="mailLead"
+                [matAutocomplete]="autoemailid" [email]="true" [disabled]="success">
+            <mat-autocomplete #autoemailid="matAutocomplete">
+                <mat-option *ngFor="let  option of filteredByEmailPsg | async" [value]="option.lastName"
+                    (onSelectionChange)="selectPassenger(option)">
+                    {{option.firstName}} {{option.lastName}}
+                </mat-option>
+            </mat-autocomplete>
+        </div>
+    </div>
+    <div class="row mt-md-2">
+        <div class="col-md-3 col-sm-6">
+          <label>{{ "Zip code" | translate }} <span class="text-danger"> * </span></label>
+          <input
+            type="text"
+            class="form-control form-control-sm"
+            [(ngModel)]="bookingModel.zipCode"
+            name="zipCode"
+            required
+            [class.is-invalid]="submitted && zipCode.invalid"
+            #zipCode="ngModel"
+             
+          />
+        </div>
+        <div class="col-md-9 col-sm-6">
+            <label>{{ "Address" | translate }}<span class="text-danger"> * </span></label>
+            <input
+              type="text"
+              class="form-control form-control-sm"
+              [(ngModel)]="bookingModel.address"
+              name="address"
+              required
+              [class.is-invalid]="submitted && address.invalid"
+              #address="ngModel"
+               
+            />
+          </div>
+      </div>
+</form>

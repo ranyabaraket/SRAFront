@@ -1,0 +1,369 @@
+.container {
+    max-width: 990px;
+    font-family: 'PTRootUI', Verdana, sans-serif;
+    font-size: 13px;
+}
+
+ul.ks-cboxtags {
+  list-style: none;
+  padding: 20px;
+}
+
+ul.ks-cboxtags li {
+  display: inline;
+}
+
+ul.ks-cboxtags li label {
+  display: inline-block;
+  background-color: rgba(255, 255, 255, .9);
+  border: 2px solid rgba(139, 139, 139, .3);
+  color: #adadad;
+  border-radius: 25px;
+  white-space: nowrap;
+  margin: 3px 10px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: all .2s;
+}
+
+ul.ks-cboxtags li label {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+ul.ks-cboxtags li label::before {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    // font-family: 'PTRootUI', Verdana, sans-serif;
+    font-family: FontAwesome;
+    font-weight: 900;
+    font-size: 12px;
+    padding: 2px 6px 2px 2px;
+    content: "\f067";
+    transition: transform .3s ease-in-out;
+}
+
+ul.ks-cboxtags li input[type="checkbox"]:checked+label::before {
+  content: "\f00c";
+  transform: rotate(-360deg);
+  transition: transform .3s ease-in-out;
+}
+
+ul.ks-cboxtags li input[type="checkbox"]:checked+label {
+  border: 2px solid #8bbc2d;
+  background-color: #8bbc2d;
+  color: #fff;
+  transition: all .2s;
+}
+
+ul.ks-cboxtags li input[type="checkbox"] {
+  display: absolute;
+}
+
+ul.ks-cboxtags li input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+}
+
+ul.ks-cboxtags li input[type="checkbox"]:focus+label {
+  border: 2px solid #8bbc2d;
+}
+
+.ajout {
+  margin-top: 2px;
+  width: 200px;
+  height: 45px;
+  right: -400px;
+}
+
+
+
+
+
+
+.popup {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+/* The actual popup (appears on top) */
+.popup .popuptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -80px;
+}
+
+/* Popup arrow */
+.popup .popuptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+/* Toggle this class when clicking on the popup container (hide and show the popup) */
+.popup .show {
+  visibility: visible;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.card {
+  box-shadow: 0px 0px 14px -7px #727f85;
+}
+
+.close {
+  background: none;
+  border: none;
+  color: #8bbc2d;
+  margin-left: 300px;
+  width: 250px;
+  height: 80px;
+}
+
+
+/*******************************
+* MODAL AS LEFT/RIGHT SIDEBAR
+* Add "left" or "right" in modal parent div, after class="modal".
+* Get free snippets on bootpen.com
+*******************************/
+.modal.left .modal-dialog,
+.modal.right .modal-dialog {
+  // position: fixed;
+  // margin: auto;
+  width: 500px;
+  height: 100%;
+  -webkit-transform: translate3d(0%, 0, 0);
+  -ms-transform: translate3d(0%, 0, 0);
+  -o-transform: translate3d(0%, 0, 0);
+  transform: translate3d(0%, 0, 0);
+}
+
+.modal.left .modal-content,
+.modal.right .modal-content {
+  height: auto;
+  overflow-y: auto;
+}
+
+.modal {
+
+  background-color: none !important;
+
+}
+
+.modal-content {
+  color: black !important;
+  background-color:  none !important;
+  border: none !important;
+
+}
+
+
+// @media (min-width: 768px) {
+//   .modal-dialog {
+//       width: 1000px !important;
+//   }
+// }
+.modal-body{
+
+background-color: white !important;
+
+}
+.modal.left .modal-body,
+.modal.right .modal-body {
+  padding: 15px 15px 80px;
+}
+
+/*Left*/
+.modal.left.fade .modal-dialog {
+  left: -320px;
+  -webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
+  -moz-transition: opacity 0.3s linear, left 0.3s ease-out;
+  -o-transition: opacity 0.3s linear, left 0.3s ease-out;
+  transition: opacity 0.3s linear, left 0.3s ease-out;
+}
+
+.modal-lg {
+  max-width: 600px;
+}
+
+.modal.left.fade.in .modal-dialog {
+  left: 0;
+}
+
+/*Right*/
+.modal.right.fade .modal-dialog {
+  //right: 730px;
+  //top: 26px;
+  -webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
+  -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+  -o-transition: opacity 0.3s linear, right 0.3s ease-out;
+  transition: opacity 0.3s linear, right 0.3s ease-out;
+}
+
+
+.btn-add {
+
+  background-color: #222254;
+  font-size: 14px !important;
+  text-transform: capitalize;
+  font-weight: 400;
+  letter-spacing: normal;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 0 15px;
+  white-space: nowrap;
+  height: 41px;
+  line-height: 17px;
+  margin-right: 10px;
+
+}
+
+.modal.right.fade.in .modal-dialog {
+  right: 0;
+}
+
+/* ----- MODAL STYLE ----- */
+.modal-content {
+  //border-radius: 0;
+  border: none;
+}
+
+.modal-header {
+  border-bottom-color: #EEEEEE;
+  background-color: #FAFAFA;
+}
+
+/* ----- v CAN BE DELETED v ----- */
+body {
+  background-color: #78909C;
+}
+
+.demo {
+  padding-top: 60px;
+  padding-bottom: 110px;
+}
+
+.btn-demo {
+  margin: 15px;
+  padding: 10px 15px;
+  border-radius: 0;
+  font-size: 16px;
+  background-color: #FFFFFF;
+}
+
+.btn-demo:focus {
+  outline: 0;
+}
+
+.demo-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 15px;
+  background-color: #212121;
+  text-align: center;
+}
+
+.demo-footer>a {
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  color: #fff;
+}
+
+.modal.fade:not(.in).right .modal-dialog {
+  -webkit-transform: translate3d(50%, 0, 0);
+  transform: translate3d(50%, 4%, 0);
+  width: 55%;
+  right: 4%;
+}
+
+// @media (min-width: 1200px) {
+//   .modal {
+//      width: 90%; 
+//   }
+//}
+
+@media (min-width: 650px){
+.modal-dialog {
+  min-width: 650px !important;
+    max-width: 834px !important;
+    margin: 1.75rem auto;
+}}
+
+.modal.fade.modal-right .modal-dialog {
+  transform: translate(1%, 0px);
+}
+
+.modal.show.modal-right .modal-dialog {
+  // transform: none;
+  transform: translate(1%, 0px);
+}
+
+.modal-header {
+  border-bottom-color: #f8f9fa;
+  background-color: #002640;
+  color: white;
+}
+
+.buttonImage{
+  margin-left: 16px;
+  margin-right: 20px;
+  // box-shadow: 0 1px 3px 0 rgb(60 64 67 / 30%), 0 4px 8px 3px rgb(0 0 0 / 33%);
+  font-size: 15px;
+  text-transform: capitalize;
+  font-weight: 400;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 0 15px;
+  white-space: nowrap;
+  height: 41px;
+  line-height: 18px;
+  background-color: #004b7f;
+  width: 150px;
+}

@@ -1,0 +1,111 @@
+<div class="card">
+    <div class="card-header" >
+
+        <h6 class="mb-0">
+            <button class="btn btn-link btn-block text-left" type="button"
+             >
+              Review Your Booking
+            </button>
+          </h6>
+    </div>
+
+   <div class="card-body px-5 py-3">
+
+
+    <div *ngFor="let originDestinationOption of flightDetails.originDestinationOptions">
+        <div *ngFor="let segment of originDestinationOption.flightSegment">
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <div class="row">
+                        <div class="col"> <img
+                                src="http://www.worldsoftgroup.com/airelines/{{segment.marketingAirlineCode}}.png">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col"><small><b>{{segment.marketingAirlineCode}} {{segment.flightNumber}} /
+                                    {{segment.cabinClassCode}}</b> </small> </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <div class="row">
+                        <div class="col text-muted">
+                            <small><i class="far fa-clock icon mr-2"></i>{{segment.fligthDuration}} </small>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-muted">
+                            <small *ngIf="segment.baggage"><i
+                                    class="fas fa-suitcase-rolling icon mr-2"></i>{{segment.baggage}}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="hr-10 hr-border">
+            <div class="row">
+
+
+                <div class="col-md-5 col-sm-5">
+                    <div class="row">
+                        <div class="col-1">
+                            <i class="fas fa-plane-departure icon"></i>
+                        </div>
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <strong>
+                                        {{segment.departureAirportLocation }} - {{segment.departureAirportLocationCode}}
+                                    </strong>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <small class=" text-muted">
+                                        {{segment.departureDateModel}}
+                                        {{segment.departureTimeModel }}
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-5 col-sm-5">
+                    <div class="row">
+                        <div class="col-1">
+                            <i class="fas fa-plane-arrival icon"></i>
+                        </div>
+                        <div class="col">
+                            <div class="row">
+
+                                <div class="col">
+                                    <strong>
+                                        {{segment.arrivalAirportLocation }} - {{segment.arrivalAirportLocationCode}}
+                                    </strong>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col">
+                                    <small class="text-muted">
+                                        {{segment.arrivalDateModel}}
+                                        {{segment.arrivalTimeModel }}
+                                    </small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2 col-sm-6" *ngIf="segment.airlineReservationCode">
+                    <div class="row">
+                        <div class="col">
+                            {{'No.PNR'|translate}} : <strong>{{segment.airlineReservationCode}}</strong>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

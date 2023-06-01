@@ -1,0 +1,115 @@
+.map-mapboxx {
+    margin-top: 10px;
+    width: 100%;
+    height: 650px;
+    position: sticky;
+    top: 5rem;
+}
+
+.map-mapboxx1 {
+    width: 950;
+    height: 700px;
+    //  margin-top: -400px;
+}
+
+// .mapboxgl-popup {
+//     max-width: 200px;
+// }
+// .mapboxgl-popup-content {
+//     text-align: center;
+//     font-family: 'Open Sans', sans-serif;
+//     display: block;
+// }
+img {
+    position: relative;
+    background-size: cover;
+    background-position: 50%;
+}
+
+#resizeMap {
+    z-index: 1200;
+    position: absolute;
+}
+
+#map-popup {
+    margin-left: 20%;
+    width: 60%;
+    height: 100px;
+    position: sticky;
+    top: 3px;
+    background-color: white!important;
+    z-index: 2;
+    border-bottom-right-radius: 7px;
+}
+
+#map-popup1 {
+    margin-left: 20%;
+    width: 60%;
+    height: 100px;
+    //    position: sticky;
+    //   top: 3px;
+    background-color: green;
+    z-index: 2;
+    border-bottom-right-radius: 7px;
+}
+
+@media only screen and (max-width: 470px) {
+    #map-popup {
+        width: 90%;
+        margin-left: 5px;
+    }
+}
+
+.badge-corner-top {
+    // background-color: #dab349;
+    background-color: rgb(127, 221, 127);
+    color: #fff;
+    position: absolute;
+    // top: -13px;
+    left: -10px;
+    bottom: 0px;
+    font-size: 9px;
+    border-radius: 0 50% 0 0;
+    padding: 2px 2px;
+}
+
+i {
+    color: goldenrod;
+}
+
+img {
+    width: 80px;
+    height: 90px;
+    margin-top: 4px;
+    margin-left: 20px;
+}
+
+div.absolute {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+
+#btnMap {
+    z-index: 95;
+}
+
+.hotelname {
+    margin-top: 8px;
+    margin-left: 10px;
+    text-transform: uppercase;
+}
+
+.marginLeft {
+    margin-left: 10px;
+}
+
+.txtAmnt {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.hotelname1 {
+    font-size: 15px;
+    font-weight: bold;
+}

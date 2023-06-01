@@ -1,0 +1,55 @@
+<div class="row  mt-5">
+    <div class="col">
+        <h2 mat-dialog-title class=" text-muted"> <i class="far fa-question-circle icon"></i> {{'Help'|translate}}</h2>
+    </div>
+    <div class="col-1 m-0">
+        <div>
+            <i class="fas fa-times icon clickable" mat-button mat-dialog-close></i>
+        </div>
+    </div>
+</div>
+
+<div>{{'Choose all airports in that country'|translate}}</div>
+<form>
+    <div class="row mt-2">
+        <div class="col">
+            <input class="input-field form-control form-control-sm" type="text" placeholder="Search country" aria-label="State" [matAutocomplete]="autoCountry" name="country" [formControl]="stateCtrl">
+            <mat-autocomplete #autoCountry="matAutocomplete">
+                <mat-option *ngFor="let  option of filteredStates | async" [value]="option.codePays" (onSelectionChange)="getPayInfo($event.source.value)">
+                    {{option.lpays}}
+                </mat-option>
+            </mat-autocomplete>
+        </div>
+    </div>
+</form>
+<mat-dialog-content>
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="table-responsive table-hover">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col"> <b>{{'City'|translate}}</b> </th>
+                            <th scope="col"> <b> {{'Airport'|translate}}</b></th>
+                            <th scope="col"><b>{{'IATA Code'|translate}} </b> </th>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of detailsPays" (click)="dialogRef.close(item)">
+                            <td> <small>{{item.id.ville}} </small> </td>
+                            <td> <small> {{item.id.aireport}}</small> </td>
+                            <td> <small>{{item.id.ciata}} </small> </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 text-center">
+            <div *ngIf="loadDetails" class="spinner-border text-light spinner-border-sm" role="status">
+                <span class="sr-only">{{'loading'|translate}}</span>
+            </div>
+        </div>
+    </div>
+</mat-dialog-content>

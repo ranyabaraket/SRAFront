@@ -1,0 +1,42 @@
+<mat-dialog-content>
+    <form>
+
+        <div class="row">
+            <div class="col-6">
+                <label><small> {{'In process by'|translate}}</small></label>
+                <input type="text" class="form-control form-control-sm" [(ngModel)]="data.inprocessBy"
+                    name="inprocessBy" disabled>
+            </div>
+            <div class="col-6">
+                <label><small> {{'In process date'|translate}}</small></label>
+                <input type="text" class="form-control form-control-sm" [(ngModel)]="inprocessDateAff"
+                    name="inprocessDate" disabled>
+            </div>
+
+        </div>
+        <div class="row mt-2">
+            <div class="col-6">
+                <label><small> {{'Response by'|translate}}</small></label>
+                <input type="text" class="form-control form-control-sm" [(ngModel)]="data.responseBy"
+                    name="responseBy" disabled>
+            </div>
+            <div class="col-6">
+                <label><small> {{'Response date'|translate}}</small></label>
+                <input type="text" class="form-control form-control-sm" [(ngModel)]="responseDateAff"
+                    name="responseDate" disabled>
+            </div>
+
+        </div>
+        <div class="row mt-2">
+            <div class="col-12">
+                <label for="notifResponse"><small> {{'Response text'|translate}} </small></label>
+                <textarea class="form-control form-control-sm" id="notifResponse" rows="3"
+                    [(ngModel)]="data.notifResponse" name="notifResponse" disabled></textarea>
+            </div>
+        </div>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button class="btn btn-sm  btn-secondary" mat-button mat-dialog-close>{{'Cancel'|translate}}</button>
+</mat-dialog-actions>

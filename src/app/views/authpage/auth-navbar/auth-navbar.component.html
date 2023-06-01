@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"> <img src="../../../assets/ybholidays/images/logo/logo-y2.png" alt=""
+        class="logoX">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Home</a>
+        </li>
+
+
+        <li class="nav-item">
+          <a class="nav-link" href="#/about">Nos Services</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="goRegister()" >Register</a>
+        </li>
+
+      </ul>
+      <div class="col-md-2 col-xs-12 d-flex">
+        <div class="select-lang">
+          <span class="text-grey" style="
+          font-size: 11px;
+          color: #808080ab;"> {{"Language :" |translate}} </span>
+          <br>
+          <img (click)="changeLanguage('fr') " class="lang clickable"
+            src="../../../assets/ybholidays/images/hotels/lang/fr.svg" data-toggle="tooltip" data-placement="top"
+            title="Francais">
+          <img (click)="changeLanguage('en')" class="lang clickable"
+            src="../../../assets/ybholidays/images/hotels/lang/usa.svg" data-toggle="tooltip" data-placement="top"
+            title="English">
+          <img (click)="changeLanguage('ar')" class="lang clickable"
+            src="../../../assets/ybholidays/images/hotels/lang/ar.svg" data-toggle="tooltip" data-placement="top"
+            title="العربية">
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+    </div>
+  </div>
+</nav>

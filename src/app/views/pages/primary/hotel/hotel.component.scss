@@ -1,0 +1,117 @@
+ #cover {
+     background-color: rgba(255, 255, 255, .9) !important;
+     height: 300px !important;
+ }
+
+
+ .title-module {
+     font-size: 40px;
+ }
+
+ .card-history {
+     /** min-height: 100px !important;*/
+     // background-color: #99c041!important;
+     background-color: white;
+     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+
+     .text-center {
+         // color: white;
+         color: black;
+     }
+ }
+
+
+ @media only screen and (max-width: 767px) {
+     .title-module {
+         font-size: 25px;
+     }
+
+     #cover {
+         height: 200px !important;
+     }
+
+     .search-bloc {
+         margin-top: 40px;
+     }
+
+     .btn-danger {
+         margin-top: 10px;
+         margin-left: 0 !important;
+         width: 96%;
+     }
+
+     .btn-success {
+         width: 96%;
+     }
+
+     .mrgBtm {
+         margin-bottom: 20px !important;
+     }
+
+
+ }
+
+ .form-field {
+     width: 100%;
+     //   margin-left: 1%;
+     margin-top: 5px;
+     // min-height: 170px!important;
+ }
+
+ .card-cube {
+     border-radius: 0px;
+ }
+
+ // .card :hover {
+ //     box-shadow: 1px 1px 8px rgb(202, 200, 200);
+ //     background-color: whitesmoke;
+ // }
+ .bottom-text {
+     position: relative;
+     bottom: 12px;
+     width: 100%;
+     color: rgba(60, 64, 67, 1);
+ }
+
+
+
+ .mrgBtm {
+     margin-bottom: 20px;
+ }
+
+ @media only screen and (min-width: 530px) {
+     .slogan {
+         font-size: 2rem;
+         color: #226a9a !important;
+         padding-top: 45px;
+         padding-left: 15px;
+     }
+
+     .slogan1 {
+         font-size: 1.4rem;
+         color: black;
+         padding-top: 20px;
+         padding-left: 15px;
+     }
+ }
+
+ @media only screen and (max-width: 530px) {
+     .slogan {
+         font-size: 1.3rem;
+         padding-top: 20px;
+         padding-left: 15px;
+     }
+
+     .slogan1 {
+         font-size: 1.1rem;
+         padding-top: 20px;
+         padding-left: 15px;
+     }
+ }
+
+ .info-bloc {
+     display: block;
+     width: 100%;
+     padding: 8px;
+     background-color: #fafafa;
+ }

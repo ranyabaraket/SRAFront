@@ -1,0 +1,75 @@
+
+<mat-dialog-actions align="end">
+    <button type="submit" class="btn btn-sm btn-default" (click)=" this.dialogRef.close(false);">
+        <span ><i class="fas fa-times" style="color:#dc3545"></i></span>
+    </button>
+ </mat-dialog-actions>
+    <mat-dialog-content>
+        <h1>{{'autorisation' | translate}}</h1>
+        <div class="row mt-3 mb-3">
+            <div class="col-md-6">
+                <div class="form-floating mb-3">
+                    <select class="form-control form-select"
+                        [(ngModel)]="autorisationDto.id.idModule" name="moduleName" #moduleName="ngModel"
+                        required [class.is-invalid]="moduleName.invalid">
+                        <option *ngFor="let item of modules;" [value]="item.idModule"> {{item.lmodule}}
+                        </option>
+                    </select>
+                    <label for="floatingSelect"> {{'moduleName'|translate}}</label>
+                </div>
+            </div>
+            <div class="col-md-2 mt-3">
+                <input class="checkbox mr-2" name="isActive" [(ngModel)]="isActive" type="checkbox"
+                    (change)="applyFilter()" id="isActive">
+                <label class="check" for="isActive"> {{'Active ?' | translate}} </label>
+            </div>
+
+    
+                <div class="col-md-4">
+                    <button class="btn btn-sm btn-success col-sm-12 col-md-12" (click)="save()" [disabled]="loading || moduleName.invalid ">
+                        <div *ngIf="loading" class="spinner-border spinner-border-sm text-light" role="status">
+                            <span class="sr-only">{{'loading' | translate}}</span>
+                        </div>
+                        {{'Save'|translate}}
+                        <div class="icon2 d-flex align-items-center justify-content-center">
+                            <i class="far fa-save"></i>
+                        </div>
+                    </button>
+<!--                     
+                    <button type="button" (click)="reset()" class="btn btn-danger col-sm-6 col-md-6">
+                        <span>{{'Cancel' |translate}}</span>
+                    </button> -->
+                </div>
+        </div>   
+        <!-- <hr class="hr-10 hr-border">   -->
+<table mat-table [dataSource]="source" class="mat-elevation-z8">
+      <ng-container matColumnDef="moduleName">
+        <th mat-header-cell *matHeaderCellDef class="border2 text-center"> {{'moduleName'| translate }}</th>
+        <td mat-cell *matCellDef="let element" class="text-center"> {{element.lmodule}} </td>
+    </ng-container>
+    <ng-container matColumnDef="dtCreate">
+        <th mat-header-cell *matHeaderCellDef class="border2 text-center"> {{'Create Date'| translate }}</th>
+        <td mat-cell *matCellDef="let element" class="text-center"> {{element.dtCreate | date: 'dd/MM/yyyy'}} </td>
+    </ng-container>
+
+<ng-container matColumnDef="dtModif">
+    <th mat-header-cell *matHeaderCellDef class="border2 text-center"> {{'Last Update'| translate }}</th>
+    <td mat-cell *matCellDef="let element" class="text-center"> {{element.dtModif  | date: 'dd/MM/yyyy'}} </td>
+</ng-container>
+
+      <ng-container matColumnDef="isActive">
+        <th mat-header-cell *matHeaderCellDef class="border2 text-center"> {{'Active'|
+            translate }}</th>
+        <td mat-cell *matCellDef="let element" class="text-center">
+            <span class="text-g" *ngIf="element.isActive === 'O'">
+                {{'Yes' | translate}}
+            </span>
+            <span class="text-r" *ngIf="element.isActive === 'N'">
+                {{'No' | translate}}
+            </span>
+        </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+    </mat-dialog-content>

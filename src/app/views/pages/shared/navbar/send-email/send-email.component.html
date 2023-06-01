@@ -1,0 +1,37 @@
+<h2 mat-dialog-title>{{'Contact us'|translate}}</h2>
+<mat-dialog-content>
+    <form #sendForm="ngForm">
+        <div class="col-md-12 col-sm-12 mb-2">
+            <label>
+                <small>{{'Your email'|translate}}</small>
+            </label>
+            <input type="text" class="form-control form-control-sm" name="contact" #contact="ngModel" required [class.is-invalid]="submitted && contact.invalid"
+                [(ngModel)]="sendEmailModel.contact"  [email]="true">
+        </div>
+        <div class="col-md-12 col-sm-12 mb-2">
+            <label>
+                <small>{{'Object'|translate}}</small>
+            </label>
+            <input type="text" class="form-control form-control-sm" name="subject" #subject="ngModel" required [class.is-invalid]="submitted && subject.invalid"
+                [(ngModel)]="sendEmailModel.subject">
+        </div>
+        <div class="col-md-12 col-sm-12">
+            <label>
+                <small>{{'Your message'|translate}}</small>
+            </label>
+            <textarea class="form-control" rows="3" name="comment" #comment="ngModel" required [class.is-invalid]="submitted && comment.invalid"
+                [(ngModel)]="sendEmailModel.comment"></textarea>
+        </div>
+
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button class="btn btn-sm  btn-success  mr-2" (click)="Send(sendForm)" [disabled]="loadSend">
+        <div *ngIf="loadSend" class="spinner-border spinner-border-sm text-light" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        {{'Send'|translate}}
+    </button>
+    <button class="btn btn-sm  btn-primary" mat-button mat-dialog-close [disabled]="loadSend">{{'Cancel'|translate}}</button>
+</mat-dialog-actions>

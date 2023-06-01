@@ -1,0 +1,274 @@
+<form #searchTransfer="ngForm">
+    <div class="row mb-3">
+        <!-- <div class="col-md-2 col-sm-12 w-full mb-2 ">
+                <span *ngFor="let TypeSearch of TypeSearchList">
+                    <small class="rounded cursor-pointer px-2 text-center py-2"
+                        (click)="changeValueTypeSearch(TypeSearch.value)"
+                        [ngClass]="{'bg-primary-extra-light' : searchTransfertModel.journeyType === TypeSearch.value}">{{TypeSearch.name|translate}}
+                    </small>
+                </span>
+        </div> -->
+
+
+        <div class="col-sm-12 col-md-3">
+            <div class="row">
+                <div class="col" *ngFor="let TypeSearch of TypeSearchList">
+
+
+                    <div class="rounded cursor-pointer text-center" (click)="changeValueTypeSearch(TypeSearch.value)"
+                        [ngClass]="{'bg-primary-extra-light' :  searchTransfertModel.journeyType === TypeSearch.value}">
+                        {{TypeSearch.name|
+                        translate}}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-12 col-md-9 d-flex justify-content-end">
+            <div class="btn-group mr-1">
+                <button type="button" class="btn btn-sm dropdown-toggle details" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    {{listTrajet[searchTransfertModel.transferType]|translate}}
+                </button>
+                <div class="dropdown-menu dropdown-menu-left">
+                    <button class="dropdown-item" type="button" (click)="changeValueTrajet(1)"> {{'Airport to
+                        Hotel'|translate}} </button>
+                    <button class="dropdown-item" type="button" (click)="changeValueTrajet(2)"> {{'Hotel to
+                        Airport'|translate}}</button>
+                </div>
+            </div>
+
+            <div class="btn-group  mr-1">
+                <button type="button" class="btn btn-sm dropdown-toggle details" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    {{searchTransfertModel.transAdult + searchTransfertModel.transChildren +
+                    searchTransfertModel.transInfant}} {{'Passenger'|translate}}
+                </button>
+                <div class="dropdown-menu dropdown-menu-right passenger-dropdown p-2">
+
+                    <div id="DropdownPassenger">
+                        <div class="row">
+                            <div class="col-6">
+                                <i class="fas fa-female icon">
+                                    <i class="fas fa-male"></i>
+                                </i> {{'Adults'|translate}}
+                                <br>
+                                <label class="pl-2 text-muted">
+                                    <small> {{'>12 years'|translate}}
+                                    </small>
+                                </label>
+                            </div>
+                            <div class="col-6">
+                                <button type="submit" class="btn btn-sm btn-default"
+                                    [disabled]="searchTransfertModel.transAdult === 1"
+                                    (click)="searchTransfertModel.transAdult =searchTransfertModel.transAdult-1">
+                                    <i class="fas fa-minus"></i>
+                                </button> {{searchTransfertModel.transAdult}}
+                                <button type="submit" class="btn btn-sm btn-default"
+                                    (click)="searchTransfertModel.transAdult =searchTransfertModel.transAdult+1">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <i class="fas fa-child icon"></i> {{'Children'|translate}}
+                                <br>
+                                <label class="pl-2 text-muted">
+                                    <small>{{'(2 - 11 years)'|translate}}</small>
+                                </label>
+                            </div>
+                            <div class="col-6">
+                                <button type="submit" class="btn btn-sm btn-default"
+                                    [disabled]="searchTransfertModel.transChildren === 0"
+                                    (click)="searchTransfertModel.transChildren =searchTransfertModel.transChildren-1">
+                                    <i class="fas fa-minus"></i>
+                                </button> {{searchTransfertModel.transChildren}}
+                                <button type="submit" class="btn btn-sm btn-default"
+                                    (click)="searchTransfertModel.transChildren =searchTransfertModel.transChildren+1">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <i class="fas fa-baby icon"></i> {{'Infants'|translate}}
+                                <br>
+                                <label class="pl-2 text-muted">
+                                    <small> {{'(< 2 years)'|translate}}</small>
+                                </label>
+                            </div>
+                            <div class="col-6">
+                                <button type="submit" class="btn btn-sm btn-default"
+                                    [disabled]="searchTransfertModel.transInfant === 0"
+                                    (click)="searchTransfertModel.transInfant =searchTransfertModel.transInfant-1">
+                                    <i class="fas fa-minus"></i>
+                                </button> {{searchTransfertModel.transInfant}}
+                                <button type="submit" class="btn btn-sm btn-default"
+                                    (click)="searchTransfertModel.transInfant =searchTransfertModel.transInfant+1">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-right">
+                            <button type="submit" class="btn btn-sm btn-default mr-2">{{'Cancel'|translate}}</button>
+                            <button type="submit" class="btn btn-sm btn-default">
+                                <span class="primary">{{'Ok'|translate}}</span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md col-sm-12">
+            <div class="input-icons input-icons-text">
+                <img src="../../../../../../assets/sra-sa/images/transfer/searchForm/outil.png" class="image-dep" alt="">
+                <input class="form-control input-dep" type="text"
+                    placeholder="{{'Where are you going from?'|translate}}" [matAutocomplete]="autopickUp"
+                    (keyup)="getPickupFiltred($event)" name="pickUp" [(ngModel)]="inputPickup" required>
+            </div>
+            <mat-autocomplete #autopickUp="matAutocomplete">
+                <mat-option *ngFor=" let option of filtredpickupOptions" [value]="option.Place"
+                    (onSelectionChange)="selectedPickup(option)">
+                    <small>{{option.Place}}
+                    </small>
+                    <small class="text-muted">{{option.Country}}, {{option.City}}</small>
+                </mat-option>
+
+            </mat-autocomplete>
+
+        </div>
+
+        <div class="col-md col-sm-12 ">
+            <div class="input-icons input-icons-text">
+                <img src="../../../../../../assets/sra-sa/images/transfer/searchForm/outil.png" class="image-dep" alt="">
+                <input class="form-control input-dep" type="text" placeholder="{{'Where are you going?'|translate}}"
+                    [matAutocomplete]="autoDropOff" (keyup)="getdropOffFiltred($event)" name="dropOff"
+                    [(ngModel)]="inputDropOff" required>
+            </div>
+            <mat-autocomplete #autoDropOff="matAutocomplete">
+                <mat-option *ngFor=" let option of
+                filtreddropOffOptions" [value]="option.Place" (onSelectionChange)="selectedDropoff(option)">
+                    <small>{{option.Place}}
+                    </small>
+                    <small class="text-muted">{{option.Country}}, {{option.City}}</small>
+                </mat-option>
+            </mat-autocomplete>
+        </div>
+
+        <div class="col">
+            <div class="d-flex">
+                <div class="flex-grow-1">
+                    <div class="input-icons">
+                        <img src="../../../../../../assets/sra-sa/images/transfer/searchForm/calendar.png" 
+                        class="image-dep" alt="" (click)="picker1.open()">
+
+                        <input type="text" placeholder="{{'Arrival date'|translate}}" (focus)="picker1.open()"
+                            class="form-control input-dep   input-date" [matDatepicker]="picker1" name="arrivalDate2"
+                            [min]="minDate" [(ngModel)]="searchTransfertModel.arrivalDateAff" autocomplete="off"
+                            required>
+                    </div>
+                    <mat-datepicker #picker1></mat-datepicker>
+                </div>
+                <div class="no-pad">
+                    <input type="time" class="form-control input-time input-field " [(ngModel)]="arrivalTime"
+                        (change)=changeArrivalTime($event) name="arrivalTime2" required>
+                </div>
+            </div>
+        </div>
+        <!--in case round  trip-->
+        <div class="col" *ngIf="searchTransfertModel.journeyType===2">
+            <div class="d-flex">
+                <div class=" flex-grow-1">
+                    <div class="input-icons">
+                        <img src="../../../../../../assets/sra-sa/images/transfer/searchForm/calendar.png" 
+                        class="image-dep" alt="" (click)="picker2.open()">
+                        <input type="text" (focus)="picker2.open()" placeholder="{{'Depart Date'|translate}}"
+                            class="form-control input-date input-dep" [matDatepicker]="picker2" name="departureDate1"
+                            [(ngModel)]="searchTransfertModel.departureDateAff" autocomplete="off"
+                            [min]="searchTransfertModel.arrivalDateAff" required>
+                    </div>
+                    <mat-datepicker #picker2></mat-datepicker>
+                </div>
+                <div>
+                    <input type="time" class="form-control input-time  input-field" (change)=changeDepartTime($event)
+                        [(ngModel)]="departTime" name="departureTime1" required>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!--in case of one way trip-->
+    <!--<div class="row" *ngIf="searchTransfertModel.journeyType===1">
+        <div class="col-md-4 col-sm-8 mb-2">
+            <div class="input-icons">
+                <i class="fas fa-calendar-day icon clickable" (click)="picker2.open()">
+                </i>
+                <input type="text" (focus)="picker2.open()" placeholder="{{'Depart Date'|translate}}"
+                    class="form-control input-field" [matDatepicker]="picker2" name="departureDate1"
+                    [(ngModel)]="searchTransfertModel.departureDateAff" autocomplete="off" [min]="minDate" required>
+            </div>
+            <mat-datepicker #picker2></mat-datepicker>
+        </div>
+        <div class="col-md-2 col-sm-4 mb-2">
+            <input type="time" class="form-control" (change)=changeDepartTime($event) [(ngModel)]="departTime"
+                name="departureTime1" required>
+        </div>
+        <div class="col-md-4 col-sm-8 mb-2">
+            <div class="input-icons">
+                <i class="fas fa-calendar-day  icon clickable" (click)="picker1.open()">
+                </i>
+                <input type="text" placeholder="{{'Arrival date'|translate}}" (focus)="picker1.open()"
+                    class="form-control input-field" [matDatepicker]="picker1"
+                    [min]="searchTransfertModel.departureDateAff" name="arrivalDate1"
+                    [(ngModel)]="searchTransfertModel.arrivalDateAff" autocomplete="off" required>
+            </div>
+
+            <mat-datepicker #picker1></mat-datepicker>
+        </div>
+        <div class="col-md-2 col-sm-4 mb-2">
+            <input type="time" class="form-control" (change)=changeArrivalTime($event) name="arrivalTime1"
+                [(ngModel)]="arrivalTime" required>
+        </div>
+    </div>-->
+    <!--in case of round trip-->
+    <!--<div class="row" *ngIf="searchTransfertModel.journeyType===2">
+
+        <div class="col-md-4 col-sm-8 mb-2">
+            <div class="input-icons">
+                <i class="fas fa-calendar-day  icon clickable" (click)="picker1.open()">
+                </i>
+                <input type="text" placeholder="{{'Arrival date'|translate}}" (focus)="picker1.open()"
+                    class="form-control input-field" [matDatepicker]="picker1" name="arrivalDate2" [min]="minDate"
+                    [(ngModel)]="searchTransfertModel.arrivalDateAff" autocomplete="off" required>
+            </div>
+            <mat-datepicker #picker1></mat-datepicker>
+        </div>
+        <div class="col-md-2 col-sm-4 mb-2">
+            <input type="time" class="form-control" [(ngModel)]="arrivalTime" (change)=changeArrivalTime($event)
+                name="arrivalTime2" required>
+        </div>
+
+        <div class="col-md-4 col-sm-8 mb-2">
+            <div class="input-icons">
+                <i class="fas fa-calendar-day icon clickable" (click)="picker2.open()">
+                </i>
+                <input type="text" (focus)="picker2.open()" placeholder="{{'Depart Date'|translate}}"
+                    class="form-control input-field" [matDatepicker]="picker2" name="departureDate2"
+                    [(ngModel)]="searchTransfertModel.departureDateAff" autocomplete="off" [min]="minDate"
+                    [min]="searchTransfertModel.arrivalDateAff" required>
+            </div>
+            <mat-datepicker #picker2></mat-datepicker>
+        </div>
+        <div class="col-md-2 col-sm-4 mb-2">
+            <input type="time" class="form-control" (change)=changeDepartTime($event) [(ngModel)]="departTime"
+                name="departureTime2" required>
+        </div>
+    </div>-->
+
+</form>

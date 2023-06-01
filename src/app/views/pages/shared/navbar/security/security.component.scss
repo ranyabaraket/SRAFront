@@ -1,0 +1,83 @@
+// formulaire
+
+.form {
+    float: left;
+    height: 86%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 40px;
+  }
+  
+  .l-icon{
+    position: absolute!important;
+    color: #2c457a96!important;
+    font-size: 23px!important;
+    margin-top: 11px!important;
+    margin-left: 12px!important;
+  }
+  
+  .form-control {
+    height: 46px;
+  }
+  
+  #UserName,
+  #Password ,#AccountCode{
+  
+    color: gray !important;
+  }
+  
+  .login-form {
+    background: #8bbc2d9e;
+    padding: 1.2%;
+    border-radius: 13px;
+  }
+  
+  .login-form .mat-dialog-container{
+    background: #6da74b96;
+    color: #6da74b96;
+  }
+  
+  .logo {
+    height: 70px;
+    width: 70px;
+  }
+  .input-icons {
+    display: inline-flex;
+ width: 100%;
+    margin-bottom: 10px;
+}
+.icon1 {
+  height: 25px;
+  margin-top: 15px;
+  padding-right: 5px;
+  z-index: 1;
+  color: rgb(135, 135, 135);
+}
+.input-dep {
+  padding-left: 30px;
+  margin-left: -30px;
+}
+.primary{
+  color: blue !important;
+}
+.desc{
+color: rgb(104, 104, 104);
+font-size: 12px;
+font-weight: 400;
+
+}
+.icon-back{
+  color: #004b7f;
+font-size: 28px;
+padding: 5px;
+}
+.center {
+  margin: auto;
+  // width: 50%;
+  // border: 3px solid green;
+  // padding: 10px;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-right: 10px;
+  padding-bottom: 0;
+}

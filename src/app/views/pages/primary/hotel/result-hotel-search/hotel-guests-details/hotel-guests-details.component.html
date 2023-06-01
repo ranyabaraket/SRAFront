@@ -1,0 +1,411 @@
+<app-custom-loading *ngIf="loadingSearch"></app-custom-loading>
+<br>
+<div class="row pb-4 pt-4">
+    <div class="col-md-8 mt-4 shadow">
+        <form #passengerForm="ngForm" novalidate>
+            <div *ngIf="!loadingSearch">
+                <div *ngFor="let room of roomsForm let indexRoom=index">
+                    <span>Room {{indexRoom +1}} : </span>
+                    <div class="card" *ngFor="let passenger of roomsForm[indexRoom].adult let index=index">
+                        <div class="card-header" id="headingRoom{{index}}">
+                            <h6 class="mb-0">
+                                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                                    [attr.data-target]="'#collapseRoom'+index" aria-expanded="true"
+                                    [attr.aria-controls]="'collapseRoom'+index">
+                                    <span>Adult {{index+1}} : </span>
+                                </button>
+                            </h6>
+                        </div>
+
+                        <div id="collapseRoom{{index}}" class="collapse show"
+                            [attr.aria-labelledby]="'headingRoom'+index" data-parent="#accordionExample">
+                            <div class="row">
+                                <div class="col-md-2 col-sm-4 padding-book">
+                                    <label> {{'Title'|translate}} <span class="text-danger"> * </span> </label>
+                                    <select class="form-control form-control-sm" name="title{{index}}"
+                                        [(ngModel)]="passenger.civilite" #title="ngModel" required
+                                        [class.uk-form-danger]="submitted && title.invalid">
+                                        <option value="MR"> Mr
+                                        </option>
+                                        <option value="MRS"> Mrs
+                                        </option>
+                                        <option value="MS"> Ms
+                                        </option>
+
+                                    </select>
+                                </div>
+                                <div class="col-md-2 col-sm-4 padding-book">
+                                    <label> {{'Type'|translate}} <span class="text-danger"> * </span> </label>
+                                    <input class="form-control form-control-sm" name="type{{index}}" value="a" disabled
+                                        placeholder="Adult" [(ngModel)]="typesAdult[index]">
+                                </div>
+
+
+
+                                <div class="col-md-4 col-sm-4 padding-book">
+                                    <label> {{'First name'|translate}}<span class="text-danger"> * </span></label>
+                                    <input type="text" class="form-control form-control-sm" name="fname{{index}}"
+                                        #fname="ngModel" [(ngModel)]="passenger.firstName"
+                                        style="text-transform: uppercase;"
+                                        [class.uk-form-danger]="submitted && fname.invalid" required aria-label="State">
+                                </div>
+
+                                <div class="col-md-4 col-sm-4 padding-book">
+                                    <label> {{'Last name'|translate}}<span class="text-danger"> * </span></label>
+                                    <input type="text" class="form-control form-control-sm" name="lname{{index}}"
+                                        [(ngModel)]="passenger.lastName" style="text-transform: uppercase;"
+                                        #lastname="ngModel" [class.uk-form-danger]="submitted && lastname.invalid"
+                                        required aria-label="State">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" *ngFor="let children of roomsForm[indexRoom].children let index=index">
+                        <div class="card-header" id="headingRoom1{{index}}">
+                            <h6 class="mb-0">
+                                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                                    [attr.data-target]="'#collapseRoom1'+index" aria-expanded="true"
+                                    [attr.aria-controls]="'collapseRoom1'+index">
+                                    <span>Children {{index+1}} : </span>
+                                </button>
+                            </h6>
+                        </div>
+
+                        <div id="collapseRoom1{{index}}" class="collapse show"
+                            [attr.aria-labelledby]="'headingRoom1'+index" data-parent="#accordionExample">
+                            <div class="row">
+                                <div class="col-md-2 col-sm-4 padding-book">
+                                    <label> {{'Title'|translate}} <span class="text-danger"> * </span> </label>
+                                    <select class="form-control form-control-sm" name="ktitle{{index}}"
+                                        [(ngModel)]="children.civilite" #ktitle="ngModel" required
+                                        [class.uk-form-danger]="submitted && ktitle.invalid">
+                                        <option value="MR"> Mr
+                                        </option>
+                                        <option value="MRS"> Mrs
+                                        </option>
+                                        <option value="MS"> Ms
+                                        </option>
+
+                                    </select>
+                                </div>
+
+                                <div class="col-md-2 col-sm-4 padding-book">
+                                    <label> {{'Type'|translate}} <span class="text-danger"> * </span> </label>
+
+                                    <input class="form-control form-control-sm" name="type" disabled
+                                        placeholder="Children">
+
+                                </div>
+
+                                <div class="col-md-4 col-sm-4 padding-book">
+                                    <label> {{'First name'|translate}}<span class="text-danger"> * </span></label>
+                                    <input type="text" class="form-control form-control-sm" name="kfname{{index}}"
+                                        [(ngModel)]="children.firstName" required style="text-transform: uppercase;"
+                                        [class.uk-form-danger]="submitted && kfname.invalid" #kfname="ngModel"
+                                        pattern="[a-zA-Z]+[a-zA-Z ]+" aria-label="State">
+                                </div>
+
+                                <div class="col-md-4 col-sm-4 padding-book">
+                                    <label> {{'Last name'|translate}}<span class="text-danger"> * </span></label>
+                                    <input type="text" class="form-control form-control-sm" name="klname{{index}}"
+                                        [(ngModel)]="children.lastName" required style="text-transform: uppercase;"
+                                        [class.uk-form-danger]="submitted && klname.invalid" #klname="ngModel"
+                                        pattern="[a-zA-Z]+[a-zA-Z ]+" aria-label="State">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="card">
+                    <div class="card-header" id="headingpsg">
+                        <h6 class="mb-0">
+                            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse"
+                                data-target="'#collapsepsg" aria-expanded="true" aria-controls="collapsepsg">
+                                <span>{{"Passenger's Details" | translate }}</span>
+                            </button>
+                        </h6>
+                    </div>
+
+                    <div id="collapsepsg" class="collapse show" aria-labelledby="headingpsg"
+                        data-parent="#accordionExample">
+                        <div class="card-body">
+                            <div class="accordion" id="accordionExample">
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6">
+                                        <label> {{'Email Address'|translate}}<span class="text-danger"> *
+                                            </span></label>
+                                        <input type="email" class="form-control form-control-sm" name="email"
+                                            [(ngModel)]="passengerForms.email" required
+                                            [class.uk-form-danger]="submitted && email.invalid" #email="ngModel"
+                                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" onpaste="return false;"
+                                            onCopy="return false">
+
+                                    </div>
+
+                                    <div class="col-md-6 col-sm-6">
+                                        <label> {{'Confirm Email'|translate}}<span class="text-danger"> *
+                                            </span></label>
+                                        <input type="email" class="form-control form-control-sm" name="veMail"
+                                            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" onpaste="return false;"
+                                            [(ngModel)]="passengerForms.veMail" required
+                                            [class.uk-form-danger]="submitted && veMail.invalid" #veMail="ngModel">
+
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-4">
+                                        <label> {{'Country'|translate}} <span class="text-danger"> * </span> </label>
+                                        <mat-select class="form-control input-dep" [(ngModel)]="lpays"
+                                            name="nationality" (selectionChange)="onChangeNationality($event)">
+
+                                            <mat-option *ngFor="let item of listNationalities" [value]="item.codePays">
+                                                <span
+                                                    class="flag-icon flag-icon-{{item.codePays | lowercase}} flag-icon-squared mr-2"></span>
+                                                <label class="label-search-flight">{{item.lpays}}</label>
+                                            </mat-option>
+                                        </mat-select>
+                                    </div>
+                                    <div class="col-md-6">
+
+                                        <label> Phone Number <span class="text-danger"> * </span> </label>
+                                        <div class="row" style="    margin-left: 0px !important;
+                                    margin-right: 0px !important;">
+                                            <input type="text" readonly="true"
+                                                class="form-control form-control-sm col-md-3" name="index"
+                                                [(ngModel)]="indexTel">
+                                            <input type="number" class="form-control form-control-sm col-md-9"
+                                                name="phoneNumber" style="left : 1%" #phoneNumber="ngModel"
+                                                [(ngModel)]="passengerForms.phoneNumber"
+                                                [class.uk-form-danger]="submitted && phoneNumber.invalid" required>
+                                        </div>
+
+
+
+
+                                    </div>
+
+
+                                </div>
+                                <br>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <div class="row mt-2">
+                    <div class="col-12 col-sm-12 margin10">
+                        <div class="alert alert-warning-custom" role="alert">
+                            <!-- <span *ngIf="roomToBook.description != null">
+                                <b>Note </b> : {{roomTobook.description}}
+                                <br><br>
+                            </span> -->
+                            <div *ngIf="checkAvailabilityResponse.hotelNorms.length != 0">
+                                <div *ngFor="let norm of checkAvailabilityResponse.hotelNorms; let indexNorm = index">
+                                    <div [innerHtml]="norm.hotelNorm"></div>
+                                    <br>
+                                </div>
+                            </div>
+                            <div *ngIf="checkAvailabilityResponse.cancellationRoom.length != 0">
+                                <b>Cancelation Policy :</b>
+                                <div
+                                    *ngFor="let item of checkAvailabilityResponse.cancellationRoom; let indexCancel = index">
+                                    <div *ngIf="item.chargeType === 'Percentage'">
+                                        <b>Note </b> : From {{item.fromDate}} <b *ngIf="item.toDateCnl != null">to
+                                            {{item.toDateCnl}} </b> , Charge
+                                        {{item.chargeType}}
+                                        : {{item.cancelCharge}} %
+                                    </div>
+
+                                    <div *ngIf="item.chargeType != 'Percentage'">
+                                        <b>Note </b> : From {{item.fromDate}} <b *ngIf="item.toDateCnl != null">to
+                                            {{item.toDateCnl}} </b> , Charge
+                                        {{item.chargeType}} : {{item.cancelCharge}}
+                                        {{item.codeDevise}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mt-2">
+                    <div class="col-12 col-sm-12 margin10">
+                        <div class="alert alert-warning-custom" role="alert">
+                            <h2 class="bolder">
+                                Payment method :
+
+                            </h2>
+                            <div class="col">
+                                <div class="col-12">
+                                    <input id="deposit" type="radio" name="radio-group">
+                                    <label for="deposit" style="padding-left: 1%;"> Deposit</label>
+
+                                </div>
+                                <div class="col-12">
+                                    <input id="cc" type="radio" name="radio-group" disabled>
+
+                                    <label for="cc" style="padding-left: 1%;"> Credit Card</label>
+                                    <div>
+                                        <img src="assets/images/visa.png" alt="" style="width:5%">
+                                        <img src="assets/images/mastercard.png" alt="" style="width:5%">
+                                        <img src="assets/images/american.png" alt="" style="width:5%">
+
+                                    </div>
+
+                                </div>
+
+
+
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+                <div class="row">
+                    <div class="col-12 mt-2" *ngIf="!loadingSearch">
+                        <input type="checkbox" [checked]="checked" (change)="getCheck()"><label
+                            style="font-weight: bold;padding: 1%;">
+                            <strong>{{"jai lu et j'accepte"
+                                | translate}}</strong> </label>
+                        <div class="row ">
+                            <div class="col-12">
+                                <strong *ngIf="roomToBook.notRefundable === true;" class="text-danger">{{"booking
+                                    vouchered"
+                                    | translate}}</strong>
+
+                            </div>
+                            <div class="col-12">
+                                <strong class="text-success col-3 col-md-3" style="padding: 3%;"> &#x2713; {{'This is
+                                    the last step!' | translate}}</strong>
+                                <button class="btn btn-success col-8 col-md-8" (click)="checkForm(passengerForm)"
+                                    *ngIf="roomToBook.notRefundable === true; else refundable "
+                                    [disabled]="!checked || passengerForm.invalid">
+                                    {{"Book now" | translate}}
+                                </button>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-12 col-sm-12 margin10">
+                                    <div class="alert alert-warning-custom" role="alert">
+                                        <h3 class="centerh4">
+                                            {{'Click to complete your booking recieve confirmation.' | translate}}
+
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                        <ng-template #refundable>
+                            <button class="btn btn-primary col-8 col-md-8"
+                                (click)="checkForm(passengerForm)" [disabled]="!checked || passengerForm.invalid">
+                                {{"Generate voucher" | translate}}
+                            </button>
+                        </ng-template>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <br>
+    </div>
+    <div class="col-md-3 mt-4 ">
+        <div class="container-fluid card shadow">
+            <div class="row">
+                <div class="col">
+                    <h4 class="centerh4" style="padding: 1rem;font-size: 18px;font-weight: bold;">
+                        {{ 'Booking Details' | translate }}
+                    </h4>
+                    <article>
+                        <figure class="clearfix">
+                            <img class="full-width" [src]="hotel.logo" alt="">
+                        </figure>
+                        <div>
+                            <h3 class="centerh4" style="font-size: 18px;font-weight: bold;">{{hotel.name}}</h3>
+                        </div>
+
+                    </article>
+                    <hr class="rounded" style="background :grey !important">
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+                            <!-- <label style="font-weight: bold;">Room type</label> -->
+                            <h3 class="centerh4" style="font-weight: bold;">{{roomToBook.name}}</h3>
+                        </div>
+
+                        <div class="col-md-6">
+                            <!-- <label style="font-weight: bold;">Meal type</label> -->
+                            <h3 class="centerh4" style="font-weight: bold;">{{roomToBook.meals}}</h3>
+                        </div>
+                    </div>
+
+                    <hr class="rounded" style="background :grey !important">
+
+
+                    <div class="row">
+
+                        <div class="col-md-4">
+                            <label style="font-weight: bold;">{{'Check In' | translate}}</label>
+                            <span style="font-weight: bold;">{{roomsDetailsModel1.searchHotelRequest.checkIn}}</span>
+                        </div>
+                        <div class="col-md-4">
+                            <i class="soap-icon-clock"></i>
+                            <span style="font-weight: bold;">{{roomsDetailsModel1.searchHotelRequest.nbNights+"
+                                Night(s)"}}</span>
+                        </div>
+                        <div class="col-md-4">
+                            <label style="font-weight: bold;">{{'Check Out' | translate}}</label>
+                            <span style="font-weight: bold;">{{roomsDetailsModel1.searchHotelRequest.checkOut}}</span>
+                        </div>
+                    </div>
+
+                    <hr class="rounded" style="background :grey !important">
+                    <!-- <h4>Other Details</h4> -->
+                    <dl class="other-details centerh4">
+                        <div class="form-group m-2">
+                            <label for="custCharge" class="mr-2 text-muted">
+                                <!-- {{ "Agent charge" | translate }} -->
+                            </label>
+                            <input type="number" id="custCharge" class="form-control form-control-sm"
+                                placeholder="Agent charge" name="custCharge" [(ngModel)]="roomToBook.price.agentMarkUp"
+                                disabled />
+                        </div>
+                        <div class="form-group m-2">
+                            <label for="custCharge" class="mr-2 text-muted" style="font-weight: bold;font-size: 18px;">
+                                {{'Total Price' | translate}}:
+                            </label>
+                            <span style="font-weight: bold;font-size: 18px;">{{ format(guest.totalCharge)+"
+                                "+roomToBook.price.currency }}</span>
+
+                        </div>
+
+                    </dl>
+                    <hr class="rounded" style="background :grey !important">
+
+
+
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>
+<br><br>

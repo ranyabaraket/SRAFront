@@ -1,0 +1,74 @@
+#loaderContent {
+  margin: 0px;
+  padding: 0px;
+  position: fixed;
+  right: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 30001;
+  // opacity: 0.9;
+  // display: none;
+  justify-content: center;
+  align-items: center;
+  // background: rgba(0, 0, 0, 0.5);
+  background: linear-gradient(rgba(250,250,250, 0.3),
+  rgba(250,250,250, 0.6)), url('../../../../../assets/sra-sa/images/loading/bg1.jpeg');
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size:cover;
+
+
+}
+
+@media only screen and (min-width: 600px) {
+  .align-middle {
+    text-align: center;
+
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .align-middle {
+    text-align: center;
+    // padding: 10px;
+  }
+}
+
+.align-middle {
+  margin-top: 15% !important;
+  padding: 16px;
+  width: 50%;
+  border-radius: 5px;
+  background-color: rgb(255, 255, 255) !important;
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  // opacity: 0.9 !important;
+
+}
+
+svg {
+  width: 80px;
+  height: 80px;
+  margin: 20px;
+  display: inline-block;
+}
+
+.simple-linear {
+  text-align: center;
+  width: 400px;
+  background: linear-gradient(to right,#004b7f, #ced6df);
+   border-radius: 10px;
+  padding: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 14px;
+  font-weight: bold;
+  color: #ffffff;
+  font-weight: 500 !important;
+
+}
+

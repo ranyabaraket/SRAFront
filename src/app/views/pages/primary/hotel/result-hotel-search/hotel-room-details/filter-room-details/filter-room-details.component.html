@@ -1,0 +1,29 @@
+<div class="container-fluid">
+    <div id="headingS">
+        <div class="d-flex">
+            <div class="p-2 flex-grow-1 h6  clickable" data-toggle="collapse" data-target="#collapseS" aria-expanded="true" aria-controls="collapseS"><b>{{'meals'|translate}}</b> </div>
+            <div class="p-2">
+                <b class="filter clickable mr-2" (click)="changeValueToCheckAll()">{{'all'|translate}}</b> <b (click)="changeValueToNone()" class="clickable filter">{{'none'|translate}}</b>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div id="headingRefundable">
+        <div class="d-flex">
+            <div data-toggle="collapse" class="p-2 clickable h6" data-target="#collapseRefundable" aria-expanded="true" aria-controls="collapseRefundable"> <b> {{'cancellation' | translate}} </b></div>
+
+        </div>
+    </div>
+    <div id="collapseRefundable" class="collapse show" aria-labelledby="headingRefundable">
+
+        <div>
+            <input class="checkbox mr5" name="refundable" [(ngModel)]="filter.refundable" type="checkbox" (change)="applyFilter()" id="refundable">
+            <label class="check" for="refundable"> {{'Refundable' | translate}} </label>
+        </div>
+        <div>
+            <input class="checkbox mr5" name="Nnrefundable" [(ngModel)]="filter.Nnrefundable" type="checkbox" (change)="applyFilter()" id="Nnrefundable">
+            <label class="check" for="Nnrefundable">{{'Not Refundable' | translate}}</label>
+        </div>
+
+    </div>
+</div>

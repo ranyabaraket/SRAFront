@@ -1,0 +1,28 @@
+<div class="container rounded">
+<div class="container">
+    <app-custom-loading *ngIf="!source.length"></app-custom-loading>
+    <div class="mt-4 card card-no-border mb-4">
+        <label class="ml-2"> {{'News'|translate}}({{total}} results) </label>
+        <ng2-smart-table id ="myTableElementId" [settings]="settings" [source]="source" (custom)="customOption($event)"
+        (editConfirm)="onEditConfirm($event)">
+        </ng2-smart-table>
+        <!-- <div *ngIf="showDetails">
+            <div class="row  my-2">
+                <div class="col-12">
+                    <h4 class="title ">
+                        <button ngbTooltip="back" placement="bottom" class="btn btn-primary btn-sm ml-2" (click)="showDetails= false"><i class="fas fa-arrow-left"></i></button> {{'News Details'|translate}} - {{dataDetails.titreNews}} </h4>
+                </div>
+
+            </div> <img [src]="formatImg(dataDetails.entiteLogo)" style="width: 15% !important; height:auto !important;">
+            <hr>
+            <div class="row photo-news">
+                <div class="col " [ngClass]="{' text-center' : dataDetails.photoIsCenter == 'O'}">
+                    <img [src]=" formatImg(dataDetails.photo)" [ngStyle]="{'width': dataDetails.photoWidth+'px', 'height':dataDetails.photoHeight+'px'}">
+
+                </div>
+            </div>
+        </div> -->
+    </div>
+    <br><br>
+</div>
+</div>

@@ -1,0 +1,89 @@
+<div class="pb-4 pt-4" *ngIf="transferDetails">
+    <div class="row" *ngIf="resultBooking ">
+        <div class="col-md-2"></div>
+        <div class="col" *ngIf="!resultBooking.errors && resultBooking.request.general.orderreference">
+            <label class="text-muted">{{'Order Reference' | translate}} : </label> <span
+                class="text-success"><b>{{resultBooking.request.general.orderreference}}</b></span>
+        </div>
+    </div>
+    <app-review-transfer [searchResult]="searchResult" [transferDetails]="transferDetails"
+        [bookingModel]="bookingModel">
+    </app-review-transfer>
+    <div class="mt-2" id="accordion">
+        <div class="card">
+            <div class="card">
+                <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseTow"
+                            aria-expanded="true" aria-controls="collapseTow">
+                            {{'Transfer Informations' | translate}}
+                        </button>
+                    </h5>
+                </div>
+
+                <div id="collapseTow" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                        <app-form-informations-transfer [searchResult]="searchResult" [submitted]="submitted"
+                            [success]="success" [bookingModel]="bookingModel" [searchModel]="searchModel"></app-form-informations-transfer>
+                    </div>
+                </div>
+            </div>
+            <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                        aria-controls="collapseOne">
+                        {{'Lead Passenger' | translate}}
+                    </button>
+                </h5>
+            </div>
+
+            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                <div class="card-body">
+                    <app-form-passenger-transfer [submitted]="submitted" [bookingModel]="bookingModel"
+                        [success]="success" ></app-form-passenger-transfer>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row  mt-2">
+        <div class="col">
+            <label> {{'Note' | translate}} </label>
+            <textarea class="form-control" name="note" [(ngModel)]="bookingModel.chrComment" rows="3"
+                [disabled]="success"></textarea>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col">
+            <form class="form-inline  float-right">
+                <div class="form-group m-2">
+                    <label for="custCharge" class="mr-2 text-muted"> {{'Customer Charge' | translate}} </label>
+                    <input type="number" id="custCharge" class="form-control form-control-sm "
+                        placeholder="Customer Charge" name="custCharge" [(ngModel)]="bookingModel.customerComm"
+                        (change)="SumtotalPrice($event);" min="0" [disabled]="success">
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col text-right">
+            <strong class="primary  m-2">
+                {{'total amnt'|translate}} :
+                <span class="h6"> {{formatCurr(totalPrice)}} {{transferDetails.pricing.currencyTiers}}
+                </span>
+            </strong>
+        </div>
+    </div>
+    <div class="row my-4" *ngIf="transferDetails || !success">
+        <div class="col text-right">
+            <button class="btn btn-success col-12 col-md-2" (click)="booking()" [disabled]="success">
+                <div *ngIf="loading" class="spinner-border spinner-border-sm text-light" role="status">
+                    <span class="sr-only">{{'loading'|translate}}</span>
+                </div>
+                {{'Confirm'|translate}}
+            </button>
+        </div>
+    </div>
+</div>
+<app-custom-loading *ngIf="!transferDetails || loading"></app-custom-loading>

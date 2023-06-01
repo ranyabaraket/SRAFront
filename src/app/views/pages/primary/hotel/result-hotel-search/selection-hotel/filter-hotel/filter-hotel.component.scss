@@ -1,0 +1,65 @@
+label {
+  margin-left: 10px;
+}
+
+.container-fluid {
+  padding-left: 0px;
+  padding-right: 5px;
+  position: sticky;
+  top: 4rem;
+}
+.filter{
+  color: #5c6bc0!important;
+}
+
+.golden {
+  color: goldenrod;
+}
+
+::ng-deep {
+  .ng5-slider,
+  .ng5-slider-selection {
+      background-color: #5c6bc0!important;
+      color: #5c6bc0!important;
+  }
+  .ng5-slider .ng5-slider-pointer {
+      width: 15px!important;
+      height: 15px!important;
+      top: -7px!important;
+      background-color: #5c6bc0!important;
+  }
+  .ng5-slider .ng5-slider-pointer:after {
+      width: 0!important;
+      height: 0!important;
+  }
+  .ng5-slider .ng5-slider-bubble {
+      font-size: 12px!important;
+  }
+}
+.card-hotel{
+    background-color: white;
+    border-radius: 11px;
+    padding: 12px 16px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.card-assistant{
+    background-color: white;
+    border-radius: 11px;
+    //  padding: 12px 16px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.form-control-sm{
+  height: 40px !important;
+}
+.titre-hotel{
+  font-weight: 500 !important;
+}
+
+input[type=radio], input[type=checkbox] {
+  accent-color: #5c6bc0!important;
+}
+.contact{
+  height: 320px;
+  width: 220px;
+}

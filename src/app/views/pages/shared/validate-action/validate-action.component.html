@@ -1,0 +1,10 @@
+<h3 mat-dialog-title><b> {{data}}</b></h3>
+<mat-dialog-content>
+    {{'Please confirm if you wish to proceed the process.'|translate}}
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button type="submit" class="btn-yes btn-sm btn-default mr-2" (click)=" this.dialogRef.close(true);">{{'Yes'|translate}} </button>
+    <!-- <span class="primary"> -->
+    <button type="submit" class="btn-no btn-sm btn-default" (click)=" this.dialogRef.close(false);"> {{'No'|translate}} </button>
+</mat-dialog-actions>

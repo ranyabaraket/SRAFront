@@ -1,0 +1,152 @@
+<div class="container">
+    <div id="pdfDiv" class="mt-4 mb-4">
+        <div class="row">
+            <div class="col-md-6 col-sm-12">
+
+                <h3 class="title"><button ngbTooltip="back" placement="bottom" class="btn btn-primary btn-sm ml-2"
+                        routerLink="/pages/help-desk"><i class="fas fa-arrow-left"></i></button> Booking Details</h3>
+            </div>
+            <div class="col-md-6 col-sm-12 text-right">
+
+            </div>
+        </div>
+        <div class="row mt-2">
+            <div class="col-md-3 col-sm-6">
+                <b>Agency : </b>
+                {{bookingDetails.idTiers}}-{{bookingDetails.tiersName}}
+            </div>
+            <div class="col-md-2 col-sm-6">
+                <b> Ref. :</b>
+                {{bookingDetails.uniqueId}}
+            </div>
+            <div class="col-md-2 col-sm-6">
+                <b> PNR No. :</b>
+                {{bookingDetails.numPnr}}
+            </div>
+            <div class="col-md-2 col-sm-6">
+                <b> Passengers Number :</b>
+                {{bookingDetails.passengers.length}}
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <b> Status :</b>
+                {{bookingDetails.etat}} on {{bookingDetails.dateEtat}} by {{bookingDetails.editedBy}}
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <b> Ticketed On :</b>
+                {{bookingDetails.officeId}} Imported On: {{bookingDetails.importedOn}} Sector:
+                {{bookingDetails.sector}}
+            </div>
+        </div>
+
+        <div>
+
+            <hr>
+            <h4 class="title mt-2">Itinerary Informations</h4>
+            <div class="table-responsive">
+                <table class="table  table-borderless noPadding">
+                    <thead>
+                        <tr>
+                            <th scope="col"> <b>Airlines</b> </th>
+                            <th scope="col"> <b>Flight No</b></th>
+                            <th scope="col"><b>Departure </b> </th>
+                            <th scope="col"><b>Arrival</b></th>
+                            <th scope="col"><b>GDS PNR </b></th>
+                            <th scope="col"><b>Airline PNR</b></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of bookingDetails.segments">
+                            <td><img src={{getSrcImg(item.codeCom)}}></td>
+                            <td> {{item.codeCom}}{{item.flightNum}} </td>
+                            <td> {{item.villeDepNom}} ({{item.villeDepCode}})
+                                {{item.dateDepart}} {{item.heureDepart}} </td>
+                            <td>{{item.villeArrNom}} ({{item.villeArrCode}})
+                                {{item.dateArrivee}}) {{item.heureArrivee}} </td>
+                            <td> {{bookingDetails.numPnr}} </td>
+                            <td>{{bookingDetails.airlinePnr}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <hr>
+            <h4 class="title">Traveler Information</h4>
+            <div class="table-responsive">
+                <table class="table  table-borderless noPadding">
+                    <thead>
+                        <tr>
+                            <th scope="col"> <b>Passenger</b> </th>
+                            <th scope="col"> <b>Num Ticket</b> </th>
+
+                            <th scope="col"> <input type="checkbox" id="display" name="display" checked>
+                                <label for="display">Display Ticket Price?</label>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of bookingDetails.passengers">
+                            <td>{{item.firstName}}</td>
+                            <td> {{item.numTicket}} </td>
+                            <td> <button class="btn btn-primary btn-sm" (click)="exportAsPDF(item.firstName)"><i
+                                        class="fas fa-download"></i></button>
+
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <hr>
+            <h4 class="title">Payment</h4>
+            <div class="table-responsive">
+                <table class="table  table-borderless noPadding">
+                    <thead>
+                        <tr>
+                            <th scope="col"> </th>
+                            <th scope="col"><b>Customer Currency</b> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th><b>Basic Fare:</b> </th>
+                            <td> {{bookingDetails.fareBasic}}&nbsp; {{bookingDetails.currencyCode}}</td>
+                        </tr>
+                        <tr>
+                            <th><b>tax:</b> </th>
+                            <td> {{bookingDetails.tax}}&nbsp; {{bookingDetails.currencyCode}}</td>
+                        </tr>
+                        <tr>
+                            <th><b>Total Fare:</b> </th>
+                            <td> {{bookingDetails.totalFare}} &nbsp; {{bookingDetails.currencyCode}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <hr>
+            <h4 class="title">History</h4>
+            <div class="table-responsive">
+                <table class="table  table-borderless noPadding">
+                    <thead>
+                        <tr>
+                            <th scope="col"><b>Unique ID </b> </th>
+                            <th scope="col"><b>Ref. Piece</b> </th>
+                            <th scope="col"><b>History Details </b> </th>
+                            <th scope="col"><b>Time </b> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of bookingDetails.history">
+                            <td>{{item.uniqueId}} </td>
+                            <td>{{item.refPiece}} </td>
+                            <td> {{item.historyDetails}}
+                            </td>
+                            <td> {{item.time}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px',fullScreenBackdrop:true  }">
+        </ngx-loading>
+    </div>
+</div>

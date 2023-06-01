@@ -1,0 +1,108 @@
+<div class="container" id="component1">
+    <div class="row">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-3">
+                    <div style="margin-top: 30px; height: 80px; width: 50px;">
+                        <img src="../../../../../../../../assets//sra-sa/images/logo/sra-sa.png" height="80px" style="float: left; margin-bottom: 10px;">
+                    </div>
+                </div>
+                <div class="col-9 text-right" style="margin-top: 30px; text-align: right;">{{tiersName}} <i class="fas fa-phone-square-alt mt-1 mr-1"></i> {{callCenter}}</div>
+
+            </div>
+
+            <div class="voucherRef">Voucher N° {{voucherDetailsModel.data.request.general.orderreference}}</div>
+            <br>
+            <hr>
+            <div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <h2>{{'AGENCY & USER DETAILS' | translate}}</h2>
+                    </div>
+                    <div class="col-md-4" id="printPageButton">
+                        <button class="btn btn-primary btn-sm m-2" [useExistingCss]="true" printSectionId="component1" ngxPrint> {{'print' | translate}}</button>
+
+                        <!-- <input class="btn btn-primary btn-sm m-2" type="button" value="Go Back" (click)="backToBlack()" /> -->
+                    </div>
+                </div>
+                <hr>
+                <div class="row destination">
+                    <span> Car description : {{voucherDetailsModel.search.vehiculeDescription}} </span>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-4 dataBooking">
+                        <span> Leader name : {{paxName |  uppercase }} </span>
+                    </div>
+                    <div class="col-4 dataBooking">
+                        <span> E-mail : {{voucherDetailsModel.search.emailid}}</span>
+                    </div>
+                    <div class="col-4 dataBooking">
+                        <span><i class="fas fa-phone-square-alt"></i> {{voucherDetailsModel.search.indPaysTel}} {{voucherDetailsModel.search.mobileNumber}}</span>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-4 dataBooking">
+                        <span> {{'Pick up ' | translate}}: {{pickupType}}  </span>
+                    </div>
+                    <div class="col-4 dataBooking">
+                        <span> {{'Drop off ' | translate}}: {{typeDrop}}  </span>
+                    </div>
+                    <div class="col-4 dataBooking">
+                        <span> {{'Rent type' | translate}}: {{typeRent}}  </span>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-7 dataBooking">
+                        <span> {{'Departure place' | translate}}: {{voucherDetailsModel.search.departPlace}}  </span>
+                    </div>
+                    <div class="col- dataBooking">
+                        <span>  {{'Date/Time' | translate}}: {{voucherDetailsModel.search.arrivalDate | date:'dd/MM/yyyy'}} at {{voucherDetailsModel.search.arrivalTimeH}} : {{voucherDetailsModel.search.arrivalTimeM}}</span>
+
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-7 dataBooking">
+                        <span> {{'Arrival place' | translate}}: {{voucherDetailsModel.search.dropoffName}}  </span>
+                    </div>
+                    <div *ngIf="voucherDetailsModel.search.dtReturn" class="col- dataBooking">
+                        <span>  {{'Return Date/Time' | translate}}: {{voucherDetailsModel.search.dtReturn | date:'dd/MM/yyyy'}} at {{voucherDetailsModel.search.departureTimeH}} : {{voucherDetailsModel.search.departureTimeM}}</span>
+
+                    </div>
+                </div>
+                <br>
+
+                <div class="row">
+                    <div class="col-3 dataBooking">
+                        <span> {{'Total pax' | translate}}: {{voucherDetailsModel.search.nopax}}  </span>
+                    </div>
+                    <div *ngIf="voucherDetailsModel.search.noadults > 0" class="col-3 dataBooking">
+                        <span> {{'Adult' | translate}}: {{voucherDetailsModel.search.noadults}}  </span>
+                    </div>
+                    <div *ngIf="voucherDetailsModel.search.nochildren > 0" class="col-3 dataBooking">
+                        <span> {{'Children' | translate}}: {{voucherDetailsModel.search.nochildren}}  </span>
+                    </div>
+                    <div *ngIf="voucherDetailsModel.search.noinfants > 0" class="col-3 dataBooking">
+                        <span> {{'Infant' | translate}}: {{voucherDetailsModel.search.noinfants}}  </span>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <hr>
+            <div *ngIf="voucherDetailsModel.search.chrComment">
+                <h2>{{'Note:' | translate}}</h2>
+                <div class="alert alert-warning" role="alert">
+                    {{voucherDetailsModel.search.chrComment}}
+                </div>
+            </div>
+
+            <!-- <img style="margin-bottom: 20px; border: 4px solid rgb(80, 160, 235); width: 100%;" src='https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/geojson(%7B%22type%22%3A%22FeatureCollection%22%2C%22features%22%3A%5B%7B%22type%22%3A%22Feature%22%2C%22properties%22%3A%7B%22marker-color%22%3A%22%23462eff%22%2C%22marker-size%22%3A%22medium%22%2C%22marker-symbol%22%3A%22bus%22%7D%2C%22geometry%22%3A%7B%22type%22%3A%22Point%22%2C%22coordinates%22%3A%5B{{search.pickupLatitude}},{{search.pickupLongitude}}%5D%7D%7D%2C%7B%22type%22%3A%22Feature%22%2C%22properties%22%3A%7B%22marker-color%22%3A%22%23d505ff%22%2C%22marker-size%22%3A%22medium%22%2C%22marker-symbol%22%3A%22music%22%7D%2C%22geometry%22%3A%7B%22type%22%3A%22Point%22%2C%22coordinates%22%3A%5B{{search.dropoffLatitude}},{{search.dropoffLongitude}}%5D%7D%7D%5D%7D)/{{search.pickupLatitude}},{{search.pickupLongitude}},9/500x300?access_token=pk.eyJ1IjoiYXltZW56ZW1uaSIsImEiOiJja2hjMXo3bzEwYm54MnRtaXF3eHlxM2UxIn0.bJQiP_oOZGwrEstnMOU2AQ'> -->
+
+            <img style="margin-bottom: 20px; border: 4px solid rgb(197, 222, 247); width: 100%;" src='https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/pin-s-a+9ed4bd({{voucherDetailsModel.search.pickupLatitude}},{{voucherDetailsModel.search.pickupLongitude}}),pin-s-b+000({{voucherDetailsModel.search.dropoffLatitude}},{{voucherDetailsModel.search.dropoffLongitude}}),path-5+f44-0.5({{polyLineCode}})/auto/500x300?access_token=pk.eyJ1IjoiYXltZW56ZW1uaSIsImEiOiJja2hjMXo3bzEwYm54MnRtaXF3eHlxM2UxIn0.bJQiP_oOZGwrEstnMOU2AQ'>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,132 @@
+<div class="container-fluid home-bg">
+
+
+    <!-- <div class="container"> -->
+        <div class="section-tab text-center pl-4">
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center active navtab-with-arrow" id="flight-tab" data-toggle="tab" href="#flight"
+
+                        role="tab" aria-controls="flight" aria-selected="true">
+                        <i class="la la-plane mr-1  la-icon"></i>Flights
+                    </a>
+                </li>
+
+
+               
+
+            </ul>
+        </div>
+
+        <div class="tab-content search-fields-container">
+            <div class="tab-pane fade show active" id="flight" role="tabpanel" aria-labelledby="flight-tab">
+                <div id="myTabContent" class="p-4">
+                <app-search-form #searchFligh></app-search-form>
+                <div class="row ">
+                    <div class="col-12 text-right mrgBtm ">
+                        <button type="button" class="btn btn-primary col-sm-11 col-md-2"
+                        [disabled]="searchFligh.disableButtonSearch()"
+                            (click)="searchFlight(searchFligh.getSearchModel())">
+                            <!-- <i class="la la-search  mr-2"></i>  -->
+                            <span>{{'Search' |translate}}</span>
+                            <div class="icon2 d-flex align-items-center justify-content-center">
+                                <i class="la la-search"></i>
+                            </div>
+                        </button>
+                        <!-- <button type="button" [disabled]="loadingSearch" (click)="searchHotel.reset()"
+                            class="btn btn-primary col-sm-11 col-md-2">
+                            <span>
+                                {{'Refresh' |translate}}</span>
+                            <div class="icon d-flex align-items-center justify-content-center">
+                                <i class="la la-sync-alt"></i>
+                            </div>
+                        </button> -->
+                    </div>
+                </div>
+                </div>
+            </div><!-- end tab-pane -->
+
+            <div class="tab-pane fade " id="hotel" role="tabpanel" aria-labelledby="hotel-tab">
+
+                <div id="myTabContent" class="p-4">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="search-title">
+                            {{'Find Your Best Deal, Here' | translate}}</div>
+                    </div>
+
+                    <app-hotel-search-form #searchHotel> </app-hotel-search-form>
+                    <div class="row ">
+
+                        <div class="col-sm-12 col-md-12 text-right mrgBtm">
+                            <button type="button" class="btn btn-primary col-sm-11 col-md-2"
+                                [disabled]="searchHotel.disableButtonSearch()"
+                                (click)="search(searchHotel.getSearchModel())">
+                                <!-- <i class="la la-search  mr-2"></i>  -->
+                                <span>{{'Find Your Hotel' |translate}}</span>
+                                <div class="icon2 d-flex align-items-center justify-content-center">
+                                    <i class="la la-search"></i>
+                                </div>
+                            </button>
+                            <!-- <button type="button" [disabled]="loadingSearch" (click)="searchHotel.reset()"
+                                class="btn btn-primary col-sm-5 col-md-5">
+                                <span>
+                                    {{'Refresh' |translate}}</span>
+                                <div class="icon d-flex align-items-center justify-content-center">
+                                    <i class="la la-sync-alt"></i>
+                                </div>
+                            </button> -->
+                        </div>
+                    </div>
+                </div>
+                <div id="myTabContent1" *ngIf="latestSearch">
+                    <!-- <div class="col-sm-12 col-md-6">
+                        <div class="lastest-title">
+                            {{'Latest Search' | translate}}</div>
+                    </div> -->
+                    <div class="col-md-12 card-columns mx-auto p-0 m-0">
+                        <div class="card-lastes-search mb-3" *ngFor="let item of latestSearch;let index = index"
+                            (click)="searchHotel.getSearch(item)" title="Latest Search">
+                            <div class="text-center py-3 ">
+                                <i class="fas fa-history icon"></i> {{index+1}} - {{item.destHotel}} <br> {{'From'|
+                                translate}} {{item.dtCheckin |date:'dd/MM/yyyy'}} {{'To'| translate}} {{item.dtCheckout
+                                |date:'dd/MM/yyyy'}} <br> {{'Search date' | translate}} : {{ item.dtRecherche | date:'dd/MM/yyyy'}} {{item.nbrNuitee}} {{'Nights' | translate}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div><!-- end tab-pane -->
+
+
+            <div class="tab-pane fade" id="transfer" role="tabpanel" aria-labelledby="transfer-tab">
+                <div  id="myTabContent" class="p-4">
+                    <app-search-form-transfer #searchTransfer></app-search-form-transfer>
+                    <div class="row mt-4">
+                        <div class="col-12 text-right mrgBtm">
+                            <!-- [disabled]="searchTransfer.disableButtonSearch()" -->
+
+                            <button type="button" class="btn btn-primary col-sm-11 col-md-2"
+                                (click)="searchTransfer1(searchTransfer.getSearchModel())">
+                                <span>{{'Search' |translate}}</span>
+                                <div class="icon2 d-flex align-items-center justify-content-center">
+                                    <i class="la la-search"></i>
+                                </div>
+                            </button>
+                            <!-- <button type="button" [disabled]="loadingSearch" (click)="searchHotel.reset()"
+                                class="btn btn-primary col-sm-11 col-md-2">
+                                <span>
+                                    {{'Refresh' |translate}}</span>
+                                <div class="icon d-flex align-items-center justify-content-center">
+                                    <i class="la la-sync-alt"></i>
+                                </div>
+                            </button> -->
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- end tab-pane -->
+
+        </div>
+        <!-- </div> -->
+    <!-- </div> -->

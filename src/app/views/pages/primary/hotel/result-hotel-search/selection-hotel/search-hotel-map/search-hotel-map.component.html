@@ -1,0 +1,42 @@
+<div id="map-mapbox" class="map-mapboxx">
+    <div id="map-mapbox1" class="map-mapboxx1">
+        <div id="map-popup" *ngIf="showCard">
+            <!-- <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="row">
+                        <img *ngIf="hotelResult.logo !==null" [src]="hotelResult.logo">
+                        <img *ngIf="hotelResult.logo === null || hotelResult.logo === undefined" src="../../../../../../../../assets/sra-sa/images/hotels/hotel-unknown.jpg">
+
+                        <div class="col hotelname"> 
+
+
+                            
+                            <div class="row">
+                                <div class="hotelname1">{{hotelResult.name}}</div>
+
+                                <div class="col- marginLeft" *ngIf="hotelResult.rating === 3">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                                <div class="col- marginLeft" *ngIf="hotelResult.rating === 4">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                                <div class="col- marginLeft" *ngIf="hotelResult.rating === 5">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                            </div>
+
+                            <div class="absolute">
+                                <div class="col text-right">
+                                    <div class="txtAmnt">
+                                        {{hotelResult.price.amount}} {{codeDevise}}
+                                        <button class="btn btn-primary btn-sm" type="button" (click)="selectHotel(hotelResult)"> <span>{{'Select'|translate}}</span> </button></div>
+                                </div>
+                            </div>
+                            <div class="badge-corner-top">{{hotelResult.gds}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</div>

@@ -1,0 +1,323 @@
+<div class="container-fluid">
+  <div *ngIf="mainPage && !showVoucher"  class="mt-4 mb-4 pb-4">
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        <h3 class="title">
+          <button
+            ngbTooltip="{{ 'back' | translate }}"
+            placement="bottom"
+            class="btn btn-primary btn-sm ml-2"
+            (click)="back()"
+          >
+            <i class="fas fa-arrow-left"></i>
+          </button>
+          {{ "Booking Details" | translate }}
+        </h3>
+      </div>
+      <div class="col-md-6 col-sm-12 text-right">
+        <div class="btn-group" role="group" aria-label="actionReq">
+          <div *ngIf="bookingDetails && bookingDetails.etat === 'Tickted'">
+            <button
+              type="button"
+              (click)="void()"
+              [disabled]="showRefund || showReissue"
+              class="btn btn-sm"
+              [ngClass]="{
+                'btn-primary': !(showRefund || showReissue),
+                'btn-secondary': showRefund || showReissue
+              }"
+            >
+              {{ "Void" | translate }}
+            </button>
+            <button
+              type="button"
+              (click)="refund()"
+              [disabled]="showVoid || showReissue"
+              class="btn btn-sm"
+              [ngClass]="{
+                'btn-primary': !(showVoid || showReissue),
+                'btn-secondary': showVoid || showReissue
+              }"
+            >
+              {{ "Refund" | translate }}
+            </button>
+            <button
+              type="button"
+              (click)="reissue()"
+              [disabled]="showVoid || showRefund"
+              class="btn btn-sm"
+              [ngClass]="{
+                'btn-primary': !(showVoid || showRefund),
+                'btn-secondary': showVoid || showRefund
+              }"
+            >
+              {{ "Reissue" | translate }}
+            </button>
+          </div>
+          
+        </div>
+
+        <div
+          class="btn-group"
+          *ngIf="bookingDetails && bookingDetails.etat === 'Booking'"
+          role="group"
+          aria-label="actionReq"
+        >
+        <button
+            type="button"
+            *ngIf="bookingDetails.codeGds === 'AMA'"
+            class="btn btn-sm btn-primary"
+            (click)="updateTKTL()"
+          >
+            {{ "Update TKTL" | translate }}
+          </button>
+          <button
+            type="button"
+            class="btn btn-sm btn-primary"
+            (click)="cancelTicket()"
+          >
+            {{ "Cancel ticket" | translate }}
+          </button>
+          <button
+            type="button"
+            class="btn btn-sm btn-primary"
+            (click)="orderEticket()"
+          >
+            {{ "Order
+                        ticket" | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col-md-3 col-sm-6">
+        <b>{{ "Agency :" | translate }} </b> {{ bookingDetails.idTiers }}-{{
+          bookingDetails.tiersName
+        }}
+      </div>
+      <div class="col-md-2 col-sm-6">
+        <b> {{ "Ref." | translate }} :</b> {{ bookingDetails.uniqueId }}
+      </div>
+      <div class="col-md-2 col-sm-6">
+        <b> {{ "PNR No." | translate }} :</b> {{ bookingDetails.numPnr }}
+      </div>
+      <div class="col-md-2 col-sm-6">
+        <b> {{ "Passengers number" | translate }} :</b>
+        {{ bookingDetails.passengers.length }}
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <b> {{ "Status" | translate }} :</b> {{ bookingDetails.etat }} on
+        {{ bookingDetails.dateEtat | date: "dd/MM/yyyy hh:mm" }} by
+        {{ bookingDetails.editedBy }}
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <b> {{ "Ticketed On" | translate }} :</b>
+        {{ bookingDetails.officeId }} 
+        </div>   <div class="col-md-2 col-sm-6">
+        <b> Imported On:</b>
+        {{ bookingDetails.importedOn }} </div><div class="col-md-2 col-sm-6" *ngIf="bookingDetails.sector"> <b> Sector:</b> {{ bookingDetails.sector }} </div>
+        <div class="col-md col-sm-6" *ngIf="bookingDetails.tktTimeLimit">
+         <b> Tkt time limit:</b> {{bookingDetails.tktTimeLimit}}
+      </div>
+    </div>
+
+    <div *ngIf="!(showVoid || showRefund || showReissue)">
+      <hr />
+      <h4 class="title mt-2">{{ "Itinerary informations" | translate }}</h4>
+      <div class="table-responsive">
+        <table class="table table-borderless min-padding">
+          <thead>
+            <tr>
+              <th scope="col">
+                <b>{{ "Airlines" | translate }}</b>
+              </th>
+              <th scope="col">
+                <b>{{ "Flight No" | translate }}</b>
+              </th>
+              <th scope="col">
+                <b>{{ "Departure" | translate }} </b>
+              </th>
+              <th scope="col">
+                <b>{{ "Arrival" | translate }}</b>
+              </th>
+              <th scope="col">
+                <b>{{ "GDS PNR" | translate }} </b>
+              </th>
+              <th scope="col">
+                <b>{{ "Airline PNR" | translate }}</b>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of bookingDetails.segments">
+              <td><img  style="width:100px; height: auto;" src="{{ getSrcImg(item.codeCom) }}" /></td>
+              <td>{{ item.codeCom }}{{ item.flightNum }}</td>
+              <td>
+                {{ item.villeDepNom }} ({{ item.villeDepCode }})
+                {{ item.dateDepart | date: "dd/MM/yyyy" }}
+                {{ item.heureDepart }}
+              </td>
+              <td>
+                {{ item.villeArrNom }} ({{ item.villeArrCode }})
+                {{ item.dateArrivee | date: "dd/MM/yyyy" }}
+                {{ item.heureArrivee }}
+              </td>
+              <td>{{ bookingDetails.numPnr }}</td>
+              <td>{{ bookingDetails.airlinePnr }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <hr />
+      <h4 class="title">{{ "Traveler information" | translate }}</h4>
+      <div class="table-responsive">
+        <table class="table table-borderless min-padding">
+          <thead>
+            <tr>
+              
+              <th scope="col">
+                <b>{{ "Passenger" | translate }}</b>
+              </th>
+              <th scope="col">
+                <b>{{ "Num ticket" | translate }}</b>
+              </th>
+              <!-- <th scope="col"> <input [(ngModel)]="displayPrice" type="checkbox" id="display"
+                                    name="display" >
+                                <label for="display">{{'Display ticket price?'|translate}}</label>
+                            </th> -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let item of bookingDetails.passengers; let index = index"
+            >
+               
+              <td> {{ item.firstName }}</td>
+              <td>{{ item.numTicket }}</td>
+              <td>
+                <button
+                  class="btn btn-primary btn-sm"
+                  (click)="voucher(item)"
+                  ngbTooltip="{{ 'voucher' | translate }} : {{item.firstName}} "
+                >
+                <i class="fas fa-file-invoice"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <hr />
+      <h4 class="title">{{ "Payment" | translate }}</h4>
+      <div class="row">
+        <div class="col">
+          {{ "Basic fare" | translate }} :
+          <b>
+            <div class="d-flex">
+              <div class="mr-2">{{ format(bookingDetails.fareBasic) }}</div>
+              <div>{{ bookingDetails.currencyCode }}</div>
+            </div>
+          </b>
+        </div>
+        <div class="col">
+          {{ "Tax" | translate }} :
+          <b>
+            <div class="d-flex">
+              <div class="mr-2">{{ format(bookingDetails.tax) }}</div>
+              <div>{{ bookingDetails.currencyCode }}</div>
+            </div>
+          </b>
+        </div>
+        <div class="col">
+          {{ "Total fare" | translate }} :
+          <b>
+            <div class="d-flex">
+              <div class="mr-2">{{ format(bookingDetails.totalFare) }}</div>
+              <div>{{ bookingDetails.currencyCode }}</div>
+            </div>
+          </b>
+        </div>
+      </div>
+      <!--<div class="table-responsive">
+                <table class="table  table-borderless  min-padding">
+                    <thead>
+                        <tr>
+                            <th scope="col"> </th>
+                            <th scope="col"><b>{{'Customer currency'|translate}}</b> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th><b>Basic fare:</b> </th>
+                            <td> {{bookingDetails.fareBasic}}&nbsp; {{bookingDetails.currencyCode}}</td>
+                        </tr>
+                        <tr>
+                            <th><b>Tax:</b> </th>
+                            <td> {{bookingDetails.tax}}&nbsp; {{bookingDetails.currencyCode}}</td>
+                        </tr>
+                        <tr>
+                            <th><b>Total fare:</b> </th>
+                            <td> {{bookingDetails.totalFare}} &nbsp; {{bookingDetails.currencyCode}}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>-->
+      <hr />
+      <h4 class="title">{{ "History" | translate }}</h4>
+      <div class="table-responsive">
+        <table class="table table-borderless">
+          <thead>
+            <tr>
+              <th scope="col">
+                <b>{{ "Unique ID" | translate }} </b>
+              </th>
+              <th scope="col">
+                <b>{{ "Ref. piece" | translate }}</b>
+              </th>
+              <th scope="col">
+                <b>{{ "History details" | translate }} </b>
+              </th>
+              <th scope="col">
+                <b>{{ "Time" | translate }} </b>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of bookingDetails.history">
+              <td>{{ item.uniqueId }}</td>
+              <td>{{ item.refPiece }}</td>
+              <td>{{ item.historyDetails }}</td>
+              <td>{{ item.time | date: "dd/MM/yyyy hh:mm" }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <app-refund-request
+      [data]="bookingDetails"
+      (backward)="cancel($event)"
+      *ngIf="showRefund"
+    ></app-refund-request>
+    <app-reissue-request
+      [data]="bookingDetails"
+      (backward)="cancel($event)"
+      *ngIf="showReissue"
+    >
+    </app-reissue-request>
+    <app-void-request
+      [data]="bookingDetails"
+      (backward)="cancel($event)"
+      *ngIf="showVoid"
+    ></app-void-request>
+
+    <app-custom-loading *ngIf="loading"></app-custom-loading>
+  </div>
+     <app-flight-history-details-voucher
+    *ngIf="showVoucher && this.voucherData"
+    [data]="voucherData"
+    (backward)="cancel($event)"
+  ></app-flight-history-details-voucher>
+ 
+
+</div>

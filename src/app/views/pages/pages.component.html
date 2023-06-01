@@ -1,0 +1,46 @@
+<app-navbar></app-navbar>
+<!-- <ul class="menu menu-t mt-5"> 
+  <li> <a (click)="openCloseNav()" class="fas fa-bars d-none d-md-block "> </a></li>
+  <li *ngFor="let item of subMenu">
+    <a *ngIf="item.lmodule !== 'News' && openSidenav"  
+      [routerLink]="[item.webLink]" class="{{item.iconName}}" ngbTooltip="{{item.lmodule | translate}}"
+      tooltipClass="d-md-none" container="body" placement="bottom" [class.active-module]="item.lmodule === currentModule().lmodule" >
+    </a>
+    <a *ngIf="item.lmodule === 'News' && openSidenav" [routerLink]="[item.webLink]" class="{{item.iconName}}"
+      ngbTooltip="{{item.lmodule | translate}} ({{nbNews}})" tooltipClass="d-md-none" container="body"
+      placement="bottom" [class.active-module]="item.lmodule === currentModule().lmodule">
+    </a> 
+    <a *ngIf="item.lmodule !== 'News' && !openSidenav" 
+      [routerLink]="[item.webLink]" class="{{item.iconName}}" ngbTooltip="{{item.lmodule | translate}}" container="body"
+      placement="right" [class.active-module]="item.lmodule === currentModule().lmodule">
+    </a>
+    <a *ngIf="item.lmodule === 'News' && !openSidenav" [routerLink]="[item.webLink]" class="{{item.iconName}}"
+      ngbTooltip="{{item.lmodule | translate}} ({{nbNews }})" container="body" placement="right"
+      [class.active-module]="item.lmodule === currentModule().lmodule">
+    </a>
+  </li>
+</ul>
+
+<div *ngIf="openSidenav">
+  <ul class="menu-bar menu-t mt-4">
+    <li> <a (click)="openCloseNav()">  </a></li>
+    <li *ngFor="let item of subMenu">
+      <a [routerLink]="[item.webLink]"  [class.active-module]="item.lmodule === currentModule().lmodule" >{{item.lmodule| translate}}
+        <span class="badge badge-pill badge-danger" *ngIf="item.lmodule === 'News'">{{nbNews }}</span>
+      </a></li>
+  </ul>
+</div> -->
+
+
+<!-- <div id="main"  [style.marginLeft]="navML">
+  <nav aria-label="breadcrumb" *ngIf="currentModule().lmodule" style="margin-top: 52px;" >
+    <ol class="breadcrumb mb-0">
+
+      <li class="breadcrumb-item active title">{{currentModule().lmodule | translate}}
+      </li>
+    </ol>
+  </nav>
+
+  <button (click)="topFunction()"  id="myBtn" title="Go to top"><i class="fas fa-chevron-up"></i></button>
+</div> -->
+<router-outlet></router-outlet>

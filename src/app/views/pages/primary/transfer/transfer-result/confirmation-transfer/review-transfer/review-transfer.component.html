@@ -1,0 +1,96 @@
+<div class="row mt-2">
+    <div class="col-md-2">
+        <div class="row">
+            <div class="col  text-md-center">
+                <img src="{{transferDetails.general.VehicleImage}}" class="img-title"
+                    alt="{{transferDetails.general.producttype}}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col  text-md-center">
+                <span class="clickable details-span mr-2" *ngIf="transferDetails.general.SmallBagAllowance "
+                    title="Small Bag">
+                    <i class="fas fa-suitcase mr-2"></i>{{transferDetails.general.SmallBagAllowance}}
+                </span>
+
+                <span class="clickable mr-2" title="Laguage"> <i
+                        class="fas fa-suitcase-rolling mr-2 details-span"></i>{{transferDetails.general.luggage}}
+                </span>
+
+                <span class="clickable mr-2" *ngIf="transferDetails.general.Min_Stops>0">
+                    <i class="fas fa-hand-paper details-span mr-2"></i>
+                    {{transferDetails.general.Min_Stops}} - {{transferDetails.general.Max_Stops}}
+                </span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-md-center">
+                <small class="text-muted">{{'provided by' | translate}}</small> <br>
+                <img src="{{transferDetails.general.Company_Logo}}" class="img-logo" title="Company"
+                    alt="{{transferDetails.general.TransferCompany}}">
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="row">
+            <div class="col">
+                <span class="h6"><b>{{transferDetails.general.producttype}}</b></span> <br>
+                <span class="text-muted">{{traject | translate}}</span> <br>
+                <span class="text-muted">{{transferDetails.general.description}}</span>
+            </div>
+            <div class="col-md-3 col-sm-6">
+
+                <!--<span class=" clickable" *ngIf="transferDetails.general.IsDeposit > 0 else notDeposit">
+                    <i class="fas fa-exclamation-circle details-span mr-2"></i> {{'Pay Now' | translate}}
+                </span>
+                <ng-template #notDeposit>
+                   
+                    <span class=" clickable">
+                        <i class="fas fa-hand-holding-usd details-span mr-2"></i>
+                        {{'Pay at Pick-up' |translate}}
+                    </span>
+                </ng-template>-->
+                <br>
+                <span *ngIf="transferDetails.general.NumberOfReviews>0" class=" clickable" title="Number of reviews"><i
+                        class="far fa-star details-span mr-2"></i>
+                    {{transferDetails.general.Rating}} | {{transferDetails.general.NumberOfReviews}} 
+                    {{'review'|translate}}
+                </span> <br>
+
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-4">
+                <div class="row">
+                    <div class="col text-muted"><b>{{'Pick-Up' | translate}}</b></div>
+                </div>
+                <div class="row">
+                    <div class="col"> <b>{{searchResult.origin_name}} ({{searchResult.origin_type}}) </b> </div>
+                </div>
+                <div class="row">
+                    <div class="col"> {{searchResult.origin_details}} </div>
+                </div>
+            </div>
+            <div class="col-1 pt-4">
+                <i class="fas fa-arrow-right  details-span"></i>
+            </div>
+            <div class="col-4">
+                <div class="row">
+                    <div class="col text-muted"><b>{{'Drop-Off'| translate}}</b></div>
+                </div>
+                <div class="row">
+                    <div class="col"> <b>{{searchResult.end_name}} ({{searchResult.end_type}}) </b></div>
+                </div>
+                <div class="row">
+                    <div class="col"> {{searchResult.end_details}} </div>
+                </div>
+            </div>
+            <div class="col text-muted">
+                {{searchResult.adults}} {{'Adult' | translate}} <span *ngIf="searchResult.children>0">
+                    {{searchResult.children}} {{'Children' | translate}} </span> <span *ngIf="searchResult.infants>0">
+                    {{searchResult.infants}} {{'Infant' | translate}}</span>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,7 @@
+version: '2'
+services:
+  frontendb2b:
+    image: gitlab2.worldsoftgroup.com:5050/b2b/b2b-frontend/frontend-b2b-sra
+    ports:
+      - "4200:80"
+    restart: always

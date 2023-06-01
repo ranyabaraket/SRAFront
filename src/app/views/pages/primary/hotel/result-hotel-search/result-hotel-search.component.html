@@ -1,0 +1,21 @@
+<div class="container-fluid">
+    <div class="row workflow">
+        <hr>
+        <div class="col" *ngFor="let step of steps">
+            <div class="row" >
+                <div class="col text-center">
+                    <button class="btn btn-sm btn-primary m-0" ngbTooltip="{{step.name}}" placement="bottom" tooltipClass="d-md-none" [routerLink]="[step.link]" [ngClass]="{'btn-danger' : step.active,'btn-light' : !step.active}">
+                        <i class="{{step.icon}}" #center></i></button>
+                </div>
+            </div>
+            <div class="row ">
+                <div class="col text-center">
+                    <span class="d-none d-md-block text-muted">{{step.name | translate}}</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <router-outlet></router-outlet>
+    <!--(activate)="onActivate($event)"-->
+</div>

@@ -1,0 +1,343 @@
+<div class="container-fluid mb-4  ">
+    <div class="row mt-4 mb-3">
+        <div class="col-12 ">
+
+            <div class="voucherRef">
+                <div class="col-md-2 col-sm-6 ">
+                    <img [src]="entityLogo" style="width: 100% !important; height:auto !important;">
+                </div>
+                <h1><em>{{'Hotel voucher N°'|translate}} {{data.bookingDetails.voucherRef}} </em></h1>
+            </div>
+            <div class="row">
+                <div class="text-right">
+                    <button class="btn btn-primary btn-sm"  placement="bottom" ngbTooltip="{{'SEND EMAIL' | translate}}" ><i class="fas fa-envelope"></i></button>
+
+                    <button class="btn btn-success btn-sm" ngbTooltip="{{'print' | translate}}" placement="bottom"
+                     [printStyle]="{src:{'width' :'20%!important'}}" [useExistingCss]="true" printSectionId="print-section" ngxPrint><i class="fas fa-print"></i></button>
+                    <button class="btn btn-danger btn-sm ml-2" ngbTooltip="{{'close' | translate}}" placement="bottom" (click)="cancel()"><i class="fas fa-times"></i></button>
+
+                </div>
+                <div class="col-md-10 col-sm-6  text-muted text-left">{{tiersName}}
+                    <br>
+                    <i class="fas fa-envelope-open-text text-muted mr-2"></i> info@sra-sa.com <br>
+                    <i class="fas fa-phone-square-alt mr-2"></i> {{callCenter}}
+
+                </div>
+
+            </div>
+           
+            <!--<div class="text-center">
+                <h4 class="title">
+                        <table>
+                                <tr>
+                                  <td>  {{'Hotel voucher N°'|translate}}</td>
+                                <td>{{data.bookingDetails.voucherRef}}</td>
+                                </tr>
+                              </table> 
+                    
+                    </h4>
+            </div>-->
+        </div>
+
+    </div>
+    <div class="row" id="print-section">
+        <div class="col-12">
+            <br>
+            <hr>
+            <div>
+                <div class="row">
+                    <div class="voucherRef">
+                    <div class="col-md-12 text-center">
+                        <h2>{{'Agency & User details' | translate}}</h2>
+                    </div>
+                </div>
+                </div>
+                <hr>
+                <div class="row destination text-center">
+                    <div class="col-md-12 ">
+                    <span> {{data.bookingDetails.hotelName}} </span>
+                </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 dataBooking">
+                        <span> {{data.bookingDetails.hotelName}} </span>
+                    </div>
+                    <div class="col-6 dataBooking">
+                        <span> {{'Check in' | translate}}: {{data.bookingDetails.checkIn | date:'dd/MM/yyyy'}}</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6 dataBooking">
+                        <span> {{data.bookingDetails.adresse}} </span>
+                    </div>
+                    <div class="col-6 dataBooking">
+                        <span> {{'Check out' | translate}}: {{data.bookingDetails.checkOut | date:'dd/MM/yyyy'}} // {{
+                            data.bookingDetails.nbNights}} {{'Night(s)' | translate}}</span>
+
+                    </div>
+                </div>
+                <div class="row" *ngFor="let item of data.bookingDetails.passengers ">
+                    <div class="col-12 dataBooking">
+                        <span> {{item.civilite}} {{item.name}} </span>
+                    </div>
+
+                </div>
+            </div>
+            <hr>
+
+
+            <!-- <div class="row">
+                <div class="col-" *ngIf="showIcon">
+
+                    <i class="far fa-plus-square icon clickable" style="margin-left: 10px;" matTooltip="Show Price" (click)="showPrice1()"></i>
+                </div>
+                <div class="col-3 dataBooking" *ngIf="showPrice">
+                    <span> Price :</span>
+                </div>
+                <div class="col- dataBooking11" *ngIf="showPrice">
+                    <span> {{prixRes}} {{dataToConfirmReservation.hotel.codeDev}} 
+                </span>
+                </div>
+                <div class="col-" *ngIf="showPrice">
+                    <i class="far fa-minus-square icon clickable" style="margin-left: 10px;" matTooltip="Hide Price" (click)="showPrice11()"></i>
+                </div>
+
+
+            </div> -->
+            <hr>
+            <div class="row">
+                <div class="col-2 dataBooking12">
+                    <strong> {{'Room' | translate}} </strong>
+                </div>
+                <div class="col-3 dataBooking12">
+                    <strong>{{'Room type' | translate}}</strong>
+                </div>
+                <div class="col-3 dataBooking12">
+                    <strong>{{'meals' | translate}}</strong>
+                </div>
+                <div class="col-2 dataBooking12">
+                    <strong>{{'Adults' | translate}}</strong>
+                </div>
+                <div class="col-2 dataBooking12">
+                    <strong>{{'Children' | translate}}</strong>
+                </div>
+            </div>
+            <!--<div class="row">
+                <div class="col-2 dataBooking1">
+                    <span> {{'Room' | translate}} 1</span>
+                </div>
+                <div class="col-3 dataBooking1">
+                    <span> {{dataToConfirmReservation.passengerHotelBooking.rooms[0].roomName}}</span>
+                </div>
+                <div class="col-3 dataBooking1">
+                    <span> {{dataToConfirmReservation.passengerHotelBooking.rooms[0].roomOptions[0].arrgs}}</span>
+                </div>
+                <div class="col-2 dataBooking1">
+                    <span> {{dataToConfirmReservation.hotel.rooms[0].nbAdult}}</span>
+                </div>
+                <div class="col-2 dataBooking1">
+                    <span> {{dataToConfirmReservation.hotel.rooms[0].nbChildren}}</span>
+                </div>
+            </div>-->
+            <div class="row" *ngFor="let item of data.bookingDetails.roomsBooked; let j=index">
+                <div class="col-2 dataBooking1">
+                    <span> {{'Room' | translate}} {{j+1}} </span>
+                </div>
+                <div class="col-3 dataBooking1">
+                    <span> {{item.roomName}} </span>
+                </div>
+                <div class="col-3 dataBooking1">
+                    <span> {{item.arrgs}}</span>
+                </div>
+                <div class="col-2 dataBooking1">
+                    <span> {{item.adultsNo}}</span>
+                </div>
+                <div class="col-2 dataBooking1">
+                    <span> {{item.childrenNo}}</span>
+                </div>
+            </div>
+            <br>
+            <hr>
+            <hr>
+
+            <div class="col-12">
+                <div class="row destination text-center"> 
+                <h2>{{'Important notes' | translate}} :</h2>
+    
+            </div>
+                <hr>
+                <!-- <div class="notes">
+                    <span>attention :</span> <br>
+                    <span>Some hotels may ask for a room guarantee in cash or credit card upon arrival at the end of their stay.</span><br>
+                    <span>A tourist tax may be required in certain countries (excluding the cost of the reservation).</span>
+                </div> -->
+                <div class="alert alert-warning" role="alert">
+
+                    <!-- <div *ngIf="dataToDisplay.hotelNorms.length != 0"> -->
+                    <p [innerHTML]="data.bookingDetails.txtDesc"></p>
+                    <!-- </div> -->
+                    <!--<b>{{'cancelation policy' | translate}} :</b> {{dataToConfirmReservation.policy}}
+                    <div *ngFor="let item of dataToConfirmReservation.checkAvailabilityRoom.cancellationRoom; let index = index">
+                        <div *ngIf="item.chargeType === 'Percentage'">
+                            <b>{{'Note' | translate}} </b> : {{'From' | translate}} {{item.fromDate | date:'dd/MM/yyyy' }} {{'To' | translate}} {{item.toDateCnl | date:'dd/MM/yyyy' }} , {{'charge amnt' | translate}} {{item.chargeType}} : {{item.cancelCharge}}
+                            %
+                        </div>
+                        <div *ngIf="item.chargeType != 'Percentage'">
+                            <b>{{'Note' | translate}} </b> : {{'From' | translate}} {{item.fromDate | date:'dd/MM/yyyy' }} {{'To' | translate}} {{item.toDateCnl | date:'dd/MM/yyyy' }} , {{'charge amnt' | translate}} {{item.chargeType}} : {{item.cancelCharge}}
+                            {{item.codeDevise}}
+                        </div>
+                    </div>-->
+                    <b>{{'cancelation policy' | translate}} :</b>
+                    <div *ngFor="let item of data.concelationHotel; let index = index">
+                        <div *ngIf="item.chargeType === 'Percentage'">
+                            <b>{{'Note' | translate}} </b> : {{'From' | translate}} {{item.fromDate | date:'dd/MM/yyyy' }} {{'To' | translate}} {{item.toDateCnl | date:'dd/MM/yyyy' }} , {{'charge amnt' | translate}} {{item.chargeType}} : {{item.cancelCharge}}
+                            %
+                        </div>
+                        <div *ngIf="item.chargeType != 'Percentage'">
+                            <b>{{'Note' | translate}} </b> : {{'From' | translate}} {{item.fromDate | date:'dd/MM/yyyy' }} {{'To' | translate}} {{item.toDateCnl | date:'dd/MM/yyyy' }} , {{'charge amnt' | translate}} {{item.chargeType}} : {{item.cancelCharge}}
+                            {{item.codeDevise}}
+                        </div>
+                    </div>
+                    <p>
+                        {{'Some hotels may ask for a room guarantee in cash or credit card upon arrival at the end of their stay.'|translate}} {{'A tourist tax may be required in certain countries (excluding the cost of the reservation).'|translate}}
+                    </p>
+
+                </div>
+
+                <hr>
+                <img style="margin-bottom: 20px; border: 4px solid rgb(80, 160, 235); width: 100%;" src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/pin-l-embassy+f74e4e({{data.longitude}},{{data.latitude}})/{{data.longitude}},{{data.latitude}},14/800x500?access_token=pk.eyJ1IjoiYXltZW56ZW1uaSIsImEiOiJja2hjMXo3bzEwYm54MnRtaXF3eHlxM2UxIn0.bJQiP_oOZGwrEstnMOU2AQ"
+                />
+
+            </div>
+
+        </div>
+    </div>
+    <!---- <div class="row ">
+        <div class="col-12">
+            <h5 class="title">{{'Agency & User details'|translate}}</h5>
+        </div>
+    </div>
+    <div class="row ">
+        <div class="col-md-6 col-sm-12">
+            <div class="row">
+                <div class="col-md-4 col-sm-12"> <img [src]="tiersLogo"
+                        style="width: 120px!important; height:60px!important;"></div>
+                <div class="col-md-8 col-sm-12 text-right">{{tiersName}}
+                    <br> <a class="text-break" href="mailto:{{userInformations.tiersEmail}}">
+                        {{userInformations.tiersEmail}}</a>
+                    <br> <a href="tel:{{userInformations.tiersMobile }}">{{userInformations.tiersMobile }}</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="row">
+                <div class="col-md-4 col-sm-12"> <img [src]="data.entityLogo"
+                        style="width: 120px!important; height:60px!important;">
+                </div>
+                <div class="col-md-8 col-sm-12 text-right">{{ trUserName}}
+                    <br> <a class="text-break" href="mailto:{{profileInformations.trUserEmail}}">
+                        {{profileInformations.trUserEmail}}</a>
+                    <br> <a href="tel:{{userInformations.tiersMobile }}">{{profileInformations.trUserMobile}}</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <hr>
+    <div class="row ">
+        <div class="col-12">
+            <h5 class="title">{{'Hotel details'|translate}}
+            </h5>
+        </div>
+    </div>
+    <div class="table-responsive ">
+        <table class="table table-borderless noPadding">
+            <tr>
+                <th> <b>{{'Hotel:'|translate}}</b> </th>
+                <th> <b>{{'Hotel address:'|translate}}</b> </th>
+                <th> <b>{{'Check in:'|translate}}</b> </th>
+                <th> <b>{{'Check out:'|translate}}</b> </th>
+                <th> <b>{{'Stay duration:'|translate}}</b> </th>
+                <th> <b>{{'Guest number:'|translate}}</b> </th>
+                <th> <b>{{'Room number:'|translate}}</b> </th>
+            </tr>
+            <tr>
+                <td> {{data.bookingDetails.hotelName}} </td>
+                <td>{{data.bookingDetails.adresse}} </td>
+                <td> {{data.bookingDetails.checkIn | date:'dd/MM/yyyy'}}</td>
+                <td> {{data.bookingDetails.checkOut | date:'dd/MM/yyyy'}} </td>
+                <td>{{ diffDates(data.bookingDetails.checkOut,data.bookingDetails.checkIn)}} </td>
+                <td> {{data.bookingDetails.passengers.length}}</td>
+                <td> {{data.bookingDetails.roomsBooked.length}} </td>
+            </tr>
+        </table>
+    </div>
+    <hr>
+    <div class="row ">
+        <div class="col-12">
+            <h5 class="title">{{'Room type'|translate}}
+            </h5>
+        </div>
+    </div>
+    <div class="table-responsive ">
+        <table class="table table-borderless noPadding">
+            <tr>
+                <th> <b>{{'Room type'|translate}}</b> </th>
+                <th> <b> {{'Meal type'|translate}}</b> </th>
+                <th> <b>{{'Adults'|translate}}</b> </th>
+                <th> <b>{{'Children'|translate}}</b> </th>
+            </tr>
+            <tr *ngFor="let item of data.bookingDetails.roomsBooked">
+                <td> {{item.roomName}} </td>
+                <td>{{item.arrgs}} </td>
+                <td> {{item.adultsNo}}</td>
+                <td> {{item.childrenNo}} </td>
+            </tr>
+        </table>
+    </div>
+    <hr>
+    <div class="row ">
+        <div class="col-12">
+            <h5 class="title">{{'Guest names'|translate}}
+            </h5>
+        </div>
+    </div>
+    <div class=" table-responsive">
+        <table class="table table-borderless noPadding">
+            <tr>
+                <th> <b>{{'Type'|translate}}</b> </th>
+                <th> <b>{{'Civility'|translate}}</b> </th>
+                <th> <b> {{'Last & First name'|translate}}</b> </th>
+            </tr>
+            <tr *ngFor="let item of data.bookingDetails.passengers">
+                <td> {{item.typePers}} </td>
+                <td>{{item.civilite}} </td>
+                <td> {{item.name}}</td>
+            </tr>
+        </table>
+    </div>
+    <hr>
+    <div class="row ">
+        <div class="col-12">
+            <h5 class="title">{{'Important notes'|translate}}
+            </h5>
+        </div>
+    </div>
+    <div class="row ">
+        <div class="col-12" [innerHTML]="data.bookingDetails.txtDesc">
+
+        </div>
+    </div>
+    <div class="row  mt-2">
+        <div class="col-12">
+            <span class="text-danger"> {{'Attention'|translate}}</span>
+            <p class="text-danger">
+
+                {{'Some hotels may ask for a room guarantee in cash or credit card upon arrival at the end of their stay.'|translate}}
+
+                {{'A tourist tax may be required in certain countries (excluding the cost of the reservation).'|translate}}
+            </p>
+        </div>
+    </div>-->
+
+</div>

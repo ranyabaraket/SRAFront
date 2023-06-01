@@ -1,0 +1,67 @@
+<div class="table table-borderless min-padding">
+    <table>
+        <thead>
+            <tr>
+                <th scope="col"> <input type="checkbox" class="form-check-input" id="all"
+                        (change)="selectAllPassengers($event)" [(ngModel)]="allPassengers"> <label for="all">
+                        {{'All'|translate}} </label></th>
+                <th scope="col"> <label><b>{{'Passenger'|translate}}</b></label> </th>
+                <th scope="col"> <label> <b>{{'Gender'|translate}}</b> </label></th>
+                <th scope="col"> <label> <b>{{'Birth date'|translate}}</b> </label></th>
+                <th scope="col"> <label> <b>{{'Nationality'|translate}}</b></label> </th>
+                <th scope="col"> <label> <b>{{'Travel Doc.'|translate}} </b> </label></th>
+                <th scope="col"> <label> <b>{{'Ticket No.'|translate}} </b> </label></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of data.passengers">
+                <td> <b><input type="checkbox" class="form-check-input mb-2" [(ngModel)]="item.selected" id="all">
+                        &nbsp; </b>
+                </td>
+                <td>{{item.firstName}}</td>
+                <td> {{item.psgGender}} </td>
+                <td> {{item.psgBirthDate | date:'dd/MM/yyyy'}} </td>
+                <td>{{item.nationalite}} </td>
+                <td> {{item.numTicket}} </td>
+                <td>{{item.typeDoc}}</td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>
+<hr>
+<div class="row">
+    <div class="col-12">
+        <h4 class=" ">{{'Itinerary informations'|translate}} </h4>
+    </div>
+</div>
+<div class="table-responsive ">
+    <table class="table  table-borderless min-padding">
+        <thead>
+            <tr>
+                <th scope="col"> <b>{{'Airlines'|translate}}</b> </th>
+                <th scope="col"> <b>{{'Flight No'|translate}}</b></th>
+                <th scope="col"><b>{{'Departure'|translate}} </b> </th>
+                <th scope="col"><b>{{'Arrival'|translate}}</b></th>
+                <th scope="col"><b>{{'GDS PNR'|translate}} </b></th>
+                <th scope="col"><b>{{'Airline PNR'|translate}}</b></th>
+                <th scope="col"><b>{{'Baggage'|translate}} </b></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of data.segments">
+                <td> <img style="width:100px; height: auto;" src={{getSrcImg(item.codeCom)}}></td>
+                <td> {{item.codeCom}}{{item.flightNum}} </td>
+                <td> {{item.villeDepNom}} ({{item.villeDepCode}})
+                    {{item.dateDepart | date:'dd/MM/yyyy'}} {{item.heureDepart}} </td>
+                <td>{{item.villeArrNom}} ({{item.villeArrCode}})
+                    {{item.dateArrivee | date:'dd/MM/yyyy'}} {{item.heureArrivee}} </td>
+                <td> {{data.numPnr}} </td>
+                <td>{{data.airlinePnr}}</td>
+                <td>{{item.baggage}} </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

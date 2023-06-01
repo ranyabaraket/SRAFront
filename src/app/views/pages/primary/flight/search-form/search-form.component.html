@@ -1,0 +1,446 @@
+<form #searchForm="ngForm">
+
+    <div class="search-content">
+        <div class="row">
+            <!--Flight Type Bloc One Way / Round Trip / Multi destination-->
+            <div class="col-sm-12 col-md-5">
+                <div class="row">
+                    <div class="col" *ngFor="let TypeSearch of TypeSearchList">
+
+
+                        <div class="cursor-pointer text-center"
+                            (click)="changeValueTypeSearch(TypeSearch.value)"
+                            [ngClass]="{'bg-primary-extra-light' : searchModel.typeSearch === TypeSearch.value}">
+                            {{TypeSearch.name|
+                            translate}}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- <div class="vr"></div> -->
+            <!--Bloc Gds List-->
+            <div class="col-sm-12 col-md-7">
+                <div class="row">
+                    <div class="col-sm-3 col-md-3 cursor-pointer text-center"
+                        *ngFor="let gds of GdsList; let i=index;">
+                        <input class="form-check-input" type="checkbox" id="{{gds.value}}" name="{{gds.value}}"
+                            [checked]="gds.check" (change)="changeSelectedGds(gds)">
+                        <label class="form-check-label" for="{{gds.value}}">
+
+                            <div *ngIf="gds.check" class="bg-primary-extra-light"> {{gds.name}}</div>
+                            <div *ngIf="!gds.check"> {{gds.name}}</div>
+
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <hr class="hr-10 hr-border">
+        <div class="row">
+            <div class="col-sm-12 col-md-4">
+                <div class="input-icons">
+                    <img src="../../../../../../assets/sra-sa/images/flights/dep.png" class="image-dep">
+                    <input class="form-control input-dep" type="text"
+                        placeholder="{{'Leaving From (city,Country Or Specific Airport)' | translate}}"
+                        aria-label="State" [matAutocomplete]="autoFrom" (keyup)="getAirportsFrom($event)"
+                        name="departVol1" [(ngModel)]="inputdepartVol1"
+                        title="{{'For more details click the button help below'|translate}}">
+                    <button type="button" class="btn-transparent" (click)="openHelp('from')">
+                        <img src="../../../../../../assets/sra-sa/images/flights/point-interrogation.png" alt=""
+                            class="image-help">
+                    </button>
+
+                    <mat-autocomplete #autoFrom="matAutocomplete">
+                        <!-- <mat-option *ngIf="!inputdepartVol1" class="text-right">
+                            <i (click)="openHelp('from')"
+                                class="far fa-question-circle icon  clickable"></i>
+                        </mat-option> -->
+                        <mat-option (onSelectionChange)="filteredOptionsFromClear($event)" *ngFor=" let option of
+            filteredOptionsFrom | async" [value]="option.id.aireport+' | '+option.id.ciata">
+                            <small>{{option.id.aireport}} <a class="text-muted">{{option.id.ciata}}</a>
+                            </small>
+                        </mat-option>
+                    </mat-autocomplete>
+           
+                </div>
+
+            </div>
+            <div class="col-md-1 col-sm-2 text-center">
+                <!--Exchange TO/FROM-->
+                <button type="button" class="btn-transparent"
+                    [disabled]="!searchModel.destinationVol1 || !searchModel.departVol1"
+                    (click)="exchangePrincipaleVol()">
+                    <img src="../../../../../../assets/sra-sa/images/flights/transfer.png" alt=""
+                        class="image-exchange">
+                </button>
+            </div>
+            <div class="col-sm-12 col-md-4">
+                <div class="input-icons">
+                    <img src="../../../../../../assets/sra-sa/images/flights/arr.png" class="image-dep">
+                    <input class="input-field form-control input-dep" type="text"
+                        placeholder="{{'Going To (city,Country Or Specific Airport)'| translate}}" aria-label="State"
+                        [matAutocomplete]="autoTo" (keyup)="getAirportsTo($event)" [(ngModel)]="inputdestinationtVol1"
+                        name="destinationVol1" title="{{'For more details click the button help below'|translate}}">
+                    <button type="button" class="btn-transparent" (click)="openHelp('to')">
+                        <img src="../../../../../../assets/sra-sa/images/flights/point-interrogation.png" alt=""
+                            class="image-help">
+                    </button>
+                </div>
+                <mat-autocomplete #autoTo="matAutocomplete">
+                    <!-- <mat-option *ngIf="!inputdestinationtVol1" class="text-right"><i (click)="openHelp('to')"
+                            class="far fa-question-circle icon  clickable"></i>
+                    </mat-option> -->
+                    <mat-option (onSelectionChange)="filteredOptionsToClear($event)" *ngFor="let option of
+            filteredOptionsTo | async" [value]="option.id.aireport+' | '+option.id.ciata">
+                        <small>{{option.id.aireport}} <a class="text-muted">{{option.id.ciata}}</a>
+                        </small>
+                    </mat-option>
+                </mat-autocomplete>
+            </div>
+
+            <div class="col-sm-7 col-md-3">
+                <div *ngIf="searchModel.typeSearch === 2;else oneDatepiker">
+                    <!--In case of period-->
+                    <!-- <div class="d-flex"> -->
+
+                    <div class="input-icons">
+                        <img src="../../../../../../assets/sra-sa/images/flights/calendar.png" class="image-calendar"
+                            (click)="picker.open()">
+                        <input class="input-field form-control input-dep" type="text" (click)="picker.open()"
+                            placeholder="{{'Choose A Date'|translate}}" name="Period"
+                            value="{{searchModel.departleVol1 | date:'dd/MM/yyyy'}} to {{searchModel.retourleVol1 | date:'dd/MM/yyyy'}} {{nbDaysX}}"
+                            autocomplete="off">
+                        <!-- <i class="far fa-calendar-alt clickable icon" (click)="picker.open()"></i> -->
+                        <mat-form-field>
+                            <mat-date-range-input [min]="start" [rangePicker]="picker" class="not-display">
+                                <input matStartDate matInput (dateChange)="changeEventDepart($event)">
+                                <input matEndDate matInput (dateChange)="changeEventArrial($event)">
+                            </mat-date-range-input>
+                            <mat-datepicker-toggle class="not-display" matSuffix [for]="picker">
+                            </mat-datepicker-toggle>
+                            <mat-date-range-picker #picker></mat-date-range-picker>
+                        </mat-form-field>
+                    </div>
+
+
+                    <!-- <div>
+                                <input type="number" class="input-field-2 form-control input-2" [min]="0"
+                                    [disabled]="disabledDays" name="nbdays" placeholder="{{'Days'|translate}}"
+                                    [(ngModel)]="searchModel.nbDays" (change)="changeDays($event)">
+                            </div> -->
+                </div>
+
+                <ng-template #oneDatepiker>
+                    <!--In case of one date-->
+                    <!-- <label>
+                        Departing On
+                    </label> -->
+                    <div class="input-icons">
+                        <img src="../../../../../../assets/sra-sa/images/flights/calendar.png" class="image-calendar"
+                            (click)="picker.open()">
+                        <input type="text" placeholder="{{'Choose A Date'|translate}}" (click)="picker.open()"
+                            class="input-field form-control input-dep" [matDatepicker]="picker" [min]="start"
+                            name="departleVol1" [(ngModel)]="searchModel.departleVol1" autocomplete="off"
+                            id="inputdateOneDate" #inputdateOneDate>
+                        <!-- <i class="fas fa-calendar-day icon clickable" (click)="picker.open()"> </i> -->
+                        <mat-datepicker-toggle class="not-display" matSuffix [for]="picker">
+                        </mat-datepicker-toggle>
+
+                    </div>
+                    <mat-datepicker #picker></mat-datepicker>
+                </ng-template>
+            </div>
+        </div>
+        <!--Multi-Destination Form-->
+        <div class="row inputs-field mb-3" *ngFor="let item of formsId; let i = index">
+            <!-- <div class="col-sm-12 col-md-8">
+                <div class="row "> -->
+                    <div class="col-sm-12 col-md-4">
+                        <div class="input-icons">
+                            <!-- <i class="fas fa-plane-departure icon"></i> -->
+                            <img src="../../../../../../assets/sra-sa/images/flights/dep.png" class="image-dep">
+
+                            <input class="input-field form-control input-dep" type="text"
+                                placeholder="Leaving From (city,Country Or Specific Airport)" aria-label="State"
+                                [matAutocomplete]="autoFrom" (keyup)="getAirportsFrom($event)"
+                                [(ngModel)]="formsId[i].depart" name="departFrom{{i}}">
+                          
+                        </div>
+                        <mat-autocomplete #autoFrom="matAutocomplete">
+                            <mat-option (onSelectionChange)="filteredOptionsFromMultiClear($event,i)" *ngFor=" let option of
+                filteredOptionsFrom | async" [value]="option.id.aireport+' | '+option.id.ciata">
+                                <small>{{option.id.aireport}} <a class="text-muted">{{option.id.ciata}}</a>
+                                </small>
+                            </mat-option>
+                        </mat-autocomplete>
+                    </div>
+
+
+                    <div class="col-md-1 col-sm-2 text-center">
+                            <button type="button" class="btn-transparent"
+                                [disabled]="!formsId[i].destination || !formsId[i].depart"
+                                (click)="exchangeSecondary(i)">
+                                <img src="../../../../../../assets/sra-sa/images/flights/transfer.png" alt=""
+                                    class="image-dep">
+                            </button>
+                        </div>
+                    <div class="col-sm-12 col-md-4">
+                        <div class="input-icons">
+                            <img src="../../../../../../assets/sra-sa/images/flights/arr.png" class="image-dep">
+                            <input class="input-field form-control input-dep" type="text"
+                                placeholder="Going To (city,Country Or Specific Airport)" aria-label="State"
+                                [matAutocomplete]="autoTo2" (keyup)="getAirportsTo($event)"
+                                [(ngModel)]="formsId[i].destination" name="destinationTo{{i}}">
+                        </div>
+                        <mat-autocomplete #autoTo2="matAutocomplete">
+                            <mat-option *ngFor="let option of filteredOptionsTo | async"
+                                [value]="option.id.aireport+' | '+option.id.ciata"
+                                (onSelectionChange)="filteredOptionsToMultiClear($event,i)">
+                                <small>{{option.id.aireport}} <a class="text-muted">{{option.id.ciata}}</a>
+                                </small>
+                            </mat-option>
+                        </mat-autocomplete>
+
+                    </div>
+                <!-- </div>
+            </div> -->
+            <div class="col-md-3 col-sm-12">
+                <div class="input-icons">
+                    <!-- <label> Departing On</label> -->
+
+                    <img src="../../../../../../assets/sra-sa/images/flights/calendar.png" class="image-calendar"
+                        (click)="picker.open()">
+
+                    <input type="text" placeholder="Choose A Date" class="input-field form-control input-dep"
+                        [matDatepicker]="picker" [min]="start" [(ngModel)]="formsId[i].date"
+                        [ngModelOptions]="{standalone: true}" autocomplete="off">
+                    <!-- <i class="fas fa-calendar-day icon clickable" (click)="picker.open()"></i> -->
+                    <mat-datepicker-toggle class="not-display" matSuffix [for]="picker">
+                    </mat-datepicker-toggle>
+
+                </div>
+
+                <mat-datepicker #picker></mat-datepicker>
+            </div>
+        </div>
+        <!--Add/Remove Destination btn-->
+        <div class="row">
+            <div class="col " *ngIf="searchModel.typeSearch === 3">
+                <button class="btn btn-sm btn-primary mr-2" (click)="addForm()" [disabled]="nbDestination > 4">
+                    <small>Add Flight</small> </button>
+                <button class="btn btn-sm btn-secondary" [disabled]="disableButtonPopFlight" (click)="popForm()">
+                    <small>Pop
+                        Flight</small> </button>
+            </div>
+        </div>
+        <!-- here -->
+        <hr class="hr-10 hr-border">
+
+        <div class="row px-3">
+            <div class="col-sm-12 col-md-3">
+                <label class="label-search-flight">
+                    Passenger && Class of travel
+                </label>
+                <br>
+                <div class="btn-group  mr-2">
+                    <button type="button" class="btn btn-sm  dropdown-toggle dropdown-flight details" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        {{searchModel.qteADT + searchModel.qteCHD + searchModel.qteINF}} {{'Passenger'|translate}}
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right passenger-dropdown p-2">
+                        <div id="DropdownPassenger">
+                            <div class="row">
+                                <div class="col-6"> <i class="fas fa-female icon"> <i class="fas fa-male"></i></i>
+                                    <label class="label-search-flight">{{'Adults'|translate}}</label>
+                                    <br>
+                                    <!-- <label class="pl-2 text-muted"> -->
+                                    <small class="pl-2 text-muted"> ({{'>12 years'|translate}})
+                                    </small>
+                                    <!-- </label> -->
+                                </div>
+                                <div class="col-6">
+                                    <button type="submit" class="btn btn-sm btn-default btn-transparent"
+                                        [disabled]="searchModel.qteADT === 1"
+                                        (click)="searchModel.qteADT =searchModel.qteADT-1"><i
+                                            class="fas fa-minus"></i></button> {{searchModel.qteADT}}
+                                    <button type="submit" class="btn btn-sm btn-default"
+                                        (click)="searchModel.qteADT =searchModel.qteADT+1"><i
+                                            class="fas fa-plus"></i></button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6"><i class="fas fa-child icon"></i>
+                                    <label class="label-search-flight"> {{'Children' |translate}}</label> <br>
+                                    <label class="pl-2 text-muted"><small> ({{'2-11 years'
+                                            |translate}})</small></label>
+                                </div>
+                                <div class="col-6">
+                                    <button type="submit" class="btn btn-sm btn-default btn-transparent"
+                                        [disabled]="searchModel.qteCHD === 0"
+                                        (click)="searchModel.qteCHD =searchModel.qteCHD-1"><i
+                                            class="fas fa-minus"></i></button> {{searchModel.qteCHD}}
+                                    <button type="submit" class="btn btn-sm btn-default"
+                                        (click)="searchModel.qteCHD =searchModel.qteCHD+1"><i
+                                            class="fas fa-plus"></i></button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6"> <i class="fas fa-baby icon"></i> <label
+                                        class="label-search-flight">{{'Infant'|translate}}</label> <br>
+                                    <label class="pl-2 text-muted"> <small> ({{'<2 years'|translate}}) </small>
+                                    </label>
+                                </div>
+                                <div class="col-6">
+                                    <button type="submit" class="btn btn-sm btn-default btn-transparent"
+                                        [disabled]="searchModel.qteINF === 0"
+                                        (click)="searchModel.qteINF =searchModel.qteINF-1"><i
+                                            class="fas fa-minus"></i></button> {{searchModel.qteINF}}
+                                    <button type="submit" class="btn btn-sm btn-default"
+                                        (click)="searchModel.qteINF =searchModel.qteINF+1"><i
+                                            class="fas fa-plus"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col text-right">
+                                <button type="submit"
+                                    class="btn btn-sm btn-default mr-2">{{'Cancel'|translate}}</button>
+                                <button type="submit" class="btn btn-sm btn-default"><span
+                                        class="primary">{{'Ok'|translate}}</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Class Bloc  Economy / Busniss / Premium-->
+                <div class="btn-group mr-2">
+                    <button type="button" class="btn btn-sm dropdown-toggle dropdown-flight details" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        {{selectedItem(classList, searchModel.classe)|translate}}
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <button *ngFor="let class of classList" class="dropdown-item" type="button"
+                            (click)="changeValueClass(class.value)"><label>{{class.name |
+                                translate}}</label></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-3">
+                <label class="label-search-flight">
+                    Preferred Airline
+                </label>
+                <br>
+                <div class="btn-group mb-2 mr-2">
+                    <button type="button" class="btn btn-sm dropdown-toggle dropdown-flight details" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        {{'Prefered companies'|translate}}
+                    </button>
+                    <div class="dropdown-menu p-2">
+                        <div class=" mb-2" id="dropdownCompanies">
+                            <div class="row p-3">
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox" class="custom-control-input" id="compSwitches"
+                                            [(ngModel)]="checkAllCompanies" name="checkAllCompanies"
+                                            (change)="preferredAirlines =[]">
+                                        <label class="custom-control-label" for="compSwitches"><small>
+                                                {{'All Companies'|translate}}</small> </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <input class="form-control form-control-sm" type="text" name="compName"
+                                        [disabled]="checkAllCompanies" placeholder="{{'Prefered company' | translate}}"
+                                        list="airlinesList" (keyup)="getAirlines($event)" autocomplete="off"
+                                        (change)="filtredOptionAirlineClear($event);" [(ngModel)]="inputPreferdCompany">
+                                    <datalist id="airlinesList">
+                                        <option *ngFor=" let option of filtredOptionAirline | async" [ngValue]="option">
+                                            {{option.name}} - {{option.iata}} </option>
+                                    </datalist>
+                                </div>
+                            </div>
+                            <div class="dropdown-divider"></div>
+                            <div class="row">
+                                <div class="col-6" *ngFor="let item of preferredAirlines">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" [(ngModel)]="item.value"
+                                            id="{{item.iata}}" name="{{item.iata}}">
+                                        <label class="custom-control-label" for="{{item.iata}}"><small>
+                                                {{item.name}}</small></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col text-right">
+                                <button type="submit" class="btn btn-sm btn-default mr-2">{{'Cancel' |
+                                    translate}}</button>
+                                <button type="submit" class="btn btn-sm btn-default"><span class="primary">{{'OK'|
+                                        translate}}</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-3">
+                <label class="label-search-flight">Refundable fares</label>
+                <br>
+                <div class="btn-group mb-2">
+                    <button type="button" class="btn btn-sm dropdown-toggle dropdown-flight details" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        {{listRefund[searchModel.refundable] | translate}}
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-left">
+                        <button class="dropdown-item" type="button" (click)="changeRefundables('N')">
+                            <label class="label-search-flight"> {{'Only refundables fares' | translate}}</label>
+                        </button>
+                        <button class="dropdown-item" type="button" (click)="changeRefundables('O')">
+                            <label class="label-search-flight"> {{'All fares' | translate}}</label> </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-3">
+                <label class="label-search-flight"> Calender</label>
+                <br>
+                <div class="custom-control custom-switch" style="color: rgb(179, 173, 173);">
+                    <input type="checkbox" class="custom-control-input" id="customSwitches"
+                        [(ngModel)]="searchModel.calender" name="calender">
+                    <label class="custom-control-label" for="customSwitches">{{'Calender' | translate}} : +/- 3
+                        {{'Days'|translate}}</label>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- <hr class="hr-10 hr-border">
+        <div class="row">
+           
+         
+
+            </div> -->
+
+        <!-- <div class="row">
+
+        </div> -->
+    </div>
+
+    <!-- <div class="row"> -->
+
+    <!--Bloc Code Promo  -->
+    <!-- <div class="col-md-3 col-sm-6">
+            <div class="row form-group d-none">
+                <div class="col text-right">
+                    <label for="codePromo" class=" col-form-label col-form-label-sm">{{'Code Promo' |translate}}
+                        :</label>
+                </div>
+                <div class="col-5">
+                    <input type="text" class="form-control form-control-sm" [(ngModel)]="searchModel.promoCode"
+                        id="codePromo" name="codePromo" autocomplete="off">
+                </div>
+            </div>
+        </div> -->
+    <!-- </div> -->

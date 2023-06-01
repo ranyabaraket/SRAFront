@@ -1,0 +1,121 @@
+<div class="container" id="component1">
+    <div class="row">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-3">
+                    <div style="margin-top: 30px; height: 80px; width: 50px;">
+                        <img src="../../../../../../../../assets//sra-sa/images/logo/sra-sa.png" height="80px" style="float: left; margin-bottom: 10px;">
+                    </div>
+                </div>
+                <div class="col-9 text-right" style="margin-top: 30px; text-align: right;">{{tiersName}} <i class="fas fa-phone-square-alt mt-1 mr-1"></i> {{callCenter}}</div>
+
+            </div>
+
+            <div class="voucherRef">Certificate of Insurance</div>
+            <br>
+            <hr>
+            <div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <span>Congratulations ! You are now protected. Life is easier when you are worry free. Thank you for having confidence in us to protect you throughout your life’s journeys and adventures. </span>
+                    </div>
+                    <div class="col-md-4" id="printPageButton">
+                        <button class="btn btn-primary btn-sm m-2" [useExistingCss]="true" printSectionId="component1" ngxPrint> {{'print' | translate}}</button>
+
+                        <!-- <input class="btn btn-primary btn-sm m-2" type="button" value="Go Back" (click)="backToBlack()" /> -->
+                    </div>
+                </div>
+                <hr>
+                <div class="voucherRef1">
+                    <span> Tune Protect Travel Assurance </span>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-2 dataBooking11">
+                        <span> Policy No. </span>
+                    </div>
+                    <div class="col-4 dataBooking">
+                        <span> {{dataToConfirmReservation.policyNo}}</span>
+                    </div>
+                    <div class="col-2 dataBooking11">
+                        <span> Issue Date</span>
+                    </div>
+                    <div class="col-4 dataBooking">
+                        <span> {{dataToConfirmReservation.policyPurchasedDateTime | date:'dd/MM/yyyy'}}</span>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-2 dataBooking11">
+                        <span> Departure date </span>
+                    </div>
+                    <div class="col-4 dataBooking">
+                        <span> {{departDateTime | date:'dd/MM/yyyy'}}</span>
+                    </div>
+                    <div class="col-2 dataBooking11">
+                        <span> Return Date</span>
+                    </div>
+                    <div class="col-4 dataBooking">
+                        <span> {{returnDateTime | date:'dd/MM/yyyy'}}</span>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-2 dataBooking11">
+                        <span> Plan type </span>
+                    </div>
+                    <div class="col-4 dataBooking">
+                        <span> {{selectedInsurance.planTitle}}</span>
+                    </div>
+                    <!-- <div class="col-2 dataBooking">
+                        <span> Return Date</span>
+                    </div>
+                    <div class="col-2 dataBooking">
+                        <span> {{returnDateTime | date:'dd/MM/yyyy'}}</span>
+                    </div> -->
+                </div>
+                <br>
+
+                <div class="row destination">
+                    <div class="col-2 dataBooking1">
+                        <span> {{'No.' | translate}}</span>
+                    </div>
+                    <div class="col-4 dataBooking1">
+                        <span> Insured Name</span>
+                    </div>
+                    <div class="col-2 dataBooking1">
+                        <span> Gender</span>
+                    </div>
+                    <div class="col-2 dataBooking1">
+                        <span> D.O.B</span>
+                    </div>
+                    <div class="col-2 dataBooking1">
+                        <span> Passport</span>
+                    </div>
+                </div>
+                <br>
+                <div class="row" *ngFor="let item of passengerList; let j=index">
+                    <div class="col-2 dataBooking11">
+                        <span> {{j+1}} </span>
+                    </div>
+                    <div class="col-4 dataBooking11">
+                        <span> {{item.firstName}}  {{item.lastName}}</span>
+                    </div>
+                    <div class="col-2 dataBooking11">
+                        <span> {{item.gender}}</span>
+                    </div>
+                    <div class="col-2 dataBooking11">
+                        <span> {{item.dOB | date:'dd/MM/yyyy'}}</span>
+                    </div>
+                    <div class="col-2 dataBooking11">
+                        <span> {{item.identityNo | uppercase}}</span>
+                    </div>
+                </div>
+                <br>
+            </div>
+            <br>
+            <hr>
+
+        </div>
+    </div>
+</div>

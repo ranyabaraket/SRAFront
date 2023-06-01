@@ -1,0 +1,182 @@
+<div class="card card-cube mb-2 p-3">
+  <span class="badge-corner">
+    <a class="clickable">{{ transfer.gds }}</a></span
+  >
+  <div class="row">
+    <div class="col-md-9 col-sm-8">
+      <div class="row">
+        <div class="col-4">
+          <img
+            src="{{ transfer.general.VehicleImage }}"
+            class="img-title"
+            alt="{{ transfer.general.producttype }}"
+          />
+        </div>
+        <div class="col-8">
+          <div class="row">
+            <div class="col">
+              <div class="row">
+                <div class="col h6">
+                  <b>{{ transfer.general.producttype }}</b>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col text-muted">
+                  {{ traject | translate }}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <small
+                    class="clickable mr-2"
+                    *ngIf="transfer.general.luggage"
+                    title="Laguage"
+                  >
+                    <i class="fas fa-suitcase-rolling mr-2"></i
+                    >{{ transfer.general.luggage }}
+                  </small>
+
+                  <small
+                    class="clickable mr-2"
+                    *ngIf="transfer.general.SmallBagAllowance"
+                    title="Small Bag"
+                  >
+                    <i class="fas fa-suitcase mr-2"></i
+                    >{{ transfer.general.SmallBagAllowance }}
+                  </small>
+                  <small
+                    class="clickable mr-2"
+                    *ngIf="transfer.general.transfertime"
+                    title="Time"
+                  >
+                    <i class="fas fa-stopwatch mr-2"></i
+                    >{{ transfer.general.transfertime }} mins
+                  </small>
+                  <small
+                    class="clickable mr-2"
+                    *ngIf="transfer.general.NumUnits"
+                    title="Person"
+                  ><i class="fas fa-user  mr-2"></i>
+                     {{ transfer.general.NumUnits }}
+                  </small>
+                  <small
+                    class="clickable mr-2"
+                    *ngIf="
+                      transfer.general.Min_Stops !== '0' &&
+                      transfer.general.Max_Stops !== '0'
+                    "
+                    title="Stop"
+                  >
+                    <i class="fas fa-hand-paper mr-2"></i>
+                    {{ transfer.general.Min_Stops }} -
+                    {{ transfer.general.Max_Stops }}
+                  </small>
+                </div>
+              </div>
+              <div class="row" *ngIf="transfer.general.NumberOfReviews > 0">
+                <div class="col text-muted">
+                  <h3 style="display: inline-block">
+                    <span class="badge badge-warning mr-2">{{
+                      transfer.general.Rating
+                    }}</span>
+                  </h3>
+                  <span
+                    >{{ transfer.general.NumberOfReviews }}
+                    {{ "review" | translate }}</span
+                  >
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col">
+                  <div
+                    class="row text-muted"
+                    *ngIf="transfer.general.description"
+                  >
+                    <span class="ml-3">
+                      {{ decriptionTruncated }}
+                      <u
+                        class="clickable primary"
+                        *ngIf="
+                          transfer.general.description.length !==
+                          decriptionTruncated.length
+                        "
+                        (click)="showMore()"
+                        >{{ "show more" | translate }}</u
+                      >
+                      <u
+                        class="clickable primary"
+                        *ngIf="
+                          transfer.general.description.length ===
+                          decriptionTruncated.length
+                        "
+                        (click)="showLess()"
+                        >{{ "show less" | translate }}</u
+                      >
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <label class="text-danger">Within {{transfer.general.CanxHours}} hrs of travel {{transfer.general.CanxPerc}}% fee will apply.</label>
+                </div>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-6">
+              <small class="text-muted">{{'provided by' | translate}}</small> <br>
+              <img
+                src="{{ transfer.general.Company_Logo }}"
+                class="img-logo"
+                title="Company"
+                alt="{{ transfer.general.TransferCompany }}"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 col-sm-4 text-right">
+      <div class="row">
+        <div class="col h6">
+          <!--<b>{{transfer.pricing.price }}
+                        {{transfer.pricing.currency}}</b>-->
+          <b
+            >{{ formatAmout(transfer.pricing.finalPrice) }}
+            {{ transfer.pricing.currencyTiers }}</b
+          >
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button
+            class="btn btn-sm"
+            (click)="selectTransfer(transfer)"
+            [ngClass]="
+              compareSoldeToPriceTransfer(transfer.pricing.finalPrice)
+                ? 'btn-success'
+                : 'btn-danger'
+            "
+          >
+            {{ "Select" | translate }}
+          </button>
+        </div>
+      </div>
+      <!--<div class="row">
+        <div class="col h6">
+          <small
+            *ngIf="transfer.IsDeposit > 0; else notDeposit"
+            class="text-success text-right"
+          >
+            <b> {{ "Pay Now" | translate }}</b>
+          </small>
+          <ng-template #notDeposit>
+            <small class="text-danger text-right">
+              <b> {{ "Pay at Pick-up" | translate }}</b>
+            </small>
+          </ng-template>
+        </div>
+      </div>-->
+    </div>
+  </div>
+</div>

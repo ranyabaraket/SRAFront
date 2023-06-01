@@ -1,0 +1,115 @@
+<div class="container-fluid  pt-0">
+    <div class=" mb-2">
+        <form #searchForm="ngForm" class="py-3">
+            <div class="row">
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="form-floating mb-3">
+                            <input type="date" class="form-control form-control-sm" placeholder="Search" 
+                            [(ngModel)]="searchModel.dtFactStart" name="startDt">
+                            <label for="floatingSelect">{{'Invoice date'|translate}}</label>
+                        </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="form-floating mb-3">
+                            <input type="date" class="form-control form-control-sm" placeholder="Search" 
+                            [(ngModel)]="searchModel.dtFactEnd" name="EndDt" [min]="searchModel.dtFactStart">
+                            <label for="floatingSelect">{{'Invoice date'|translate}}</label>
+                        </div>
+                        </div>   
+
+                     <div class="col-md-6 col-sm-6">
+                    <button type="button" class="btn  btn-sm btn-success col-8 col-md-5 m-2" (click)="find()" [disabled]="loading">
+                        <div *ngIf="loading" class="spinner-border spinner-border-sm text-light" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div> <span>{{'Find'|translate}}</span>
+                        <div class="icon2 d-flex align-items-center justify-content-center">
+                            <i class="fas fa-search"></i> 
+                        </div>
+                    </button>
+                    
+                    <button type="button" class="btn btn-sm  btn-primary col-8 col-md-5 m-2" 
+                    (click)="searchForm.reset();total = 0; this.source = [];" [disabled]="loading">{{'Refresh'|translate}}
+                    <div class="icon d-flex align-items-center justify-content-center">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                </button>
+                 
+                </div>
+            </div>
+        </div>
+    </div>
+        </form>
+    </div>
+    <!-- <div class="container rounded"> -->
+        <div>
+    <div class=" card card-no-border  mb-4">
+     
+
+        <label class="ml-2"> {{'Invoice'|translate}}({{total}}) </label>
+
+        <div class="d-flex justify-content-end">
+            <button style="border:none ; background: none" (click)="exportAsXLSX()">
+                <i class="far fa-file-excel fa-lg" style="color:rgb(4, 173, 46)"></i>
+            </button>
+            <button style="border:none ; background: none" (click)="exportToPdf()">
+                <i class="far fa-file-pdf fa-lg" style="color:red"></i>
+            </button>
+        </div>
+        <table mat-table [dataSource]="source" class="my-table">
+            <!-- id Column -->
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'id'| translate }}</th>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+            </ng-container>
+            <!-- numFact Column -->
+            <ng-container matColumnDef="numFact">
+                <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'numFact'| translate }}</th>
+                <td mat-cell *matCellDef="let element" class="text-center"> {{element.numFact}} </td>
+            </ng-container>
+            <!-- tiersName Column -->
+            <ng-container matColumnDef="tiersName">
+                <th mat-header-cell *matHeaderCellDef class=" text-center">  {{'tiersName'| translate }}</th>
+                <td mat-cell *matCellDef="let element" class="text-center"> {{element.tiersName}} </td>
+            </ng-container>
+            <!-- etatFact Column -->
+            <ng-container matColumnDef="etatFact">
+                <th mat-header-cell *matHeaderCellDef class=" text-center">  {{'etatFact'| translate }}</th>
+                <td mat-cell *matCellDef="let element" class="text-center hotel-name"> {{element.etatFact}} </td>
+            </ng-container>
+            <!-- numberOfTickets Column -->
+            <ng-container matColumnDef="numberOfTickets">
+                <th mat-header-cell *matHeaderCellDef class=" text-center">  {{'numberOfTickets'| translate }}</th>
+                <td mat-cell *matCellDef="let element" class="text-center "> {{element.numberOfTickets}} </td>
+            </ng-container> 
+            <!-- totFactTtc Column -->
+            <ng-container matColumnDef="totFactTtc">
+                <th mat-header-cell *matHeaderCellDef class=" text-center">  {{'totFactTtc'| translate }}</th>
+                <td mat-cell *matCellDef="let element" class="text-center"> {{element.totFactTtc}} </td>
+            </ng-container>
+            <!-- codeDevise Column -->
+            <ng-container matColumnDef="codeDevise">
+                <th mat-header-cell *matHeaderCellDef class=" text-center"> {{'codeDevise'| translate }}</th>
+                <td mat-cell *matCellDef="let element" class="text-center"> {{element.codeDevise}} </td>
+            </ng-container>
+        
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <mat-paginator [pageSizeOptions]="[100, 200, 300, 400]" showFirstLastButtons>
+            </mat-paginator>
+
+
+
+
+
+
+
+        <!-- <ng2-smart-table id="myTableElementId" [settings]="settings" [source]="source"  #contentinv> -->
+            <!-- id="contentinv" -->
+        <!-- </ng2-smart-table> -->
+    </div>
+    </div>
+</div>
